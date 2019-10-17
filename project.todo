@@ -113,8 +113,10 @@ My Choice Rater Web v2.0.8x10:
         ✔ Flip Page Screen (View/Edit). @done(19-09-12 11:34)
         Date Picker:
             ☐ Year/Month/Date dropdown/updown (each value) component.
+            ☐ Check input type date for get date value and format.
         Time Picker:
             ☐ Hour/Miniute/Second dropdown/updown (each value) component.
+            ☐ Check input type time for get time value and format.
         Color Picker:
             ☐ Choose from color chart.
             ☐ Enter Custom color input text.
