@@ -34,10 +34,12 @@ const routes = class {
     }
 }
 
-router.get('/', routes.home)
+router.get('/highcharts', routes.home)
+//router.get('/contents', routes.getContents)
+//router.get('/js/:file', routes.getjsfile)
 
 const init_routes = (svr) => {
-    svr.route('/dist/highcharts', router);
+    svr.route('/dist', router);
 };
 
 module.exports.init_routes = exports.init_routes = init_routes;

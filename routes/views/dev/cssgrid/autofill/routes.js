@@ -3,6 +3,16 @@
 const path = require('path');
 const rootPath = process.env['ROOT_PATHS'];
 
+// fs helper methods.
+const fs = require('fs');
+
+const isDirectory = (source) => {
+    return fs.lstatSync(source).isDirectory()
+}
+const getDirectories = (source) => { 
+    return fs.readdirSync(source).map(name => path.join(source, name)).filter(isDirectory)
+}
+
 // for production
 const nlibPath = path.join(rootPath, 'nlib');
 // for nlib-server dev project
@@ -34,10 +44,12 @@ const routes = class {
     }
 }
 
-router.get('/', routes.home)
+router.get('/cssgrid/autofill', routes.home)
+//router.get('/contents', routes.getContents)
+//router.get('/js/:file', routes.getjsfile)
 
 const init_routes = (svr) => {
-    svr.route('/', router);
+    svr.route('/dev', router);
 };
 
 module.exports.init_routes = exports.init_routes = init_routes;
