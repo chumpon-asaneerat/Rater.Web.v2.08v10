@@ -1,6 +1,39 @@
 My Choice Rater Web v2.0.8x10:
     Database:
         ✔ Redesign customer register process. @done(19-08-29 19:03)
+        Add Supports delete data:
+            Allow to delete member:
+                ☐ if exists in vote table remove all vote data.
+            Allow to delete org:
+                ☐ Cannot remove root Org.
+                ☐ Find all child orgs.
+                ☐ if exists in vote table remove all vote data that match all children orgs.
+                ☐ if exists in Org table as parent remove all Org children.
+                ☐ if exists in Org table remove all Org.
+            Allow to delete branch:
+                ☐ if exists in vote table remove all vote data.
+                ☐ if exists in org table remove all org data.
+            Allow to QSet:
+                ☐ if exists in vote table remove all vote data.
+                ☐ if exists in QSlideItemML table remove all QSlideItemML data.
+                ☐ if exists in QSlideItem table remove all QSlideItem data.
+                ☐ if exists in QSlideML table remove all QSlideML data.
+                ☐ if exists in QSlide table remove all QSlide data.
+                ☐ if exists in QSetML table remove all QSetML data.
+                ☐ if exists in QSet table remove all QSet data.
+            Allow to QSlide:
+                ☐ if exists in vote table remove all vote data.
+                ☐ if exists in QSlideML table remove all QSlideML data.
+                ☐ if exists in QSlide table remove all QSlide data.
+            Allow to QSlideItem: 
+                ☐ if exists in vote table remove all vote data.
+                ☐ if exists in QSlideItemML table remove all QSlideItemML data.
+                ☐ if exists in QSlideItem table remove all QSlideItem data.
+            Allow to delete device:
+                ☐ if exists in vote table remove all vote data.
+        Redesign Customer Multilanguage supports:
+            ☐ Add Table for Keep language for each customer.
+            ☐ Update all view related to customer to new created table.
         Redesign user sign in/out process:
             ☐ Modify client access table (keep more id information).
             ☐ Modify sign in stored procedure.
