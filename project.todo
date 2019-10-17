@@ -80,10 +80,14 @@ My Choice Rater Web v2.0.8x10:
             ☐ Url file cache. (image/video/sound/font/json ?).
         websocket:
             ☐ provide client side socket (with individual channel).
+    rater (server):
+        ☐ Create route for cover all db access.
+        ☐ Provide global function to allow send customerid, deviceid via json or secure api.
     rater (client):
         ✔ services.js split to multiple file. @done(19-10-08 17:05)
         ✔ check all service dependency in service.js (after split). @done(19-10-08 17:05)
-        ☐ API Wrapper class. ???
+        API Wrapper class:
+            ☐ Common all db access api into one file.
         Create all models (list and item):
             ☐ supports language changed detection.
             ☐ The list supports datasource changed (to get all text in current language).
