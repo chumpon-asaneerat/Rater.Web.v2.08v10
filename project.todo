@@ -5,8 +5,27 @@ My Choice Rater Web v2.0.8x10:
             ☐ Modify client access table (keep more id information).
             ☐ Modify sign in stored procedure.
             ☐ Modify sign out stored procedure.
-        ☐ Redesign device check up process:
-        ☐ Redesign device register process.
+        Redesign device check up process:
+            Logic 1 - Multiple screen:
+                When device is not registered:
+                    ☐ Redirect to setup route??.
+                When device is registered:
+                    ☐ Redirect to main question route??.
+                When device is enter setup screen (must registered):
+                    ☐ Redirect to setup route??.
+            Logic 2 - Single screen:
+                When device is not registered:
+                    ☐ Client must read cookies is exists.
+                    ☐ If exist show question screen.
+                    ☐ If not exist show setup screen.
+                When device is registered:
+                    ☐ Client must read cookies is exists.
+                    ☐ If exist show question screen.
+                    ☐ If not exist show setup screen.
+                When device is enter setup screen (must registered):
+                    ☐ This screen can access when received message from socket.
+                    ☐ When received message show setup screen.
+                    ☐ When save recheck with server if success goto question screen.
         ☐ Redesign device user sign in process.
         ☐ Redesign device user sign out process.
         ☐ Redesign device nofification process.
