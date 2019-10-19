@@ -163,7 +163,7 @@ class OSDService {
         this.shown = false;
         this.lastUpdate = new Date();
         /** timeout in millisecond. */
-        this.timeout = 3000;
+        this.timeout = 5000;
     }
     get elapse() { return new Date() - this.lastUpdate; }
     show() {
