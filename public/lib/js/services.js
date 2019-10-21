@@ -39,6 +39,25 @@ window.events.name.HideOsd = 'app:osd:hide';
 
 //#endregion
 
+//#region DbApi class
+
+class DbApi {
+    static parse(r) {        
+        let ret = { records: null, errors: null, out: null };
+        if (r && r.result) {
+            //console.log(r.result)
+            ret.records = r.result.data;
+            ret.out = r.result.out;
+            ret.errors = r.result.errors;
+        }
+        return ret;
+    }
+}
+
+const api = DbApi; // create shortcur variable.
+
+//#endregion
+
 //#region LocalStorage class
 
 class LocalStorage {
@@ -121,7 +140,7 @@ class LanguageService {
             self.languages = data.records;
             self.change(self.pref.langId); // set langId from preference.
         }
-        //XHR.get('/api/languages/search', { enable: true }, fn);
+        XHR.get('/api/languages/search', { enable: true }, fn);
     }
     change(langId) {
         let newId = (langId) ? langId.toUpperCase() : LanguageService.defaultId;

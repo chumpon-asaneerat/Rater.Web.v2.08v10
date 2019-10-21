@@ -1,5 +1,5 @@
 // required to manual set require path for nlib-mssql.
-const SqlServer = require('./src/server/js/nlib/nlib-mssql');
+const SqlServer = require('./nlib/nlib-mssql');
 const schema = require('./schema/RaterWebv2x08r9.schema.json');
 
 const RaterWebv2x08r9 = class extends SqlServer {
