@@ -1,24 +1,16 @@
-//#region common requires
+//#region requires
 
 const path = require('path');
-const fs = require('fs');
-const mkdirp = require('mkdirp')
-
+//const fs = require('fs');
+//const mkdirp = require('mkdirp')
 const rootPath = process.env['ROOT_PATHS'];
-
-const nlibPath = path.join(rootPath, 'nlib');
-const nlibjs = path.join(nlibPath, 'nlib');
-const nlib = require(nlibjs);
-
-const nlibExprjs = path.join(nlibPath, 'nlib-express');
-const WebServer = require(nlibExprjs);
-
-//#endregion
-
-//#region router type and variables
-
+const nlib = require(path.join(rootPath, 'nlib', 'nlib'));
+const WebServer = require(path.join(rootPath, 'nlib', 'nlib-express'));
 const WebRouter = WebServer.WebRouter;
 const router = new WebRouter();
+
+//const secure = require(path.join(rootPath, 'edl', 'rater-secure')).RaterSecure;
+//const sqldb = require(path.join(rootPath, 'RaterWebv2x08r9.db'));
 
 //#endregion
 
@@ -37,7 +29,6 @@ const routes = class {
             WebServer.sendFile(req, res, fname);
         }
     }
-    /*
     static getContents(req, res) {
         let data = {
             "EN": {},
@@ -46,7 +37,8 @@ const routes = class {
         let result = nlib.NResult.data(data);
         WebServer.sendJson(req, res, result);
     }
-    */
+
+    /*
     static getContents(req, res) {
         let contentPath = path.join(__dirname, 'contents');
         let folders = getDirectories(contentPath);
@@ -57,6 +49,7 @@ const routes = class {
         })
         WebServer.sendJson(req, res, nlib.NResult.data(json));
     }
+    */
 }
 
 //#endregion
