@@ -1,10 +1,9 @@
 //#region requires
 
 const path = require('path');
-//const fs = require('fs');
-//const mkdirp = require('mkdirp')
 const rootPath = process.env['ROOT_PATHS'];
 const nlib = require(path.join(rootPath, 'nlib', 'nlib'));
+const sfs = require(path.join(rootPath, 'edl', 'server-fs'));
 const WebServer = require(path.join(rootPath, 'nlib', 'nlib-express'));
 const WebRouter = WebServer.WebRouter;
 const router = new WebRouter();
@@ -30,26 +29,10 @@ const routes = class {
         }
     }
     static getContents(req, res) {
-        let data = {
-            "EN": {},
-            "TH": {},
-        };
+        let data = sfs.getContents(path.join(__dirname, 'contents'));
         let result = nlib.NResult.data(data);
         WebServer.sendJson(req, res, result);
     }
-
-    /*
-    static getContents(req, res) {
-        let contentPath = path.join(__dirname, 'contents');
-        let folders = getDirectories(contentPath);
-        let json = {}
-        folders.forEach(dir => {
-            let langId = dir.replace(contentPath + '\\', '')
-            json[langId] = JSON.parse(fs.readFileSync(path.join(dir, 'content.json'), 'utf8'))
-        })
-        WebServer.sendJson(req, res, nlib.NResult.data(json));
-    }
-    */
 }
 
 //#endregion

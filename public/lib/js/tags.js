@@ -286,8 +286,10 @@ riot.tag2('navibar', '<div class="banner"> <div class="caption">My Choice Rater 
 
         let bindEvents = () => {
             addEvt(events.name.LanguageChanged, onLanguageChanged)
+            addEvt(events.name.ContentChanged, onContentChanged)
         }
         let unbindEvents = () => {
+            delEvt(events.name.ContentChanged, onContentChanged)
             delEvt(events.name.LanguageChanged, onLanguageChanged)
         }
 
@@ -300,7 +302,7 @@ riot.tag2('navibar', '<div class="banner"> <div class="caption">My Choice Rater 
             freeCtrls();
         });
 
-        let onAppContentChanged = (e) => { updatecontent(); }
+        let onContentChanged = (e) => { updatecontent(); }
         let onLanguageChanged = (e) => { updatecontent(); }
         let onScreenChanged = (e) => { updatecontent(); }
 

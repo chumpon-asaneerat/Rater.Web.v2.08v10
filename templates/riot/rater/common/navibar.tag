@@ -105,8 +105,10 @@
 
         let bindEvents = () => {
             addEvt(events.name.LanguageChanged, onLanguageChanged)
+            addEvt(events.name.ContentChanged, onContentChanged)
         }
         let unbindEvents = () => {
+            delEvt(events.name.ContentChanged, onContentChanged)
             delEvt(events.name.LanguageChanged, onLanguageChanged)
         }
 
@@ -127,7 +129,7 @@
 
         //#region dom event handlers
 
-        let onAppContentChanged = (e) => { updatecontent(); }
+        let onContentChanged = (e) => { updatecontent(); }
         let onLanguageChanged = (e) => { updatecontent(); }
         let onScreenChanged = (e) => { updatecontent(); }
 

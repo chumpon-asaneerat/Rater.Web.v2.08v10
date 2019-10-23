@@ -26,6 +26,8 @@ window.events = window.events || new EventService();
 
 /** app language changed. */
 window.events.name.LanguageChanged = 'app:language:change';
+/** app contents changed. */
+window.events.name.ContentChanged = 'app:contents:changed';
 
 /** app screen changed. */
 window.events.name.ScreenChanged = 'app:screen:change';
@@ -168,9 +170,11 @@ class LanguageService {
     }
 }
 
-//console.log('Init language service...');
-window.lang = window.lang || new LanguageService();
-lang.getLanguages();
+; (function () {
+    //console.log('Init language service...');
+    window.lang = window.lang || new LanguageService();
+    lang.getLanguages();
+})();
 
 //#endregion
 
@@ -230,6 +234,56 @@ class OSDService {
     }
 }
 
-window.osd = window.osd || new OSDService()
+; (function () {
+    window.osd = window.osd || new OSDService()
+})()
+
+//#endregion
+
+//#region ContentService class
+
+class ContentService {
+    constructor() {
+        this.content = null;
+        this.current = null;
+        let self = this;
+        let contentChanged = (e) => {
+            self.current = self.getCurrent();
+            // Raise event.
+            events.raise(events.name.ContentChanged);
+        }
+        document.addEventListener(events.name.LanguageChanged, contentChanged)
+    }
+    load(url, paramObj) {
+        let self = this;
+        let fn = (r) => {
+            let data = api.parse(r);
+            self.content = data.records;
+            self.current = self.getCurrent();
+            // Raise event.
+            events.raise(events.name.ContentChanged);
+
+        }
+        XHR.get(url, paramObj, fn);
+    }
+    getCurrent() {
+        let match = this.content && this.content[this.langId];
+        let ret = (match) ? this.content[this.langId] : (this.content) ? this.content['EN'] : null;
+        //console.log('Current:', ret);
+        return ret;
+    }
+    get langId() { 
+        return (lang.current) ? lang.current.langId : 'EN';
+    }
+}
+; (function () {
+    //console.log('Init content service...');
+    window.contents = window.contents || new ContentService();
+    let href = window.location.href;
+    if (href.endsWith('#')) href = window.location.href.replace('#', '');
+    if (!href.endsWith('/')) href = href + '/';
+    let url = href.replace('#', '') + 'contents';
+    contents.load(url); // load contents.
+})();
 
 //#endregion
