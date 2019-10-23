@@ -88,6 +88,7 @@ My Choice Rater Web v2.0.8x10:
         ✔ check all service dependency in service.js (after split). @done(19-10-08 17:05)
         API Wrapper class:
             ☐ Common all db access api into one file.
+            ☐ Add device access table (like user sign in).
         Create all models (list and item):
             ☐ supports language changed detection.
             ☐ The list supports datasource changed (to get all text in current language).
