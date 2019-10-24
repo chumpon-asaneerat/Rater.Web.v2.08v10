@@ -130,7 +130,9 @@
             flags = null;
         }
 
-        this.isMultiple = () => { return lang && lang.languages &&  lang.languages.length > 1 }
+        this.isMultiple = () => { 
+            return lang && lang.languages && lang.languages.length > 1
+        }
 
         //#endregion
 

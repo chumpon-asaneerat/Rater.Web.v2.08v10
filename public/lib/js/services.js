@@ -134,19 +134,21 @@ class LanguageService {
         this.languages = [];
         this.langId = LanguageService.defaultId;
         this.current = LanguageService.defaultLang;
+        this.loaded = false;
     }
     getLanguages() {
         let self = this;
         let fn = (r) => {
             let data = api.parse(r);
             self.languages = data.records;
-            self.change(self.pref.langId); // set langId from preference.
+            self.change(self.pref.langId, true); // set langId from preference.
+            self.loaded = true;
         }
         XHR.get('/api/languages/search', { enable: true }, fn);
     }
-    change(langId) {
+    change(langId, forced) {
         let newId = (langId) ? langId.toUpperCase() : LanguageService.defaultId;
-        if (this.langId != newId) {
+        if (this.langId != newId || forced) {
             this.langId = newId;
             let ids = this.languages.map(lang => lang.langId);
             let idx = ids.indexOf(newId);

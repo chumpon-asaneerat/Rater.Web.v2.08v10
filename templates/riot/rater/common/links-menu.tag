@@ -96,7 +96,7 @@
 
         this.menus = [];
         let updatecontent = () => {
-            self.menus = (screenservice.content) ? screenservice.content.links : [];
+            self.menus = (contents && contents.current) ? contents.current.links : [];
             self.update();
         }
 
@@ -127,8 +127,16 @@
 
         let bindEvents = () => {
             addEvt(events.name.LanguageChanged, onLanguageChanged)
+            addEvt(events.name.ContentChanged, onContentChanged)
+
+            links.addEventListener('click', toggle);
+            window.addEventListener('click', checkClickPosition);
         }
         let unbindEvents = () => {
+            window.removeEventListener('click', checkClickPosition);
+            links.removeEventListener('click', toggle);
+
+            delEvt(events.name.ContentChanged, onContentChanged)
             delEvt(events.name.LanguageChanged, onLanguageChanged)
         }
 
@@ -150,8 +158,8 @@
         //#region dom event handlers
 
         let onLanguageChanged = (e) =>  { updatecontent(); }
-        let onAppContentChanged = (e) => { updatecontent(); }
-        let onScreenChanged = (e) =>  { updatecontent(); }
+        let onContentChanged = (e) => { updatecontent();  }
+        //let onScreenChanged = (e) =>  { updatecontent(); }
 
         //#endregion
 

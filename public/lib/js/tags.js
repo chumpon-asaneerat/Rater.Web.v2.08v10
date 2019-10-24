@@ -110,7 +110,9 @@ riot.tag2('language-menu', '<div class="menu"> <a ref="flags" class="flag-combo"
             flags = null;
         }
 
-        this.isMultiple = () => { return lang && lang.languages &&  lang.languages.length > 1 }
+        this.isMultiple = () => {
+            return lang && lang.languages && lang.languages.length > 1
+        }
 
         let addEvt = (evtName, handle) => { document.addEventListener(evtName, handle) }
         let delEvt = (evtName, handle) => { document.removeEventListener(evtName, handle) }
@@ -180,7 +182,7 @@ riot.tag2('links-menu', '<div class="menu"> <a ref="links" class="link-combo" hr
 
         this.menus = [];
         let updatecontent = () => {
-            self.menus = (screenservice.content) ? screenservice.content.links : [];
+            self.menus = (contents && contents.current) ? contents.current.links : [];
             self.update();
         }
 
@@ -199,8 +201,16 @@ riot.tag2('links-menu', '<div class="menu"> <a ref="links" class="link-combo" hr
 
         let bindEvents = () => {
             addEvt(events.name.LanguageChanged, onLanguageChanged)
+            addEvt(events.name.ContentChanged, onContentChanged)
+
+            links.addEventListener('click', toggle);
+            window.addEventListener('click', checkClickPosition);
         }
         let unbindEvents = () => {
+            window.removeEventListener('click', checkClickPosition);
+            links.removeEventListener('click', toggle);
+
+            delEvt(events.name.ContentChanged, onContentChanged)
             delEvt(events.name.LanguageChanged, onLanguageChanged)
         }
 
@@ -214,8 +224,7 @@ riot.tag2('links-menu', '<div class="menu"> <a ref="links" class="link-combo" hr
         });
 
         let onLanguageChanged = (e) =>  { updatecontent(); }
-        let onAppContentChanged = (e) => { updatecontent(); }
-        let onScreenChanged = (e) =>  { updatecontent(); }
+        let onContentChanged = (e) => { updatecontent();  }
 
         this.selectItem = (e) => {
             toggle();
