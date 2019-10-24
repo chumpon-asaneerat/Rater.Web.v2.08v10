@@ -15,7 +15,7 @@ const routes = class {
     }
 }
 
-router.get('/cssgrid/rawvote', routes.home)
+router.get('/inputs/text', routes.home)
 
 const init_routes = (svr) => {
     svr.route('/dev', router);
