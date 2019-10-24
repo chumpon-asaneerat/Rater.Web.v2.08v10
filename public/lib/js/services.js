@@ -131,7 +131,7 @@ class LanguageService {
     constructor() {
         this.pref = new UserPerference();
         this.pref.load(); // load once.
-        this.languages = null;
+        this.languages = [];
         this.langId = LanguageService.defaultId;
         this.current = LanguageService.defaultLang;
     }

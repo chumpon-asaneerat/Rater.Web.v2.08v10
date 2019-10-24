@@ -1,7 +1,10 @@
 <navibar>
     <div class="banner">
+        <!--
         <div class="caption">My Choice Rater Web{ (content.label) ? '&nbsp;-&nbsp;' : '&nbsp;'}</div>
         <div class="title ">{ content.label.screenTitle }</div>
+        -->
+        <div class="caption">My Choice Rater Web</div>
     </div>
     <language-menu></language-menu>
     <links-menu></links-menu>

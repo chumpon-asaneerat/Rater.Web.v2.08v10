@@ -3,7 +3,9 @@
         <a ref="flags" class="flag-combo" href="javascript:;">
             <span class="flag-css flag-icon flag-icon-{ lang.current.flagId.toLowerCase() }" ref="css-icon"></span>
             <div class="flag-text">&nbsp;{ lang.langId }&nbsp;</div>
-            <span class="drop-synbol fas fa-caret-down"></span>
+            <virtual if={ isMultiple() }>
+                <span class="drop-synbol fas fa-caret-down"></span>
+            </virtual>
         </a>
     </div>
     <div ref="dropItems" class="language-dropbox">
@@ -38,7 +40,6 @@
         }
         .flag-combo {
             margin: 0 auto;
-            
         }
         .flag-combo .flag-css {
             margin: 0px auto;
@@ -128,6 +129,8 @@
             dropItems = null;
             flags = null;
         }
+
+        this.isMultiple = () => { return lang && lang.languages &&  lang.languages.length > 1 }
 
         //#endregion
 
