@@ -41,6 +41,7 @@
         <ninput type="text" title="Customer Name" value=""></ninput>
         <ninput type="email" title="Email" value=""></ninput>
         <ninput type="password" title="Password" value=""></ninput>
+        <nselect title="Please Select options:"></nselect>
     </div>
 
     <!-- JQuery -->
@@ -65,6 +66,16 @@
     -->
     <script>
         riot.mount('ninput')
+        let sel = riot.mount('nselect')[0] // mount return tag array.
+        let items = [
+            { code: 'JP01', name: 'Toyota' },
+            { code: 'JP02', name: 'Honda' },
+            { code: 'JP03', name: 'Nisson' },
+            { code: 'JP04', name: 'Suzuki' },
+            { code: 'EU01', name: 'BMW' }
+        ];
+        sel.setup(items, { valueField:'code', textField:'name' })
+        sel.value('JP04')
     </script>
 </body>
 </html>

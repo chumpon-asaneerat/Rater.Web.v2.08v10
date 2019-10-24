@@ -53,6 +53,127 @@ riot.tag2('ninput', '<input ref="input" type="{opts.type}" name="{opts.name}" ri
         }
 
 });
+riot.tag2('nselect', '<select ref="input"> <option each="{item in items}" riot-value="{item.value}">{item.text}</option> </select> <div ref="clear" class="clear">x</div> <label>{opts.title}</label>', 'nselect,[data-is="nselect"]{ margin: 0; margin-top: 5px; padding: 10px; font-size: 14px; display: inline-block; position: relative; height: auto; width: 100%; background: transparent; box-shadow: 0 5px 10px solid rgba(0, 0, 0, .2); } nselect select,[data-is="nselect"] select{ display: inline-block; padding: 20px 0 10px 0; margin-bottom: 0px; width: calc(100% - 25px); background-color: rgba(255, 255, 255, 0); box-sizing: border-box; box-shadow: none; outline: none; border: none; font-size: 14px; box-shadow: 0 0 0px 10000px transparent inset; border-bottom: 2px solid #999; -webkit-appearance: none; -moz-appearance: none; background-image: url("data:image/svg+xml;utf8,<svg fill=\'black\' height=\'24\' viewBox=\'0 0 24 24\' width=\'24\' xmlns=\'http://www.w3.org/2000/svg\'><path d=\'M7 10l5 5 5-5z\'/><path d=\'M0 0h24v24H0z\' fill=\'none\'/></svg>"); background-repeat: no-repeat; background-position-x: 100%; background-position-y: 20px; border-radius: 2px; } nselect .clear,[data-is="nselect"] .clear{ display: inline-block; margin: 0; padding: 0px 6px; font-size: 12px; font-weight: bold; width: 21px; height: 21px; color: white; cursor: pointer; user-select: none; border: 1px solid red; border-radius: 50%; background: rgba(255, 100, 100, .75); } nselect .clear:hover,[data-is="nselect"] .clear:hover{ color: yellow; background: rgba(255, 0, 0, .8); } nselect select:-webkit-autofill,[data-is="nselect"] select:-webkit-autofill,nselect select:-webkit-autofill:hover,[data-is="nselect"] select:-webkit-autofill:hover,nselect select:-webkit-autofill:focus,[data-is="nselect"] select:-webkit-autofill:focus{ font-size: 14px; transition: background-color 5000s ease-in-out 0s; } nselect label,[data-is="nselect"] label{ position: absolute; top: 30px; left: 14px; color: #555; transition: .2s; pointer-events: none; } nselect select:focus ~ label,[data-is="nselect"] select:focus ~ label{ top: 5px; left: 10px; color: #f7497d; font-weight: bold; } nselect select:-webkit-autofill ~ label,[data-is="nselect"] select:-webkit-autofill ~ label,nselect select:valid ~ label,[data-is="nselect"] select:valid ~ label{ top: 5px; left: 10px; color: cornflowerblue; font-weight: bold; } nselect select:focus,[data-is="nselect"] select:focus{ border-bottom: 2px solid #f7497d; } nselect select:valid,[data-is="nselect"] select:valid{ border-bottom: 2px solid cornflowerblue; }', '', function(opts) {
+
+
+        let self = this;
+        let fldmap = { valueField:'code', textField:'name' }
+        let defaultItem = {
+            value: '',
+            text: '-',
+            source: null
+        };
+        this.items = [];
+        this.items.push(defaultItem);
+
+        let input, clear;
+
+        let initCtrls = () => {
+            input = self.refs['input'];
+            clear = self.refs['clear'];
+            disableFirstOption();
+        }
+        let freeCtrls = () => {
+            input = null;
+            clear = null;
+        }
+        let clearInputs = () => {
+            if (input) {
+                input.selectedIndex = 0;
+            }
+        }
+        let disableFirstOption = () => {
+            if (input && input.options[0]) {
+                let opt = input.options[0];
+                opt.setAttribute('disable', '')
+                opt.setAttribute('selected', '')
+                opt.style.display = 'none';
+            }
+        }
+
+        let bindEvents = () => {
+            input.addEventListener('change', onSelection);
+            clear.addEventListener('click', onClear);
+        }
+        let unbindEvents = () => {
+            clear.removeEventListener('click', onClear);
+            input.removeEventListener('change', onSelection);
+        }
+
+        this.on('mount', () => {
+            initCtrls();
+            bindEvents();
+        });
+        this.on('unmount', () => {
+            unbindEvents();
+            clearInputs();
+        });
+
+        let onClear = () => {
+            clearInputs();
+        }
+        let onSelection = (e) => {
+            if (input) {
+                let idx = input.selectedIndex
+                let val = input.options[input.selectedIndex].value;
+                console.log('selected value:', val)
+            }
+        }
+
+        this.clear = () => { clearInputs(); }
+        this.focus = () => { if (input) input.focus(); }
+
+        let hasValue = (val) => {
+            return (val !== undefined && val !== null);
+        }
+        let getSelectedIndexByValue = (val) => {
+            let sVal = val.toString();
+            let opt, idx = 0;
+            for (let i = 0; i < input.options.length; i++) {
+                opt = input.options[i];
+                if (opt.value.toString() === sVal) {
+
+                    idx = i
+                    break;
+                }
+            }
+            return idx;
+        }
+        let getSelectedValue = () => {
+            let idx = input.selectedIndex
+            let ret = (idx > 0) ? input.options[input.selectedIndex].value : null;
+            return ret;
+        }
+        this.value = (val) => {
+            let ret;
+            if (input) {
+                if (hasValue(val)) {
+                    input.selectedIndex = getSelectedIndexByValue(val);
+                }
+                else {
+                    ret = getSelectedValue();
+                }
+            }
+            return ret;
+        }
+        this.setup = (values, fldMap) => {
+            fldmap = fldMap;
+            self.items = [];
+            self.items.push(defaultItem);
+            values.forEach(val => {
+                let item = {
+                    value: val[fldmap.valueField],
+                    text: val[fldmap.textField],
+                    source: val
+                }
+                self.items.push(item);
+            })
+            disableFirstOption();
+            self.update();
+        }
+
+});
+
 riot.tag2('osd', '<div ref="osd-ctrl" class="osd error"> <label style="margin: 0 auto; padding: 0;"></label> </div>', 'osd,[data-is="osd"]{ display: inline-block; position: absolute; margin: 0 auto; padding: 0; left: 50px; right: 50px; bottom: 50px; z-index: 1000; background-color: transparent; } osd .osd,[data-is="osd"] .osd{ display: block; position: relative; margin: 0 auto; padding: 5px; height: auto; width: 200px; color: white; background-color: rgba(0, 0, 0, .7); text-align: center; border: 1; border-color: rgba(0, 0, 0, 1); border-radius: 8px; user-select: none; visibility: hidden; } osd .osd.show,[data-is="osd"] .osd.show{ visibility: visible; } osd .osd.show.info,[data-is="osd"] .osd.show.info{ color: whitesmoke; background-color: rgba(0, 0, 0, .7); border-color: rgba(0, 0, 0, 1); } osd .osd.show.warn,[data-is="osd"] .osd.show.warn{ color: black; background-color: rgba(255, 255, 0, .7); border-color: rgba(255, 255, 0, 1); } osd .osd.show.error,[data-is="osd"] .osd.show.error{ color: yellow; background-color: rgba(255, 0, 0, .7); border-color: rgba(255, 0, 0, 1); }', '', function(opts) {
 
 
