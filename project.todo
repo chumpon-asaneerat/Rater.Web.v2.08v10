@@ -105,8 +105,8 @@ My Choice Rater Web v2.0.8x10:
         ☐ Supports NImage component.
         OSD component:
             ✔ Display message with timeout (info/warning/error). @done(19-10-07 11:58)
-            ☐ Check send message while previous message still shown.
-            ☐ Check use requestAnimationFrame instead of setTimeout.
+            ✔ Check send message while previous message still shown. @done(19-10-24 14:57)
+            ✘ Check use requestAnimationFrame instead of setTimeout. @cancelled(19-10-24 14:57)
         ✔ Nav menu items with sync screen component. @done(19-09-10 13:50)
         ✔ Rewrite app/screen components. @done(19-09-29 21:38)
         ✔ Rewrite Navibar. @done(19-09-10 13:50)
@@ -163,7 +163,7 @@ My Choice Rater Web v2.0.8x10:
         Dev:
             ☐ Home.
             ✔ Tabulator test tag. @done(19-10-07 03:52)
-            ☐ Grid 1 example page - single grid auto-fill.
+            ✔ Grid 1 example page - single grid auto-fill. @done(19-10-24 14:57)
             ☐ Grid 2 example page - complex layout for dashboard page.
             ☐ Grid 3 example page - complex example for rawvote.
             ☐ Grid 4 example page - complex example for votesummarie pie.
