@@ -85,18 +85,6 @@
 
         //#endregion
 
-        //#region controls variables and methods
-
-        let ctrl;
-        let initCtrls = () => {
-            //ctrl = self.refs['osd-ctrl']
-        }
-        let freeCtrls = () => {
-            ctrl = null;
-        }
-
-        //#endregion
-
         //#region document listener add/remove handler
 
         let addEvt = (evtName, handle) => { document.addEventListener(evtName, handle) }
@@ -119,14 +107,8 @@
 
         //#region riot handlers
 
-        this.on('mount', () => {
-            initCtrls();
-            bindEvents();
-        });
-        this.on('unmount', () => {
-            unbindEvents();
-            freeCtrls();
-        });
+        this.on('mount', () => { bindEvents(); });
+        this.on('unmount', () => { unbindEvents(); });
 
         //#endregion
 

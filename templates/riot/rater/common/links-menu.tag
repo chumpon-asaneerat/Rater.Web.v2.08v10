@@ -6,12 +6,14 @@
     </div>
     <div ref="dropItems" class="links-dropbox">
         <div each={ item in menus }>
-            <a class="link-item" href="javascript:;" onclick="{ selectItem }">
-                &nbsp;
-                <span class="link-css { item.icon }" ref="css-icon">&nbsp;</span>
-                <div class="link-text">&nbsp;{ item.text }</div>
-                &nbsp;&nbsp;&nbsp;
-            </a>
+            <virtual if={ isShown(item) }>
+                <a class="link-item" href="javascript:;" onclick="{ selectItem }">
+                    &nbsp;
+                    <span class="link-css { item.icon }" ref="css-icon">&nbsp;</span>
+                    <div class="link-text">&nbsp;{ item.text }</div>
+                    &nbsp;&nbsp;&nbsp;
+                </a>
+            </virtual>
         </div>
     </div>
     <style>
@@ -99,6 +101,14 @@
             self.menus = (contents && contents.current) ? contents.current.links : [];
             self.update();
         }
+        this.isShown = (item) => {
+            let ret = true;
+            let linkType = (item.type) ? item.type.toLowerCase() : '';
+            if (linkType  === 'screen') {
+                ret = item.ref !== screens.current.screenId;
+            }
+            return ret;
+        }
 
         //#endregion
 
@@ -128,6 +138,7 @@
         let bindEvents = () => {
             addEvt(events.name.LanguageChanged, onLanguageChanged)
             addEvt(events.name.ContentChanged, onContentChanged)
+            addEvt(events.name.ScreenChanged, onScreenChanged)
 
             links.addEventListener('click', toggle);
             window.addEventListener('click', checkClickPosition);
@@ -136,6 +147,7 @@
             window.removeEventListener('click', checkClickPosition);
             links.removeEventListener('click', toggle);
 
+            delEvt(events.name.ScreenChanged, onScreenChanged)
             delEvt(events.name.ContentChanged, onContentChanged)
             delEvt(events.name.LanguageChanged, onLanguageChanged)
         }
@@ -159,7 +171,7 @@
 
         let onLanguageChanged = (e) =>  { updatecontent(); }
         let onContentChanged = (e) => { updatecontent();  }
-        //let onScreenChanged = (e) =>  { updatecontent(); }
+        let onScreenChanged = (e) =>  { updatecontent(); }
 
         //#endregion
 
@@ -170,7 +182,7 @@
             let selLink = e.item.item;
             let linkType = (selLink.type) ? selLink.type.toLowerCase() : '';
             if (linkType  === 'screen') {
-                screenservice.show(selLink.ref);
+                screens.show(selLink.ref);
             }
             else if (linkType === 'url') {
                 secure.postUrl(selLink.ref);

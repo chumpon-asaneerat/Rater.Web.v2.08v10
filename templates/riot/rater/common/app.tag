@@ -20,7 +20,7 @@
 
         :scope[navibar][footer] {
             grid-template-columns: 1fr;
-            grid-template-rows: 40px 1fr 20px;
+            grid-template-rows: 40px 1fr 22px;
             grid-template-areas:
                 'navibar'
                 'scrarea'
@@ -42,7 +42,7 @@
 
         :scope[footer] {
             grid-template-columns: 1fr;
-            grid-template-rows: 1fr 20px;
+            grid-template-rows: 1fr 22px;
             grid-template-areas:
                 'scrarea'
                 'footer';

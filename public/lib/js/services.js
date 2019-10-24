@@ -28,7 +28,6 @@ window.events = window.events || new EventService();
 window.events.name.LanguageChanged = 'app:language:change';
 /** app contents changed. */
 window.events.name.ContentChanged = 'app:contents:changed';
-
 /** app screen changed. */
 window.events.name.ScreenChanged = 'app:screen:change';
 
@@ -140,7 +139,7 @@ class LanguageService {
         let self = this;
         let fn = (r) => {
             let data = api.parse(r);
-            self.languages = data.records;
+            self.languages = (data && data.records) ? data.records : [];
             self.change(self.pref.langId, true); // set langId from preference.
             self.loaded = true;
         }
@@ -286,6 +285,30 @@ class ContentService {
     if (!href.endsWith('/')) href = href + '/';
     let url = href.replace('#', '') + 'contents';
     contents.load(url); // load contents.
+})();
+
+//#endregion
+
+//#region ScreenService class
+
+class ScreenService {
+    constructor() {
+        this.current = {
+            screenId: ''
+        };
+    }
+    show(screenId) {
+        if (this.current.screenId !== screenId) {
+            // change screen id.
+            this.current.screenId = screenId;
+            // Raise event.
+            events.raise(events.name.ScreenChanged);
+        }
+    }
+}
+; (function () {
+    //console.log('Init screen service...');
+    window.screens = window.screens || new ScreenService();
 })();
 
 //#endregion

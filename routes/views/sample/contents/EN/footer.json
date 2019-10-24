@@ -1,6 +1,4 @@
 {
-    "ui": {
-        "status": { "text": "status" },
-        "copyright": { "text": "EDL Co., Ltd." }
-    }
+    "status": "status",
+    "copyright": "EDL Co., Ltd."
 }

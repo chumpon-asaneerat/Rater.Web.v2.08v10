@@ -1,4 +1,5 @@
 [
+    { "type": "screen", "ref": "home", "text":"หน้าหลัก", "icon": "fas fa-home", "icontype": "fontcss" },
     { "type": "screen", "ref": "org", "text":"ผังองกรณ์", "icon": "fas fa-sitemap", "icontype": "fontcss" },
     { "type": "screen", "ref": "member", "text":"บัญชีผู้ใช้งาน", "icon": "fas fa-user-friends", "icontype": "fontcss" },
     { "type": "screen", "ref": "device", "text":"บัญชีอุปกรณ์", "icon": "fas fa-mobile-alt", "icontype": "fontcss" },
