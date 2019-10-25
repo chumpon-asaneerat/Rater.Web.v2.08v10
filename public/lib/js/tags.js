@@ -557,3 +557,867 @@ riot.tag2('screen', '<div class="content-area"> <yield></yield> </div>', 'screen
         let onScreenChanged = (e) => { updatecontent(); }
 
 });
+riot.tag2('device-editor', '', 'device-editor,[data-is="device-editor"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
+
+
+        let self = this;
+
+        let initCtrls = () => {}
+        let freeCtrls = () => {}
+
+        let addEvt = (evtName, handle) => { document.addEventListener(evtName, handle) }
+        let delEvt = (evtName, handle) => { document.removeEventListener(evtName, handle) }
+
+        let bindEvents = () => {}
+        let unbindEvents = () => {}
+
+        this.on('mount', () => {
+            initCtrls();
+            bindEvents();
+        });
+        this.on('unmount', () => {
+            unbindEvents();
+            freeCtrls();
+        });
+
+});
+riot.tag2('device-manage', '', 'device-manage,[data-is="device-manage"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
+
+
+        let self = this;
+
+        let initCtrls = () => {}
+        let freeCtrls = () => {}
+
+        let addEvt = (evtName, handle) => { document.addEventListener(evtName, handle) }
+        let delEvt = (evtName, handle) => { document.removeEventListener(evtName, handle) }
+
+        let bindEvents = () => {}
+        let unbindEvents = () => {}
+
+        this.on('mount', () => {
+            initCtrls();
+            bindEvents();
+        });
+        this.on('unmount', () => {
+            unbindEvents();
+            freeCtrls();
+        });
+
+});
+riot.tag2('device-view', '', 'device-view,[data-is="device-view"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
+
+
+        let self = this;
+
+        let initCtrls = () => {}
+        let freeCtrls = () => {}
+
+        let addEvt = (evtName, handle) => { document.addEventListener(evtName, handle) }
+        let delEvt = (evtName, handle) => { document.removeEventListener(evtName, handle) }
+
+        let bindEvents = () => {}
+        let unbindEvents = () => {}
+
+        this.on('mount', () => {
+            initCtrls();
+            bindEvents();
+        });
+        this.on('unmount', () => {
+            unbindEvents();
+            freeCtrls();
+        });
+
+});
+riot.tag2('admin-home', '', 'admin-home,[data-is="admin-home"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
+
+
+        let self = this;
+
+        let initCtrls = () => {}
+        let freeCtrls = () => {}
+
+        let addEvt = (evtName, handle) => { document.addEventListener(evtName, handle) }
+        let delEvt = (evtName, handle) => { document.removeEventListener(evtName, handle) }
+
+        let bindEvents = () => {}
+        let unbindEvents = () => {}
+
+        this.on('mount', () => {
+            initCtrls();
+            bindEvents();
+        });
+        this.on('unmount', () => {
+            unbindEvents();
+            freeCtrls();
+        });
+
+});
+riot.tag2('exclusive-home', '', 'exclusive-home,[data-is="exclusive-home"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
+
+
+        let self = this;
+
+        let initCtrls = () => {}
+        let freeCtrls = () => {}
+
+        let addEvt = (evtName, handle) => { document.addEventListener(evtName, handle) }
+        let delEvt = (evtName, handle) => { document.removeEventListener(evtName, handle) }
+
+        let bindEvents = () => {}
+        let unbindEvents = () => {}
+
+        this.on('mount', () => {
+            initCtrls();
+            bindEvents();
+        });
+        this.on('unmount', () => {
+            unbindEvents();
+            freeCtrls();
+        });
+
+});
+riot.tag2('staff-home', '', 'staff-home,[data-is="staff-home"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
+
+
+        let self = this;
+
+        let initCtrls = () => {}
+        let freeCtrls = () => {}
+
+        let addEvt = (evtName, handle) => { document.addEventListener(evtName, handle) }
+        let delEvt = (evtName, handle) => { document.removeEventListener(evtName, handle) }
+
+        let bindEvents = () => {}
+        let unbindEvents = () => {}
+
+        this.on('mount', () => {
+            initCtrls();
+            bindEvents();
+        });
+        this.on('unmount', () => {
+            unbindEvents();
+            freeCtrls();
+        });
+
+});
+riot.tag2('member-editor', '', 'member-editor,[data-is="member-editor"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
+
+
+        let self = this;
+
+        let initCtrls = () => {}
+        let freeCtrls = () => {}
+
+        let addEvt = (evtName, handle) => { document.addEventListener(evtName, handle) }
+        let delEvt = (evtName, handle) => { document.removeEventListener(evtName, handle) }
+
+        let bindEvents = () => {}
+        let unbindEvents = () => {}
+
+        this.on('mount', () => {
+            initCtrls();
+            bindEvents();
+        });
+        this.on('unmount', () => {
+            unbindEvents();
+            freeCtrls();
+        });
+
+});
+riot.tag2('member-manage', '', 'member-manage,[data-is="member-manage"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
+
+
+        let self = this;
+
+        let initCtrls = () => {}
+        let freeCtrls = () => {}
+
+        let addEvt = (evtName, handle) => { document.addEventListener(evtName, handle) }
+        let delEvt = (evtName, handle) => { document.removeEventListener(evtName, handle) }
+
+        let bindEvents = () => {}
+        let unbindEvents = () => {}
+
+        this.on('mount', () => {
+            initCtrls();
+            bindEvents();
+        });
+        this.on('unmount', () => {
+            unbindEvents();
+            freeCtrls();
+        });
+
+});
+riot.tag2('member-view', '', 'member-view,[data-is="member-view"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
+
+
+        let self = this;
+
+        let initCtrls = () => {}
+        let freeCtrls = () => {}
+
+        let addEvt = (evtName, handle) => { document.addEventListener(evtName, handle) }
+        let delEvt = (evtName, handle) => { document.removeEventListener(evtName, handle) }
+
+        let bindEvents = () => {}
+        let unbindEvents = () => {}
+
+        this.on('mount', () => {
+            initCtrls();
+            bindEvents();
+        });
+        this.on('unmount', () => {
+            unbindEvents();
+            freeCtrls();
+        });
+
+});
+riot.tag2('branch-editor', '', 'branch-editor,[data-is="branch-editor"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
+
+
+        let self = this;
+
+        let initCtrls = () => {}
+        let freeCtrls = () => {}
+
+        let addEvt = (evtName, handle) => { document.addEventListener(evtName, handle) }
+        let delEvt = (evtName, handle) => { document.removeEventListener(evtName, handle) }
+
+        let bindEvents = () => {}
+        let unbindEvents = () => {}
+
+        this.on('mount', () => {
+            initCtrls();
+            bindEvents();
+        });
+        this.on('unmount', () => {
+            unbindEvents();
+            freeCtrls();
+        });
+
+});
+riot.tag2('branch-manage', '', 'branch-manage,[data-is="branch-manage"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
+
+
+        let self = this;
+
+        let initCtrls = () => {}
+        let freeCtrls = () => {}
+
+        let addEvt = (evtName, handle) => { document.addEventListener(evtName, handle) }
+        let delEvt = (evtName, handle) => { document.removeEventListener(evtName, handle) }
+
+        let bindEvents = () => {}
+        let unbindEvents = () => {}
+
+        this.on('mount', () => {
+            initCtrls();
+            bindEvents();
+        });
+        this.on('unmount', () => {
+            unbindEvents();
+            freeCtrls();
+        });
+
+});
+riot.tag2('branch-view', '', 'branch-view,[data-is="branch-view"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
+
+
+        let self = this;
+
+        let initCtrls = () => {}
+        let freeCtrls = () => {}
+
+        let addEvt = (evtName, handle) => { document.addEventListener(evtName, handle) }
+        let delEvt = (evtName, handle) => { document.removeEventListener(evtName, handle) }
+
+        let bindEvents = () => {}
+        let unbindEvents = () => {}
+
+        this.on('mount', () => {
+            initCtrls();
+            bindEvents();
+        });
+        this.on('unmount', () => {
+            unbindEvents();
+            freeCtrls();
+        });
+
+});
+riot.tag2('org-editor', '', 'org-editor,[data-is="org-editor"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
+
+
+        let self = this;
+
+        let initCtrls = () => {}
+        let freeCtrls = () => {}
+
+        let addEvt = (evtName, handle) => { document.addEventListener(evtName, handle) }
+        let delEvt = (evtName, handle) => { document.removeEventListener(evtName, handle) }
+
+        let bindEvents = () => {}
+        let unbindEvents = () => {}
+
+        this.on('mount', () => {
+            initCtrls();
+            bindEvents();
+        });
+        this.on('unmount', () => {
+            unbindEvents();
+            freeCtrls();
+        });
+
+});
+riot.tag2('org-manage', '', 'org-manage,[data-is="org-manage"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
+
+
+        let self = this;
+
+        let initCtrls = () => {}
+        let freeCtrls = () => {}
+
+        let addEvt = (evtName, handle) => { document.addEventListener(evtName, handle) }
+        let delEvt = (evtName, handle) => { document.removeEventListener(evtName, handle) }
+
+        let bindEvents = () => {}
+        let unbindEvents = () => {}
+
+        this.on('mount', () => {
+            initCtrls();
+            bindEvents();
+        });
+        this.on('unmount', () => {
+            unbindEvents();
+            freeCtrls();
+        });
+
+});
+riot.tag2('org-view', '', 'org-view,[data-is="org-view"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
+
+
+        let self = this;
+
+        let initCtrls = () => {}
+        let freeCtrls = () => {}
+
+        let addEvt = (evtName, handle) => { document.addEventListener(evtName, handle) }
+        let delEvt = (evtName, handle) => { document.removeEventListener(evtName, handle) }
+
+        let bindEvents = () => {}
+        let unbindEvents = () => {}
+
+        this.on('mount', () => {
+            initCtrls();
+            bindEvents();
+        });
+        this.on('unmount', () => {
+            unbindEvents();
+            freeCtrls();
+        });
+
+});
+riot.tag2('question-manage', '', 'question-manage,[data-is="question-manage"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
+
+
+        let self = this;
+
+        let initCtrls = () => {}
+        let freeCtrls = () => {}
+
+        let addEvt = (evtName, handle) => { document.addEventListener(evtName, handle) }
+        let delEvt = (evtName, handle) => { document.removeEventListener(evtName, handle) }
+
+        let bindEvents = () => {}
+        let unbindEvents = () => {}
+
+        this.on('mount', () => {
+            initCtrls();
+            bindEvents();
+        });
+        this.on('unmount', () => {
+            unbindEvents();
+            freeCtrls();
+        });
+
+});
+riot.tag2('bar-votesummary-result', '', 'bar-votesummary-result,[data-is="bar-votesummary-result"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
+
+
+        let self = this;
+
+        let initCtrls = () => {}
+        let freeCtrls = () => {}
+
+        let addEvt = (evtName, handle) => { document.addEventListener(evtName, handle) }
+        let delEvt = (evtName, handle) => { document.removeEventListener(evtName, handle) }
+
+        let bindEvents = () => {}
+        let unbindEvents = () => {}
+
+        this.on('mount', () => {
+            initCtrls();
+            bindEvents();
+        });
+        this.on('unmount', () => {
+            unbindEvents();
+            freeCtrls();
+        });
+
+});
+riot.tag2('bar-votesummary-search', '', 'bar-votesummary-search,[data-is="bar-votesummary-search"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
+
+
+        let self = this;
+
+        let initCtrls = () => {}
+        let freeCtrls = () => {}
+
+        let addEvt = (evtName, handle) => { document.addEventListener(evtName, handle) }
+        let delEvt = (evtName, handle) => { document.removeEventListener(evtName, handle) }
+
+        let bindEvents = () => {}
+        let unbindEvents = () => {}
+
+        this.on('mount', () => {
+            initCtrls();
+            bindEvents();
+        });
+        this.on('unmount', () => {
+            unbindEvents();
+            freeCtrls();
+        });
+
+});
+riot.tag2('pie-votesummary-result', '', 'pie-votesummary-result,[data-is="pie-votesummary-result"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
+
+
+        let self = this;
+
+        let initCtrls = () => {}
+        let freeCtrls = () => {}
+
+        let addEvt = (evtName, handle) => { document.addEventListener(evtName, handle) }
+        let delEvt = (evtName, handle) => { document.removeEventListener(evtName, handle) }
+
+        let bindEvents = () => {}
+        let unbindEvents = () => {}
+
+        this.on('mount', () => {
+            initCtrls();
+            bindEvents();
+        });
+        this.on('unmount', () => {
+            unbindEvents();
+            freeCtrls();
+        });
+
+});
+riot.tag2('pie-votesummary-search', '', 'pie-votesummary-search,[data-is="pie-votesummary-search"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
+
+
+        let self = this;
+
+        let initCtrls = () => {}
+        let freeCtrls = () => {}
+
+        let addEvt = (evtName, handle) => { document.addEventListener(evtName, handle) }
+        let delEvt = (evtName, handle) => { document.removeEventListener(evtName, handle) }
+
+        let bindEvents = () => {}
+        let unbindEvents = () => {}
+
+        this.on('mount', () => {
+            initCtrls();
+            bindEvents();
+        });
+        this.on('unmount', () => {
+            unbindEvents();
+            freeCtrls();
+        });
+
+});
+riot.tag2('rawvote-result', '', 'rawvote-result,[data-is="rawvote-result"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
+
+
+        let self = this;
+
+        let initCtrls = () => {}
+        let freeCtrls = () => {}
+
+        let addEvt = (evtName, handle) => { document.addEventListener(evtName, handle) }
+        let delEvt = (evtName, handle) => { document.removeEventListener(evtName, handle) }
+
+        let bindEvents = () => {}
+        let unbindEvents = () => {}
+
+        this.on('mount', () => {
+            initCtrls();
+            bindEvents();
+        });
+        this.on('unmount', () => {
+            unbindEvents();
+            freeCtrls();
+        });
+
+});
+riot.tag2('rawvote-search', '', 'rawvote-search,[data-is="rawvote-search"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
+
+
+        let self = this;
+
+        let initCtrls = () => {}
+        let freeCtrls = () => {}
+
+        let addEvt = (evtName, handle) => { document.addEventListener(evtName, handle) }
+        let delEvt = (evtName, handle) => { document.removeEventListener(evtName, handle) }
+
+        let bindEvents = () => {}
+        let unbindEvents = () => {}
+
+        this.on('mount', () => {
+            initCtrls();
+            bindEvents();
+        });
+        this.on('unmount', () => {
+            unbindEvents();
+            freeCtrls();
+        });
+
+});
+riot.tag2('report-home', '', 'report-home,[data-is="report-home"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
+
+
+        let self = this;
+
+        let initCtrls = () => {}
+        let freeCtrls = () => {}
+
+        let addEvt = (evtName, handle) => { document.addEventListener(evtName, handle) }
+        let delEvt = (evtName, handle) => { document.removeEventListener(evtName, handle) }
+
+        let bindEvents = () => {}
+        let unbindEvents = () => {}
+
+        this.on('mount', () => {
+            initCtrls();
+            bindEvents();
+        });
+        this.on('unmount', () => {
+            unbindEvents();
+            freeCtrls();
+        });
+
+});
+riot.tag2('staffperf-result', '', 'staffperf-result,[data-is="staffperf-result"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
+
+
+        let self = this;
+
+        let initCtrls = () => {}
+        let freeCtrls = () => {}
+
+        let addEvt = (evtName, handle) => { document.addEventListener(evtName, handle) }
+        let delEvt = (evtName, handle) => { document.removeEventListener(evtName, handle) }
+
+        let bindEvents = () => {}
+        let unbindEvents = () => {}
+
+        this.on('mount', () => {
+            initCtrls();
+            bindEvents();
+        });
+        this.on('unmount', () => {
+            unbindEvents();
+            freeCtrls();
+        });
+
+});
+riot.tag2('staffperf-search', '', 'staffperf-search,[data-is="staffperf-search"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
+
+
+        let self = this;
+
+        let initCtrls = () => {}
+        let freeCtrls = () => {}
+
+        let addEvt = (evtName, handle) => { document.addEventListener(evtName, handle) }
+        let delEvt = (evtName, handle) => { document.removeEventListener(evtName, handle) }
+
+        let bindEvents = () => {}
+        let unbindEvents = () => {}
+
+        this.on('mount', () => {
+            initCtrls();
+            bindEvents();
+        });
+        this.on('unmount', () => {
+            unbindEvents();
+            freeCtrls();
+        });
+
+});
+riot.tag2('votesummary-result', '', 'votesummary-result,[data-is="votesummary-result"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
+
+
+        let self = this;
+
+        let initCtrls = () => {}
+        let freeCtrls = () => {}
+
+        let addEvt = (evtName, handle) => { document.addEventListener(evtName, handle) }
+        let delEvt = (evtName, handle) => { document.removeEventListener(evtName, handle) }
+
+        let bindEvents = () => {}
+        let unbindEvents = () => {}
+
+        this.on('mount', () => {
+            initCtrls();
+            bindEvents();
+        });
+        this.on('unmount', () => {
+            unbindEvents();
+            freeCtrls();
+        });
+
+});
+riot.tag2('votesummary-search', '', 'votesummary-search,[data-is="votesummary-search"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
+
+
+        let self = this;
+
+        let initCtrls = () => {}
+        let freeCtrls = () => {}
+
+        let addEvt = (evtName, handle) => { document.addEventListener(evtName, handle) }
+        let delEvt = (evtName, handle) => { document.removeEventListener(evtName, handle) }
+
+        let bindEvents = () => {}
+        let unbindEvents = () => {}
+
+        this.on('mount', () => {
+            initCtrls();
+            bindEvents();
+        });
+        this.on('unmount', () => {
+            unbindEvents();
+            freeCtrls();
+        });
+
+});
+riot.tag2('edl-customer-editor', '', 'edl-customer-editor,[data-is="edl-customer-editor"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
+
+
+        let self = this;
+
+        let initCtrls = () => {}
+        let freeCtrls = () => {}
+
+        let addEvt = (evtName, handle) => { document.addEventListener(evtName, handle) }
+        let delEvt = (evtName, handle) => { document.removeEventListener(evtName, handle) }
+
+        let bindEvents = () => {}
+        let unbindEvents = () => {}
+
+        this.on('mount', () => {
+            initCtrls();
+            bindEvents();
+        });
+        this.on('unmount', () => {
+            unbindEvents();
+            freeCtrls();
+        });
+
+});
+riot.tag2('edl-customer-manage', '', 'edl-customer-manage,[data-is="edl-customer-manage"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
+
+
+        let self = this;
+
+        let initCtrls = () => {}
+        let freeCtrls = () => {}
+
+        let addEvt = (evtName, handle) => { document.addEventListener(evtName, handle) }
+        let delEvt = (evtName, handle) => { document.removeEventListener(evtName, handle) }
+
+        let bindEvents = () => {}
+        let unbindEvents = () => {}
+
+        this.on('mount', () => {
+            initCtrls();
+            bindEvents();
+        });
+        this.on('unmount', () => {
+            unbindEvents();
+            freeCtrls();
+        });
+
+});
+riot.tag2('edl-customer-view', '', 'edl-customer-view,[data-is="edl-customer-view"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
+
+
+        let self = this;
+
+        let initCtrls = () => {}
+        let freeCtrls = () => {}
+
+        let addEvt = (evtName, handle) => { document.addEventListener(evtName, handle) }
+        let delEvt = (evtName, handle) => { document.removeEventListener(evtName, handle) }
+
+        let bindEvents = () => {}
+        let unbindEvents = () => {}
+
+        this.on('mount', () => {
+            initCtrls();
+            bindEvents();
+        });
+        this.on('unmount', () => {
+            unbindEvents();
+            freeCtrls();
+        });
+
+});
+riot.tag2('edl-admin-home', '', 'edl-admin-home,[data-is="edl-admin-home"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
+
+
+        let self = this;
+
+        let initCtrls = () => {}
+        let freeCtrls = () => {}
+
+        let addEvt = (evtName, handle) => { document.addEventListener(evtName, handle) }
+        let delEvt = (evtName, handle) => { document.removeEventListener(evtName, handle) }
+
+        let bindEvents = () => {}
+        let unbindEvents = () => {}
+
+        this.on('mount', () => {
+            initCtrls();
+            bindEvents();
+        });
+        this.on('unmount', () => {
+            unbindEvents();
+            freeCtrls();
+        });
+
+});
+riot.tag2('edl-staff-home', '', 'edl-staff-home,[data-is="edl-staff-home"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
+
+
+        let self = this;
+
+        let initCtrls = () => {}
+        let freeCtrls = () => {}
+
+        let addEvt = (evtName, handle) => { document.addEventListener(evtName, handle) }
+        let delEvt = (evtName, handle) => { document.removeEventListener(evtName, handle) }
+
+        let bindEvents = () => {}
+        let unbindEvents = () => {}
+
+        this.on('mount', () => {
+            initCtrls();
+            bindEvents();
+        });
+        this.on('unmount', () => {
+            unbindEvents();
+            freeCtrls();
+        });
+
+});
+riot.tag2('edl-supervisor-home', '', 'edl-supervisor-home,[data-is="edl-supervisor-home"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
+
+
+        let self = this;
+
+        let initCtrls = () => {}
+        let freeCtrls = () => {}
+
+        let addEvt = (evtName, handle) => { document.addEventListener(evtName, handle) }
+        let delEvt = (evtName, handle) => { document.removeEventListener(evtName, handle) }
+
+        let bindEvents = () => {}
+        let unbindEvents = () => {}
+
+        this.on('mount', () => {
+            initCtrls();
+            bindEvents();
+        });
+        this.on('unmount', () => {
+            unbindEvents();
+            freeCtrls();
+        });
+
+});
+riot.tag2('edl-staff-editor', '', 'edl-staff-editor,[data-is="edl-staff-editor"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
+
+
+        let self = this;
+
+        let initCtrls = () => {}
+        let freeCtrls = () => {}
+
+        let addEvt = (evtName, handle) => { document.addEventListener(evtName, handle) }
+        let delEvt = (evtName, handle) => { document.removeEventListener(evtName, handle) }
+
+        let bindEvents = () => {}
+        let unbindEvents = () => {}
+
+        this.on('mount', () => {
+            initCtrls();
+            bindEvents();
+        });
+        this.on('unmount', () => {
+            unbindEvents();
+            freeCtrls();
+        });
+
+});
+riot.tag2('edl-staff-manage', '', 'edl-staff-manage,[data-is="edl-staff-manage"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
+
+
+        let self = this;
+
+        let initCtrls = () => {}
+        let freeCtrls = () => {}
+
+        let addEvt = (evtName, handle) => { document.addEventListener(evtName, handle) }
+        let delEvt = (evtName, handle) => { document.removeEventListener(evtName, handle) }
+
+        let bindEvents = () => {}
+        let unbindEvents = () => {}
+
+        this.on('mount', () => {
+            initCtrls();
+            bindEvents();
+        });
+        this.on('unmount', () => {
+            unbindEvents();
+            freeCtrls();
+        });
+
+});
+riot.tag2('edl-staff-view', '', 'edl-staff-view,[data-is="edl-staff-view"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
+
+
+        let self = this;
+
+        let initCtrls = () => {}
+        let freeCtrls = () => {}
+
+        let addEvt = (evtName, handle) => { document.addEventListener(evtName, handle) }
+        let delEvt = (evtName, handle) => { document.removeEventListener(evtName, handle) }
+
+        let bindEvents = () => {}
+        let unbindEvents = () => {}
+
+        this.on('mount', () => {
+            initCtrls();
+            bindEvents();
+        });
+        this.on('unmount', () => {
+            unbindEvents();
+            freeCtrls();
+        });
+
+});
