@@ -66,6 +66,75 @@ class RaterWebDb {
     }
 
     /*
+    GetRandomCode	PROCEDURE
+    GetErrorMsg	PROCEDURE
+    SaveErrorMsg	PROCEDURE
+    SaveErrorMsgML	PROCEDURE
+    GetErrorMsgs	PROCEDURE
+    SaveLanguage	PROCEDURE
+    DisableLanguage	PROCEDURE
+    EnableLanguage	PROCEDURE
+    GetLanguages	PROCEDURE
+    SavePeriodUnit	PROCEDURE
+    SavePeriodUnitML	PROCEDURE
+    GetPeriodUnits	PROCEDURE
+    SaveLimitUnit	PROCEDURE
+    SaveLimitUnitML	PROCEDURE
+    GetLimitUnits	PROCEDURE
+    GetMemberTypes	PROCEDURE
+    SaveLicenseType	PROCEDURE
+    SaveLicenseTypeML	PROCEDURE
+    GetLicenseTypes	PROCEDURE
+    SaveLicenseFeature	PROCEDURE
+    GetLicenseFeatures	PROCEDURE
+    GetLicenses	PROCEDURE
+    SaveUserInfo	PROCEDURE
+    SaveUserInfoML	PROCEDURE
+    GetUserInfos	PROCEDURE
+    SaveLicenseHistory	PROCEDURE
+    GetCustomerHistories	PROCEDURE
+    RevokeLicense	PROCEDURE
+    ExtendLicense	PROCEDURE
+    CheckLicense	PROCEDURE
+    SaveCustomer	PROCEDURE
+    SaveCustomerML	PROCEDURE
+    GetCustomers	PROCEDURE
+    DeleteCustomer	PROCEDURE
+    DeleteCustomers	PROCEDURE
+    SaveMemberInfo	PROCEDURE
+    SaveMemberInfoML	PROCEDURE
+    GetMemberInfos	PROCEDURE
+    SaveBranch	PROCEDURE
+    SaveBranchML	PROCEDURE
+    GetBranchs	PROCEDURE
+    SaveOrg	PROCEDURE
+    SaveOrgML	PROCEDURE
+    GetOrgs	PROCEDURE
+    SaveQSet	PROCEDURE
+    SaveQSetML	PROCEDURE
+    GetQSets	PROCEDURE
+    SaveQSlide	PROCEDURE
+    SaveQSlideML	PROCEDURE
+    GetQSlides	PROCEDURE
+    SaveQSlideItem	PROCEDURE
+    SaveQSlideItemML	PROCEDURE
+    GetQSlideItems	PROCEDURE
+    SaveDevice	PROCEDURE
+    SaveDeviceML	PROCEDURE
+    GetDevices	PROCEDURE
+    GetDeviceTypes	PROCEDURE
+    SaveVote	PROCEDURE
+    GetVoteSummaries	PROCEDURE
+    GetRawVotes	PROCEDURE
+    Register	PROCEDURE
+    CheckUsers	PROCEDURE
+    SignIn	PROCEDURE
+    CheckAccess	PROCEDURE
+    GetAccessUser	PROCEDURE
+    SignOut	PROCEDURE
+    */
+
+    /*
     async GetMemberTypes(db, params) { return await db.GetMemberTypes(params); }
     async GetPeriodUnits(db, params) { return await db.GetPeriodUnits(params); }
     async GetLimitUnits(db, params) { return await db.GetLimitUnits(params); }
