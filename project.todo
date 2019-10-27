@@ -101,7 +101,7 @@ My Choice Rater Web v2.0.8x10:
         ✔ Supports NSelect component. @done(19-10-24 20:40)
         ☐ Supports NSelectMultiple component (used span + tagbox and custom drop down).
         ☐ Supports NSelectTree component (used span + tagbox and custom drop down).
-        ☐ Supports NTree component.
+        ☐ Supports NTree component (jstree).
         ☐ Supports NImage component.
         OSD component:
             ✔ Display message with timeout (info/warning/error). @done(19-10-07 11:58)
