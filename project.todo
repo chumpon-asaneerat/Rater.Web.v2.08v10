@@ -111,6 +111,9 @@ My Choice Rater Web v2.0.8x10:
             ✔ Display message with timeout (info/warning/error). @done(19-10-07 11:58)
             ✔ Check send message while previous message still shown. @done(19-10-24 14:57)
             ✘ Check use requestAnimationFrame instead of setTimeout. @cancelled(19-10-24 14:57)
+        OSM component (on screen menu):
+            ☐ Check offcanvas menu.
+            ☐ Should used display: absolute.
         ✔ Nav menu items with sync screen component. @done(19-09-10 13:50)
         ✔ Rewrite app/screen components. @done(19-09-29 21:38)
         ✔ Rewrite Navibar. @done(19-09-10 13:50)
