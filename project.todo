@@ -103,6 +103,10 @@ My Choice Rater Web v2.0.8x10:
         ☐ Supports NSelectTree component (used span + tagbox and custom drop down).
         ☐ Supports NTree component (jstree).
         ☐ Supports NImage component.
+        Supports limit width (max) when used with TV screen:
+            ☐ Scrollbar should be shown in container div so the content should apply limit.
+            ☐ Background should cover all screen area.
+            ☐ Add watermark on right bottom of screen.
         OSD component:
             ✔ Display message with timeout (info/warning/error). @done(19-10-07 11:58)
             ✔ Check send message while previous message still shown. @done(19-10-24 14:57)
