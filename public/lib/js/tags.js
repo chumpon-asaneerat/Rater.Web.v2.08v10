@@ -1453,3 +1453,99 @@ riot.tag2('edl-staff-view', '', 'edl-staff-view,[data-is="edl-staff-view"]{ marg
         });
 
 });
+riot.tag2('rater-home', '', 'rater-home,[data-is="rater-home"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
+
+
+        let self = this;
+
+        let initCtrls = () => {}
+        let freeCtrls = () => {}
+
+        let addEvt = (evtName, handle) => { document.addEventListener(evtName, handle) }
+        let delEvt = (evtName, handle) => { document.removeEventListener(evtName, handle) }
+
+        let bindEvents = () => {}
+        let unbindEvents = () => {}
+
+        this.on('mount', () => {
+            initCtrls();
+            bindEvents();
+        });
+        this.on('unmount', () => {
+            unbindEvents();
+            freeCtrls();
+        });
+
+});
+riot.tag2('company-selection', '', 'company-selection,[data-is="company-selection"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
+
+
+        let self = this;
+
+        let initCtrls = () => {}
+        let freeCtrls = () => {}
+
+        let addEvt = (evtName, handle) => { document.addEventListener(evtName, handle) }
+        let delEvt = (evtName, handle) => { document.removeEventListener(evtName, handle) }
+
+        let bindEvents = () => {}
+        let unbindEvents = () => {}
+
+        this.on('mount', () => {
+            initCtrls();
+            bindEvents();
+        });
+        this.on('unmount', () => {
+            unbindEvents();
+            freeCtrls();
+        });
+
+});
+riot.tag2('register-entry', '', 'register-entry,[data-is="register-entry"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
+
+
+        let self = this;
+
+        let initCtrls = () => {}
+        let freeCtrls = () => {}
+
+        let addEvt = (evtName, handle) => { document.addEventListener(evtName, handle) }
+        let delEvt = (evtName, handle) => { document.removeEventListener(evtName, handle) }
+
+        let bindEvents = () => {}
+        let unbindEvents = () => {}
+
+        this.on('mount', () => {
+            initCtrls();
+            bindEvents();
+        });
+        this.on('unmount', () => {
+            unbindEvents();
+            freeCtrls();
+        });
+
+});
+riot.tag2('signin-entry', '', 'signin-entry,[data-is="signin-entry"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
+
+
+        let self = this;
+
+        let initCtrls = () => {}
+        let freeCtrls = () => {}
+
+        let addEvt = (evtName, handle) => { document.addEventListener(evtName, handle) }
+        let delEvt = (evtName, handle) => { document.removeEventListener(evtName, handle) }
+
+        let bindEvents = () => {}
+        let unbindEvents = () => {}
+
+        this.on('mount', () => {
+            initCtrls();
+            bindEvents();
+        });
+        this.on('unmount', () => {
+            unbindEvents();
+            freeCtrls();
+        });
+
+});
