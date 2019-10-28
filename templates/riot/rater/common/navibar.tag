@@ -1,10 +1,7 @@
 <navibar>
     <div class="banner">
-        <!--
-        <div class="caption">My Choice Rater Web{ (content.label) ? '&nbsp;-&nbsp;' : '&nbsp;'}</div>
-        <div class="title ">{ content.label.screenTitle }</div>
-        -->
-        <div class="caption">My Choice Rater Web</div>
+        <div class="caption">My Choice Rater Web{ (content.title) ? '&nbsp;-&nbsp;' : '&nbsp;'}</div>
+        <div class="title ">{ content.title }</div>
     </div>
     <language-menu></language-menu>
     <links-menu></links-menu>
@@ -74,12 +71,18 @@
         //#region Internal Variables
 
         let self = this;
+        this.content = {
+            title: ''
+        }
 
         //#endregion
 
         //#region content variables and methods
 
         let updatecontent = () => {
+            let scrId = screens.current.screenId;
+            let scrContent = (contents.current && contents.current.screens) ? contents.current.screens[scrId] : null;
+            self.content = scrContent ? scrContent : { title: '' };
             self.update();
         }
 
@@ -97,8 +100,10 @@
         let bindEvents = () => {
             addEvt(events.name.LanguageChanged, onLanguageChanged)
             addEvt(events.name.ContentChanged, onContentChanged)
+            addEvt(events.name.ScreenChanged, onScreenChanged)
         }
         let unbindEvents = () => {
+            delEvt(events.name.ScreenChanged, onScreenChanged)
             delEvt(events.name.ContentChanged, onContentChanged)
             delEvt(events.name.LanguageChanged, onLanguageChanged)
         }

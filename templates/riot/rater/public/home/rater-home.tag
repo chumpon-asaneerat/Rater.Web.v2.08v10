@@ -1,4 +1,5 @@
 <rater-home>
+    <h3>Home (public)</h3>
     <style>
         :scope {
             margin: 0;

@@ -494,12 +494,18 @@ riot.tag2('links-menu', '<div class="menu"> <a ref="links" class="link-combo" hr
         }
 
 });
-riot.tag2('navibar', '<div class="banner"> <div class="caption">My Choice Rater Web</div> </div> <language-menu></language-menu> <links-menu></links-menu>', 'navibar,[data-is="navibar"]{ width: 100vw; margin: 0 auto; display: grid; grid-template-columns: 1fr 90px 40px; grid-template-rows: 1fr; grid-template-areas: \'banner lang-menu links-menu\'; background: cornflowerblue; color: whitesmoke; user-select: none; } navibar .banner,[data-is="navibar"] .banner{ grid-area: banner; margin: 0; padding: 0 3px; display: flex; align-items: center; justify-content: stretch; } navibar .banner .title,[data-is="navibar"] .banner .title{ margin: 0; padding: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 1.2rem; } navibar .banner .caption,[data-is="navibar"] .banner .caption{ margin: 0; padding: 0; width: auto; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 1.2rem; } @media only screen and (max-width: 700px) { navibar .banner .caption,[data-is="navibar"] .banner .caption{ width: 0; visibility: hidden; } } navibar language-menu,[data-is="navibar"] language-menu{ grid-area: lang-menu; margin: 0 auto; padding: 0 3px; display: flex; align-items: center; justify-content: stretch; } navibar links-menu,[data-is="navibar"] links-menu{ grid-area: links-menu; margin: 0 auto; padding: 0 3px; display: flex; align-items: center; justify-content: stretch; }', '', function(opts) {
+riot.tag2('navibar', '<div class="banner"> <div class="caption">My Choice Rater Web{(content.title) ? \'&nbsp;-&nbsp;\' : \'&nbsp;\'}</div> <div class="title ">{content.title}</div> </div> <language-menu></language-menu> <links-menu></links-menu>', 'navibar,[data-is="navibar"]{ width: 100vw; margin: 0 auto; display: grid; grid-template-columns: 1fr 90px 40px; grid-template-rows: 1fr; grid-template-areas: \'banner lang-menu links-menu\'; background: cornflowerblue; color: whitesmoke; user-select: none; } navibar .banner,[data-is="navibar"] .banner{ grid-area: banner; margin: 0; padding: 0 3px; display: flex; align-items: center; justify-content: stretch; } navibar .banner .title,[data-is="navibar"] .banner .title{ margin: 0; padding: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 1.2rem; } navibar .banner .caption,[data-is="navibar"] .banner .caption{ margin: 0; padding: 0; width: auto; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 1.2rem; } @media only screen and (max-width: 700px) { navibar .banner .caption,[data-is="navibar"] .banner .caption{ width: 0; visibility: hidden; } } navibar language-menu,[data-is="navibar"] language-menu{ grid-area: lang-menu; margin: 0 auto; padding: 0 3px; display: flex; align-items: center; justify-content: stretch; } navibar links-menu,[data-is="navibar"] links-menu{ grid-area: links-menu; margin: 0 auto; padding: 0 3px; display: flex; align-items: center; justify-content: stretch; }', '', function(opts) {
 
 
         let self = this;
+        this.content = {
+            title: ''
+        }
 
         let updatecontent = () => {
+            let scrId = screens.current.screenId;
+            let scrContent = (contents.current && contents.current.screens) ? contents.current.screens[scrId] : null;
+            self.content = scrContent ? scrContent : { title: '' };
             self.update();
         }
 
@@ -509,8 +515,10 @@ riot.tag2('navibar', '<div class="banner"> <div class="caption">My Choice Rater 
         let bindEvents = () => {
             addEvt(events.name.LanguageChanged, onLanguageChanged)
             addEvt(events.name.ContentChanged, onContentChanged)
+            addEvt(events.name.ScreenChanged, onScreenChanged)
         }
         let unbindEvents = () => {
+            delEvt(events.name.ScreenChanged, onScreenChanged)
             delEvt(events.name.ContentChanged, onContentChanged)
             delEvt(events.name.LanguageChanged, onLanguageChanged)
         }
@@ -1453,7 +1461,7 @@ riot.tag2('edl-staff-view', '', 'edl-staff-view,[data-is="edl-staff-view"]{ marg
         });
 
 });
-riot.tag2('rater-home', '', 'rater-home,[data-is="rater-home"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
+riot.tag2('rater-home', '<h3>Home (public)</h3>', 'rater-home,[data-is="rater-home"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
 
 
         let self = this;

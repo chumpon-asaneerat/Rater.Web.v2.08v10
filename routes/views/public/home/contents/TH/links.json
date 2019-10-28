@@ -1,0 +1,5 @@
+[
+    { "type": "screen", "ref": "rater-home", "text":"หน้าหลัก", "icon": "fas fa-home", "icontype": "fontcss" },
+    { "type": "screen", "ref": "rater-signin", "text":"เข้าใช้งาน", "icon": "far fa-user-circle", "icontype": "fontcss" },
+    { "type": "screen", "ref": "rater-register", "text":"ลงทะเบียน", "icon": "fas fa-user-plus", "icontype": "fontcss" }
+]

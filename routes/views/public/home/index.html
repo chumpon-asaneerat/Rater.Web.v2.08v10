@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Home Page.</title>
+    <title>My Choice Rater Web</title>
     <!-- Font Awesome -->
     <link href="/dist/css/fontawesome.all.min.css" rel="stylesheet" type="text/css" />
     <!-- JQuery UI -->
@@ -16,9 +16,21 @@
     <!-- Flag and Emoji icons -->
     <link href="/dist/css/flag-icon.min.css" rel="stylesheet" type="text/css" />
     <link href="/dist/css/emojisymbol.min.css" rel="stylesheet" type="text/css" />
+    <!-- nlib css -->
+    <link href="/dist/css/nlib.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-    <h3>Welcome to my app.</h3>
+    <app id="app" navibar footer>
+        <screen screenId='rater-home'>
+            <rater-home></rater-home>
+        </screen>
+        <screen screenId='rater-register'>
+            <h3>register (public)</h3>
+        </screen>
+        <screen screenId='rater-signin'>
+            <h3>signin (public)</h3>
+        </screen>
+    </app>
     <!-- JQuery -->
     <script src="/dist/js/jquery.min.js"></script>
     <!-- JQuery UI -->
@@ -29,14 +41,16 @@
     <script src="/dist/js/bootstrap.min.js">/* bootstrap required jQuery and popperjs. */</script>
     <!-- Moment.js -->
     <script src="/dist/js/moment.min.js"></script>
-    <!-- highcharts.js -->
-    <script src="/dist/js/highcharts.js"></script>
     <!-- Riot.js -->
     <script src="/dist/js/riot.min.js"></script>
     <!-- custom components -->
     <script src="/dist/js/tags.js"></script>
     <!-- nlib -->
     <script src="/dist/js/nlib.js"></script>
+    <!-- services -->
+    <script src="/dist/js/services.js"></script>
+    <!-- local scripts -->
+    <script src="js/app.js"></script>
     <script>
     </script>
 </body>
