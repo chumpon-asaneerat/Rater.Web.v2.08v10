@@ -43,6 +43,37 @@ window.events.name.UserListChanged = 'app:secure:user:list:changed';
 /** Secure: Client User SignIn Failed. */
 window.events.name.UserSignInFailed = 'app:secure:user:signin:failed';
 
+/** Master: Member Type List Changed. */
+window.events.name.MemberTypeListChanged = 'app:master:membertype:list:changed';
+/** Master: Device Type List Changed. */
+window.events.name.DeviceTypeListChanged = 'app:master:devicetype:list:changed';
+/** Master: Period Unit List Changed. */
+window.events.name.PeriodUnitListChanged = 'app:master:periodunit:list:changed';
+/** Master: Limit Unit List Changed. */
+window.events.name.LimitUnitListChanged = 'app:master:limitunit:list:changed';
+/** Master: License Type List Changed. */
+window.events.name.LicenseTypeListChanged = 'app:master:licensetype:list:changed';
+/** Master: License Feature List Changed. */
+window.events.name.LicenseFeatureListChanged = 'app:master:licensefeature:list:changed';
+
+/** Datasource: Device. */
+window.events.name.DeviceListChanged = 'app:datasource:device:list:changed';
+window.events.name.BeginEditDevice = 'app:datasource:device:begin:edit';
+window.events.name.DeleteDevice = 'app:datasource:device:delete';
+window.events.name.EndEditDevice = 'app:datasource:device:end:edit';
+
+/** Datasource: Branch. */
+window.events.name.BranchListChanged = 'app:datasource:branch:list:changed';
+window.events.name.BeginEditBranch = 'app:datasource:branch:begin:edit';
+window.events.name.DeleteBranch = 'app:datasource:branch:delete';
+window.events.name.EndEditBranch = 'app:datasource:branch:end:edit';
+
+/** Datasource: Org. */
+window.events.name.OrgListChanged = 'app:datasource:org:list:changed';
+window.events.name.BeginEditOrg = 'app:datasource:org:begin:edit';
+window.events.name.DeleteOrg = 'app:datasource:org:delete';
+window.events.name.EndEditOrg = 'app:datasource:org:end:edit';
+
 //#endregion
 
 //#region DbApi class
@@ -421,5 +452,426 @@ class SecureService {
 }
 
 window.secure = window.secure || new SecureService();
+
+//#endregion
+
+//#region Master Data Loader and Service classes
+
+class MemberTypesLoader {
+    constructor() {
+        this.content = null;
+        this.current = null;
+        let self = this;
+        let contentChanged = (e) => {
+            self.updateCurrent();
+        }
+        document.addEventListener(events.name.LanguageChanged, contentChanged)
+    }
+    load() {
+        let self = this;
+        let url = '/api/membertypes';
+        let paramObj = {};
+        let fn = (r) => {
+            let data = api.parse(r);
+            self.content = data.records;
+            self.updateCurrent();
+        }
+        XHR.get(url, paramObj, fn);
+    }
+    getCurrent() {        
+        let match = this.content && this.content[this.langId];
+        let ret = (match) ? this.content[this.langId] : (this.content) ? this.content['EN'] : null;
+        //console.log('Current:', ret);
+        return ret;
+    }
+    updateCurrent() {
+        this.current = this.getCurrent();
+        // raise event
+        events.raise(events.name.MemberTypeListChanged)
+    }
+    get langId() { 
+        return (lang.current) ? lang.current.langId : 'EN';
+    }
+}
+
+class PeriodUnitsLoader {
+    constructor() {
+        this.content = null;
+        this.current = null
+        let self = this;
+        let contentChanged = (e) => {
+            self.updateCurrent();
+        }
+        document.addEventListener(events.name.LanguageChanged, contentChanged)
+    }
+    load() {
+        let self = this;
+        let url = '/api/periodunits';
+        let paramObj = {};
+        let fn = (r) => {
+            let data = api.parse(r);
+            self.content = data.records;
+            self.updateCurrent();
+        }
+        XHR.get(url, paramObj, fn);
+    }
+    getCurrent() {
+        let match = this.content && this.content[this.langId];
+        let ret = (match) ? this.content[this.langId] : (this.content) ? this.content['EN'] : null;
+        //console.log('Current:', ret);
+        return ret;
+    }
+    updateCurrent() {
+        this.current = this.getCurrent();
+        // raise event
+        events.raise(events.name.PeriodUnitListChanged)
+    }
+    get langId() { 
+        return (lang.current) ? lang.current.langId : 'EN';
+    }
+}
+
+class LimitUnitsLoader {
+    constructor() {
+        this.content = null;
+        this.current = null;
+        let self = this;
+        let contentChanged = (e) => {
+            self.updateCurrent();
+        }
+        document.addEventListener(events.name.LanguageChanged, contentChanged)
+    }
+    load() {
+        let self = this;
+        let url = '/api/limitunits';
+        let paramObj = {};
+        let fn = (r) => {
+            let data = api.parse(r);
+            self.content = data.records;
+            self.updateCurrent();
+        }
+        XHR.get(url, paramObj, fn);
+    }
+    getCurrent() {
+        let match = this.content && this.content[this.langId];
+        let ret = (match) ? this.content[this.langId] : (this.content) ? this.content['EN'] : null;
+        //console.log('Current:', ret);
+        return ret;
+    }
+    updateCurrent() {
+        this.current = this.getCurrent();
+        // raise event
+        events.raise(events.name.LimitUnitListChanged)
+    }
+    get langId() { 
+        return (lang.current) ? lang.current.langId : 'EN';
+    }
+}
+
+class DeviceTypesLoader {
+    constructor() {
+        this.content = null;
+        this.current = null;
+        let self = this;
+        let contentChanged = (e) => {
+            self.updateCurrent();
+        }
+        document.addEventListener(events.name.LanguageChanged, contentChanged)
+    }
+    load() {
+        let self = this;
+        let url = '/api/devicetypes';
+        let paramObj = {};
+        let fn = (r) => {
+            let data = api.parse(r);
+            self.content = data.records;
+            self.updateCurrent();
+        }
+        XHR.get(url, paramObj, fn);
+    }
+    getCurrent() {
+        let match = this.content && this.content[this.langId];
+        let ret = (match) ? this.content[this.langId] : (this.content) ? this.content['EN'] : null;
+        return ret;
+    }
+    updateCurrent() {
+        this.current = this.getCurrent();
+        // raise event
+        events.raise(events.name.DeviceTypeListChanged)
+    }
+    get langId() { 
+        return (lang.current) ? lang.current.langId : 'EN';
+    }
+}
+
+class LicenseTypesLoader {
+    constructor() {
+        this.content = null;
+        this.current = null;
+        let self = this;
+        let contentChanged = (e) => {
+            self.updateCurrent();
+        }
+        document.addEventListener(events.name.LanguageChanged, contentChanged)
+    }
+    load() {
+        let self = this;
+        let url = '/api/licensetypes';
+        let paramObj = {};
+        let fn = (r) => {
+            let data = api.parse(r);
+            self.content = data.records;
+            self.updateCurrent();
+        }
+        XHR.get(url, paramObj, fn);
+    }
+    getCurrent() {
+        let match = this.content && this.content[this.langId];
+        let ret = (match) ? this.content[this.langId] : (this.content) ? this.content['EN'] : null;
+        //console.log('Current:', ret);
+        return ret;
+    }
+    updateCurrent() {
+        this.current = this.getCurrent();
+        // raise event
+        events.raise(events.name.LicenseFeatureListChanged)
+    }
+    get langId() { 
+        return (lang.current) ? lang.current.langId : 'EN';
+    }
+}
+
+class LicenseFeaturesLoader {
+    constructor() {
+        this.content = null;
+        this.current = null;
+        let self = this;
+        let contentChanged = (e) => {
+            self.updateCurrent();
+        }
+        document.addEventListener(events.name.LanguageChanged, contentChanged)
+    }
+    load() {
+        let self = this;
+        let url = '/api/licensefeatures';
+        let paramObj = {};
+        let fn = (r) => {
+            let data = api.parse(r);
+            self.content = data.records;
+            self.updateCurrent();
+        }
+        XHR.get(url, paramObj, fn);
+    }
+    getCurrent() {
+        let match = this.content && this.content[this.langId];
+        let ret = (match) ? this.content[this.langId] : (this.content) ? this.content['EN'] : null;
+        //console.log('Current:', ret);
+        return ret;
+    }
+    updateCurrent() {
+        this.current = this.getCurrent();
+        // raise event
+        events.raise(events.name.LicenseFeatureListChanged)
+    }
+    get langId() { 
+        return (lang.current) ? lang.current.langId : 'EN';
+    }
+}
+class MasterService {
+    constructor() {
+        this.membertypes = new MemberTypesLoader();
+        this.periodunits = new PeriodUnitsLoader();
+        this.limitunits = new LimitUnitsLoader();
+        this.devicetypes = new DeviceTypesLoader();
+        this.licesetypes = new LicenseTypesLoader();
+        this.licensefeatures = new LicenseFeaturesLoader();
+    }
+    load() {
+        this.membertypes.load()
+        this.periodunits.load()
+        this.limitunits.load()
+        this.devicetypes.load()
+        this.licesetypes.load()
+        this.licensefeatures.load()
+    }
+    get langId() { 
+        return (lang.current) ? lang.current.langId : 'EN';
+    }
+}
+;(function () {
+    //console.log('Init content service...');
+    window.master = window.master || new MasterService();
+    master.load();
+})();
+
+//#endregion
+
+//#region Device Manager
+
+class DeviceManager {
+    constructor() {
+        this.content = null;
+        this.current = null;
+
+        let self = this;
+        let contentChanged = (e) => {
+            self.updateCurrent();
+        }
+        document.addEventListener(events.name.LanguageChanged, contentChanged)
+    }
+    load() {
+        let self = this;
+        let url = '/customer/api/device/search';
+        let paramObj = {};
+        let fn = (r) => {
+            let data = api.parse(r);
+            self.content = data.records;
+            //console.log(self.content)
+            self.updateCurrent();
+        }
+        XHR.postJson(url, paramObj, fn);
+    }
+    save(items) {
+        let self = this;
+        let url = '/customer/api/device/save';
+        //console.log('save:', items)
+        let paramObj = {
+            items: items
+        };
+        let fn = (r) => {
+            let results = [];
+            for (let i = 0; i < r.result.length; i++) {
+                //let data = api.parse(r.result[i]);
+                let data = {
+                    records: r.result[i].data,
+                    out: r.result[i].out,
+                    errors: r.result[i].errors
+                }
+                results.push(data)
+            }
+            self.load();
+        }
+        XHR.postJson(url, paramObj, fn);
+    }
+    getCurrent() {
+        let match = this.content && this.content[this.langId];
+        let ret = (match) ? this.content[this.langId] : (this.content) ? this.content['EN'] : null;
+        //console.log('Current:', ret);
+        return ret;
+    }
+    updateCurrent() {
+        this.current = this.getCurrent();
+        // raise event
+        events.raise(events.name.DeviceListChanged)
+    }
+    get langId() { 
+        return (lang.current) ? lang.current.langId : 'EN';
+    }
+    find(langId, deviceId) {
+        let ret = null;
+        if (this.current) {
+            //console.log('current:', this.content)
+            let items = this.content[langId];
+            //console.log('items:', items)
+            if (items) {                
+                let maps = items.map(item => item.deviceId);
+                let idx = maps.indexOf(deviceId);
+                ret = (idx !== -1) ? items[idx] : null;
+            }
+        }
+        return ret;
+    }
+}
+
+;(function () {
+    window.devicemanager = window.devicemanager || new DeviceManager();
+    window.devicemanager.load();
+})();
+
+//#endregion
+
+//#region Branch Manager
+
+class BranchManager {
+    constructor() {
+        this.content = null;
+        this.current = null;
+
+        let self = this;
+        let contentChanged = (e) => {
+            self.updateCurrent();
+        }
+        document.addEventListener(events.name.LanguageChanged, contentChanged)
+    }
+    load() {
+        let self = this;
+        let url = '/customer/api/branch/search';
+        let paramObj = {};
+        let fn = (r) => {
+            let data = api.parse(r);
+            self.content = data.records;
+            //console.log(self.content)
+            self.updateCurrent();
+        }
+        XHR.postJson(url, paramObj, fn);
+    }
+    save(items) {
+        let self = this;
+        let url = '/customer/api/branch/save';
+        //console.log('save:', items)
+        let paramObj = {
+            items: items
+        };
+        let fn = (r) => {
+            console.log(r);
+
+            let results = [];
+            for (let i = 0; i < r.result.length; i++) {
+                //let data = api.parse(r.result[i]);
+                let data = {
+                    records: r.result[i].data,
+                    out: r.result[i].out,
+                    errors: r.result[i].errors
+                }
+                results.push(data)
+            }
+            self.load();
+        }
+        XHR.postJson(url, paramObj, fn);
+    }
+    getCurrent() {
+        let match = this.content && this.content[this.langId];
+        let ret = (match) ? this.content[this.langId] : (this.content) ? this.content['EN'] : null;
+        //console.log('Current:', ret);
+        return ret;
+    }
+    updateCurrent() {
+        this.current = this.getCurrent();
+        // raise event
+        events.raise(events.name.BranchListChanged)
+    }
+    get langId() { 
+        return (lang.current) ? lang.current.langId : 'EN';
+    }
+    find(langId, branchId) {
+        let ret = null;
+        if (this.current) {
+            //console.log('current:', this.content)
+            let items = this.content[langId];
+            //console.log('items:', items)
+            if (items) {                
+                let maps = items.map(item => item.branchId);
+                let idx = maps.indexOf(branchId);
+                ret = (idx !== -1) ? items[idx] : null;
+            }
+        }
+        return ret;
+    }
+}
+
+;(function () {
+    window.branchmanager = window.branchmanager || new BranchManager();
+    window.branchmanager.load();
+})();
 
 //#endregion

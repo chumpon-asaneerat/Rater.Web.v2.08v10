@@ -20,7 +20,11 @@
             width: 100%;
             height: 100%;
             /* max-width: 100%; */
-            max-height: calc(100vh - 62px);
+            /* max-height: calc(100vh - 62px); */
+            overflow: hidden;
+            /* overflow: auto; */
+        }
+        .entry {
             overflow: auto;
         }
     </style>
@@ -34,8 +38,7 @@
         //#region content variables and methods
 
         let defaultContent = {
-            title: 'Title',
-            label: {}
+            title: 'Title'
         }
         this.content = defaultContent;
 
@@ -52,8 +55,9 @@
 
         let flipper, view, entry;
         let initCtrls = () => {
+            //console.log('device manage refs:', self.refs)
             flipper = self.refs['flipper'];
-            entry = self.refs['entry'];
+            entry = (flipper) ? flipper.refs['entry'] : undefined;
         }
         let freeCtrls = () => {
             entry = null;
@@ -75,8 +79,12 @@
             addEvt(events.name.LanguageChanged, onLanguageChanged)
             addEvt(events.name.ContentChanged, onContentChanged)
             addEvt(events.name.ScreenChanged, onScreenChanged)
+            addEvt(events.name.BeginEditDevice, onBeginEdit)
+            addEvt(events.name.EndEditDevice, onEndEdit)
         }
         let unbindEvents = () => {
+            delEvt(events.name.EndEditDevice, onEndEdit)
+            delEvt(events.name.BeginEditDevice, onBeginEdit)
             delEvt(events.name.ScreenChanged, onScreenChanged)
             delEvt(events.name.ContentChanged, onContentChanged)
             delEvt(events.name.LanguageChanged, onLanguageChanged)
@@ -102,22 +110,23 @@
         let onContentChanged = (e) => { updatecontent(); }
         let onLanguageChanged = (e) => { updatecontent(); }
         let onScreenChanged = (e) => { updatecontent(); }
-
-        //#endregion
-
-        //#region public access
-
-        this.addnew = () => {
-            let item = {}
-            if (flipper) flipper.toggle();
-            if (entry) entry.setup(item)
+        let onBeginEdit = (e) => {
+            //console.log('Begin Edit');
+            //console.log('flipper:', flipper)
+            //console.log('entry:', entry)
+            if (flipper) {
+                flipper.toggle();
+                let item = e.detail.data.item;
+                //console.log('begin edit item:', item)
+                if (entry) entry.setup(item);
+            }
+            
         }
-        this.edit = (item) => {
-            if (flipper) flipper.toggle();
-            if (entry) entry.setup(item)
-        }
-        this.cancel = () => {
-            if (flipper) flipper.toggle();
+        let onEndEdit = (e) => {
+            //console.log('End Edit');
+            if (flipper) {
+                flipper.toggle();
+            }
         }
 
         //#endregion

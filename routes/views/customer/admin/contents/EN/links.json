@@ -1,6 +1,7 @@
 [
     { "type": "screen", "ref": "admin-home", "text":"Home", "icon": "fas fa-home", "icontype": "fontcss" },
     { "type": "screen", "ref": "member-manage", "text":"User Account", "icon": "fas fa-user-friends", "icontype": "fontcss" },
+    { "type": "screen", "ref": "branch-manage", "text":"Branch", "icon": "fas fa-sitemap", "icontype": "fontcss" },
     { "type": "screen", "ref": "org-manage", "text":"Organization", "icon": "fas fa-sitemap", "icontype": "fontcss" },
     { "type": "screen", "ref": "device-manage", "text":"Device", "icon": "fas fa-mobile-alt", "icontype": "fontcss" },
     { "type": "screen", "ref": "question-manage", "text":"Question", "icon": "far fa-newspaper", "icontype": "fontcss" },
