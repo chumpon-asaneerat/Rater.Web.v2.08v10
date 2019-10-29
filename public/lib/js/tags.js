@@ -1146,7 +1146,7 @@ riot.tag2('device-view', '<div ref="title" class="titlearea"> <button class="add
         }
 
 });
-riot.tag2('admin-home', '', 'admin-home,[data-is="admin-home"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
+riot.tag2('admin-home', '<h3>Admin Home Page.</h3>', 'admin-home,[data-is="admin-home"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
 
 
         let self = this;
@@ -2974,7 +2974,7 @@ riot.tag2('rawvote-search', '', 'rawvote-search,[data-is="rawvote-search"]{ marg
         });
 
 });
-riot.tag2('report-home', '', 'report-home,[data-is="report-home"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
+riot.tag2('report-home', '<h3>Report - Home</h3>', 'report-home,[data-is="report-home"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
 
 
         let self = this;

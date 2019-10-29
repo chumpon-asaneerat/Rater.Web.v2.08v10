@@ -1,4 +1,5 @@
 <report-home>
+    <h3>Report - Home</h3>
     <style>
         :scope {
             margin: 0;
