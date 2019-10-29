@@ -1400,7 +1400,7 @@ riot.tag2('member-editor', '<div class="entry"> <div class="tab"> <button ref="t
         }
 
 });
-riot.tag2('member-entry', '<div class="padtop"></div> <div class="padtop"></div> <ninput ref="prefix" title="{content.entry.prefix}" type="text" name="prefix"></ninput> <ninput ref="firstName" title="{content.entry.firstName}" type="text" name="firstName"></ninput> <ninput ref="lastName" title="{content.entry.lastName}" type="text" name="lastName"></ninput> <ninput ref="userName" title="{content.entry.userName}" type="text" name="userName"></ninput> <ninput ref="passWord" title="{content.entry.passWord}" type="password" name="passWord"></ninput> <ninput ref="memberType" title="{content.entry.memberType}" type="text" name="memberType"></ninput>', 'member-entry,[data-is="member-entry"]{ margin: 0; padding: 0; width: 100%; height: 100%; } member-entry .padtop,[data-is="member-entry"] .padtop{ display: block; margin: 0 auto; width: 100%; min-height: 10px; }', '', function(opts) {
+riot.tag2('member-entry', '<div class="padtop"></div> <div class="padtop"></div> <ninput ref="prefix" title="{content.entry.prefix}" type="text" name="prefix"></ninput> <ninput ref="firstName" title="{content.entry.firstName}" type="text" name="firstName"></ninput> <ninput ref="lastName" title="{content.entry.lastName}" type="text" name="lastName"></ninput> <ninput ref="userName" title="{content.entry.userName}" type="text" name="userName"></ninput> <ninput ref="passWord" title="{content.entry.passWord}" type="password" name="passWord"></ninput> <nselect ref="memberTypes" title="{content.entry.memberType}"></nselect>', 'member-entry,[data-is="member-entry"]{ margin: 0; padding: 0; width: 100%; height: 100%; } member-entry .padtop,[data-is="member-entry"] .padtop{ display: block; margin: 0 auto; width: 100%; min-height: 10px; }', '', function(opts) {
         let self = this;
         let screenId = 'member-manage';
 
@@ -1428,7 +1428,9 @@ riot.tag2('member-entry', '<div class="padtop"></div> <div class="padtop"></div>
             }
         }
 
-        let prefix, firstName, lastName, userName, passWord, memberType;
+        let prefix, firstName, lastName, userName, passWord;
+
+        let memberTypes;
 
         let initCtrls = () => {
             prefix = self.refs['prefix'];
@@ -1436,7 +1438,8 @@ riot.tag2('member-entry', '<div class="padtop"></div> <div class="padtop"></div>
             lastName = self.refs['lastName'];
             userName = self.refs['userName'];
             passWord = self.refs['passWord'];
-            memberType = self.refs['memberType'];
+
+            memberTypes = self.refs['memberTypes'];
 
         }
         let freeCtrls = () => {
@@ -1445,7 +1448,7 @@ riot.tag2('member-entry', '<div class="padtop"></div> <div class="padtop"></div>
             lastName = null;
             userName = null;
             passWord = null;
-            memberType = null;
+            memberTypes = null;
 
         }
         let clearInputs = () => {
@@ -1454,7 +1457,7 @@ riot.tag2('member-entry', '<div class="padtop"></div> <div class="padtop"></div>
             lastName.clear()
             userName.clear()
             passWord.clear()
-            memberType.clear()
+            memberTypes.clear();
 
         }
 
@@ -1507,7 +1510,7 @@ riot.tag2('member-entry', '<div class="padtop"></div> <div class="padtop"></div>
                 if (userName) editObj.UserName = userName.value();
                 if (passWord) editObj.Password = passWord.value();
 
-                if (memberType) editObj.MemberType = memberType.value();
+                if (memberTypes) editObj.MemberType = memberTypes.value();
 
             }
         }
@@ -1520,12 +1523,16 @@ riot.tag2('member-entry', '<div class="padtop"></div> <div class="padtop"></div>
                 if (userName) userName.value(editObj.UserName);
                 if (passWord) passWord.value(editObj.Password);
 
-                if (memberType) memberType.value(editObj.MemberType);
+                if (memberTypes) memberTypes.value(editObj.MemberType.toString());
 
             }
         }
 
         this.setup = (item) => {
+
+            if (memberTypes) {
+                memberTypes.setup(master.membertypes.current, { valueField:'memberTypeId', textField:'Description' });
+            }
 
             origObj = clone(item);
             editObj = clone(item);

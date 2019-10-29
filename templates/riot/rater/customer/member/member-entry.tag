@@ -6,7 +6,10 @@
     <ninput ref="lastName" title="{ content.entry.lastName }" type="text" name="lastName"></ninput>
     <ninput ref="userName" title="{ content.entry.userName }" type="text" name="userName"></ninput>
     <ninput ref="passWord" title="{ content.entry.passWord }" type="password" name="passWord"></ninput>
+    <!--
     <ninput ref="memberType" title="{ content.entry.memberType }" type="text" name="memberType"></ninput>
+    -->
+    <nselect ref="memberTypes" title="{ content.entry.memberType }"></nselect>
     <!--
     <ninput ref="tagId" title="{ content.label.member.entry.tagId }" type="text" name="tagId"></ninput>
     <ninput ref="idCard" title="{ content.label.member.entry.idCard }" type="text" name="idCard"></ninput>
@@ -60,7 +63,9 @@
 
         //#region controls variables and methods
 
-        let prefix, firstName, lastName, userName, passWord, memberType;
+        let prefix, firstName, lastName, userName, passWord;
+        //let memberType;
+        let memberTypes;
         //let tagId, idCard, employeeCode;
 
         let initCtrls = () => {
@@ -69,7 +74,8 @@
             lastName = self.refs['lastName'];
             userName = self.refs['userName'];
             passWord = self.refs['passWord'];
-            memberType = self.refs['memberType'];
+            //memberType = self.refs['memberType'];
+            memberTypes = self.refs['memberTypes'];
             /*
             tagId = self.refs['tagId'];
             idCard = self.refs['idCard'];
@@ -82,7 +88,8 @@
             lastName = null;
             userName = null;
             passWord = null;
-            memberType = null;
+            memberTypes = null;
+            //memberType = null;
             /*
             tagId = null;
             idCard = null;
@@ -95,7 +102,8 @@
             lastName.clear()
             userName.clear()
             passWord.clear()
-            memberType.clear()
+            memberTypes.clear();
+            //memberType.clear()
             /*
             tagId.clear()
             idCard.clear()
@@ -172,8 +180,8 @@
                 if (userName) editObj.UserName = userName.value();
                 if (passWord) editObj.Password = passWord.value();
 
-                if (memberType) editObj.MemberType = memberType.value();
-                //if (memberTypes) editObj.memberTypeId = memberTypes.value();
+                //if (memberType) editObj.MemberType = memberType.value();
+                if (memberTypes) editObj.MemberType = memberTypes.value();
                 
                 /*
                 if (tagId) editObj.TagId = tagId.value();
@@ -191,8 +199,8 @@
                 if (userName) userName.value(editObj.UserName);
                 if (passWord) passWord.value(editObj.Password);
 
-                if (memberType) memberType.value(editObj.MemberType);
-                //if (memberTypes) memberTypes.value(editObj.memberTypeId.toString());
+                //if (memberType) memberType.value(editObj.MemberType);
+                if (memberTypes) memberTypes.value(editObj.MemberType.toString());
 
                 /*
                 if (tagId) tagId.value(editObj.TagId);
@@ -204,11 +212,9 @@
 
         this.setup = (item) => {
             // load lookup.
-            /*
             if (memberTypes) {
                 memberTypes.setup(master.membertypes.current, { valueField:'memberTypeId', textField:'Description' });
             }
-            */
 
             origObj = clone(item);
             editObj = clone(item);

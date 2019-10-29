@@ -5,7 +5,7 @@
     <!--
     <ninput ref="deviceTypeId" title="{ content.entry.deviceTypeId }" type="text" name="deciveTypeId"></ninput>
     -->
-    <nselect ref="deviceTypes" title="{ content.entry.deviceTypeId }"></nselect>    
+    <nselect ref="deviceTypes" title="{ content.entry.deviceTypeId }"></nselect>
     <ninput ref="location" title="{ content.entry.location }" type="text" name="location"></ninput>
     <ninput ref="orgId" title="{ content.entry.orgId }" type="text" name="orgId"></ninput>
     <ninput ref="memberId" title="{ content.entry.memberId }" type="text" name="memberId"></ninput>
