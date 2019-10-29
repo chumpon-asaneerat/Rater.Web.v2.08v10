@@ -1,4 +1,6 @@
 <device-view>
+    <h3>device view</h3>
+    <button onclick="{ editme }">edit</button>
     <style>
         :scope {
             margin: 0;
@@ -48,5 +50,15 @@
         });
 
         //#endregion
+
+        this.editme = (e) => {
+            let flipper = self.parent;
+            let manage = (flipper) ? flipper.parent : null;
+            if (manage) {
+                console.log(manage)
+                let item = e.detail.item;
+                manage.edit(item)
+            }
+        }
     </script>
 </device-view>

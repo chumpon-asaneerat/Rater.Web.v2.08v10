@@ -1,4 +1,6 @@
 <device-editor>
+    <h3>device editor</h3>
+    <button onclick="{ canceledit }">cancel</button>
     <style>
         :scope {
             margin: 0;
@@ -48,5 +50,14 @@
         });
 
         //#endregion
+
+        this.canceledit = () => {
+            let flipper = self.parent;
+            let manage = (flipper) ? flipper.parent : null;
+            if (manage) {
+                console.log(manage)
+                manage.cancel()
+            }
+        }
     </script>
 </device-editor>

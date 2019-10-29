@@ -597,7 +597,7 @@ riot.tag2('screen', '<div class="content-area"> <yield></yield> </div>', 'screen
         let onScreenChanged = (e) => { updatecontent(); }
 
 });
-riot.tag2('device-editor', '', 'device-editor,[data-is="device-editor"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
+riot.tag2('device-editor', '<h3>device editor</h3> <button onclick="{canceledit}">cancel</button>', 'device-editor,[data-is="device-editor"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
 
 
         let self = this;
@@ -619,9 +619,86 @@ riot.tag2('device-editor', '', 'device-editor,[data-is="device-editor"]{ margin:
             unbindEvents();
             freeCtrls();
         });
+
+        this.canceledit = () => {
+            let flipper = self.parent;
+            let manage = (flipper) ? flipper.parent : null;
+            if (manage) {
+                console.log(manage)
+                manage.cancel()
+            }
+        }
+});
+riot.tag2('device-manage', '<flip-screen ref="flipper"> <yield to="viewer"> <device-view ref="viewer" class="view"></device-view> </yield> <yield to="entry"> <device-editor ref="entry" class="entry"></device-editor> </yield> </flip-screen>', 'device-manage,[data-is="device-manage"]{ margin: 0 auto; padding: 0; width: 100%; height: 100%; } device-manage .view,[data-is="device-manage"] .view,device-manage .entry,[data-is="device-manage"] .entry{ margin: 0; padding: 0; width: 100%; height: 100%; max-height: calc(100vh - 62px); overflow: auto; }', '', function(opts) {
+
+
+        let self = this;
+
+        let defaultContent = {
+            title: 'Title',
+            label: {}
+        }
+        this.content = defaultContent;
+
+        let updatecontent = () => {
+            let scrId = screens.current.screenId;
+            let scrContent = (contents.current && contents.current.screens) ? contents.current.screens[scrId] : null;
+            self.content = scrContent ? scrContent : defaultContent;
+            self.update();
+        }
+
+        let flipper, view, entry;
+        let initCtrls = () => {
+            flipper = self.refs['flipper'];
+            entry = self.refs['entry'];
+        }
+        let freeCtrls = () => {
+            entry = null;
+            flipper = null;
+        }
+
+        let addEvt = (evtName, handle) => { document.addEventListener(evtName, handle) }
+        let delEvt = (evtName, handle) => { document.removeEventListener(evtName, handle) }
+
+        let bindEvents = () => {
+            addEvt(events.name.LanguageChanged, onLanguageChanged)
+            addEvt(events.name.ContentChanged, onContentChanged)
+            addEvt(events.name.ScreenChanged, onScreenChanged)
+        }
+        let unbindEvents = () => {
+            delEvt(events.name.ScreenChanged, onScreenChanged)
+            delEvt(events.name.ContentChanged, onContentChanged)
+            delEvt(events.name.LanguageChanged, onLanguageChanged)
+        }
+
+        this.on('mount', () => {
+            initCtrls();
+            bindEvents();
+        });
+        this.on('unmount', () => {
+            unbindEvents();
+            freeCtrls();
+        });
+
+        let onContentChanged = (e) => { updatecontent(); }
+        let onLanguageChanged = (e) => { updatecontent(); }
+        let onScreenChanged = (e) => { updatecontent(); }
+
+        this.addnew = () => {
+            let item = {}
+            if (flipper) flipper.toggle();
+            if (entry) entry.setup(item)
+        }
+        this.edit = (item) => {
+            if (flipper) flipper.toggle();
+            if (entry) entry.setup(item)
+        }
+        this.cancel = () => {
+            if (flipper) flipper.toggle();
+        }
 
 });
-riot.tag2('device-manage', '', 'device-manage,[data-is="device-manage"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
+riot.tag2('device-view', '<h3>device view</h3> <button onclick="{editme}">edit</button>', 'device-view,[data-is="device-view"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
 
 
         let self = this;
@@ -644,30 +721,15 @@ riot.tag2('device-manage', '', 'device-manage,[data-is="device-manage"]{ margin:
             freeCtrls();
         });
 
-});
-riot.tag2('device-view', '', 'device-view,[data-is="device-view"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
-
-
-        let self = this;
-
-        let initCtrls = () => {}
-        let freeCtrls = () => {}
-
-        let addEvt = (evtName, handle) => { document.addEventListener(evtName, handle) }
-        let delEvt = (evtName, handle) => { document.removeEventListener(evtName, handle) }
-
-        let bindEvents = () => {}
-        let unbindEvents = () => {}
-
-        this.on('mount', () => {
-            initCtrls();
-            bindEvents();
-        });
-        this.on('unmount', () => {
-            unbindEvents();
-            freeCtrls();
-        });
-
+        this.editme = (e) => {
+            let flipper = self.parent;
+            let manage = (flipper) ? flipper.parent : null;
+            if (manage) {
+                console.log(manage)
+                let item = e.detail.item;
+                manage.edit(item)
+            }
+        }
 });
 riot.tag2('admin-home', '', 'admin-home,[data-is="admin-home"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
 
