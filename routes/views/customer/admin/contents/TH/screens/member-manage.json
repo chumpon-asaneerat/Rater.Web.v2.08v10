@@ -7,7 +7,7 @@
         "firstName": "ชื่อ",
         "lastName": "นามสกุล",
         "userName": "ชื่อบัญชี",
-        "passWopd": "รหัสผ่าน",
+        "passWord": "รหัสผ่าน",
         "tagId": "หมายเลขแท็ก",
         "idCard": "หมายเลขบัตรประชาชน",
         "employeeCode": "รหัสพนักงาน",

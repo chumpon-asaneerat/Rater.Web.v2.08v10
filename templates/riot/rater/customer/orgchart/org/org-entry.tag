@@ -2,8 +2,10 @@
     <div class="padtop"></div>
     <div class="padtop"></div>
     <ninput ref="orgName" title="{ content.entry.orgName }" type="text" name="orgName"></ninput>
-    <ninput ref="parentId" title="{ content.entry.parentId }" type="text" name="parentId"></ninput>
-    <ninput ref="branchId" title="{ content.entry.branchId }" type="text" name="branchId"></ninput>
+    <virtual if={ isDefault() }>
+        <ninput ref="parentId" title="{ content.entry.parentId }" type="text" name="parentId"></ninput>
+        <ninput ref="branchId" title="{ content.entry.branchId }" type="text" name="branchId"></ninput>
+    </virtual>
     <style>
         :scope {
             margin: 0;
@@ -21,6 +23,7 @@
     <script>
         let self = this;
         let screenId = 'org-manage';
+        this.isDefault = () => { return (opts.langid === '' || opts.langid === 'EN') }
 
         //#region content variables and methods
         

@@ -86,7 +86,7 @@
         :scope .entry .tabcontent .panel-header {
             margin: 0 auto;
             padding: 0;
-            padding-top: 7px;
+            padding-top: 3px;
             width: 100%;
             height: 30px;
             color: white;

@@ -3,7 +3,7 @@
     "entry":  {
         "tabDefault": "ค่าตั้งต้น",
         "tabMultiLang": "ภาษาอื่น",
-        "OrgName": "ชื่อหน่วยงาน",
+        "orgName": "ชื่อหน่วยงาน",
         "parentId": "หน่วยงานแม่",
         "branchId": "สาขา"
     },

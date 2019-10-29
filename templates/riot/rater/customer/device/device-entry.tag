@@ -2,13 +2,15 @@
     <div class="padtop"></div>
     <div class="padtop"></div>
     <ninput ref="deviceName" title="{ content.entry.deviceName }" type="text" name="deviceName"></ninput>
-    <!--
-    <ninput ref="deviceTypeId" title="{ content.entry.deviceTypeId }" type="text" name="deciveTypeId"></ninput>
-    -->
-    <nselect ref="deviceTypes" title="{ content.entry.deviceTypeId }"></nselect>
     <ninput ref="location" title="{ content.entry.location }" type="text" name="location"></ninput>
-    <ninput ref="orgId" title="{ content.entry.orgId }" type="text" name="orgId"></ninput>
-    <ninput ref="memberId" title="{ content.entry.memberId }" type="text" name="memberId"></ninput>
+    <virtual if={ isDefault() }>
+        <!--
+        <ninput ref="deviceTypeId" title="{ content.entry.deviceTypeId }" type="text" name="deciveTypeId"></ninput>
+        -->
+        <nselect ref="deviceTypes" title="{ content.entry.deviceTypeId }"></nselect>
+        <ninput ref="orgId" title="{ content.entry.orgId }" type="text" name="orgId"></ninput>
+        <ninput ref="memberId" title="{ content.entry.memberId }" type="text" name="memberId"></ninput>
+    </virtual>
     <style>
         :scope {
             margin: 0;
@@ -26,6 +28,7 @@
     <script>
         let self = this;
         let screenId = 'device-manage';
+        this.isDefault = () => { return (opts.langid === '' || opts.langid === 'EN') }
 
         //#region content variables and methods
         

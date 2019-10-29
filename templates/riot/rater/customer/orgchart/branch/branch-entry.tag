@@ -19,6 +19,7 @@
     <script>
         let self = this;
         let screenId = 'branch-manage';
+        this.isDefault = () => { return (opts.langid === '' || opts.langid === 'EN') }
 
         //#region content variables and methods
         

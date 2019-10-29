@@ -4,17 +4,19 @@
     <ninput ref="prefix" title="{ content.entry.prefix }" type="text" name="prefix"></ninput>
     <ninput ref="firstName" title="{ content.entry.firstName }" type="text" name="firstName"></ninput>
     <ninput ref="lastName" title="{ content.entry.lastName }" type="text" name="lastName"></ninput>
-    <ninput ref="userName" title="{ content.entry.userName }" type="text" name="userName"></ninput>
-    <ninput ref="passWord" title="{ content.entry.passWord }" type="password" name="passWord"></ninput>
-    <!--
-    <ninput ref="memberType" title="{ content.entry.memberType }" type="text" name="memberType"></ninput>
-    -->
-    <nselect ref="memberTypes" title="{ content.entry.memberType }"></nselect>
-    <!--
-    <ninput ref="tagId" title="{ content.label.member.entry.tagId }" type="text" name="tagId"></ninput>
-    <ninput ref="idCard" title="{ content.label.member.entry.idCard }" type="text" name="idCard"></ninput>
-    <ninput ref="employeeCode" title="{ content.label.member.entry.employeeCode }" type="text" name="employeeCode"></ninput>
-    -->
+    <virtual if={ isDefault() }>
+        <ninput ref="userName" title="{ content.entry.userName }" type="text" name="userName"></ninput>
+        <ninput ref="passWord" title="{ content.entry.passWord }" type="password" name="passWord"></ninput>
+        <!--
+        <ninput ref="memberType" title="{ content.entry.memberType }" type="text" name="memberType"></ninput>
+        -->
+        <nselect ref="memberTypes" title="{ content.entry.memberType }"></nselect>
+        <!--
+        <ninput ref="tagId" title="{ content.label.member.entry.tagId }" type="text" name="tagId"></ninput>
+        <ninput ref="idCard" title="{ content.label.member.entry.idCard }" type="text" name="idCard"></ninput>
+        <ninput ref="employeeCode" title="{ content.label.member.entry.employeeCode }" type="text" name="employeeCode"></ninput>
+        -->
+    </virtual>
     <style>
         :scope {
             margin: 0;
@@ -32,6 +34,7 @@
     <script>
         let self = this;
         let screenId = 'member-manage';
+        this.isDefault = () => { return (opts.langid === '' || opts.langid === 'EN') }
 
         //#region content variables and methods
         
