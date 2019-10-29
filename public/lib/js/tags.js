@@ -2662,7 +2662,7 @@ riot.tag2('org-manage', '<flip-screen ref="flipper"> <yield to="viewer"> <org-vi
         }
 
 });
-riot.tag2('org-view', '<div ref="title" class="titlearea"> <button class="addnew" onclick="{addnew}"> <span class="fas fa-plus-circle">&nbsp;</span> </button> <button class="refresh" onclick="{refresh}"> <span class="fas fa-sync">&nbsp;</span> </button> </div> <div ref="container" class="scrarea"> <div ref="grid"></div> </div>', 'org-view,[data-is="org-view"]{ margin: 0 auto; padding: 0; width: 100%; height: 100%; display: grid; grid-template-columns: 1fr; grid-template-rows: 30px 1fr; grid-template-areas: \'titlearea\' \'scrarea\'; } org-view .titlearea,[data-is="org-view"] .titlearea{ grid-area: titlearea; margin: 0 auto; padding: 0; width: 100%; height: 100%; overflow: hidden; border-radius: 3px; background-color: transparent; color: whitesmoke; } org-view .titlearea .addnew,[data-is="org-view"] .titlearea .addnew{ margin: 0 auto; padding: 2px; height: 100%; width: 50px; color: darkgreen; } org-view .titlearea .refresh,[data-is="org-view"] .titlearea .refresh{ margin: 0 auto; padding: 2px; height: 100%; width: 50px; color: darkgreen; } org-view .scrarea,[data-is="org-view"] .scrarea{ grid-area: scrarea; margin: 0 auto; padding: 0; margin-top: 3px; width: 100%; height: 100%; }', '', function(opts) {
+riot.tag2('org-view-grid', '<div ref="title" class="titlearea"> <button class="addnew" onclick="{addnew}"> <span class="fas fa-plus-circle">&nbsp;</span> </button> <button class="refresh" onclick="{refresh}"> <span class="fas fa-sync">&nbsp;</span> </button> </div> <div ref="container" class="scrarea"> <div ref="grid"></div> </div>', 'org-view-grid,[data-is="org-view-grid"]{ margin: 0 auto; padding: 0; width: 100%; height: 100%; display: grid; grid-template-columns: 1fr; grid-template-rows: 30px 1fr; grid-template-areas: \'titlearea\' \'scrarea\'; } org-view-grid .titlearea,[data-is="org-view-grid"] .titlearea{ grid-area: titlearea; margin: 0 auto; padding: 0; width: 100%; height: 100%; overflow: hidden; border-radius: 3px; background-color: transparent; color: whitesmoke; } org-view-grid .titlearea .addnew,[data-is="org-view-grid"] .titlearea .addnew{ margin: 0 auto; padding: 2px; height: 100%; width: 50px; color: darkgreen; } org-view-grid .titlearea .refresh,[data-is="org-view-grid"] .titlearea .refresh{ margin: 0 auto; padding: 2px; height: 100%; width: 50px; color: darkgreen; } org-view-grid .scrarea,[data-is="org-view-grid"] .scrarea{ grid-area: scrarea; margin: 0 auto; padding: 0; margin-top: 3px; width: 100%; height: 100%; }', '', function(opts) {
 
 
         let self = this;
@@ -2809,6 +2809,8 @@ riot.tag2('org-view', '<div ref="title" class="titlearea"> <button class="addnew
             updatecontent();
         }
 
+});
+riot.tag2('org-view', '<h3>Org View</h3>', '', '', function(opts) {
 });
 riot.tag2('question-manage', '', 'question-manage,[data-is="question-manage"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
 
