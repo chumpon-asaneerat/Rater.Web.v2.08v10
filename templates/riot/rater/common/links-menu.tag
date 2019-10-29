@@ -1,4 +1,4 @@
-<links-menu>
+<links-menu class="{ (menus && menus.length > 0) ? '' : 'hide' }">
     <div class="menu">
         <a ref="links" class="link-combo" href="javascript:;">
             <span ref="showlinks" class="burger fas fa-bars"></span>
@@ -21,6 +21,10 @@
             margin: 0 auto;
             padding: 0 3px;
             user-select: none;
+            width: 40px;
+        }
+        :scope.hide {
+            display: none;
         }
         .menu {
             margin: 0 auto;
@@ -104,7 +108,7 @@
         this.isShown = (item) => {
             let ret = true;
             let linkType = (item.type) ? item.type.toLowerCase() : '';
-            if (linkType  === 'screen') {
+            if (linkType === 'screen') {
                 ret = item.ref !== screens.current.screenId;
             }
             return ret;

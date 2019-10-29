@@ -38,6 +38,11 @@ window.events.name.UpdateOsd = 'app:osd:update';
 /** Hide OSD. */
 window.events.name.HideOsd = 'app:osd:hide';
 
+/** Secure: Client User SignIn User List Changed. */
+window.events.name.UserListChanged = 'app:secure:user:list:changed';
+/** Secure: Client User SignIn Failed. */
+window.events.name.UserSignInFailed = 'app:secure:user:signin:failed';
+
 //#endregion
 
 //#region DbApi class
@@ -310,5 +315,111 @@ class ScreenService {
     //console.log('Init screen service...');
     window.screens = window.screens || new ScreenService();
 })();
+
+//#endregion
+
+//#region SecureService class
+
+class SecureService {
+    constructor() {
+        this.content = null;
+        this.account = { username: '', password: ''}
+    }
+    reset() {
+        this.content = null;
+        this.account = { username: '', password: ''}
+    }
+    /*
+    register(customername, username, pwd, licenseTypeId) {
+        let url = '/api/customer/register'
+        let paramObj = { 
+            customerName: customername,
+            userName: username,
+            passWord: pwd,
+            licenseTypeId: licenseTypeId
+        }
+        let self = this;
+        let fn = (r) => {
+            let data = api.parse(r);
+            self.content = data.records;
+            // raise event.
+            let evt;
+            if (data.errors.hasError) {
+                evt = new CustomEvent('registerfailed');
+            }
+            else {
+                evt = new CustomEvent('registersuccess');
+            }
+            document.dispatchEvent(evt);
+        }
+        XHR.postJson(url, paramObj, fn);
+    }
+    */
+    verifyUsers(username, pwd) {
+        let url = '/api/customer/validate-accounts'
+        this.account = { username: username, password: pwd}
+
+        let self = this;
+        let fn = (r) => {
+            let data = api.parse(r);
+            self.content = data.records;
+            // Raise event.
+            events.raise(events.name.UserListChanged);
+        }
+        XHR.postJson(url, this.account, fn);
+    }
+    signin(customerId) {
+        let url = '/api/customer/signin'
+        let paramObj = {
+            customerId: customerId,
+            userName: this.account.username,
+            passWord: this.account.password
+        }
+        //console.log('Sign In:', paramObj);
+        let fn = (r) => {
+            let data = api.parse(r);
+            let err = data.errors;
+            if (err && err.hasError) {
+                // Raise event.
+                events.raise(events.name.UserSignInFailed, { error: err });
+            }
+            else {
+                //console.log('Sign In Success.');
+                nlib.nav.gotoUrl('/', true);
+            }            
+        }
+        XHR.postJson(url, paramObj, fn);
+    }
+    signout() {
+        let url = '/api/customer/signout'
+        let fn = (r) => {
+            //console.log(r);
+            //console.log('sign out detected.');
+            nlib.nav.gotoUrl('/', true);
+        }
+        XHR.postJson(url, this.account, fn);
+    }
+    /*
+    postUrl(url) {
+        if (!url || url.length <= 0) return;
+        let fn = (r) => {
+            let data = api.parse(r);
+            let evt = new CustomEvent('posturlcompleted', { detail: { data: data }});
+            document.dispatchEvent(evt);
+        }
+        XHR.postJson(url, this.account, fn);
+    }
+    */
+    get users() {
+        let ret = []
+        if (this.content) {
+            let usrs = (this.content[lang.langId]) ? this.content[lang.langId] : (this.content['EN']) ? this.content['EN'] : [];
+            ret = usrs;
+        }
+        return ret;
+    }
+}
+
+window.secure = window.secure || new SecureService();
 
 //#endregion

@@ -1,0 +1,9 @@
+[
+    { "type": "screen", "ref": "admin-home", "text":"หน้าหลัก", "icon": "fas fa-home", "icontype": "fontcss" },
+    { "type": "screen", "ref": "member-manage", "text":"บัญชีผู้ใช้งาน", "icon": "fas fa-user-friends", "icontype": "fontcss" },
+    { "type": "screen", "ref": "org-manage", "text":"ผังองกรณ์", "icon": "fas fa-sitemap", "icontype": "fontcss" },
+    { "type": "screen", "ref": "device-manage", "text":"บัญชีอุปกรณ์", "icon": "fas fa-mobile-alt", "icontype": "fontcss" },
+    { "type": "screen", "ref": "question-manage", "text":"จัดการชุดคำถาม", "icon": "far fa-newspaper", "icontype": "fontcss" },
+    { "type": "screen", "ref": "report-home", "text":"รายงานสรุป", "icon": "fas fa-chart-pie", "icontype": "fontcss" },
+    { "type": "cmd", "ref": "signout", "text":"ออกจากระบบ", "icon": "fas fa-user-times", "icontype": "fontcss" }
+]

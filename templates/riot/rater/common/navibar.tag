@@ -10,7 +10,7 @@
             width: 100vw;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: 1fr 90px 40px;
+            grid-template-columns: 1fr 90px min-content;
             grid-template-rows: 1fr;
             grid-template-areas: 
                 'banner lang-menu links-menu';

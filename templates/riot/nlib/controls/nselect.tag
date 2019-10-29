@@ -25,7 +25,8 @@
             padding: 20px 0 10px 0;
             margin-bottom: 0px;
             width: calc(100% - 25px);
-            background-color: rgba(255, 255, 255, 0);
+            /* background-color: rgba(255, 255, 255, 0); */
+            background-color: whitesmoke;
 
             box-sizing: border-box;
             box-shadow: none;
@@ -33,8 +34,8 @@
             border: none;
             font-size: 14px;
             /* box-shadow: 0 0 0px 1000px rgba(255, 255, 255, 0.2) inset; */
-            /* box-shadow: 0 0 0px 1000px white inset; */
-            box-shadow: 0 0 0px 10000px transparent inset;
+            box-shadow: 0 0 0px 1000px white inset;
+            /* box-shadow: 0 0 0px 10000px transparent inset; */
             border-bottom: 2px solid #999;
 
             -webkit-appearance: none;

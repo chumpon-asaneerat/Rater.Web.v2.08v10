@@ -5,7 +5,7 @@ const rootPath = process.env['ROOT_PATHS'];
 const nlib = require(path.join(rootPath, 'nlib', 'nlib'));
 
 const sfs = require(path.join(rootPath, 'edl', 'server-fs'));
-const secure = require(path.join(rootPath, 'edl', 'rater-secure')).RaterSecure;
+const sqldb = require(path.join(nlib.paths.root, 'RaterWebv2x08r9.db'));
 
 const WebServer = require(path.join(rootPath, 'nlib', 'nlib-express'));
 const WebRouter = WebServer.WebRouter;
@@ -49,37 +49,23 @@ const checkForError = (data) => {
 
 //#endregion
 
-//#region api
-
 const routes = class {
-    static home(req, res) {
-        WebServer.sendFile(req, res, __dirname, 'index.html');
-    }
-    static getjsfile(req, res) {
-        let file = req.params.file.toLowerCase();
-        let files = ['app.js']
-        let idx = files.indexOf(file);
-        if (idx !== -1) {
-            let fname = path.join(__dirname, 'js', files[idx]);
-            WebServer.sendFile(req, res, fname);
-        }
-    }
-    static getContents(req, res) {
-        let data = sfs.getContents(path.join(__dirname, 'contents'));
-        let result = nlib.NResult.data(data);
-        WebServer.sendJson(req, res, result);
+    static GetLanguages(req, res) { 
+        let db = new sqldb();
+        let params = WebServer.parseReq(req).data;
+        params.enabled = true;
+        let fn = () => db.GetLanguages(params);
+        exec(db, fn).then(data => {
+            let result = validate(db, data);
+            WebServer.sendJson(req, res, result);
+        })
     }
 }
 
-//#endregion
-
-//router.get('/', routes.home)
-router.get('/', secure.checkAccess, secure.checkRedirect, routes.home)
-router.get('/contents', routes.getContents)
-router.get('/js/:file', routes.getjsfile)
+router.all('/languages/search', routes.GetLanguages)
 
 const init_routes = (svr) => {
-    svr.route('/', router);
+    svr.route('/api', router);
 };
 
 module.exports.init_routes = exports.init_routes = init_routes;
