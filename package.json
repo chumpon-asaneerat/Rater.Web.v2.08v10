@@ -1,7 +1,7 @@
 {
-  "name": "github-nlib-web-app-template",
+  "name": "rater.web.v2.0.8v10",
   "version": "1.0.0",
-  "description": "The git hub nlib web application template project.",
+  "description": "My Choice Rater Web v2.0.8 rev version 10.",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
