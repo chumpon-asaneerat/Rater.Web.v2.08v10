@@ -244,6 +244,18 @@
                     "enable": true
                 },
                 {
+                    "route": "/dist/css",
+                    "path": "public/dist/jstree-3.3.8",
+                    "maxAge": "5y",
+                    "enable": true
+                },
+                {
+                    "route": "/dist/js",
+                    "path": "public/dist/jstree-3.3.8",
+                    "maxAge": "5y",
+                    "enable": true
+                },
+                {
                     "route": "/components",
                     "path": "dist/component/riot",
                     "maxAge": "5y",

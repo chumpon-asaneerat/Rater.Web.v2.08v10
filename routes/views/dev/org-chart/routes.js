@@ -34,7 +34,7 @@ const routes = class {
     }
 }
 
-router.get('/fabricjs', routes.home)
+router.get('/orgchart', routes.home)
 //router.get('/contents', routes.getContents)
 //router.get('/js/:file', routes.getjsfile)
 
