@@ -232,6 +232,18 @@
                     "enable": true
                 },
                 {
+                    "route": "/dist/css",
+                    "path": "public/dist/sweetalert-2-8.18.6",
+                    "maxAge": "5y",
+                    "enable": true
+                },
+                {
+                    "route": "/dist/js",
+                    "path": "public/dist/sweetalert-2-8.18.6",
+                    "maxAge": "5y",
+                    "enable": true
+                },
+                {
                     "route": "/components",
                     "path": "dist/component/riot",
                     "maxAge": "5y",
