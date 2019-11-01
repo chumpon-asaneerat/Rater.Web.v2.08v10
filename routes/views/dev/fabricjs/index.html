@@ -16,9 +16,84 @@
     <!-- Flag and Emoji icons -->
     <link href="/dist/css/flag-icon.min.css" rel="stylesheet" type="text/css" />
     <link href="/dist/css/emojisymbol.min.css" rel="stylesheet" type="text/css" />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        .wrapper1 {
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            display: grid;
+            grid-template-rows: 50px 1fr;
+            grid-template-columns: 200px 1fr 200px;
+            grid-template-areas: 
+                'toolbar toolbar toolbar'
+                'design-preview designer design-tools';
+            overflow: hidden;            
+        }
+        .toolbar {
+            grid-area: toolbar;
+            margin: 0;
+            padding: 0;
+            background-color: wheat;
+            border: 1px solid silver;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        .design-preview {
+            grid-area: design-preview;
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background-color: dimgray;
+            border: 1px solid silver;
+            border-radius: 2px;
+            overflow: hidden;
+            overflow-y: auto;
+        }
+        .designer {
+            grid-area: designer;
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid silver;
+            border-radius: 2px;
+            overflow: auto;
+        }
+        .design-tools {
+            grid-area: design-tools;
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background-color: antiquewhite;
+            border: 1px solid silver;
+            border-radius: 2px;
+            overflow: hidden;
+            overflow-y: auto;
+        }
+    </style>
 </head>
 <body>
-    <h3>Fabric.js dev 1.</h3>
+    <div class="wrapper1">        
+        <div class="toolbar">
+            <button onclick="saveJson();">save</button>
+            <button onclick="loadJson();">load</button>
+        </div>
+        <div class="design-preview"></div>
+        <div class="designer">
+            <canvas id="c"></canvas>
+        </div>
+        <div class="design-tools">
+            <button onclick="addRect();">Rect</button>
+            <button onclick="addText();">Text</button>
+            <button onclick="addImage();">Image</button>
+            <button onclick="addLabel();">Label</button>
+            <button onclick="addGif();">Gif</button>
+        </div>
+    </div>    
     <!-- JQuery -->
     <script src="/dist/js/jquery.min.js"></script>
     <!-- JQuery UI -->
@@ -27,7 +102,170 @@
     <script src="/dist/js/popper.min.js"></script>
     <script src="/dist/js/tooltip.min.js"></script>
     <script src="/dist/js/bootstrap.min.js">/* bootstrap required jQuery and popperjs. */</script>
+    <!-- fabricjs -->
+    <script src="/dist/js/gifuct-js.min.js"></script>
+    <!-- fabricjs -->
+    <script src="/dist/js/fabric.min.js"></script>
     <script>
+        /* Subclasses */
+        fabric.LabeledRect = fabric.util.createClass(fabric.Rect, {
+            type: 'LabeledRect',
+            initialize: function(options) {
+                options || (options = { });
+                this.callSuper('initialize', options);
+                this.set('label', options.label || '');
+            },
+            toObject: function() {
+                return fabric.util.object.extend(this.callSuper('toObject'), {
+                    label: this.get('label')
+                });
+            },
+            _render: function(ctx) {
+                this.callSuper('_render', ctx);
+                ctx.font = '20px Helvetica';
+                ctx.fillStyle = '#333';
+                ctx.fillText(this.label, -this.width/2, -this.height/2 + 20);
+            }
+        });
+        fabric.LabeledRect.fromObject = function (object, callback, forceAsync) {
+            //console.log('create label rect:', object)
+            return fabric.Object._fromObject('LabeledRect', object, callback, forceAsync)
+        }
+        
+        fabric.GIF = fabric.util.createClass(fabric.Image, {
+            type: 'GIF',
+            initialize: function(src, options) {
+                this.callSuper('initialize', options);
+                this.set('src', src || '');
+                this.image = new Image();
+                this.image.src = src;
+                this.image.onload = (function() {
+                    this.width = this.image.width;
+                    this.height = this.image.height;
+                    this.loaded = true;
+                    this.setCoords();
+                    this.fire('image:loaded');
+                }).bind(this);
+            },
+            toObject: function(options) {
+                return fabric.util.object.extend(this.callSuper('toObject'), {
+                    src: this.get('src')
+                });
+            },
+            _render: function(ctx) {
+                if (this.loaded) {
+                    //this.callSuper('_render', ctx);
+                    console.log(this.image)
+                    ctx.drawImage(this.image, -this.width / 2, -this.height / 2);
+                }
+            }
+        });
+        fabric.GIF.fromObject = function (object, callback, forceAsync) {
+            console.log('create GIF:', object)
+            let obj = new fabric.GIF(object.src);
+            //obj.on('image:loaded', canvas.renderAll.bind(canvas))
+            callback(obj)
+            //return obj;
+            //return fabric.Object._fromObject('GIF', object, callback, forceAsync)
+        }
+
+        let canvas = new fabric.Canvas('c');
+        canvas.setWidth(800)
+        canvas.setHeight(600)
+        canvas.setDimensions({ width: '800px', height: '600px' }, { cssOnly: true });        
+
+        addRect = () => {
+            //console.log('add rect')
+            let obj = new fabric.Rect({ width: 50, height: 30, fill: '#f55', opacity: 1 });
+            canvas.add(obj); // add object
+        }
+        addText = () => {
+            //console.log('add text')
+            let obj = new fabric.IText("I'm in Comic Sans", {
+                fontFamily: 'Comic Sans'
+            });
+            canvas.add(obj); // add object
+        }
+        addImage = () => {
+            //console.log('add image')
+            /*
+            let img = new Image();
+            img.onload = () => {
+                img.onload = null;
+                let obj = new fabric.Image(img, { left: 100, top: 100, opacity: 1 });
+                canvas.add(obj);
+                img = null;
+            }
+            img.src = '/public/assets/images/png/cars/car1.png'
+            */            
+            fabric.Image.fromURL('/public/assets/images/png/cars/car1.png', function(obj) {
+                canvas.add(obj);
+            });
+        }
+        addLabel = () => {
+            let obj = new fabric.LabeledRect({
+                width: 100,
+                height: 50,
+                left: 100,
+                top: 100,
+                label: 'test',
+                fill: '#faa'
+            });
+            canvas.add(obj); // add object
+        }
+        addGif = () => {
+            let obj = new fabric.GIF('/public/assets/images/gif/emoji/transparent/emo-nt-01.gif')
+            // when load refresh canvas
+            obj.on('image:loaded', canvas.renderAll.bind(canvas))
+            canvas.add(obj); // add object
+        }
+        saveJson = () => {
+            let json = canvas.toJSON() //JSON.stringify(canvas);
+            //console.log(json)
+            $.ajax({
+                type: "POST",
+                url: "/customer/api/question/save",
+                data: JSON.stringify({
+                    id: "QS00001",
+                    data: json
+                }),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function(result) {
+                    //console.log(result);
+                },
+                failure: function(errMsg) {
+                    console.log(errMsg);
+                }
+            })
+        }
+        loadJson = () => {
+            $.ajax({
+                type: "POST",
+                url: "/customer/api/question/load",
+                data: JSON.stringify({
+                    id: "QS00001"
+                }),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function(result) {
+                    let jsonObj = JSON.parse(result.data);
+                    let canvasData = jsonObj.data;
+                    //console.log(canvasData);
+                    canvas.loadFromJSON(canvasData, () => {
+                        canvas.renderAll()
+                    }, (o, object) => {
+                        //console.log(o, object)
+                        if (o.type === 'GIF') {
+                            object.on('image:loaded', canvas.renderAll.bind(canvas))
+                        }
+                    })
+                },
+                failure: function(errMsg) {
+                    console.log(errMsg);
+                }
+            })
+        }
     </script>
 </body>
 </html>

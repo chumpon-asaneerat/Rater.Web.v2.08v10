@@ -13,6 +13,9 @@ const router = new WebRouter();
 
 //#endregion
 
+const fs = require('fs')
+const mkdirp = require('mkdirp')
+
 //#region exec/validate wrapper method
 
 const exec = async (db, callback) => {
@@ -594,6 +597,7 @@ const routes = class {
         let params = WebServer.parseReq(req).data;
         let customerId = secure.getCustomerId(req, res);
         if (customerId) params.customerId = customerId;
+        params.customerId = 'EDL-2019100001' // hard code.
         params.qsetid = 'QS00001' // hard code.
         let targetPath = path.join(rootPath, 'customer', params.customerId, 'Question')
         mkdirp.sync(targetPath);
@@ -605,6 +609,21 @@ const routes = class {
         fs.writeFileSync(targetFile, JSON.stringify(data), 'utf8')
 
         let result = nlib.NResult.data({});
+        WebServer.sendJson(req, res, result);
+    }
+    static LoadJsonQuestion(req, res) {
+        let params = WebServer.parseReq(req).data;
+        let customerId = secure.getCustomerId(req, res);
+        if (customerId) params.customerId = customerId;
+        params.customerId = 'EDL-2019100001' // hard code.
+        params.qsetid = 'QS00001' // hard code.
+        let targetPath = path.join(rootPath, 'customer', params.customerId, 'Question')
+        let obj = null;
+        let targetFile =  path.join(targetPath, params.qsetid + '.json')
+        if (fs.existsSync(targetFile)) {
+            obj = fs.readFileSync(targetFile, 'utf8')
+        }
+        let result = (obj) ? nlib.NResult.data(obj) : nlib.NResult.error(-300, 'file not found');
         WebServer.sendJson(req, res, result);
     }
 }
@@ -629,6 +648,7 @@ router.all('/report/rawvotes/search', routes.GetRawVotes);
 router.all('/report/votesummaries/search', routes.GetVoteSummaries);
 
 router.post('/question/save', routes.SaveJsonQuestion);
+router.post('/question/load', routes.LoadJsonQuestion);
 
 const init_routes = (svr) => {
     svr.route('/customer/api/', router);
