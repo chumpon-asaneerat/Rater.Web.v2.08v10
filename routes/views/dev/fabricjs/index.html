@@ -221,6 +221,7 @@
                 this.set('top', options.top || 10);
                 this.set('width', options.width || 75);
                 this.set('height', options.height || 75);
+                this.setCoords();
                 this.setSrc(src)
             },
             toObject: function() {
@@ -231,7 +232,7 @@
                     width: this.get('width'),
                     height: this.get('height')
                 });
-                console.log('toObject:', ret)
+                //console.log('toObject:', ret)
                 return ret;
             },
             toSVG: function() {
@@ -241,6 +242,7 @@
                 img.top = this.top;
                 img.scaleToWidth(this.getScaledWidth())
                 img.scaleToHeight(this.getScaledHeight())
+                img.setCoords();
                 //return this.callSuper('toSVG') + img.toSVG();
                 return img.toSVG();
             },
@@ -285,13 +287,14 @@
             }
         });
         fabric.GIF.fromObject = function (object, callback, forceAsync) {
-            console.log('create GIF:', object)
+            //console.log('create GIF:', object)
             let obj = new fabric.GIF(object.src, {
                 left: object.left,
                 top: object.top,
                 width: object.width,
                 height: object.height
             });
+            obj.setCoords();
             //obj.on('image:loaded', canvas.renderAll.bind(canvas))
             callback(obj)
             //return obj;
