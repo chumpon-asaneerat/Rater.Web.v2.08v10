@@ -91,7 +91,11 @@
             <button onclick="addText();">Text</button>
             <button onclick="addImage();">Image</button>
             <button onclick="addLabel();">Label</button>
-            <button onclick="addGif();">Gif</button>
+            <button onclick="addGif(1);">Gif 1</button>
+            <button onclick="addGif(2);">Gif 2</button>
+            <button onclick="addGif(3);">Gif 3</button>
+            <button onclick="addGif(4);">Gif 4</button>
+            <button onclick="changeGif();">Change Gif</button>
         </div>
     </div>    
     <!-- JQuery -->
@@ -141,22 +145,11 @@
             initialize: function(src, options) {
                 options || (options = { });
                 this.callSuper('initialize', options);
-                this.set('src', src || '');
                 this.set('left', options.left || 10);
                 this.set('top', options.top || 10);
                 this.set('width', options.width || 75);
                 this.set('height', options.height || 75);
-                this.image = new Image();
-                //this.image.width = this.width;
-                //this.image.height = this.height;
-                this.image.src = src;
-                this.image.onload = (function() {
-                    //this.width = this.image.width;
-                    //this.height = this.image.height;
-                    this.loaded = true;
-                    this.setCoords();
-                    this.fire('image:loaded');
-                }).bind(this);
+                this.setSrc(src)
             },
             toObject: function(options) {
                 return fabric.util.object.extend(this.callSuper('toObject'), {
@@ -170,13 +163,99 @@
             _render: function(ctx) {
                 if (this.loaded) {
                     //this.callSuper('_render', ctx);
-                    //console.log(this.image)
-                    ctx.drawImage(this.image, -this.width / 2, -this.height / 2, this.width, this.height);
+                    let imgs = this._gif.imgs;
+                    let frame = (imgs && imgs.length > this.framesIndex) ? imgs[this.framesIndex] : null;
+                    if (frame) {
+                        ctx.drawImage(frame, -this.width / 2, -this.height / 2, this.width, this.height);
+                    }
                 }
+            },
+            play: function() {
+                //console.log('global delay:', this._gif.delay)
+                if (typeof(animInterval) === 'undefined') {
+                    this.animInterval = setInterval(() => {
+                        if (this._gif.imgs) {
+                            this.framesIndex++;
+                            if (this.framesIndex === this._gif.imgs.length) {
+                                this.framesIndex = 0;
+                            }
+                        }
+                    }, this._gif.delay);
+                }
+            },
+            stop: function() {
+                clearInterval(this.animInterval);
+                this.animInterval = undefined;
+            },
+            setSrc: function(src) {
+                this.stop();
+                // update src vlaue.
+                this.set('src', src || '');
+                this._gif = new GIFFrame(src, () => {
+                    this.framesIndex = 0;
+                    this.animInterval;
+                    this.dirty = true;
+                    this.loaded = true;
+                    this.play(); // auto play
+                })
             }
         });
+
+        class GIFFrame {
+            constructor(url, callback) {
+                this.tempCanvas = document.createElement('canvas');
+                this.tempCtx = this.tempCanvas.getContext('2d');
+                this.gifCanvas = document.createElement('canvas');
+                this.gifCtx = this.gifCanvas.getContext('2d');
+                this.imgs = [];
+                this.disposalType;
+                this.delay;
+            
+                let xhr = new XMLHttpRequest();
+                xhr.open('get', url, true);
+                xhr.responseType = 'arraybuffer';
+                let self = this;
+                xhr.onload = () => {
+                    let tempBitmap = {};
+                    tempBitmap.url = url;
+                    let arrayBuffer = xhr.response;
+                    if (arrayBuffer) {
+                        let gif = new GIF(arrayBuffer);
+                        let frames = gif.decompressFrames(true);
+                        self.gifCanvas.width = frames[0].dims.width;
+                        self.gifCanvas.height = frames[0].dims.height;
+                        for (let i = 0; i < frames.length; i++) {
+                            self.createFrame(frames[i]);
+                        }
+                        this.delay = frames[0].delay;
+                        callback();
+                    }
+                }
+                xhr.send(null);
+            }
+            createFrame(frame) {
+                if (!this.disposalType) {
+                    this.disposalType = frame.disposalType;
+                }
+                let dims = frame.dims;
+                this.tempCanvas.width = dims.width;
+                this.tempCanvas.height = dims.height;
+                let frameImageData = this.tempCtx.createImageData(dims.width, dims.height);
+                frameImageData.data.set(frame.patch);
+                if (this.disposalType !== 1) {
+                    this.gifCtx.clearRect(0, 0, this.gifCanvas.width, this.gifCanvas.height);
+                }
+                this.tempCtx.putImageData(frameImageData, 0, 0);
+                this.gifCtx.drawImage(this.tempCanvas, dims.left, dims.top);
+                let dataURL = this.gifCanvas.toDataURL('image/png');
+                let tempImg = fabric.util.createImage();
+                tempImg.src = dataURL;
+                this.imgs.push(tempImg);
+            }
+        }
+
         fabric.GIF.fromObject = function (object, callback, forceAsync) {
-            console.log('create GIF:', object)
+            //console.log('create GIF:', object)
             let obj = new fabric.GIF(object.src, {
                 left: object.left,
                 top: object.top,
@@ -233,11 +312,27 @@
             });
             canvas.add(obj); // add object
         }
-        addGif = () => {
-            let obj = new fabric.GIF('/public/assets/images/gif/emoji/transparent/emo-nt-01.gif')
+        addGif = (index) => {
+            let urls = [
+                { src:'/public/assets/images/gif/emoji/transparent/emo-nt-01.gif' },
+                { src:'/public/assets/images/gif/emoji/transparent/emo-nt-02.gif' },
+                { src:'/public/assets/images/gif/emoji/transparent/emo-nt-03.gif' },
+                { src:'/public/assets/images/gif/emoji/transparent/emo-nt-04.gif' },
+                { src:'/public/assets/images/gif/emoji/transparent/emo-nt-05.gif' }
+            ]
+            let url = urls[index - 1].src;
+            let obj = new fabric.GIF(url)
             // when load refresh canvas
-            obj.on('image:loaded', canvas.renderAll.bind(canvas))
+            //obj.on('image:loaded', canvas.renderAll.bind(canvas))
+            //obj.play();
             canvas.add(obj); // add object
+        }
+        changeGif = () => {
+            let url = '/public/assets/images/gif/emoji/transparent/emo-nt-35.gif';
+            let activeObject = canvas.getActiveObject();
+            if (activeObject && activeObject.type === 'GIF') {
+                activeObject.setSrc(url);
+            }
         }
         saveJson = () => {
             let json = canvas.toJSON() //JSON.stringify(canvas);
@@ -259,7 +354,10 @@
                 }
             })
         }
+        
+        let onload = false;
         loadJson = () => {
+            onload = true;
             $.ajax({
                 type: "POST",
                 url: "/customer/api/question/load",
@@ -274,18 +372,27 @@
                     //console.log(canvasData);
                     canvas.loadFromJSON(canvasData, () => {
                         canvas.renderAll()
+                        onload = false;
                     }, (o, object) => {
                         //console.log(o, object)
                         if (o.type === 'GIF') {
-                            object.on('image:loaded', canvas.renderAll.bind(canvas))
+                            //object.on('image:loaded', canvas.renderAll.bind(canvas))
+                            //object.play();
                         }
                     })
                 },
                 failure: function(errMsg) {
                     console.log(errMsg);
+                    onload = false;
                 }
             })
         }
+
+        render()
+        function render() {
+            if (canvas && !onload) { canvas.renderAll(); }
+            fabric.util.requestAnimFrame(render);
+        }        
     </script>
 </body>
 </html>

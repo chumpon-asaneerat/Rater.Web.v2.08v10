@@ -32,7 +32,6 @@ fabric.Image.fromURL(url, function(img) {
 
 })
 
-
 function gif(url, callback) {
 
   var tempCanvas = document.createElement('canvas');
@@ -93,6 +92,8 @@ function gif(url, callback) {
     imgs.push(tempImg);
   }
 }
+
+
 render()
 
 function render() {
