@@ -46,7 +46,7 @@
         }
         .design-preview {
             grid-area: design-preview;
-            margin: 0;
+            margin: 0 auto;
             padding: 0;
             height: 100%;
             background-color: dimgray;
@@ -54,6 +54,17 @@
             border-radius: 2px;
             overflow: hidden;
             overflow-y: auto;
+            display: block;
+        }
+        .design-slide {
+            margin: 3px auto;
+            padding: 0;
+            display: inline-block;
+            background-color: whitesmoke;
+            border: 1px solid black;
+            width: 160px;
+            height: 120px;
+            overflow: hidden;
         }
         .designer {
             grid-area: designer;
@@ -81,8 +92,19 @@
         <div class="toolbar">
             <button onclick="saveJson();">save</button>
             <button onclick="loadJson();">load</button>
+            <button onclick="updateSVG();">svg</button>
         </div>
-        <div class="design-preview"></div>
+        <div class="design-preview">
+            <div class="design-slide">
+                <div id="svg1"></div>
+            </div>
+            <div class="design-slide">
+                <p>Slide 2</p>
+                <p>item 1</p>
+                <p>item 2</p>
+                <p>item 3</p>
+            </div>
+        </div>
         <div class="designer">
             <canvas id="c"></canvas>
         </div>
@@ -136,71 +158,6 @@
             return fabric.Object._fromObject('LabeledRect', object, callback, forceAsync)
         }
         
-        fabric.GIF = fabric.util.createClass(fabric.Image, {
-            type: 'GIF',
-            originX: 'center',
-            originY: 'center',
-            width: 75,
-            height: 75,
-            initialize: function(src, options) {
-                options || (options = { });
-                this.callSuper('initialize', options);
-                this.set('left', options.left || 10);
-                this.set('top', options.top || 10);
-                this.set('width', options.width || 75);
-                this.set('height', options.height || 75);
-                this.setSrc(src)
-            },
-            toObject: function(options) {
-                return fabric.util.object.extend(this.callSuper('toObject'), {
-                    src: this.get('src'),
-                    left: this.get('left'),
-                    top: this.get('top'),
-                    width: this.get('width'),
-                    height: this.get('height')
-                });
-            },
-            _render: function(ctx) {
-                if (this.loaded) {
-                    //this.callSuper('_render', ctx);
-                    let imgs = this._gif.imgs;
-                    let frame = (imgs && imgs.length > this.framesIndex) ? imgs[this.framesIndex] : null;
-                    if (frame) {
-                        ctx.drawImage(frame, -this.width / 2, -this.height / 2, this.width, this.height);
-                    }
-                }
-            },
-            play: function() {
-                //console.log('global delay:', this._gif.delay)
-                if (typeof(animInterval) === 'undefined') {
-                    this.animInterval = setInterval(() => {
-                        if (this._gif.imgs) {
-                            this.framesIndex++;
-                            if (this.framesIndex === this._gif.imgs.length) {
-                                this.framesIndex = 0;
-                            }
-                        }
-                    }, this._gif.delay);
-                }
-            },
-            stop: function() {
-                clearInterval(this.animInterval);
-                this.animInterval = undefined;
-            },
-            setSrc: function(src) {
-                this.stop();
-                // update src vlaue.
-                this.set('src', src || '');
-                this._gif = new GIFFrame(src, () => {
-                    this.framesIndex = 0;
-                    this.animInterval;
-                    this.dirty = true;
-                    this.loaded = true;
-                    this.play(); // auto play
-                })
-            }
-        });
-
         class GIFFrame {
             constructor(url, callback) {
                 this.tempCanvas = document.createElement('canvas');
@@ -253,7 +210,80 @@
                 this.imgs.push(tempImg);
             }
         }
-
+        fabric.GIF = fabric.util.createClass(fabric.Image, {
+            type: 'GIF',
+            originX: 'center',
+            originY: 'center',
+            width: 75,
+            height: 75,
+            initialize: function(src, options) {
+                options || (options = { });
+                this.callSuper('initialize', options);
+                this.set('left', options.left || 10);
+                this.set('top', options.top || 10);
+                this.set('width', options.width || 75);
+                this.set('height', options.height || 75);
+                this.setSrc(src)
+            },
+            toObject: function() {
+                return fabric.util.object.extend(this.callSuper('toObject'), {
+                    src: this.get('src'),
+                    left: this.get('left'),
+                    top: this.get('top'),
+                    width: this.get('width'),
+                    height: this.get('height')
+                });
+            },
+            toSVG: function() {
+                let imgs = this._gif.imgs;
+                var img = new fabric.Image(imgs[0]);
+                img.left = this.left;
+                img.top = this.top;
+                img.scaleToWidth(this.width)
+                img.scaleToHeight(this.height)
+                //return this.callSuper('toSVG') + img.toSVG();
+                return img.toSVG();
+            },
+            _render: function(ctx) {
+                if (this.loaded) {
+                    //this.callSuper('_render', ctx);
+                    let imgs = this._gif.imgs;
+                    let frame = (imgs && imgs.length > this.framesIndex) ? imgs[this.framesIndex] : null;
+                    if (frame) {
+                        ctx.drawImage(frame, -this.width / 2, -this.height / 2, this.width, this.height);
+                    }
+                }
+            },
+            play: function() {
+                //console.log('global delay:', this._gif.delay)
+                if (typeof(animInterval) === 'undefined') {
+                    this.animInterval = setInterval(() => {
+                        if (this._gif.imgs) {
+                            this.framesIndex++;
+                            if (this.framesIndex === this._gif.imgs.length) {
+                                this.framesIndex = 0;
+                            }
+                        }
+                    }, this._gif.delay);
+                }
+            },
+            stop: function() {
+                clearInterval(this.animInterval);
+                this.animInterval = undefined;
+            },
+            setSrc: function(src) {
+                this.stop();
+                // update src vlaue.
+                this.set('src', src || '');
+                this._gif = new GIFFrame(src, () => {
+                    this.framesIndex = 0;
+                    this.animInterval;
+                    this.dirty = true;
+                    this.loaded = true;
+                    this.play(); // auto play
+                })
+            }
+        });
         fabric.GIF.fromObject = function (object, callback, forceAsync) {
             //console.log('create GIF:', object)
             let obj = new fabric.GIF(object.src, {
@@ -268,6 +298,7 @@
             //return fabric.Object._fromObject('GIF', object, callback, forceAsync)
         }
 
+        /* design code */
         let canvas = new fabric.Canvas('c');
         canvas.setWidth(800)
         canvas.setHeight(600)
@@ -388,6 +419,23 @@
             })
         }
 
+        updateSVG = () => {
+            let zoomOld = canvas.getZoom();
+            let wd = canvas.getWidth();
+            let ht = canvas.getHeight();
+            canvas.setZoom(.2);
+            canvas.setWidth(wd * canvas.getZoom());
+            canvas.setHeight(ht * canvas.getZoom());
+
+            let svg = canvas.toSVG();
+            canvas.setZoom(zoomOld);
+            canvas.setWidth(wd * canvas.getZoom());
+            canvas.setHeight(ht * canvas.getZoom());
+
+            let el = document.getElementById('svg1');
+            console.log(svg)
+            el.innerHTML = svg;
+        }
         render()
         function render() {
             if (canvas && !onload) { canvas.renderAll(); }
