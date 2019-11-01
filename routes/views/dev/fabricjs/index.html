@@ -62,8 +62,8 @@
             display: inline-block;
             background-color: whitesmoke;
             border: 1px solid black;
-            width: 160px;
-            height: 120px;
+            width: calc(1280px * .15);
+            height: calc(720px * .15);
             overflow: hidden;
         }
         .designer {
@@ -214,8 +214,6 @@
             type: 'GIF',
             originX: 'center',
             originY: 'center',
-            width: 75,
-            height: 75,
             initialize: function(src, options) {
                 options || (options = { });
                 this.callSuper('initialize', options);
@@ -226,21 +224,23 @@
                 this.setSrc(src)
             },
             toObject: function() {
-                return fabric.util.object.extend(this.callSuper('toObject'), {
+                let ret = fabric.util.object.extend(this.callSuper('toObject'), {
                     src: this.get('src'),
                     left: this.get('left'),
                     top: this.get('top'),
                     width: this.get('width'),
                     height: this.get('height')
                 });
+                console.log('toObject:', ret)
+                return ret;
             },
             toSVG: function() {
                 let imgs = this._gif.imgs;
                 var img = new fabric.Image(imgs[0]);
                 img.left = this.left;
                 img.top = this.top;
-                img.scaleToWidth(this.width)
-                img.scaleToHeight(this.height)
+                img.scaleToWidth(this.getScaledWidth())
+                img.scaleToHeight(this.getScaledHeight())
                 //return this.callSuper('toSVG') + img.toSVG();
                 return img.toSVG();
             },
@@ -285,7 +285,7 @@
             }
         });
         fabric.GIF.fromObject = function (object, callback, forceAsync) {
-            //console.log('create GIF:', object)
+            console.log('create GIF:', object)
             let obj = new fabric.GIF(object.src, {
                 left: object.left,
                 top: object.top,
@@ -300,9 +300,9 @@
 
         /* design code */
         let canvas = new fabric.Canvas('c');
-        canvas.setWidth(800)
-        canvas.setHeight(600)
-        canvas.setDimensions({ width: '800px', height: '600px' }, { cssOnly: true });        
+        canvas.setWidth(1280)
+        canvas.setHeight(720)
+        canvas.setDimensions({ width: '1280px', height: '720px' }, { cssOnly: true });        
 
         addRect = () => {
             //console.log('add rect')
@@ -423,7 +423,7 @@
             let zoomOld = canvas.getZoom();
             let wd = canvas.getWidth();
             let ht = canvas.getHeight();
-            canvas.setZoom(.2);
+            canvas.setZoom(.15);
             canvas.setWidth(wd * canvas.getZoom());
             canvas.setHeight(ht * canvas.getZoom());
 
@@ -433,7 +433,7 @@
             canvas.setHeight(ht * canvas.getZoom());
 
             let el = document.getElementById('svg1');
-            console.log(svg)
+            //console.log(svg)
             el.innerHTML = svg;
         }
         render()
