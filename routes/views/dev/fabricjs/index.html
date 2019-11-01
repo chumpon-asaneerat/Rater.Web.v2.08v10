@@ -134,14 +134,25 @@
         
         fabric.GIF = fabric.util.createClass(fabric.Image, {
             type: 'GIF',
+            originX: 'center',
+            originY: 'center',
+            width: 75,
+            height: 75,
             initialize: function(src, options) {
+                options || (options = { });
                 this.callSuper('initialize', options);
                 this.set('src', src || '');
+                this.set('left', options.left || 10);
+                this.set('top', options.top || 10);
+                this.set('width', options.width || 75);
+                this.set('height', options.height || 75);
                 this.image = new Image();
+                //this.image.width = this.width;
+                //this.image.height = this.height;
                 this.image.src = src;
                 this.image.onload = (function() {
-                    this.width = this.image.width;
-                    this.height = this.image.height;
+                    //this.width = this.image.width;
+                    //this.height = this.image.height;
                     this.loaded = true;
                     this.setCoords();
                     this.fire('image:loaded');
@@ -149,20 +160,29 @@
             },
             toObject: function(options) {
                 return fabric.util.object.extend(this.callSuper('toObject'), {
-                    src: this.get('src')
+                    src: this.get('src'),
+                    left: this.get('left'),
+                    top: this.get('top'),
+                    width: this.get('width'),
+                    height: this.get('height')
                 });
             },
             _render: function(ctx) {
                 if (this.loaded) {
                     //this.callSuper('_render', ctx);
-                    console.log(this.image)
-                    ctx.drawImage(this.image, -this.width / 2, -this.height / 2);
+                    //console.log(this.image)
+                    ctx.drawImage(this.image, -this.width / 2, -this.height / 2, this.width, this.height);
                 }
             }
         });
         fabric.GIF.fromObject = function (object, callback, forceAsync) {
             console.log('create GIF:', object)
-            let obj = new fabric.GIF(object.src);
+            let obj = new fabric.GIF(object.src, {
+                left: object.left,
+                top: object.top,
+                width: object.width,
+                height: object.height
+            });
             //obj.on('image:loaded', canvas.renderAll.bind(canvas))
             callback(obj)
             //return obj;
