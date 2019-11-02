@@ -597,9 +597,92 @@ riot.tag2('screen', '<div class="content-area"> <yield></yield> </div>', 'screen
         let onScreenChanged = (e) => { updatecontent(); }
 
 });
-riot.tag2('date-result', '<div class="date-range"> <span class="label">Date:&nbsp;</span> <span class="text">2019-10-11</span> <span class="text">&nbsp;-&nbsp;</span> <span class="text">2019-10-12</span> </div>', 'date-result,[data-is="date-result"]{ margin: 0 auto; padding: 0; width: 100%; display: grid; grid-template-rows: 1fr; grid-template-columns: 1fr 270px 1fr; grid-template-areas: \'. date-range .\'; } date-result .date-range,[data-is="date-result"] .date-range{ grid-area: date-range; margin: 0 auto; padding: 0; width: 100%; } date-result .date-range .label,[data-is="date-result"] .date-range .label{ color: navy; } date-result .date-range .text,[data-is="date-result"] .date-range .text{ color: black; }', '', function(opts) {
+riot.tag2('date-result', '<div class="date-range"> <span class="label"> {(opts.caption) ? opts.caption : \'Date\'}:&nbsp; {(opts.begin) ? opts.begin : \'\'} &nbsp;-&nbsp; {(opts.end) ? opts.end : \'\'} </span> </div>', '@media (min-width: 620px) { date-result,[data-is="date-result"]{ max-width: 550px; } } @media (min-width: 960px) { date-result,[data-is="date-result"]{ max-width: 850px; } } date-result,[data-is="date-result"]{ display: block; margin: 0 auto; padding: 5px; padding-bottom: 1px; max-width: 1000px; } date-result .date-range,[data-is="date-result"] .date-range{ display: block; margin: 0 auto; margin-bottom: 3px; padding: 5px; max-width: 1000px; overflow: hidden; white-space: nowrap; } date-result .date-range .label,[data-is="date-result"] .date-range .label{ margin: 0 auto; padding: 5px; display: block; color: cornflowerblue; font-size: 1rem; font-weight: bold; border: 0 solid cornflowerblue; border-bottom: 1px solid cornflowerblue; }', '', function(opts) {
+        let updatecontent = () => {}
+        this.setup = () => {}
 });
-riot.tag2('question-slide', '<div class="question-text"> <span>Q1. Question 1</span> </div> <div class="question-items"> <span class="item">1. Choice 1</span> <span class="item">2. Choice 2</span> <span class="item">3. Choice 3</span> <span class="item">4. Choice 4</span> </div>', 'question-slide,[data-is="question-slide"]{ display: block; margin: 0 auto; padding: 0; width: 100%; } question-slide .question-text,[data-is="question-slide"] .question-text{ display: block; margin: 0; padding: 0; font-weight: bold; font-size: 1rem; } question-slide .question-items,[data-is="question-slide"] .question-items{ display: block; } question-slide .question-items .item,[data-is="question-slide"] .question-items .item{ display: inline-block; width: 200px; font-size: 1rem; }', '', function(opts) {
+riot.tag2('org-pie', '<div ref="chart" class="chart-box"></div>', 'org-pie,[data-is="org-pie"]{ display: block; margin: 0 auto; padding: 3px; border: 1px solid silver; border-radius: 3px; } org-pie .chart-box,[data-is="org-pie"] .chart-box{ display: block; margin: 0 auto; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
+        let self = this;
+
+        let updatecontent = () => {
+            let data = [];
+            self.opts.org.choices.forEach(item => {
+                data.push({ name: item.text, y: item.Pct })
+            })
+            Highcharts.chart(chart, {
+                credits: {
+                    enabled: false
+                },
+                chart: {
+                    plotBackgroundColor: null,
+                    plotBorderWidth: null,
+                    plotShadow: false,
+                    type: 'pie'
+                },
+                title: {
+                    text: self.opts.org.OrgName
+                },
+                tooltip: {
+                    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                },
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: false,
+                        cursor: 'pointer',
+                        dataLabels: {
+                            enabled: true,
+                            format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                        }
+                    }
+                },
+                series: [{
+                    name: 'Choice',
+                    colorByPoint: true,
+                    data: data
+                }]
+            });
+
+            self.update();
+        }
+
+        let chart;
+        let initCtrls = () => {
+            chart = self.refs['chart']
+            updatecontent();
+        }
+        let freeCtrls = () => {
+            chart = null;
+        }
+
+        let addEvt = (evtName, handle) => { document.addEventListener(evtName, handle) }
+        let delEvt = (evtName, handle) => { document.removeEventListener(evtName, handle) }
+
+        let bindEvents = () => {
+            addEvt(events.name.LanguageChanged, onLanguageChanged)
+            addEvt(events.name.ContentChanged, onContentChanged)
+            addEvt(events.name.ScreenChanged, onScreenChanged)
+        }
+        let unbindEvents = () => {
+            delEvt(events.name.ScreenChanged, onScreenChanged)
+            delEvt(events.name.ContentChanged, onContentChanged)
+            delEvt(events.name.LanguageChanged, onLanguageChanged)
+        }
+
+        this.on('mount', () => {
+            initCtrls();
+            bindEvents();
+        });
+        this.on('unmount', () => {
+            unbindEvents();
+            freeCtrls();
+        });
+
+        let onContentChanged = (e) => { updatecontent(); }
+        let onLanguageChanged = (e) => { updatecontent(); }
+        let onScreenChanged = (e) => { updatecontent(); }
+
+});
+riot.tag2('pie-question-slide', '<div class="question-box"> <span class="caption">{(opts.slide) ? opts.slide.text : \'\'}</span> <div class="content-box"> <virtual each="{org in opts.slide.orgs}"> <org-pie class="item" org="{org}"></org-pie> </virtual> </div> </div>', '@media (min-width: 620px) { pie-question-slide,[data-is="pie-question-slide"]{ max-width: 550px; } pie-question-slide .question-box .content-box,[data-is="pie-question-slide"] .question-box .content-box{ display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); grid-gap: 5px; grid-auto-rows: 100px; } } @media (min-width: 960px) { pie-question-slide,[data-is="pie-question-slide"]{ max-width: 850px; } pie-question-slide .question-box .content-box,[data-is="pie-question-slide"] .question-box .content-box{ display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); grid-gap: 5px; grid-auto-rows: 150px; } } pie-question-slide,[data-is="pie-question-slide"]{ display: block; margin: 0 auto; margin-bottom: 3px; padding: 5px; max-width: 1000px; white-space: nowrap; } pie-question-slide .question-box,[data-is="pie-question-slide"] .question-box{ margin: 0 auto; display: block; color: white; border: 1px solid cornflowerblue; border-radius: 3px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; } pie-question-slide .question-box .caption,[data-is="pie-question-slide"] .question-box .caption{ display: block; margin: 0 auto; padding: 5px; background-color: cornflowerblue; } pie-question-slide .question-box .content-box,[data-is="pie-question-slide"] .question-box .content-box{ display: grid; margin: 0 auto; margin-bottom: 5px; padding: 5px; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); grid-gap: 5px; grid-auto-rows: 200px; } pie-question-slide .question-box .content-box .item,[data-is="pie-question-slide"] .question-box .content-box .item{ display: inline-block; margin: 3px auto; padding: 0; color: black; width: 100%; height: 100%; }', '', function(opts) {
 });
 riot.tag2('device-editor', '<div class="entry"> <div class="tab"> <button ref="tabheader" class="tablinks active" name="default" onclick="{showContent}"> <span class="fas fa-cog"></span>&nbsp;{content.entry.tabDefault}&nbsp; </button> <button ref="tabheader" class="tablinks" name="miltilang" onclick="{showContent}"> <span class="fas fa-globe-americas"></span>&nbsp;{content.entry.tabMultiLang}&nbsp; </button> </div> <div ref="tabcontent" name="default" class="tabcontent" style="display: block;"> <device-entry ref="EN" langid=""></device-entry> </div> <div ref="tabcontent" name="miltilang" class="tabcontent"> <virtual if="{lang.languages}"> <virtual each="{item in lang.languages}"> <virtual if="{item.langId !== \'EN\'}"> <div class="panel-header" langid="{item.langId}"> &nbsp;&nbsp; <span class="flag-css flag-icon flag-icon-{item.flagId.toLowerCase()}"></span> &nbsp;{item.Description}&nbsp; </div> <div class="panel-body" langid="{item.langId}"> <device-entry ref="{item.langId}" langid="{item.langId}"></device-entry> </div> </virtual> </virtual> </virtual> </div> </div> <div class="tool"> <button onclick="{save}"><span class="fas fa-save"></span></button> <button onclick="{cancel}"><span class="fas fa-times"></span></button> </div>', 'device-editor,[data-is="device-editor"]{ margin: 0 auto; padding: 0; width: 100%; height: 100%; display: grid; grid-template-columns: 1fr; grid-template-rows: 1fr 30px; grid-template-areas: \'entry\' \'tool\'; overflow: hidden; background-color: white; } device-editor .entry,[data-is="device-editor"] .entry{ grid-area: entry; margin: 0 auto; padding: 0; width: 100%; height: 100%; overflow: auto; } device-editor .entry .tab,[data-is="device-editor"] .entry .tab{ overflow: hidden; border: 1px solid #ccc; } device-editor .entry .tab button,[data-is="device-editor"] .entry .tab button{ background-color: inherit; float: left; border: none; outline: none; cursor: pointer; padding: 14px 16px; transition: 0.3s; } device-editor .entry .tab button:hover,[data-is="device-editor"] .entry .tab button:hover{ background-color: #ddd; } device-editor .entry .tab button.active,[data-is="device-editor"] .entry .tab button.active{ background-color: #ccc; } device-editor .entry .tabcontent,[data-is="device-editor"] .entry .tabcontent{ display: none; padding: 3px; width: 100%; max-width: 100%; overflow: auto; } device-editor .entry .tabcontent .panel-header,[data-is="device-editor"] .entry .tabcontent .panel-header{ margin: 0 auto; padding: 0; padding-top: 3px; width: 100%; height: 30px; color: white; background: cornflowerblue; border-radius: 5px 5px 0 0; } device-editor .entry .tabcontent .panel-body,[data-is="device-editor"] .entry .tabcontent .panel-body{ margin: 0 auto; margin-bottom: 5px; padding: 0; width: 100%; border: 1px solid cornflowerblue; } device-editor .tool,[data-is="device-editor"] .tool{ grid-area: tool; margin: 0 auto; padding: 0; padding-left: 3px; padding-top: 3px; width: 100%; height: 30px; overflow: hidden; }', '', function(opts) {
 
@@ -3048,16 +3131,26 @@ riot.tag2('pie-votesummary-manage', '<flip-screen ref="flipper"> <yield to="view
 
 });
 
-riot.tag2('pie-votesummary-result', '<h3>Pie Search Result.</h3> <date-result></date-result> <question-slide></question-slide> <question-slide></question-slide> <question-slide></question-slide> <button onclick="{goback}">Close</button>', 'pie-votesummary-result,[data-is="pie-votesummary-result"]{ margin: 0 auto; padding: 0; width: 100%; height: 100%; background-color: whitesmoke !important; }', '', function(opts) {
+riot.tag2('pie-votesummary-result', '<date-result caption="Date" begin="{current.begin}" end="{current.end}"></date-result> <virtial if="{current.slides && current.slides.length > 0}"> <virtial each="{slide in current.slides}"> <pie-question-slide slide="{slide}"></pie-question-slide> </virtial> </virtial> <button onclick="{goback}">Close</button>', 'pie-votesummary-result,[data-is="pie-votesummary-result"]{ display: block; margin: 0 auto; padding: 0; width: 100%; height: 100%; background-color: whitesmoke; }', '', function(opts) {
 
 
         let self = this;
         let result = null;
-        this.current = null;
+        let search = {
+            begin: '',
+            end: ''
+        }
+        this.current = {
+            begin: '',
+            end: '',
+            slides: []
+        };
 
         let updatecontent = () => {
             if (result) {
                 self.current = result[lang.langId]
+                self.current.begin = search.beginDate;
+                self.current.end = search.endDate;
                 console.log(self.current)
                 self.update();
             }
@@ -3069,8 +3162,16 @@ riot.tag2('pie-votesummary-result', '<h3>Pie Search Result.</h3> <date-result></
         let addEvt = (evtName, handle) => { document.addEventListener(evtName, handle) }
         let delEvt = (evtName, handle) => { document.removeEventListener(evtName, handle) }
 
-        let bindEvents = () => {}
-        let unbindEvents = () => {}
+        let bindEvents = () => {
+            addEvt(events.name.LanguageChanged, onLanguageChanged)
+            addEvt(events.name.ContentChanged, onContentChanged)
+            addEvt(events.name.ScreenChanged, onScreenChanged)
+        }
+        let unbindEvents = () => {
+            delEvt(events.name.ScreenChanged, onScreenChanged)
+            delEvt(events.name.ContentChanged, onContentChanged)
+            delEvt(events.name.LanguageChanged, onLanguageChanged)
+        }
 
         this.on('mount', () => {
             initCtrls();
@@ -3081,12 +3182,17 @@ riot.tag2('pie-votesummary-result', '<h3>Pie Search Result.</h3> <date-result></
             freeCtrls();
         });
 
+        let onContentChanged = (e) => { updatecontent(); }
+        let onLanguageChanged = (e) => { updatecontent(); }
+        let onScreenChanged = (e) => { updatecontent(); }
+
         this.goback = () => {
             events.raise(events.name.PieSummarySearch)
         }
 
         this.setup = (criteria) => {
 
+            search = criteria;
             $.ajax({
                 type: "POST",
                 url: "/customer/api/report/votesummaries/search",
@@ -3130,8 +3236,8 @@ riot.tag2('pie-votesummary-search', '<h3>Pie Search Criteria.</h3> <button oncli
         this.onseach = () => {
             let criteria = {
                 qsetId: 'QS00001',
-                beginDate: '2019-10-10',
-                endDate: '2019-10-11',
+                beginDate: '2019-10-01',
+                endDate: '2019-11-01',
                 slides: [
                     { qSeq: 1 },
                     { qSeq: 2 },
@@ -3139,7 +3245,7 @@ riot.tag2('pie-votesummary-search', '<h3>Pie Search Criteria.</h3> <button oncli
                 ],
                 orgs: [
                     { orgId: 'O0001' },
-                    { orgId: 'O0002' },
+                    { orgId: 'O0003' },
                     { orgId: 'O0008' }
                 ]
             }

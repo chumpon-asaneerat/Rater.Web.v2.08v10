@@ -7,7 +7,7 @@
             padding: 0;
             width: 100%;
             height: 100%;
-            /* overflow: hidden; */
+            /* overflow: hidden; */            
         }
     </style>
     <script>
@@ -54,8 +54,8 @@
         this.onseach = () => {
             let criteria = {
                 qsetId: 'QS00001',
-                beginDate: '2019-10-10',
-                endDate: '2019-10-11',
+                beginDate: '2019-10-01',
+                endDate: '2019-11-01',
                 slides: [
                     { qSeq: 1 },
                     { qSeq: 2 },
@@ -63,7 +63,7 @@
                 ],
                 orgs: [
                     { orgId: 'O0001' },
-                    { orgId: 'O0002' },
+                    { orgId: 'O0003' },
                     { orgId: 'O0008' }
                 ]
             }

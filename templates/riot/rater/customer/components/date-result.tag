@@ -1,33 +1,59 @@
 <date-result>
     <div class="date-range">
-        <span class="label">Date:&nbsp;</span>
-        <span class="text">2019-10-11</span>
-        <span class="text">&nbsp;-&nbsp;</span>
-        <span class="text">2019-10-12</span>
+        <span class="label">
+            { (opts.caption) ? opts.caption : 'Date' }:&nbsp;
+            { (opts.begin) ? opts.begin : '' }
+            &nbsp;-&nbsp;
+            { (opts.end) ? opts.end : '' }
+        </span>
     </div>
     <style>
+        @media (min-width: 620px) {
+            :scope {
+                max-width: 550px;
+                /* width: 100%; */
+            }
+        }
+        @media (min-width: 960px) {
+            :scope {
+                max-width: 850px;
+                /* width: 100%; */
+            }
+        }
         :scope {
+            display: block;
             margin: 0 auto;
-            padding: 0;
-            width: 100%;
-            display: grid;
-            grid-template-rows: 1fr;
-            grid-template-columns: 1fr 270px 1fr;
-            grid-template-areas: 
-                '. date-range .';
+            padding: 5px;
+            padding-bottom: 1px;
+            max-width: 1000px;
+            /* width: 100%; */
         }
         :scope .date-range {
-            grid-area: date-range;
+            display: block;
             margin: 0 auto;
-            padding: 0;
-            width: 100%;
+            margin-bottom: 3px;
+            padding: 5px;
+            max-width: 1000px;
+            /* width: 100%; */
+            overflow: hidden;
+            white-space: nowrap;
         }
         :scope .date-range .label {
-            color: navy;
-        }
-        :scope .date-range .text {
-            color: black;
+            margin: 0 auto;
+            padding: 5px;
+            display: block;
+            color: cornflowerblue;
+            font-size: 1rem;
+            font-weight: bold;
+            border: 0 solid cornflowerblue;
+            border-bottom: 1px solid cornflowerblue;
+            /*
+            display: inline-block;
+            */
         }
     </style>
-    <script></script>
+    <script>
+        let updatecontent = () => {}
+        this.setup = () => {}
+    </script>
 </date-result>

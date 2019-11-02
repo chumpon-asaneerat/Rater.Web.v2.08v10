@@ -1,18 +1,20 @@
 <pie-votesummary-result>
-    <h3>Pie Search Result.</h3>
-    <date-result></date-result>
-    <question-slide></question-slide>
-    <question-slide></question-slide>
-    <question-slide></question-slide>
+    <date-result caption="Date" begin="{ current.begin }" end="{ current.end }"></date-result>
+    <virtial if={ current.slides && current.slides.length > 0 }>
+        <virtial each={ slide in current.slides }>
+            <pie-question-slide slide="{ slide }"></pie-question-slide>
+        </virtial>
+    </virtial>
     <button onclick="{ goback }">Close</button>
     <style>
         :scope {
+            display: block;
             margin: 0 auto;
             padding: 0;
             width: 100%;
             height: 100%;
             /* overflow: hidden; */
-            background-color: whitesmoke !important;
+            background-color: whitesmoke;
         }
     </style>
     <script>
@@ -20,13 +22,23 @@
 
         let self = this;
         let result = null;
-        this.current = null;
+        let search = {
+            begin: '',
+            end: ''
+        }
+        this.current = {
+            begin: '',
+            end: '',
+            slides: []
+        };
 
         //#endregion
 
         let updatecontent = () => {
             if (result) {
                 self.current = result[lang.langId]
+                self.current.begin = search.beginDate;
+                self.current.end = search.endDate;
                 console.log(self.current)
                 self.update();
             }
@@ -48,8 +60,16 @@
 
         //#region events bind/unbind
 
-        let bindEvents = () => {}
-        let unbindEvents = () => {}
+        let bindEvents = () => {
+            addEvt(events.name.LanguageChanged, onLanguageChanged)
+            addEvt(events.name.ContentChanged, onContentChanged)
+            addEvt(events.name.ScreenChanged, onScreenChanged)
+        }
+        let unbindEvents = () => {
+            delEvt(events.name.ScreenChanged, onScreenChanged)
+            delEvt(events.name.ContentChanged, onContentChanged)
+            delEvt(events.name.LanguageChanged, onLanguageChanged)
+        }
 
         //#endregion
 
@@ -66,12 +86,21 @@
 
         //#endregion
 
+        //#region dom event handlers
+
+        let onContentChanged = (e) => { updatecontent(); }
+        let onLanguageChanged = (e) => { updatecontent(); }
+        let onScreenChanged = (e) => { updatecontent(); }
+
+        //#endregion
+
         this.goback = () => {
             events.raise(events.name.PieSummarySearch)
         }
 
         this.setup = (criteria) => {
             //console.log('criteria:', criteria)
+            search = criteria;
             $.ajax({
                 type: "POST",
                 url: "/customer/api/report/votesummaries/search",
