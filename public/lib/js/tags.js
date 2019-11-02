@@ -597,9 +597,102 @@ riot.tag2('screen', '<div class="content-area"> <yield></yield> </div>', 'screen
         let onScreenChanged = (e) => { updatecontent(); }
 
 });
+riot.tag2('bar-question-slide', '<div class="question-box"> <span class="caption">{(opts.slide) ? opts.slide.text : \'\'}</span> <div class="content-box"> <org-bar class="item" orgs="{opts.slide.orgs}"></org-bar> </div> </div>', '@media (min-width: 620px) { bar-question-slide,[data-is="bar-question-slide"]{ max-width: 550px; } bar-question-slide .question-box .content-box,[data-is="bar-question-slide"] .question-box .content-box{ display: grid; grid-template-columns: 1fr; grid-gap: 5px; grid-auto-rows: 200px; } } @media (min-width: 960px) { bar-question-slide,[data-is="bar-question-slide"]{ max-width: 850px; } bar-question-slide .question-box .content-box,[data-is="bar-question-slide"] .question-box .content-box{ display: grid; grid-template-columns: 1fr; grid-gap: 5px; grid-auto-rows: 250px; } } bar-question-slide,[data-is="bar-question-slide"]{ display: block; margin: 0 auto; margin-bottom: 3px; padding: 5px; max-width: 1000px; white-space: nowrap; } bar-question-slide .question-box,[data-is="bar-question-slide"] .question-box{ margin: 0 auto; display: block; color: white; border: 1px solid cornflowerblue; border-radius: 3px; width: 100%; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; } bar-question-slide .question-box .caption,[data-is="bar-question-slide"] .question-box .caption{ display: block; margin: 0 auto; padding: 5px; background-color: cornflowerblue; } bar-question-slide .question-box .content-box,[data-is="bar-question-slide"] .question-box .content-box{ display: grid; margin: 0 auto; margin-bottom: 5px; padding: 5px; grid-template-columns: 1fr; grid-gap: 5px; grid-auto-rows: 300px; } bar-question-slide .question-box .content-box .item,[data-is="bar-question-slide"] .question-box .content-box .item{ display: inline-block; margin: 3px auto; padding: 0; color: black; width: 100%; height: 100%; }', '', function(opts) {
+});
 riot.tag2('date-result', '<div class="date-range"> <span class="label"> {(opts.caption) ? opts.caption : \'Date\'}:&nbsp; {(opts.begin) ? opts.begin : \'\'} &nbsp;-&nbsp; {(opts.end) ? opts.end : \'\'} </span> </div>', '@media (min-width: 620px) { date-result,[data-is="date-result"]{ max-width: 550px; } } @media (min-width: 960px) { date-result,[data-is="date-result"]{ max-width: 850px; } } date-result,[data-is="date-result"]{ display: block; margin: 0 auto; padding: 5px; padding-bottom: 1px; max-width: 1000px; } date-result .date-range,[data-is="date-result"] .date-range{ display: block; margin: 0 auto; margin-bottom: 3px; padding: 5px; max-width: 1000px; overflow: hidden; white-space: nowrap; } date-result .date-range .label,[data-is="date-result"] .date-range .label{ margin: 0 auto; padding: 5px; display: block; color: cornflowerblue; font-size: 1rem; font-weight: bold; border: 0 solid cornflowerblue; border-bottom: 1px solid cornflowerblue; }', '', function(opts) {
         let updatecontent = () => {}
         this.setup = () => {}
+});
+riot.tag2('org-bar', '<div ref="chart" class="chart-box"></div>', 'org-bar,[data-is="org-bar"]{ display: block; margin: 0 auto; padding: 3px; border: 1px solid silver; border-radius: 3px; } org-bar .chart-box,[data-is="org-bar"] .chart-box{ display: block; margin: 0 auto; padding: 0; height: 100%; }', '', function(opts) {
+        let self = this;
+
+        let updatecontent = () => {
+            let data = [];
+            let xlabels = []
+            self.opts.orgs.forEach(item => {
+                xlabels.push(item.OrgName)
+                data.push({ name: item.OrgName, y: item.AvgTot })
+            })
+
+            Highcharts.chart(chart, {
+                credits: {
+                    enabled: false
+                },
+                chart: { type: 'column' },
+                title: {
+                    text: 'Vote Summary Bar graph'
+                },
+                subtitle: {
+
+                },
+                xAxis: {
+
+                    categories: xlabels
+                },
+                yAxis: {
+                    title: { text: 'Average' }
+                },
+                legend: { enabled: false },
+                plotOptions: {
+                    series: {
+                        borderWidth: 0,
+                        dataLabels: {
+                            enabled: true,
+                            format: '{point.y:.2f} %'
+                        }
+                    }
+                },
+                tooltip: {
+
+                    headerFormat: '',
+
+                    pointFormat: '<span>{point.name}</span>: <b>{point.y:.2f}%</b><br/>'
+                },
+                series: [{
+                    name: "Organization",
+                    colorByPoint: true,
+                    data: data
+                }]
+            });
+            self.update();
+        }
+
+        let chart;
+        let initCtrls = () => {
+            chart = self.refs['chart']
+            updatecontent();
+        }
+        let freeCtrls = () => {
+            chart = null;
+        }
+
+        let addEvt = (evtName, handle) => { document.addEventListener(evtName, handle) }
+        let delEvt = (evtName, handle) => { document.removeEventListener(evtName, handle) }
+
+        let bindEvents = () => {
+            addEvt(events.name.LanguageChanged, onLanguageChanged)
+            addEvt(events.name.ContentChanged, onContentChanged)
+            addEvt(events.name.ScreenChanged, onScreenChanged)
+        }
+        let unbindEvents = () => {
+            delEvt(events.name.ScreenChanged, onScreenChanged)
+            delEvt(events.name.ContentChanged, onContentChanged)
+            delEvt(events.name.LanguageChanged, onLanguageChanged)
+        }
+
+        this.on('mount', () => {
+            initCtrls();
+            bindEvents();
+        });
+        this.on('unmount', () => {
+            unbindEvents();
+            freeCtrls();
+        });
+
+        let onContentChanged = (e) => { updatecontent(); }
+        let onLanguageChanged = (e) => { updatecontent(); }
+        let onScreenChanged = (e) => { updatecontent(); }
+
 });
 riot.tag2('org-pie', '<div ref="chart" class="chart-box"></div>', 'org-pie,[data-is="org-pie"]{ display: block; margin: 0 auto; padding: 3px; border: 1px solid silver; border-radius: 3px; } org-pie .chart-box,[data-is="org-pie"] .chart-box{ display: block; margin: 0 auto; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
         let self = this;
@@ -623,7 +716,7 @@ riot.tag2('org-pie', '<div ref="chart" class="chart-box"></div>', 'org-pie,[data
                     text: self.opts.org.OrgName
                 },
                 tooltip: {
-                    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                    pointFormat: '{series.name}: <b>{point.percentage:.2f}%</b>'
                 },
                 plotOptions: {
                     pie: {
@@ -631,7 +724,7 @@ riot.tag2('org-pie', '<div ref="chart" class="chart-box"></div>', 'org-pie,[data
                         cursor: 'pointer',
                         dataLabels: {
                             enabled: true,
-                            format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                            format: '<b>{point.name}</b>: {point.percentage:.2f} %'
                         }
                     }
                 },
@@ -2984,9 +3077,7 @@ riot.tag2('bar-votesummary-manage', '<flip-screen ref="flipper"> <yield to="view
         let onShowResult = (e) => {
             if (flipper) {
                 flipper.toggle();
-                let criteria = {
-
-                }
+                let criteria = e.detail.data;
                 if (entry) entry.setup(criteria);
             }
 
@@ -2999,10 +3090,30 @@ riot.tag2('bar-votesummary-manage', '<flip-screen ref="flipper"> <yield to="view
 
 });
 
-riot.tag2('bar-votesummary-result', '<h3>Bar Search Result.</h3> <button onclick="{goback}">Close</button>', 'bar-votesummary-result,[data-is="bar-votesummary-result"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
+riot.tag2('bar-votesummary-result', '<date-result caption="Date" begin="{current.begin}" end="{current.end}"></date-result> <virtial if="{current.slides && current.slides.length > 0}"> <virtial each="{slide in current.slides}"> <bar-question-slide slide="{slide}"></bar-question-slide> </virtial> </virtial> <button onclick="{goback}">Close</button>', 'bar-votesummary-result,[data-is="bar-votesummary-result"]{ display: block; margin: 0 auto; padding: 0; width: 100%; height: 100%; background-color: whitesmoke; }', '', function(opts) {
 
 
         let self = this;
+        let result = null;
+        let search = {
+            begin: '',
+            end: ''
+        }
+        this.current = {
+            begin: '',
+            end: '',
+            slides: []
+        };
+
+        let updatecontent = () => {
+            if (result) {
+                self.current = result[lang.langId]
+                self.current.begin = search.beginDate;
+                self.current.end = search.endDate;
+                console.log(self.current)
+                self.update();
+            }
+        }
 
         let initCtrls = () => {}
         let freeCtrls = () => {}
@@ -3010,8 +3121,16 @@ riot.tag2('bar-votesummary-result', '<h3>Bar Search Result.</h3> <button onclick
         let addEvt = (evtName, handle) => { document.addEventListener(evtName, handle) }
         let delEvt = (evtName, handle) => { document.removeEventListener(evtName, handle) }
 
-        let bindEvents = () => {}
-        let unbindEvents = () => {}
+        let bindEvents = () => {
+            addEvt(events.name.LanguageChanged, onLanguageChanged)
+            addEvt(events.name.ContentChanged, onContentChanged)
+            addEvt(events.name.ScreenChanged, onScreenChanged)
+        }
+        let unbindEvents = () => {
+            delEvt(events.name.ScreenChanged, onScreenChanged)
+            delEvt(events.name.ContentChanged, onContentChanged)
+            delEvt(events.name.LanguageChanged, onLanguageChanged)
+        }
 
         this.on('mount', () => {
             initCtrls();
@@ -3022,12 +3141,32 @@ riot.tag2('bar-votesummary-result', '<h3>Bar Search Result.</h3> <button onclick
             freeCtrls();
         });
 
+        let onContentChanged = (e) => { updatecontent(); }
+        let onLanguageChanged = (e) => { updatecontent(); }
+        let onScreenChanged = (e) => { updatecontent(); }
+
         this.goback = () => {
             events.raise(events.name.BarSummarySearch)
         }
 
         this.setup = (criteria) => {
-            console.log('criteria:', criteria)
+
+            search = criteria;
+            $.ajax({
+                type: "POST",
+                url: "/customer/api/report/votesummaries/search",
+                data: JSON.stringify(criteria),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: (ret) => {
+
+                    result = ret.data;
+                    updatecontent();
+                },
+                failure: (errMsg) => {
+                    console.log(errMsg);
+                }
+            })
         }
 });
 riot.tag2('bar-votesummary-search', '<h3>Bar Search Criteria.</h3> <button onclick="{onseach}">Search</button>', 'bar-votesummary-search,[data-is="bar-votesummary-search"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
@@ -3054,7 +3193,22 @@ riot.tag2('bar-votesummary-search', '<h3>Bar Search Criteria.</h3> <button oncli
         });
 
         this.onseach = () => {
-            events.raise(events.name.BarSummaryResult)
+            let criteria = {
+                qsetId: 'QS00001',
+                beginDate: '2019-10-01',
+                endDate: '2019-11-01',
+                slides: [
+                    { qSeq: 1 },
+                    { qSeq: 2 },
+                    { qSeq: 3 }
+                ],
+                orgs: [
+                    { orgId: 'O0001' },
+                    { orgId: 'O0003' },
+                    { orgId: 'O0008' }
+                ]
+            }
+            events.raise(events.name.BarSummaryResult, criteria)
         }
 });
 riot.tag2('pie-votesummary-manage', '<flip-screen ref="flipper"> <yield to="viewer"> <pie-votesummary-search ref="viewer" class="view"></pie-votesummary-search> </yield> <yield to="entry"> <pie-votesummary-result ref="entry" class="entry"></pie-votesummary-result> </yield> </flip-screen>', 'pie-votesummary-manage,[data-is="pie-votesummary-manage"]{ margin: 0 auto; padding: 0; width: 100%; height: 100%; } pie-votesummary-manage .view,[data-is="pie-votesummary-manage"] .view,pie-votesummary-manage .entry,[data-is="pie-votesummary-manage"] .entry{ margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; } pie-votesummary-manage .entry,[data-is="pie-votesummary-manage"] .entry{ overflow: auto; }', '', function(opts) {

@@ -52,7 +52,22 @@
         //#endregion
 
         this.onseach = () => {
-            events.raise(events.name.BarSummaryResult)
+            let criteria = {
+                qsetId: 'QS00001',
+                beginDate: '2019-10-01',
+                endDate: '2019-11-01',
+                slides: [
+                    { qSeq: 1 },
+                    { qSeq: 2 },
+                    { qSeq: 3 }
+                ],
+                orgs: [
+                    { orgId: 'O0001' },
+                    { orgId: 'O0003' },
+                    { orgId: 'O0008' }
+                ]
+            }
+            events.raise(events.name.BarSummaryResult, criteria)
         }
     </script>
 </bar-votesummary-search>
