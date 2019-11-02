@@ -66,9 +66,8 @@
             height: 100%;
             backface-visibility: hidden;
             transform: rotateY(180deg);
-
-            background-color: dimgray;
-            color: white;
+            /* background-color: dimgray; */
+            /* color: white; */
         }
         .content {
             position: relative;

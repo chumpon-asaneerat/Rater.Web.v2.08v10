@@ -267,7 +267,7 @@ riot.tag2('app', '<navibar class="navibar"></navibar> <div class="scrarea"> <yie
         });
 
 });
-riot.tag2('flip-screen', '<div class="auto-container"> <div ref="flipper" class="flipper"> <div class="viewer-block"> <div class="content"> <yield from="viewer"></yield> </div> </div> <div class="entry-block"> <div class="content"> <yield from="entry"></yield> </div> </div> </div> </div>', 'flip-screen,[data-is="flip-screen"]{ margin: 0; padding: 0; width: 100%; height: 100%; display: grid; grid-template-columns: 1fr; grid-template-rows: 1fr; grid-template-areas: \'auto-container\'; overflow: hidden; } flip-screen .auto-container,[data-is="flip-screen"] .auto-container{ margin: 0; padding: 0; grid-area: auto-container; border: 1px solid #f1f1f1; } flip-screen .flipper,[data-is="flip-screen"] .flipper{ margin: 0; padding: 0; position: relative; width: 100%; height: 100%; transition: transform 0.5s; transform-style: preserve-3d; } flip-screen .auto-container .flipper.toggle,[data-is="flip-screen"] .auto-container .flipper.toggle{ transform: rotateY(180deg); } flip-screen .viewer-block,[data-is="flip-screen"] .viewer-block{ position: absolute; margin: 0; padding: 0; width: 100%; height: 100%; backface-visibility: hidden; transform: rotateY(0deg); } flip-screen .entry-block,[data-is="flip-screen"] .entry-block{ position: absolute; width: 100%; height: 100%; margin: 0; padding: 0; position: absolute; width: 100%; height: 100%; backface-visibility: hidden; transform: rotateY(180deg); background-color: dimgray; color: white; } flip-screen .content,[data-is="flip-screen"] .content{ position: relative; display: block; width: 100%; height: 100%; }', '', function(opts) {
+riot.tag2('flip-screen', '<div class="auto-container"> <div ref="flipper" class="flipper"> <div class="viewer-block"> <div class="content"> <yield from="viewer"></yield> </div> </div> <div class="entry-block"> <div class="content"> <yield from="entry"></yield> </div> </div> </div> </div>', 'flip-screen,[data-is="flip-screen"]{ margin: 0; padding: 0; width: 100%; height: 100%; display: grid; grid-template-columns: 1fr; grid-template-rows: 1fr; grid-template-areas: \'auto-container\'; overflow: hidden; } flip-screen .auto-container,[data-is="flip-screen"] .auto-container{ margin: 0; padding: 0; grid-area: auto-container; border: 1px solid #f1f1f1; } flip-screen .flipper,[data-is="flip-screen"] .flipper{ margin: 0; padding: 0; position: relative; width: 100%; height: 100%; transition: transform 0.5s; transform-style: preserve-3d; } flip-screen .auto-container .flipper.toggle,[data-is="flip-screen"] .auto-container .flipper.toggle{ transform: rotateY(180deg); } flip-screen .viewer-block,[data-is="flip-screen"] .viewer-block{ position: absolute; margin: 0; padding: 0; width: 100%; height: 100%; backface-visibility: hidden; transform: rotateY(0deg); } flip-screen .entry-block,[data-is="flip-screen"] .entry-block{ position: absolute; width: 100%; height: 100%; margin: 0; padding: 0; position: absolute; width: 100%; height: 100%; backface-visibility: hidden; transform: rotateY(180deg); } flip-screen .content,[data-is="flip-screen"] .content{ position: relative; display: block; width: 100%; height: 100%; }', '', function(opts) {
 
 
         let self = this;
@@ -596,6 +596,10 @@ riot.tag2('screen', '<div class="content-area"> <yield></yield> </div>', 'screen
 
         let onScreenChanged = (e) => { updatecontent(); }
 
+});
+riot.tag2('date-result', '<div class="date-range"> <span class="label">Date:&nbsp;</span> <span class="text">2019-10-11</span> <span class="text">&nbsp;-&nbsp;</span> <span class="text">2019-10-12</span> </div>', 'date-result,[data-is="date-result"]{ margin: 0 auto; padding: 0; width: 100%; display: grid; grid-template-rows: 1fr; grid-template-columns: 1fr 270px 1fr; grid-template-areas: \'. date-range .\'; } date-result .date-range,[data-is="date-result"] .date-range{ grid-area: date-range; margin: 0 auto; padding: 0; width: 100%; } date-result .date-range .label,[data-is="date-result"] .date-range .label{ color: navy; } date-result .date-range .text,[data-is="date-result"] .date-range .text{ color: black; }', '', function(opts) {
+});
+riot.tag2('question-slide', '<div class="question-text"> <span>Q1. Question 1</span> </div> <div class="question-items"> <span class="item">1. Choice 1</span> <span class="item">2. Choice 2</span> <span class="item">3. Choice 3</span> <span class="item">4. Choice 4</span> </div>', 'question-slide,[data-is="question-slide"]{ display: block; margin: 0 auto; padding: 0; width: 100%; } question-slide .question-text,[data-is="question-slide"] .question-text{ display: block; margin: 0; padding: 0; font-weight: bold; font-size: 1rem; } question-slide .question-items,[data-is="question-slide"] .question-items{ display: block; } question-slide .question-items .item,[data-is="question-slide"] .question-items .item{ display: inline-block; width: 200px; font-size: 1rem; }', '', function(opts) {
 });
 riot.tag2('device-editor', '<div class="entry"> <div class="tab"> <button ref="tabheader" class="tablinks active" name="default" onclick="{showContent}"> <span class="fas fa-cog"></span>&nbsp;{content.entry.tabDefault}&nbsp; </button> <button ref="tabheader" class="tablinks" name="miltilang" onclick="{showContent}"> <span class="fas fa-globe-americas"></span>&nbsp;{content.entry.tabMultiLang}&nbsp; </button> </div> <div ref="tabcontent" name="default" class="tabcontent" style="display: block;"> <device-entry ref="EN" langid=""></device-entry> </div> <div ref="tabcontent" name="miltilang" class="tabcontent"> <virtual if="{lang.languages}"> <virtual each="{item in lang.languages}"> <virtual if="{item.langId !== \'EN\'}"> <div class="panel-header" langid="{item.langId}"> &nbsp;&nbsp; <span class="flag-css flag-icon flag-icon-{item.flagId.toLowerCase()}"></span> &nbsp;{item.Description}&nbsp; </div> <div class="panel-body" langid="{item.langId}"> <device-entry ref="{item.langId}" langid="{item.langId}"></device-entry> </div> </virtual> </virtual> </virtual> </div> </div> <div class="tool"> <button onclick="{save}"><span class="fas fa-save"></span></button> <button onclick="{cancel}"><span class="fas fa-times"></span></button> </div>', 'device-editor,[data-is="device-editor"]{ margin: 0 auto; padding: 0; width: 100%; height: 100%; display: grid; grid-template-columns: 1fr; grid-template-rows: 1fr 30px; grid-template-areas: \'entry\' \'tool\'; overflow: hidden; background-color: white; } device-editor .entry,[data-is="device-editor"] .entry{ grid-area: entry; margin: 0 auto; padding: 0; width: 100%; height: 100%; overflow: auto; } device-editor .entry .tab,[data-is="device-editor"] .entry .tab{ overflow: hidden; border: 1px solid #ccc; } device-editor .entry .tab button,[data-is="device-editor"] .entry .tab button{ background-color: inherit; float: left; border: none; outline: none; cursor: pointer; padding: 14px 16px; transition: 0.3s; } device-editor .entry .tab button:hover,[data-is="device-editor"] .entry .tab button:hover{ background-color: #ddd; } device-editor .entry .tab button.active,[data-is="device-editor"] .entry .tab button.active{ background-color: #ccc; } device-editor .entry .tabcontent,[data-is="device-editor"] .entry .tabcontent{ display: none; padding: 3px; width: 100%; max-width: 100%; overflow: auto; } device-editor .entry .tabcontent .panel-header,[data-is="device-editor"] .entry .tabcontent .panel-header{ margin: 0 auto; padding: 0; padding-top: 3px; width: 100%; height: 30px; color: white; background: cornflowerblue; border-radius: 5px 5px 0 0; } device-editor .entry .tabcontent .panel-body,[data-is="device-editor"] .entry .tabcontent .panel-body{ margin: 0 auto; margin-bottom: 5px; padding: 0; width: 100%; border: 1px solid cornflowerblue; } device-editor .tool,[data-is="device-editor"] .tool{ grid-area: tool; margin: 0 auto; padding: 0; padding-left: 3px; padding-top: 3px; width: 100%; height: 30px; overflow: hidden; }', '', function(opts) {
 
@@ -3031,9 +3035,7 @@ riot.tag2('pie-votesummary-manage', '<flip-screen ref="flipper"> <yield to="view
         let onShowResult = (e) => {
             if (flipper) {
                 flipper.toggle();
-                let criteria = {
-
-                }
+                let criteria = e.detail.data;
                 if (entry) entry.setup(criteria);
             }
 
@@ -3046,10 +3048,20 @@ riot.tag2('pie-votesummary-manage', '<flip-screen ref="flipper"> <yield to="view
 
 });
 
-riot.tag2('pie-votesummary-result', '<h3>Pie Search Result.</h3> <button onclick="{goback}">Close</button>', 'pie-votesummary-result,[data-is="pie-votesummary-result"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
+riot.tag2('pie-votesummary-result', '<h3>Pie Search Result.</h3> <date-result></date-result> <question-slide></question-slide> <question-slide></question-slide> <question-slide></question-slide> <button onclick="{goback}">Close</button>', 'pie-votesummary-result,[data-is="pie-votesummary-result"]{ margin: 0 auto; padding: 0; width: 100%; height: 100%; background-color: whitesmoke !important; }', '', function(opts) {
 
 
         let self = this;
+        let result = null;
+        this.current = null;
+
+        let updatecontent = () => {
+            if (result) {
+                self.current = result[lang.langId]
+                console.log(self.current)
+                self.update();
+            }
+        }
 
         let initCtrls = () => {}
         let freeCtrls = () => {}
@@ -3074,7 +3086,22 @@ riot.tag2('pie-votesummary-result', '<h3>Pie Search Result.</h3> <button onclick
         }
 
         this.setup = (criteria) => {
-            console.log('criteria:', criteria)
+
+            $.ajax({
+                type: "POST",
+                url: "/customer/api/report/votesummaries/search",
+                data: JSON.stringify(criteria),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: (ret) => {
+
+                    result = ret.data;
+                    updatecontent();
+                },
+                failure: (errMsg) => {
+                    console.log(errMsg);
+                }
+            })
         }
 });
 riot.tag2('pie-votesummary-search', '<h3>Pie Search Criteria.</h3> <button onclick="{onseach}">Search</button>', 'pie-votesummary-search,[data-is="pie-votesummary-search"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
@@ -3101,7 +3128,22 @@ riot.tag2('pie-votesummary-search', '<h3>Pie Search Criteria.</h3> <button oncli
         });
 
         this.onseach = () => {
-            events.raise(events.name.PieSummaryResult)
+            let criteria = {
+                qsetId: 'QS00001',
+                beginDate: '2019-10-10',
+                endDate: '2019-10-11',
+                slides: [
+                    { qSeq: 1 },
+                    { qSeq: 2 },
+                    { qSeq: 3 }
+                ],
+                orgs: [
+                    { orgId: 'O0001' },
+                    { orgId: 'O0002' },
+                    { orgId: 'O0008' }
+                ]
+            }
+            events.raise(events.name.PieSummaryResult, criteria)
         }
 });
 riot.tag2('rawvote-manage', '<flip-screen ref="flipper"> <yield to="viewer"> <rawvote-search ref="viewer" class="view"></rawvote-search> </yield> <yield to="entry"> <rawvote-result ref="entry" class="entry"></rawvote-result> </yield> </flip-screen>', 'rawvote-manage,[data-is="rawvote-manage"]{ margin: 0 auto; padding: 0; width: 100%; height: 100%; } rawvote-manage .view,[data-is="rawvote-manage"] .view,rawvote-manage .entry,[data-is="rawvote-manage"] .entry{ margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; } rawvote-manage .entry,[data-is="rawvote-manage"] .entry{ overflow: auto; }', '', function(opts) {

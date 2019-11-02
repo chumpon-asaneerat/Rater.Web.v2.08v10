@@ -113,9 +113,7 @@
         let onShowResult = (e) => {
             if (flipper) {
                 flipper.toggle();
-                let criteria = {
-
-                }
+                let criteria = e.detail.data;
                 if (entry) entry.setup(criteria);
             }
             

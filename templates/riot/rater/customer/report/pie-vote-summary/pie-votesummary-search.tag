@@ -52,7 +52,22 @@
         //#endregion
 
         this.onseach = () => {
-            events.raise(events.name.PieSummaryResult)
+            let criteria = {
+                qsetId: 'QS00001',
+                beginDate: '2019-10-10',
+                endDate: '2019-10-11',
+                slides: [
+                    { qSeq: 1 },
+                    { qSeq: 2 },
+                    { qSeq: 3 }
+                ],
+                orgs: [
+                    { orgId: 'O0001' },
+                    { orgId: 'O0002' },
+                    { orgId: 'O0008' }
+                ]
+            }
+            events.raise(events.name.PieSummaryResult, criteria)
         }
     </script>
 </pie-votesummary-search>
