@@ -2842,7 +2842,7 @@ riot.tag2('bar-votesummary-manage', '<flip-screen ref="flipper"> <yield to="view
         let self = this;
 
         let defaultContent = {
-            title: 'Title'
+            title: 'Vote Summary (Bar graph)'
         }
         this.content = defaultContent;
 
@@ -2871,12 +2871,12 @@ riot.tag2('bar-votesummary-manage', '<flip-screen ref="flipper"> <yield to="view
             addEvt(events.name.LanguageChanged, onLanguageChanged)
             addEvt(events.name.ContentChanged, onContentChanged)
             addEvt(events.name.ScreenChanged, onScreenChanged)
-            addEvt(events.name.BeginEditMember, onBeginEdit)
-            addEvt(events.name.EndEditMember, onEndEdit)
+            addEvt(events.name.BarSummarySearch, onShowSearch)
+            addEvt(events.name.BarSummaryResult, onShowResult)
         }
         let unbindEvents = () => {
-            delEvt(events.name.EndEditMember, onEndEdit)
-            delEvt(events.name.BeginEditMember, onBeginEdit)
+            delEvt(events.name.BarSummaryResult, onShowResult)
+            delEvt(events.name.BarSummarySearch, onShowSearch)
             delEvt(events.name.ScreenChanged, onScreenChanged)
             delEvt(events.name.ContentChanged, onContentChanged)
             delEvt(events.name.LanguageChanged, onLanguageChanged)
@@ -2894,18 +2894,17 @@ riot.tag2('bar-votesummary-manage', '<flip-screen ref="flipper"> <yield to="view
         let onContentChanged = (e) => { updatecontent(); }
         let onLanguageChanged = (e) => { updatecontent(); }
         let onScreenChanged = (e) => { updatecontent(); }
-        let onBeginEdit = (e) => {
-
+        let onShowResult = (e) => {
             if (flipper) {
                 flipper.toggle();
-                let item = e.detail.data.item;
+                let criteria = {
 
-                if (entry) entry.setup(item);
+                }
+                if (entry) entry.setup(criteria);
             }
 
         }
-        let onEndEdit = (e) => {
-
+        let onShowSearch = (e) => {
             if (flipper) {
                 flipper.toggle();
             }
@@ -2913,7 +2912,7 @@ riot.tag2('bar-votesummary-manage', '<flip-screen ref="flipper"> <yield to="view
 
 });
 
-riot.tag2('bar-votesummary-result', '', 'bar-votesummary-result,[data-is="bar-votesummary-result"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
+riot.tag2('bar-votesummary-result', '<h3>Bar Search Result.</h3> <button onclick="{goback}">Close</button>', 'bar-votesummary-result,[data-is="bar-votesummary-result"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
 
 
         let self = this;
@@ -2936,8 +2935,15 @@ riot.tag2('bar-votesummary-result', '', 'bar-votesummary-result,[data-is="bar-vo
             freeCtrls();
         });
 
+        this.goback = () => {
+            events.raise(events.name.BarSummarySearch)
+        }
+
+        this.setup = (criteria) => {
+            console.log('criteria:', criteria)
+        }
 });
-riot.tag2('bar-votesummary-search', '', 'bar-votesummary-search,[data-is="bar-votesummary-search"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
+riot.tag2('bar-votesummary-search', '<h3>Bar Search Criteria.</h3> <button onclick="{onseach}">Search</button>', 'bar-votesummary-search,[data-is="bar-votesummary-search"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
 
 
         let self = this;
@@ -2960,6 +2966,9 @@ riot.tag2('bar-votesummary-search', '', 'bar-votesummary-search,[data-is="bar-vo
             freeCtrls();
         });
 
+        this.onseach = () => {
+            events.raise(events.name.BarSummaryResult)
+        }
 });
 riot.tag2('pie-votesummary-manage', '<flip-screen ref="flipper"> <yield to="viewer"> <pie-votesummary-search ref="viewer" class="view"></pie-votesummary-search> </yield> <yield to="entry"> <pie-votesummary-result ref="entry" class="entry"></pie-votesummary-result> </yield> </flip-screen>', 'pie-votesummary-manage,[data-is="pie-votesummary-manage"]{ margin: 0 auto; padding: 0; width: 100%; height: 100%; } pie-votesummary-manage .view,[data-is="pie-votesummary-manage"] .view,pie-votesummary-manage .entry,[data-is="pie-votesummary-manage"] .entry{ margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; } pie-votesummary-manage .entry,[data-is="pie-votesummary-manage"] .entry{ overflow: auto; }', '', function(opts) {
 
@@ -2967,7 +2976,7 @@ riot.tag2('pie-votesummary-manage', '<flip-screen ref="flipper"> <yield to="view
         let self = this;
 
         let defaultContent = {
-            title: 'Title'
+            title: 'Vote Summary (Pie Chart)'
         }
         this.content = defaultContent;
 
@@ -2996,12 +3005,12 @@ riot.tag2('pie-votesummary-manage', '<flip-screen ref="flipper"> <yield to="view
             addEvt(events.name.LanguageChanged, onLanguageChanged)
             addEvt(events.name.ContentChanged, onContentChanged)
             addEvt(events.name.ScreenChanged, onScreenChanged)
-            addEvt(events.name.BeginEditMember, onBeginEdit)
-            addEvt(events.name.EndEditMember, onEndEdit)
+            addEvt(events.name.PieSummarySearch, onShowSearch)
+            addEvt(events.name.PieSummaryResult, onShowResult)
         }
         let unbindEvents = () => {
-            delEvt(events.name.EndEditMember, onEndEdit)
-            delEvt(events.name.BeginEditMember, onBeginEdit)
+            delEvt(events.name.PieSummaryResult, onShowResult)
+            delEvt(events.name.PieSummarySearch, onShowSearch)
             delEvt(events.name.ScreenChanged, onScreenChanged)
             delEvt(events.name.ContentChanged, onContentChanged)
             delEvt(events.name.LanguageChanged, onLanguageChanged)
@@ -3019,18 +3028,17 @@ riot.tag2('pie-votesummary-manage', '<flip-screen ref="flipper"> <yield to="view
         let onContentChanged = (e) => { updatecontent(); }
         let onLanguageChanged = (e) => { updatecontent(); }
         let onScreenChanged = (e) => { updatecontent(); }
-        let onBeginEdit = (e) => {
-
+        let onShowResult = (e) => {
             if (flipper) {
                 flipper.toggle();
-                let item = e.detail.data.item;
+                let criteria = {
 
-                if (entry) entry.setup(item);
+                }
+                if (entry) entry.setup(criteria);
             }
 
         }
-        let onEndEdit = (e) => {
-
+        let onShowSearch = (e) => {
             if (flipper) {
                 flipper.toggle();
             }
@@ -3038,7 +3046,7 @@ riot.tag2('pie-votesummary-manage', '<flip-screen ref="flipper"> <yield to="view
 
 });
 
-riot.tag2('pie-votesummary-result', '', 'pie-votesummary-result,[data-is="pie-votesummary-result"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
+riot.tag2('pie-votesummary-result', '<h3>Pie Search Result.</h3> <button onclick="{goback}">Close</button>', 'pie-votesummary-result,[data-is="pie-votesummary-result"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
 
 
         let self = this;
@@ -3061,8 +3069,15 @@ riot.tag2('pie-votesummary-result', '', 'pie-votesummary-result,[data-is="pie-vo
             freeCtrls();
         });
 
+        this.goback = () => {
+            events.raise(events.name.PieSummarySearch)
+        }
+
+        this.setup = (criteria) => {
+            console.log('criteria:', criteria)
+        }
 });
-riot.tag2('pie-votesummary-search', '', 'pie-votesummary-search,[data-is="pie-votesummary-search"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
+riot.tag2('pie-votesummary-search', '<h3>Pie Search Criteria.</h3> <button onclick="{onseach}">Search</button>', 'pie-votesummary-search,[data-is="pie-votesummary-search"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
 
 
         let self = this;
@@ -3085,6 +3100,9 @@ riot.tag2('pie-votesummary-search', '', 'pie-votesummary-search,[data-is="pie-vo
             freeCtrls();
         });
 
+        this.onseach = () => {
+            events.raise(events.name.PieSummaryResult)
+        }
 });
 riot.tag2('rawvote-manage', '<flip-screen ref="flipper"> <yield to="viewer"> <rawvote-search ref="viewer" class="view"></rawvote-search> </yield> <yield to="entry"> <rawvote-result ref="entry" class="entry"></rawvote-result> </yield> </flip-screen>', 'rawvote-manage,[data-is="rawvote-manage"]{ margin: 0 auto; padding: 0; width: 100%; height: 100%; } rawvote-manage .view,[data-is="rawvote-manage"] .view,rawvote-manage .entry,[data-is="rawvote-manage"] .entry{ margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; } rawvote-manage .entry,[data-is="rawvote-manage"] .entry{ overflow: auto; }', '', function(opts) {
 
@@ -3092,7 +3110,7 @@ riot.tag2('rawvote-manage', '<flip-screen ref="flipper"> <yield to="viewer"> <ra
         let self = this;
 
         let defaultContent = {
-            title: 'Title'
+            title: 'Raw Vote'
         }
         this.content = defaultContent;
 
@@ -3121,12 +3139,12 @@ riot.tag2('rawvote-manage', '<flip-screen ref="flipper"> <yield to="viewer"> <ra
             addEvt(events.name.LanguageChanged, onLanguageChanged)
             addEvt(events.name.ContentChanged, onContentChanged)
             addEvt(events.name.ScreenChanged, onScreenChanged)
-            addEvt(events.name.BeginEditMember, onBeginEdit)
-            addEvt(events.name.EndEditMember, onEndEdit)
+            addEvt(events.name.RawVoteSearch, onShowSearch)
+            addEvt(events.name.RawVoteResult, onShowResult)
         }
         let unbindEvents = () => {
-            delEvt(events.name.EndEditMember, onEndEdit)
-            delEvt(events.name.BeginEditMember, onBeginEdit)
+            delEvt(events.name.RawVoteResult, onShowResult)
+            delEvt(events.name.RawVoteSearch, onShowSearch)
             delEvt(events.name.ScreenChanged, onScreenChanged)
             delEvt(events.name.ContentChanged, onContentChanged)
             delEvt(events.name.LanguageChanged, onLanguageChanged)
@@ -3144,18 +3162,17 @@ riot.tag2('rawvote-manage', '<flip-screen ref="flipper"> <yield to="viewer"> <ra
         let onContentChanged = (e) => { updatecontent(); }
         let onLanguageChanged = (e) => { updatecontent(); }
         let onScreenChanged = (e) => { updatecontent(); }
-        let onBeginEdit = (e) => {
-
+        let onShowResult = (e) => {
             if (flipper) {
                 flipper.toggle();
-                let item = e.detail.data.item;
+                let criteria = {
 
-                if (entry) entry.setup(item);
+                }
+                if (entry) entry.setup(criteria);
             }
 
         }
-        let onEndEdit = (e) => {
-
+        let onShowSearch = (e) => {
             if (flipper) {
                 flipper.toggle();
             }
@@ -3163,7 +3180,7 @@ riot.tag2('rawvote-manage', '<flip-screen ref="flipper"> <yield to="viewer"> <ra
 
 });
 
-riot.tag2('rawvote-result', '', 'rawvote-result,[data-is="rawvote-result"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
+riot.tag2('rawvote-result', '<h3>Raw Vote Search Result.</h3> <button onclick="{goback}">Close</button>', 'rawvote-result,[data-is="rawvote-result"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
 
 
         let self = this;
@@ -3186,8 +3203,15 @@ riot.tag2('rawvote-result', '', 'rawvote-result,[data-is="rawvote-result"]{ marg
             freeCtrls();
         });
 
+        this.goback = () => {
+            events.raise(events.name.RawVoteSearch)
+        }
+
+        this.setup = (criteria) => {
+            console.log('criteria:', criteria)
+        }
 });
-riot.tag2('rawvote-search', '', 'rawvote-search,[data-is="rawvote-search"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
+riot.tag2('rawvote-search', '<h3>Raw Vote Search Criteria.</h3> <button onclick="{onseach}">Search</button>', 'rawvote-search,[data-is="rawvote-search"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
 
 
         let self = this;
@@ -3210,8 +3234,11 @@ riot.tag2('rawvote-search', '', 'rawvote-search,[data-is="rawvote-search"]{ marg
             freeCtrls();
         });
 
+        this.onseach = () => {
+            events.raise(events.name.RawVoteResult)
+        }
 });
-riot.tag2('report-home', '<div class="report-home-main"> <div class="report-item"> <button> <span class="icon fa-3x fas fa-table cr1"></span> <span class="text">Vote Summary</span> </button> </div> <div class="report-item"> <button> <span class="icon fa-3x fas fa-chart-pie cr2"></span> <span class="text">Pie Chart</span> </button> </div> <div class="report-item"> <button> <span class="icon fa-3x fas fa-chart-bar cr3"></span> <span class="text">Bar Chart</span> </button> </div> <div class="report-item"> <button> <span class="icon fa-3x fas fa-chalkboard-teacher cr6"></span> <span class="text">Staff Compare</span> </button> </div> <div class="report-item"> <button> <span class="icon fa-3x fas fa-table cr4"></span> <span class="text">Raw Vote</span> </button> </div> <div class="report-item"> <button> <span class="icon fa-3x far fa-id-card cr5"></span> <span class="text">Staff Performance</span> </button> </div> </div>', 'report-home,[data-is="report-home"]{ margin: 0 auto; padding: 0; padding-top: 20px; padding-bottom: 20px; width: 100%; height: 100%; display: block; overflow: auto; } @media (min-width: 620px) { report-home .report-home-main,[data-is="report-home"] .report-home-main{ column-count: 2; column-gap: 20px; } } @media (min-width: 960px) { report-home .report-home-main,[data-is="report-home"] .report-home-main{ column-count: 3; column-gap: 20px; } } report-home .report-home-main,[data-is="report-home"] .report-home-main{ margin: 0 auto; padding: 20px; max-width: 1000px; } report-home .report-home-main,[data-is="report-home"] .report-home-main{ display: block; margin: 0 auto; padding: 10px; } report-home .report-home-main .report-item,[data-is="report-home"] .report-home-main .report-item{ margin: 2px auto; padding: 0; margin-bottom: 20px; height: 100px; break-inside: avoid; } report-home .report-home-main .report-item button,[data-is="report-home"] .report-home-main .report-item button{ margin: 0 auto; padding: 0; display: grid; width: 100%; height: 100%; } report-home .report-home-main .report-item button .icon,[data-is="report-home"] .report-home-main .report-item button .icon{ justify-self: center; align-self: center; } report-home .report-home-main .report-item button .text,[data-is="report-home"] .report-home-main .report-item button .text{ justify-self: center; align-self: center; font-size: 1rem; font-weight: bold; } report-home .report-home-main .report-item button .icon.cr1,[data-is="report-home"] .report-home-main .report-item button .icon.cr1{ color: chocolate; } report-home .report-home-main .report-item button .icon.cr2,[data-is="report-home"] .report-home-main .report-item button .icon.cr2{ color: cornflowerblue; } report-home .report-home-main .report-item button .icon.cr3,[data-is="report-home"] .report-home-main .report-item button .icon.cr3{ color: olivedrab; } report-home .report-home-main .report-item button .icon.cr4,[data-is="report-home"] .report-home-main .report-item button .icon.cr4{ color: darkorchid; } report-home .report-home-main .report-item button .icon.cr5,[data-is="report-home"] .report-home-main .report-item button .icon.cr5{ color: sandybrown; } report-home .report-home-main .report-item button .icon.cr6,[data-is="report-home"] .report-home-main .report-item button .icon.cr6{ color: navy; }', '', function(opts) {
+riot.tag2('report-home', '<div class="report-home-main"> <div class="report-item"> <button onclick="{showvotesummary}"> <span class="icon fa-3x fas fa-table cr1"></span> <span class="text">Vote Summary</span> </button> </div> <div class="report-item"> <button onclick="{showpiesummary}"> <span class="icon fa-3x fas fa-chart-pie cr2"></span> <span class="text">Pie Chart</span> </button> </div> <div class="report-item"> <button onclick="{showbarsummary}"> <span class="icon fa-3x fas fa-chart-bar cr3"></span> <span class="text">Bar Chart</span> </button> </div> <div class="report-item"> <button onclick="{showstaffcompare}"> <span class="icon fa-3x fas fa-chalkboard-teacher cr6"></span> <span class="text">Staff Compare</span> </button> </div> <div class="report-item"> <button onclick="{showrawvote}"> <span class="icon fa-3x fas fa-table cr4"></span> <span class="text">Raw Vote</span> </button> </div> <div class="report-item"> <button onclick="{showstaffperf}"> <span class="icon fa-3x far fa-id-card cr5"></span> <span class="text">Staff Performance</span> </button> </div> </div>', 'report-home,[data-is="report-home"]{ margin: 0 auto; padding: 0; padding-top: 20px; padding-bottom: 20px; width: 100%; height: 100%; display: block; overflow: auto; } @media (min-width: 620px) { report-home .report-home-main,[data-is="report-home"] .report-home-main{ column-count: 2; column-gap: 20px; } } @media (min-width: 960px) { report-home .report-home-main,[data-is="report-home"] .report-home-main{ column-count: 3; column-gap: 20px; } } report-home .report-home-main,[data-is="report-home"] .report-home-main{ margin: 0 auto; padding: 20px; max-width: 1000px; } report-home .report-home-main,[data-is="report-home"] .report-home-main{ display: block; margin: 0 auto; padding: 10px; } report-home .report-home-main .report-item,[data-is="report-home"] .report-home-main .report-item{ margin: 2px auto; padding: 0; margin-bottom: 20px; height: 100px; break-inside: avoid; } report-home .report-home-main .report-item button,[data-is="report-home"] .report-home-main .report-item button{ margin: 0 auto; padding: 0; display: grid; width: 100%; height: 100%; } report-home .report-home-main .report-item button .icon,[data-is="report-home"] .report-home-main .report-item button .icon{ justify-self: center; align-self: center; } report-home .report-home-main .report-item button .text,[data-is="report-home"] .report-home-main .report-item button .text{ justify-self: center; align-self: center; font-size: 1rem; font-weight: bold; } report-home .report-home-main .report-item button .icon.cr1,[data-is="report-home"] .report-home-main .report-item button .icon.cr1{ color: chocolate; } report-home .report-home-main .report-item button .icon.cr2,[data-is="report-home"] .report-home-main .report-item button .icon.cr2{ color: cornflowerblue; } report-home .report-home-main .report-item button .icon.cr3,[data-is="report-home"] .report-home-main .report-item button .icon.cr3{ color: olivedrab; } report-home .report-home-main .report-item button .icon.cr4,[data-is="report-home"] .report-home-main .report-item button .icon.cr4{ color: darkorchid; } report-home .report-home-main .report-item button .icon.cr5,[data-is="report-home"] .report-home-main .report-item button .icon.cr5{ color: sandybrown; } report-home .report-home-main .report-item button .icon.cr6,[data-is="report-home"] .report-home-main .report-item button .icon.cr6{ color: navy; }', '', function(opts) {
 
 
         let self = this;
@@ -3234,6 +3261,12 @@ riot.tag2('report-home', '<div class="report-home-main"> <div class="report-item
             freeCtrls();
         });
 
+        this.showpiesummary = () => { screens.show('pie-votesummary-manage') }
+        this.showbarsummary = () => { screens.show('bar-votesummary-manage') }
+        this.showvotesummary = () => { screens.show('votesummary-manage') }
+        this.showrawvote = () => { screens.show('rawvote-manage') }
+        this.showstaffcompare = () => { screens.show('staff-compare-manage') }
+        this.showstaffperf = () => { screens.show('staff-perf-manage') }
 });
 riot.tag2('staff-compare-manage', '<flip-screen ref="flipper"> <yield to="viewer"> <staff-compare-search ref="viewer" class="view"></staff-compare-search> </yield> <yield to="entry"> <staff-compare-result ref="entry" class="entry"></staff-compare-result> </yield> </flip-screen>', 'staff-compare-manage,[data-is="staff-compare-manage"]{ margin: 0 auto; padding: 0; width: 100%; height: 100%; } staff-compare-manage .view,[data-is="staff-compare-manage"] .view,staff-compare-manage .entry,[data-is="staff-compare-manage"] .entry{ margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; } staff-compare-manage .entry,[data-is="staff-compare-manage"] .entry{ overflow: auto; }', '', function(opts) {
 
@@ -3241,7 +3274,7 @@ riot.tag2('staff-compare-manage', '<flip-screen ref="flipper"> <yield to="viewer
         let self = this;
 
         let defaultContent = {
-            title: 'Title'
+            title: 'Staff Compare'
         }
         this.content = defaultContent;
 
@@ -3270,12 +3303,12 @@ riot.tag2('staff-compare-manage', '<flip-screen ref="flipper"> <yield to="viewer
             addEvt(events.name.LanguageChanged, onLanguageChanged)
             addEvt(events.name.ContentChanged, onContentChanged)
             addEvt(events.name.ScreenChanged, onScreenChanged)
-            addEvt(events.name.BeginEditMember, onBeginEdit)
-            addEvt(events.name.EndEditMember, onEndEdit)
+            addEvt(events.name.StaffCompareSearch, onShowSearch)
+            addEvt(events.name.StaffCompareResult, onShowResult)
         }
         let unbindEvents = () => {
-            delEvt(events.name.EndEditMember, onEndEdit)
-            delEvt(events.name.BeginEditMember, onBeginEdit)
+            delEvt(events.name.StaffCompareResult, onShowResult)
+            delEvt(events.name.StaffCompareSearch, onShowSearch)
             delEvt(events.name.ScreenChanged, onScreenChanged)
             delEvt(events.name.ContentChanged, onContentChanged)
             delEvt(events.name.LanguageChanged, onLanguageChanged)
@@ -3293,18 +3326,17 @@ riot.tag2('staff-compare-manage', '<flip-screen ref="flipper"> <yield to="viewer
         let onContentChanged = (e) => { updatecontent(); }
         let onLanguageChanged = (e) => { updatecontent(); }
         let onScreenChanged = (e) => { updatecontent(); }
-        let onBeginEdit = (e) => {
-
+        let onShowResult = (e) => {
             if (flipper) {
                 flipper.toggle();
-                let item = e.detail.data.item;
+                let criteria = {
 
-                if (entry) entry.setup(item);
+                }
+                if (entry) entry.setup(criteria);
             }
 
         }
-        let onEndEdit = (e) => {
-
+        let onShowSearch = (e) => {
             if (flipper) {
                 flipper.toggle();
             }
@@ -3312,7 +3344,7 @@ riot.tag2('staff-compare-manage', '<flip-screen ref="flipper"> <yield to="viewer
 
 });
 
-riot.tag2('staff-compare-result', '', 'staff-compare-result,[data-is="staff-compare-result"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
+riot.tag2('staff-compare-result', '<h3>Staff Compare Search Result.</h3> <button onclick="{goback}">Close</button>', 'staff-compare-result,[data-is="staff-compare-result"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
 
 
         let self = this;
@@ -3335,8 +3367,15 @@ riot.tag2('staff-compare-result', '', 'staff-compare-result,[data-is="staff-comp
             freeCtrls();
         });
 
+        this.goback = () => {
+            events.raise(events.name.StaffCompareSearch)
+        }
+
+        this.setup = (criteria) => {
+            console.log('criteria:', criteria)
+        }
 });
-riot.tag2('staff-compare-search', '', 'staff-compare-search,[data-is="staff-compare-search"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
+riot.tag2('staff-compare-search', '<h3>Staff Compare Search Criteria.</h3> <button onclick="{onseach}">Search</button>', 'staff-compare-search,[data-is="staff-compare-search"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
 
 
         let self = this;
@@ -3359,6 +3398,9 @@ riot.tag2('staff-compare-search', '', 'staff-compare-search,[data-is="staff-comp
             freeCtrls();
         });
 
+        this.onseach = () => {
+            events.raise(events.name.StaffCompareResult)
+        }
 });
 riot.tag2('staff-perf-manage', '<flip-screen ref="flipper"> <yield to="viewer"> <staff-perf-search ref="viewer" class="view"></staff-perf-search> </yield> <yield to="entry"> <staff-perf-result ref="entry" class="entry"></staff-perf-result> </yield> </flip-screen>', 'staff-perf-manage,[data-is="staff-perf-manage"]{ margin: 0 auto; padding: 0; width: 100%; height: 100%; } staff-perf-manage .view,[data-is="staff-perf-manage"] .view,staff-perf-manage .entry,[data-is="staff-perf-manage"] .entry{ margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; } staff-perf-manage .entry,[data-is="staff-perf-manage"] .entry{ overflow: auto; }', '', function(opts) {
 
@@ -3366,7 +3408,7 @@ riot.tag2('staff-perf-manage', '<flip-screen ref="flipper"> <yield to="viewer"> 
         let self = this;
 
         let defaultContent = {
-            title: 'Title'
+            title: 'Staff Performance'
         }
         this.content = defaultContent;
 
@@ -3395,12 +3437,12 @@ riot.tag2('staff-perf-manage', '<flip-screen ref="flipper"> <yield to="viewer"> 
             addEvt(events.name.LanguageChanged, onLanguageChanged)
             addEvt(events.name.ContentChanged, onContentChanged)
             addEvt(events.name.ScreenChanged, onScreenChanged)
-            addEvt(events.name.BeginEditMember, onBeginEdit)
-            addEvt(events.name.EndEditMember, onEndEdit)
+            addEvt(events.name.StaffPerfSearch, onShowSearch)
+            addEvt(events.name.StaffPerfResult, onShowResult)
         }
         let unbindEvents = () => {
-            delEvt(events.name.EndEditMember, onEndEdit)
-            delEvt(events.name.BeginEditMember, onBeginEdit)
+            delEvt(events.name.StaffPerfResult, onShowResult)
+            delEvt(events.name.StaffPerfSearch, onShowSearch)
             delEvt(events.name.ScreenChanged, onScreenChanged)
             delEvt(events.name.ContentChanged, onContentChanged)
             delEvt(events.name.LanguageChanged, onLanguageChanged)
@@ -3418,18 +3460,17 @@ riot.tag2('staff-perf-manage', '<flip-screen ref="flipper"> <yield to="viewer"> 
         let onContentChanged = (e) => { updatecontent(); }
         let onLanguageChanged = (e) => { updatecontent(); }
         let onScreenChanged = (e) => { updatecontent(); }
-        let onBeginEdit = (e) => {
-
+        let onShowResult = (e) => {
             if (flipper) {
                 flipper.toggle();
-                let item = e.detail.data.item;
+                let criteria = {
 
-                if (entry) entry.setup(item);
+                }
+                if (entry) entry.setup(criteria);
             }
 
         }
-        let onEndEdit = (e) => {
-
+        let onShowSearch = (e) => {
             if (flipper) {
                 flipper.toggle();
             }
@@ -3437,7 +3478,7 @@ riot.tag2('staff-perf-manage', '<flip-screen ref="flipper"> <yield to="viewer"> 
 
 });
 
-riot.tag2('staff-perf-result', '', 'staff-perf-result,[data-is="staff-perf-result"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
+riot.tag2('staff-perf-result', '<h3>Staff Performance Search Result.</h3> <button onclick="{goback}">Close</button>', 'staff-perf-result,[data-is="staff-perf-result"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
 
 
         let self = this;
@@ -3460,8 +3501,15 @@ riot.tag2('staff-perf-result', '', 'staff-perf-result,[data-is="staff-perf-resul
             freeCtrls();
         });
 
+        this.goback = () => {
+            events.raise(events.name.StaffPerfSearch)
+        }
+
+        this.setup = (criteria) => {
+            console.log('criteria:', criteria)
+        }
 });
-riot.tag2('staff-perf-search', '', 'staff-perf-search,[data-is="staff-perf-search"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
+riot.tag2('staff-perf-search', '<h3>Staff Performance Search Criteria.</h3> <button onclick="{onseach}">Search</button>', 'staff-perf-search,[data-is="staff-perf-search"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
 
 
         let self = this;
@@ -3484,14 +3532,17 @@ riot.tag2('staff-perf-search', '', 'staff-perf-search,[data-is="staff-perf-searc
             freeCtrls();
         });
 
+        this.onseach = () => {
+            events.raise(events.name.StaffPerfResult)
+        }
 });
-riot.tag2('votesummary-manage', '<flip-screen ref="flipper"> <yield to="viewer"> <votesummmary-search ref="viewer" class="view"></votesummmary-search> </yield> <yield to="entry"> <votesummmary-result ref="entry" class="entry"></votesummmary-result> </yield> </flip-screen>', 'votesummary-manage,[data-is="votesummary-manage"]{ margin: 0 auto; padding: 0; width: 100%; height: 100%; } votesummary-manage .view,[data-is="votesummary-manage"] .view,votesummary-manage .entry,[data-is="votesummary-manage"] .entry{ margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; } votesummary-manage .entry,[data-is="votesummary-manage"] .entry{ overflow: auto; }', '', function(opts) {
+riot.tag2('votesummary-manage', '<flip-screen ref="flipper"> <yield to="viewer"> <votesummary-search ref="viewer" class="view"></votesummary-search> </yield> <yield to="entry"> <votesummary-result ref="entry" class="entry"></votesummary-result> </yield> </flip-screen>', 'votesummary-manage,[data-is="votesummary-manage"]{ margin: 0 auto; padding: 0; width: 100%; height: 100%; } votesummary-manage .view,[data-is="votesummary-manage"] .view,votesummary-manage .entry,[data-is="votesummary-manage"] .entry{ margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; } votesummary-manage .entry,[data-is="votesummary-manage"] .entry{ overflow: auto; }', '', function(opts) {
 
 
         let self = this;
 
         let defaultContent = {
-            title: 'Title'
+            title: 'Vote Summary'
         }
         this.content = defaultContent;
 
@@ -3520,12 +3571,12 @@ riot.tag2('votesummary-manage', '<flip-screen ref="flipper"> <yield to="viewer">
             addEvt(events.name.LanguageChanged, onLanguageChanged)
             addEvt(events.name.ContentChanged, onContentChanged)
             addEvt(events.name.ScreenChanged, onScreenChanged)
-            addEvt(events.name.BeginEditMember, onBeginEdit)
-            addEvt(events.name.EndEditMember, onEndEdit)
+            addEvt(events.name.VoteSummarySearch, onShowSearch)
+            addEvt(events.name.VoteSummaryResult, onShowResult)
         }
         let unbindEvents = () => {
-            delEvt(events.name.EndEditMember, onEndEdit)
-            delEvt(events.name.BeginEditMember, onBeginEdit)
+            delEvt(events.name.VoteSummaryResult, onShowResult)
+            delEvt(events.name.VoteSummarySearch, onShowSearch)
             delEvt(events.name.ScreenChanged, onScreenChanged)
             delEvt(events.name.ContentChanged, onContentChanged)
             delEvt(events.name.LanguageChanged, onLanguageChanged)
@@ -3543,18 +3594,17 @@ riot.tag2('votesummary-manage', '<flip-screen ref="flipper"> <yield to="viewer">
         let onContentChanged = (e) => { updatecontent(); }
         let onLanguageChanged = (e) => { updatecontent(); }
         let onScreenChanged = (e) => { updatecontent(); }
-        let onBeginEdit = (e) => {
-
+        let onShowResult = (e) => {
             if (flipper) {
                 flipper.toggle();
-                let item = e.detail.data.item;
+                let criteria = {
 
-                if (entry) entry.setup(item);
+                }
+                if (entry) entry.setup(criteria);
             }
 
         }
-        let onEndEdit = (e) => {
-
+        let onShowSearch = (e) => {
             if (flipper) {
                 flipper.toggle();
             }
@@ -3562,7 +3612,7 @@ riot.tag2('votesummary-manage', '<flip-screen ref="flipper"> <yield to="viewer">
 
 });
 
-riot.tag2('votesummary-result', '', 'votesummary-result,[data-is="votesummary-result"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
+riot.tag2('votesummary-result', '<h3>Vote Summary Search Result.</h3> <button onclick="{goback}">Close</button>', 'votesummary-result,[data-is="votesummary-result"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
 
 
         let self = this;
@@ -3585,8 +3635,15 @@ riot.tag2('votesummary-result', '', 'votesummary-result,[data-is="votesummary-re
             freeCtrls();
         });
 
+        this.goback = () => {
+            events.raise(events.name.VoteSummarySearch)
+        }
+
+        this.setup = (criteria) => {
+            console.log('criteria:', criteria)
+        }
 });
-riot.tag2('votesummary-search', '', 'votesummary-search,[data-is="votesummary-search"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
+riot.tag2('votesummary-search', '<h3>Vote Summary Search Criteria.</h3> <button onclick="{onseach}">Search</button>', 'votesummary-search,[data-is="votesummary-search"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
 
 
         let self = this;
@@ -3609,6 +3666,9 @@ riot.tag2('votesummary-search', '', 'votesummary-search,[data-is="votesummary-se
             freeCtrls();
         });
 
+        this.onseach = () => {
+            events.raise(events.name.VoteSummaryResult)
+        }
 });
 riot.tag2('edl-customer-editor', '', 'edl-customer-editor,[data-is="edl-customer-editor"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
 

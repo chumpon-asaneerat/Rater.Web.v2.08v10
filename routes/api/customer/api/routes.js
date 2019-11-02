@@ -264,7 +264,7 @@ const api = class {
             if (currLang) {
                 currLang.desc = row.QSetDescription;
                 currLang.beginDate = row.BeginDate;
-                currLang.deendDatesc = row.EndDate;
+                currLang.endDate = row.EndDate;
             }
         }        
 

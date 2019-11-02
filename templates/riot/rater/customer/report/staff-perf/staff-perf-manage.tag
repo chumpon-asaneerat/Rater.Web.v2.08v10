@@ -38,7 +38,7 @@
         //#region content variables and methods
 
         let defaultContent = {
-            title: 'Title'
+            title: 'Staff Performance'
         }
         this.content = defaultContent;
 
@@ -79,12 +79,12 @@
             addEvt(events.name.LanguageChanged, onLanguageChanged)
             addEvt(events.name.ContentChanged, onContentChanged)
             addEvt(events.name.ScreenChanged, onScreenChanged)
-            addEvt(events.name.BeginEditMember, onBeginEdit)
-            addEvt(events.name.EndEditMember, onEndEdit)
+            addEvt(events.name.StaffPerfSearch, onShowSearch)
+            addEvt(events.name.StaffPerfResult, onShowResult)
         }
         let unbindEvents = () => {
-            delEvt(events.name.EndEditMember, onEndEdit)
-            delEvt(events.name.BeginEditMember, onBeginEdit)
+            delEvt(events.name.StaffPerfResult, onShowResult)
+            delEvt(events.name.StaffPerfSearch, onShowSearch)
             delEvt(events.name.ScreenChanged, onScreenChanged)
             delEvt(events.name.ContentChanged, onContentChanged)
             delEvt(events.name.LanguageChanged, onLanguageChanged)
@@ -110,20 +110,17 @@
         let onContentChanged = (e) => { updatecontent(); }
         let onLanguageChanged = (e) => { updatecontent(); }
         let onScreenChanged = (e) => { updatecontent(); }
-        let onBeginEdit = (e) => {
-            //console.log('Begin Edit');
-            //console.log('flipper:', flipper)
-            //console.log('entry:', entry)
+        let onShowResult = (e) => {
             if (flipper) {
                 flipper.toggle();
-                let item = e.detail.data.item;
-                //console.log('begin edit item:', item)
-                if (entry) entry.setup(item);
+                let criteria = {
+
+                }
+                if (entry) entry.setup(criteria);
             }
             
         }
-        let onEndEdit = (e) => {
-            //console.log('End Edit');
+        let onShowSearch = (e) => {
             if (flipper) {
                 flipper.toggle();
             }

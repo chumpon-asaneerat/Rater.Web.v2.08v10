@@ -1,37 +1,37 @@
 <report-home>
     <div class="report-home-main">
         <div class="report-item">
-            <button>
+            <button onclick="{ showvotesummary }">
                 <span class="icon fa-3x fas fa-table cr1"></span>
                 <span class="text">Vote Summary</span>
             </button>
         </div>
         <div class="report-item">
-            <button>
+            <button onclick="{ showpiesummary }">
                 <span class="icon fa-3x fas fa-chart-pie cr2"></span>
                 <span class="text">Pie Chart</span>
             </button>
         </div>
         <div class="report-item">
-            <button>
+            <button onclick="{ showbarsummary }">
                 <span class="icon fa-3x fas fa-chart-bar cr3"></span>
                 <span class="text">Bar Chart</span>
             </button>
         </div>
         <div class="report-item">
-            <button>
+            <button onclick="{ showstaffcompare }">
                 <span class="icon fa-3x fas fa-chalkboard-teacher cr6"></span>
                 <span class="text">Staff Compare</span>
             </button>
         </div>
         <div class="report-item">
-            <button>
+            <button onclick="{ showrawvote }">
                 <span class="icon fa-3x fas fa-table cr4"></span>
                 <span class="text">Raw Vote</span>
             </button>
         </div>
         <div class="report-item">
-            <button>
+            <button onclick="{ showstaffperf }">
                 <span class="icon fa-3x far fa-id-card cr5"></span>
                 <span class="text">Staff Performance</span>
             </button>
@@ -144,5 +144,12 @@
         });
 
         //#endregion
+
+        this.showpiesummary = () => { screens.show('pie-votesummary-manage') }
+        this.showbarsummary = () => { screens.show('bar-votesummary-manage') }
+        this.showvotesummary = () => { screens.show('votesummary-manage') }
+        this.showrawvote = () => { screens.show('rawvote-manage') }
+        this.showstaffcompare = () => { screens.show('staff-compare-manage') }
+        this.showstaffperf = () => { screens.show('staff-perf-manage') }
     </script>
 </report-home>

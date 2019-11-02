@@ -1,4 +1,6 @@
 <staff-perf-search>
+    <h3>Staff Performance Search Criteria.</h3>
+    <button onclick="{ onseach }">Search</button>
     <style>
         :scope {
             margin: 0;
@@ -48,5 +50,9 @@
         });
 
         //#endregion
+
+        this.onseach = () => {
+            events.raise(events.name.StaffPerfResult)
+        }
     </script>
 </staff-perf-search>

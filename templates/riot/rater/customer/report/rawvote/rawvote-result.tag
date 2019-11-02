@@ -1,4 +1,6 @@
 <rawvote-result>
+    <h3>Raw Vote Search Result.</h3>
+    <button onclick="{ goback }">Close</button>
     <style>
         :scope {
             margin: 0;
@@ -48,5 +50,13 @@
         });
 
         //#endregion
+
+        this.goback = () => {
+            events.raise(events.name.RawVoteSearch)
+        }
+
+        this.setup = (criteria) => {
+            console.log('criteria:', criteria)
+        }
     </script>
 </rawvote-result>

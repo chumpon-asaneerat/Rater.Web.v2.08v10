@@ -1,4 +1,6 @@
 <staff-compare-result>
+    <h3>Staff Compare Search Result.</h3>
+    <button onclick="{ goback }">Close</button>
     <style>
         :scope {
             margin: 0;
@@ -48,5 +50,13 @@
         });
 
         //#endregion
+
+        this.goback = () => {
+            events.raise(events.name.StaffCompareSearch)
+        }
+
+        this.setup = (criteria) => {
+            console.log('criteria:', criteria)
+        }
     </script>
 </staff-compare-result>

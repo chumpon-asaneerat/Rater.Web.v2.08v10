@@ -1,4 +1,6 @@
 <votesummary-result>
+    <h3>Vote Summary Search Result.</h3>
+    <button onclick="{ goback }">Close</button>
     <style>
         :scope {
             margin: 0;
@@ -48,5 +50,13 @@
         });
 
         //#endregion
+
+        this.goback = () => {
+            events.raise(events.name.VoteSummarySearch)
+        }
+
+        this.setup = (criteria) => {
+            console.log('criteria:', criteria)
+        }
     </script>
 </votesummary-result>

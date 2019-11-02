@@ -1,4 +1,6 @@
 <pie-votesummary-search>
+    <h3>Pie Search Criteria.</h3>
+    <button onclick="{ onseach }">Search</button>
     <style>
         :scope {
             margin: 0;
@@ -48,5 +50,9 @@
         });
 
         //#endregion
+
+        this.onseach = () => {
+            events.raise(events.name.PieSummaryResult)
+        }
     </script>
 </pie-votesummary-search>
