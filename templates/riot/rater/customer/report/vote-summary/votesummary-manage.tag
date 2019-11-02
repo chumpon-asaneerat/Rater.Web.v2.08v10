@@ -1,0 +1,2 @@
+<votesummary-manage>
+</votesummary-manage>

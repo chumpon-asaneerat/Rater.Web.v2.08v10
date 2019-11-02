@@ -1,4 +1,4 @@
-<staffperf-search>
+<staff-perf-search>
     <style>
         :scope {
             margin: 0;
@@ -49,4 +49,4 @@
 
         //#endregion
     </script>
-</staffperf-search>
+</staff-perf-search>

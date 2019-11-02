@@ -2836,6 +2836,9 @@ riot.tag2('question-manage', '', 'question-manage,[data-is="question-manage"]{ m
         });
 
 });
+riot.tag2('bar-votesummary-manage', '', '', '', function(opts) {
+});
+
 riot.tag2('bar-votesummary-result', '', 'bar-votesummary-result,[data-is="bar-votesummary-result"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
 
 
@@ -2884,6 +2887,9 @@ riot.tag2('bar-votesummary-search', '', 'bar-votesummary-search,[data-is="bar-vo
         });
 
 });
+riot.tag2('pie-votesummary-manage', '', '', '', function(opts) {
+});
+
 riot.tag2('pie-votesummary-result', '', 'pie-votesummary-result,[data-is="pie-votesummary-result"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
 
 
@@ -2932,6 +2938,9 @@ riot.tag2('pie-votesummary-search', '', 'pie-votesummary-search,[data-is="pie-vo
         });
 
 });
+riot.tag2('rawvote-manage', '', '', '', function(opts) {
+});
+
 riot.tag2('rawvote-result', '', 'rawvote-result,[data-is="rawvote-result"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
 
 
@@ -3004,7 +3013,10 @@ riot.tag2('report-home', '<div class="report-home-main"> <div class="report-item
         });
 
 });
-riot.tag2('staffperf-result', '', 'staffperf-result,[data-is="staffperf-result"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
+riot.tag2('staff-compare-manage', '', '', '', function(opts) {
+});
+
+riot.tag2('staff-compare-result', '', 'staff-compare-result,[data-is="staff-compare-result"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
 
 
         let self = this;
@@ -3028,7 +3040,7 @@ riot.tag2('staffperf-result', '', 'staffperf-result,[data-is="staffperf-result"]
         });
 
 });
-riot.tag2('staffperf-search', '', 'staffperf-search,[data-is="staffperf-search"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
+riot.tag2('staff-compare-search', '', 'staff-compare-search,[data-is="staff-compare-search"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
 
 
         let self = this;
@@ -3052,6 +3064,60 @@ riot.tag2('staffperf-search', '', 'staffperf-search,[data-is="staffperf-search"]
         });
 
 });
+riot.tag2('staff-perf-manage', '', '', '', function(opts) {
+});
+
+riot.tag2('staff-perf-result', '', 'staff-perf-result,[data-is="staff-perf-result"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
+
+
+        let self = this;
+
+        let initCtrls = () => {}
+        let freeCtrls = () => {}
+
+        let addEvt = (evtName, handle) => { document.addEventListener(evtName, handle) }
+        let delEvt = (evtName, handle) => { document.removeEventListener(evtName, handle) }
+
+        let bindEvents = () => {}
+        let unbindEvents = () => {}
+
+        this.on('mount', () => {
+            initCtrls();
+            bindEvents();
+        });
+        this.on('unmount', () => {
+            unbindEvents();
+            freeCtrls();
+        });
+
+});
+riot.tag2('staff-perf-search', '', 'staff-perf-search,[data-is="staff-perf-search"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
+
+
+        let self = this;
+
+        let initCtrls = () => {}
+        let freeCtrls = () => {}
+
+        let addEvt = (evtName, handle) => { document.addEventListener(evtName, handle) }
+        let delEvt = (evtName, handle) => { document.removeEventListener(evtName, handle) }
+
+        let bindEvents = () => {}
+        let unbindEvents = () => {}
+
+        this.on('mount', () => {
+            initCtrls();
+            bindEvents();
+        });
+        this.on('unmount', () => {
+            unbindEvents();
+            freeCtrls();
+        });
+
+});
+riot.tag2('votesummary-manage', '', '', '', function(opts) {
+});
+
 riot.tag2('votesummary-result', '', 'votesummary-result,[data-is="votesummary-result"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
 
 
