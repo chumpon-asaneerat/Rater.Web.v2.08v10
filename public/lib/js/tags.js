@@ -2836,7 +2836,81 @@ riot.tag2('question-manage', '', 'question-manage,[data-is="question-manage"]{ m
         });
 
 });
-riot.tag2('bar-votesummary-manage', '', '', '', function(opts) {
+riot.tag2('bar-votesummary-manage', '<flip-screen ref="flipper"> <yield to="viewer"> <bar-votesummary-search ref="viewer" class="view"></bar-votesummary-search> </yield> <yield to="entry"> <bar-votesummary-result ref="entry" class="entry"></bar-votesummary-result> </yield> </flip-screen>', 'bar-votesummary-manage,[data-is="bar-votesummary-manage"]{ margin: 0 auto; padding: 0; width: 100%; height: 100%; } bar-votesummary-manage .view,[data-is="bar-votesummary-manage"] .view,bar-votesummary-manage .entry,[data-is="bar-votesummary-manage"] .entry{ margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; } bar-votesummary-manage .entry,[data-is="bar-votesummary-manage"] .entry{ overflow: auto; }', '', function(opts) {
+
+
+        let self = this;
+
+        let defaultContent = {
+            title: 'Title'
+        }
+        this.content = defaultContent;
+
+        let updatecontent = () => {
+            let scrId = screens.current.screenId;
+            let scrContent = (contents.current && contents.current.screens) ? contents.current.screens[scrId] : null;
+            self.content = scrContent ? scrContent : defaultContent;
+            self.update();
+        }
+
+        let flipper, view, entry;
+        let initCtrls = () => {
+
+            flipper = self.refs['flipper'];
+            entry = (flipper) ? flipper.refs['entry'] : undefined;
+        }
+        let freeCtrls = () => {
+            entry = null;
+            flipper = null;
+        }
+
+        let addEvt = (evtName, handle) => { document.addEventListener(evtName, handle) }
+        let delEvt = (evtName, handle) => { document.removeEventListener(evtName, handle) }
+
+        let bindEvents = () => {
+            addEvt(events.name.LanguageChanged, onLanguageChanged)
+            addEvt(events.name.ContentChanged, onContentChanged)
+            addEvt(events.name.ScreenChanged, onScreenChanged)
+            addEvt(events.name.BeginEditMember, onBeginEdit)
+            addEvt(events.name.EndEditMember, onEndEdit)
+        }
+        let unbindEvents = () => {
+            delEvt(events.name.EndEditMember, onEndEdit)
+            delEvt(events.name.BeginEditMember, onBeginEdit)
+            delEvt(events.name.ScreenChanged, onScreenChanged)
+            delEvt(events.name.ContentChanged, onContentChanged)
+            delEvt(events.name.LanguageChanged, onLanguageChanged)
+        }
+
+        this.on('mount', () => {
+            initCtrls();
+            bindEvents();
+        });
+        this.on('unmount', () => {
+            unbindEvents();
+            freeCtrls();
+        });
+
+        let onContentChanged = (e) => { updatecontent(); }
+        let onLanguageChanged = (e) => { updatecontent(); }
+        let onScreenChanged = (e) => { updatecontent(); }
+        let onBeginEdit = (e) => {
+
+            if (flipper) {
+                flipper.toggle();
+                let item = e.detail.data.item;
+
+                if (entry) entry.setup(item);
+            }
+
+        }
+        let onEndEdit = (e) => {
+
+            if (flipper) {
+                flipper.toggle();
+            }
+        }
+
 });
 
 riot.tag2('bar-votesummary-result', '', 'bar-votesummary-result,[data-is="bar-votesummary-result"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
@@ -2887,7 +2961,81 @@ riot.tag2('bar-votesummary-search', '', 'bar-votesummary-search,[data-is="bar-vo
         });
 
 });
-riot.tag2('pie-votesummary-manage', '', '', '', function(opts) {
+riot.tag2('pie-votesummary-manage', '<flip-screen ref="flipper"> <yield to="viewer"> <pie-votesummary-search ref="viewer" class="view"></pie-votesummary-search> </yield> <yield to="entry"> <pie-votesummary-result ref="entry" class="entry"></pie-votesummary-result> </yield> </flip-screen>', 'pie-votesummary-manage,[data-is="pie-votesummary-manage"]{ margin: 0 auto; padding: 0; width: 100%; height: 100%; } pie-votesummary-manage .view,[data-is="pie-votesummary-manage"] .view,pie-votesummary-manage .entry,[data-is="pie-votesummary-manage"] .entry{ margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; } pie-votesummary-manage .entry,[data-is="pie-votesummary-manage"] .entry{ overflow: auto; }', '', function(opts) {
+
+
+        let self = this;
+
+        let defaultContent = {
+            title: 'Title'
+        }
+        this.content = defaultContent;
+
+        let updatecontent = () => {
+            let scrId = screens.current.screenId;
+            let scrContent = (contents.current && contents.current.screens) ? contents.current.screens[scrId] : null;
+            self.content = scrContent ? scrContent : defaultContent;
+            self.update();
+        }
+
+        let flipper, view, entry;
+        let initCtrls = () => {
+
+            flipper = self.refs['flipper'];
+            entry = (flipper) ? flipper.refs['entry'] : undefined;
+        }
+        let freeCtrls = () => {
+            entry = null;
+            flipper = null;
+        }
+
+        let addEvt = (evtName, handle) => { document.addEventListener(evtName, handle) }
+        let delEvt = (evtName, handle) => { document.removeEventListener(evtName, handle) }
+
+        let bindEvents = () => {
+            addEvt(events.name.LanguageChanged, onLanguageChanged)
+            addEvt(events.name.ContentChanged, onContentChanged)
+            addEvt(events.name.ScreenChanged, onScreenChanged)
+            addEvt(events.name.BeginEditMember, onBeginEdit)
+            addEvt(events.name.EndEditMember, onEndEdit)
+        }
+        let unbindEvents = () => {
+            delEvt(events.name.EndEditMember, onEndEdit)
+            delEvt(events.name.BeginEditMember, onBeginEdit)
+            delEvt(events.name.ScreenChanged, onScreenChanged)
+            delEvt(events.name.ContentChanged, onContentChanged)
+            delEvt(events.name.LanguageChanged, onLanguageChanged)
+        }
+
+        this.on('mount', () => {
+            initCtrls();
+            bindEvents();
+        });
+        this.on('unmount', () => {
+            unbindEvents();
+            freeCtrls();
+        });
+
+        let onContentChanged = (e) => { updatecontent(); }
+        let onLanguageChanged = (e) => { updatecontent(); }
+        let onScreenChanged = (e) => { updatecontent(); }
+        let onBeginEdit = (e) => {
+
+            if (flipper) {
+                flipper.toggle();
+                let item = e.detail.data.item;
+
+                if (entry) entry.setup(item);
+            }
+
+        }
+        let onEndEdit = (e) => {
+
+            if (flipper) {
+                flipper.toggle();
+            }
+        }
+
 });
 
 riot.tag2('pie-votesummary-result', '', 'pie-votesummary-result,[data-is="pie-votesummary-result"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
@@ -2938,7 +3086,81 @@ riot.tag2('pie-votesummary-search', '', 'pie-votesummary-search,[data-is="pie-vo
         });
 
 });
-riot.tag2('rawvote-manage', '', '', '', function(opts) {
+riot.tag2('rawvote-manage', '<flip-screen ref="flipper"> <yield to="viewer"> <rawvote-search ref="viewer" class="view"></rawvote-search> </yield> <yield to="entry"> <rawvote-result ref="entry" class="entry"></rawvote-result> </yield> </flip-screen>', 'rawvote-manage,[data-is="rawvote-manage"]{ margin: 0 auto; padding: 0; width: 100%; height: 100%; } rawvote-manage .view,[data-is="rawvote-manage"] .view,rawvote-manage .entry,[data-is="rawvote-manage"] .entry{ margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; } rawvote-manage .entry,[data-is="rawvote-manage"] .entry{ overflow: auto; }', '', function(opts) {
+
+
+        let self = this;
+
+        let defaultContent = {
+            title: 'Title'
+        }
+        this.content = defaultContent;
+
+        let updatecontent = () => {
+            let scrId = screens.current.screenId;
+            let scrContent = (contents.current && contents.current.screens) ? contents.current.screens[scrId] : null;
+            self.content = scrContent ? scrContent : defaultContent;
+            self.update();
+        }
+
+        let flipper, view, entry;
+        let initCtrls = () => {
+
+            flipper = self.refs['flipper'];
+            entry = (flipper) ? flipper.refs['entry'] : undefined;
+        }
+        let freeCtrls = () => {
+            entry = null;
+            flipper = null;
+        }
+
+        let addEvt = (evtName, handle) => { document.addEventListener(evtName, handle) }
+        let delEvt = (evtName, handle) => { document.removeEventListener(evtName, handle) }
+
+        let bindEvents = () => {
+            addEvt(events.name.LanguageChanged, onLanguageChanged)
+            addEvt(events.name.ContentChanged, onContentChanged)
+            addEvt(events.name.ScreenChanged, onScreenChanged)
+            addEvt(events.name.BeginEditMember, onBeginEdit)
+            addEvt(events.name.EndEditMember, onEndEdit)
+        }
+        let unbindEvents = () => {
+            delEvt(events.name.EndEditMember, onEndEdit)
+            delEvt(events.name.BeginEditMember, onBeginEdit)
+            delEvt(events.name.ScreenChanged, onScreenChanged)
+            delEvt(events.name.ContentChanged, onContentChanged)
+            delEvt(events.name.LanguageChanged, onLanguageChanged)
+        }
+
+        this.on('mount', () => {
+            initCtrls();
+            bindEvents();
+        });
+        this.on('unmount', () => {
+            unbindEvents();
+            freeCtrls();
+        });
+
+        let onContentChanged = (e) => { updatecontent(); }
+        let onLanguageChanged = (e) => { updatecontent(); }
+        let onScreenChanged = (e) => { updatecontent(); }
+        let onBeginEdit = (e) => {
+
+            if (flipper) {
+                flipper.toggle();
+                let item = e.detail.data.item;
+
+                if (entry) entry.setup(item);
+            }
+
+        }
+        let onEndEdit = (e) => {
+
+            if (flipper) {
+                flipper.toggle();
+            }
+        }
+
 });
 
 riot.tag2('rawvote-result', '', 'rawvote-result,[data-is="rawvote-result"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
@@ -3013,7 +3235,81 @@ riot.tag2('report-home', '<div class="report-home-main"> <div class="report-item
         });
 
 });
-riot.tag2('staff-compare-manage', '', '', '', function(opts) {
+riot.tag2('staff-compare-manage', '<flip-screen ref="flipper"> <yield to="viewer"> <staff-compare-search ref="viewer" class="view"></staff-compare-search> </yield> <yield to="entry"> <staff-compare-result ref="entry" class="entry"></staff-compare-result> </yield> </flip-screen>', 'staff-compare-manage,[data-is="staff-compare-manage"]{ margin: 0 auto; padding: 0; width: 100%; height: 100%; } staff-compare-manage .view,[data-is="staff-compare-manage"] .view,staff-compare-manage .entry,[data-is="staff-compare-manage"] .entry{ margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; } staff-compare-manage .entry,[data-is="staff-compare-manage"] .entry{ overflow: auto; }', '', function(opts) {
+
+
+        let self = this;
+
+        let defaultContent = {
+            title: 'Title'
+        }
+        this.content = defaultContent;
+
+        let updatecontent = () => {
+            let scrId = screens.current.screenId;
+            let scrContent = (contents.current && contents.current.screens) ? contents.current.screens[scrId] : null;
+            self.content = scrContent ? scrContent : defaultContent;
+            self.update();
+        }
+
+        let flipper, view, entry;
+        let initCtrls = () => {
+
+            flipper = self.refs['flipper'];
+            entry = (flipper) ? flipper.refs['entry'] : undefined;
+        }
+        let freeCtrls = () => {
+            entry = null;
+            flipper = null;
+        }
+
+        let addEvt = (evtName, handle) => { document.addEventListener(evtName, handle) }
+        let delEvt = (evtName, handle) => { document.removeEventListener(evtName, handle) }
+
+        let bindEvents = () => {
+            addEvt(events.name.LanguageChanged, onLanguageChanged)
+            addEvt(events.name.ContentChanged, onContentChanged)
+            addEvt(events.name.ScreenChanged, onScreenChanged)
+            addEvt(events.name.BeginEditMember, onBeginEdit)
+            addEvt(events.name.EndEditMember, onEndEdit)
+        }
+        let unbindEvents = () => {
+            delEvt(events.name.EndEditMember, onEndEdit)
+            delEvt(events.name.BeginEditMember, onBeginEdit)
+            delEvt(events.name.ScreenChanged, onScreenChanged)
+            delEvt(events.name.ContentChanged, onContentChanged)
+            delEvt(events.name.LanguageChanged, onLanguageChanged)
+        }
+
+        this.on('mount', () => {
+            initCtrls();
+            bindEvents();
+        });
+        this.on('unmount', () => {
+            unbindEvents();
+            freeCtrls();
+        });
+
+        let onContentChanged = (e) => { updatecontent(); }
+        let onLanguageChanged = (e) => { updatecontent(); }
+        let onScreenChanged = (e) => { updatecontent(); }
+        let onBeginEdit = (e) => {
+
+            if (flipper) {
+                flipper.toggle();
+                let item = e.detail.data.item;
+
+                if (entry) entry.setup(item);
+            }
+
+        }
+        let onEndEdit = (e) => {
+
+            if (flipper) {
+                flipper.toggle();
+            }
+        }
+
 });
 
 riot.tag2('staff-compare-result', '', 'staff-compare-result,[data-is="staff-compare-result"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
@@ -3064,7 +3360,81 @@ riot.tag2('staff-compare-search', '', 'staff-compare-search,[data-is="staff-comp
         });
 
 });
-riot.tag2('staff-perf-manage', '', '', '', function(opts) {
+riot.tag2('staff-perf-manage', '<flip-screen ref="flipper"> <yield to="viewer"> <staff-perf-search ref="viewer" class="view"></staff-perf-search> </yield> <yield to="entry"> <staff-perf-result ref="entry" class="entry"></staff-perf-result> </yield> </flip-screen>', 'staff-perf-manage,[data-is="staff-perf-manage"]{ margin: 0 auto; padding: 0; width: 100%; height: 100%; } staff-perf-manage .view,[data-is="staff-perf-manage"] .view,staff-perf-manage .entry,[data-is="staff-perf-manage"] .entry{ margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; } staff-perf-manage .entry,[data-is="staff-perf-manage"] .entry{ overflow: auto; }', '', function(opts) {
+
+
+        let self = this;
+
+        let defaultContent = {
+            title: 'Title'
+        }
+        this.content = defaultContent;
+
+        let updatecontent = () => {
+            let scrId = screens.current.screenId;
+            let scrContent = (contents.current && contents.current.screens) ? contents.current.screens[scrId] : null;
+            self.content = scrContent ? scrContent : defaultContent;
+            self.update();
+        }
+
+        let flipper, view, entry;
+        let initCtrls = () => {
+
+            flipper = self.refs['flipper'];
+            entry = (flipper) ? flipper.refs['entry'] : undefined;
+        }
+        let freeCtrls = () => {
+            entry = null;
+            flipper = null;
+        }
+
+        let addEvt = (evtName, handle) => { document.addEventListener(evtName, handle) }
+        let delEvt = (evtName, handle) => { document.removeEventListener(evtName, handle) }
+
+        let bindEvents = () => {
+            addEvt(events.name.LanguageChanged, onLanguageChanged)
+            addEvt(events.name.ContentChanged, onContentChanged)
+            addEvt(events.name.ScreenChanged, onScreenChanged)
+            addEvt(events.name.BeginEditMember, onBeginEdit)
+            addEvt(events.name.EndEditMember, onEndEdit)
+        }
+        let unbindEvents = () => {
+            delEvt(events.name.EndEditMember, onEndEdit)
+            delEvt(events.name.BeginEditMember, onBeginEdit)
+            delEvt(events.name.ScreenChanged, onScreenChanged)
+            delEvt(events.name.ContentChanged, onContentChanged)
+            delEvt(events.name.LanguageChanged, onLanguageChanged)
+        }
+
+        this.on('mount', () => {
+            initCtrls();
+            bindEvents();
+        });
+        this.on('unmount', () => {
+            unbindEvents();
+            freeCtrls();
+        });
+
+        let onContentChanged = (e) => { updatecontent(); }
+        let onLanguageChanged = (e) => { updatecontent(); }
+        let onScreenChanged = (e) => { updatecontent(); }
+        let onBeginEdit = (e) => {
+
+            if (flipper) {
+                flipper.toggle();
+                let item = e.detail.data.item;
+
+                if (entry) entry.setup(item);
+            }
+
+        }
+        let onEndEdit = (e) => {
+
+            if (flipper) {
+                flipper.toggle();
+            }
+        }
+
 });
 
 riot.tag2('staff-perf-result', '', 'staff-perf-result,[data-is="staff-perf-result"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
@@ -3115,7 +3485,81 @@ riot.tag2('staff-perf-search', '', 'staff-perf-search,[data-is="staff-perf-searc
         });
 
 });
-riot.tag2('votesummary-manage', '', '', '', function(opts) {
+riot.tag2('votesummary-manage', '<flip-screen ref="flipper"> <yield to="viewer"> <votesummmary-search ref="viewer" class="view"></votesummmary-search> </yield> <yield to="entry"> <votesummmary-result ref="entry" class="entry"></votesummmary-result> </yield> </flip-screen>', 'votesummary-manage,[data-is="votesummary-manage"]{ margin: 0 auto; padding: 0; width: 100%; height: 100%; } votesummary-manage .view,[data-is="votesummary-manage"] .view,votesummary-manage .entry,[data-is="votesummary-manage"] .entry{ margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; } votesummary-manage .entry,[data-is="votesummary-manage"] .entry{ overflow: auto; }', '', function(opts) {
+
+
+        let self = this;
+
+        let defaultContent = {
+            title: 'Title'
+        }
+        this.content = defaultContent;
+
+        let updatecontent = () => {
+            let scrId = screens.current.screenId;
+            let scrContent = (contents.current && contents.current.screens) ? contents.current.screens[scrId] : null;
+            self.content = scrContent ? scrContent : defaultContent;
+            self.update();
+        }
+
+        let flipper, view, entry;
+        let initCtrls = () => {
+
+            flipper = self.refs['flipper'];
+            entry = (flipper) ? flipper.refs['entry'] : undefined;
+        }
+        let freeCtrls = () => {
+            entry = null;
+            flipper = null;
+        }
+
+        let addEvt = (evtName, handle) => { document.addEventListener(evtName, handle) }
+        let delEvt = (evtName, handle) => { document.removeEventListener(evtName, handle) }
+
+        let bindEvents = () => {
+            addEvt(events.name.LanguageChanged, onLanguageChanged)
+            addEvt(events.name.ContentChanged, onContentChanged)
+            addEvt(events.name.ScreenChanged, onScreenChanged)
+            addEvt(events.name.BeginEditMember, onBeginEdit)
+            addEvt(events.name.EndEditMember, onEndEdit)
+        }
+        let unbindEvents = () => {
+            delEvt(events.name.EndEditMember, onEndEdit)
+            delEvt(events.name.BeginEditMember, onBeginEdit)
+            delEvt(events.name.ScreenChanged, onScreenChanged)
+            delEvt(events.name.ContentChanged, onContentChanged)
+            delEvt(events.name.LanguageChanged, onLanguageChanged)
+        }
+
+        this.on('mount', () => {
+            initCtrls();
+            bindEvents();
+        });
+        this.on('unmount', () => {
+            unbindEvents();
+            freeCtrls();
+        });
+
+        let onContentChanged = (e) => { updatecontent(); }
+        let onLanguageChanged = (e) => { updatecontent(); }
+        let onScreenChanged = (e) => { updatecontent(); }
+        let onBeginEdit = (e) => {
+
+            if (flipper) {
+                flipper.toggle();
+                let item = e.detail.data.item;
+
+                if (entry) entry.setup(item);
+            }
+
+        }
+        let onEndEdit = (e) => {
+
+            if (flipper) {
+                flipper.toggle();
+            }
+        }
+
 });
 
 riot.tag2('votesummary-result', '', 'votesummary-result,[data-is="votesummary-result"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
