@@ -1,13 +1,108 @@
 <report-home>
-    <h3>Report - Home</h3>
+    <div class="report-home-main">
+        <div class="report-item">
+            <button>
+                <span class="icon fa-3x fas fa-table cr1"></span>
+                <span class="text">Vote Summary</span>
+            </button>
+        </div>
+        <div class="report-item">
+            <button>
+                <span class="icon fa-3x fas fa-chart-pie cr2"></span>
+                <span class="text">Pie Chart</span>
+            </button>
+        </div>
+        <div class="report-item">
+            <button>
+                <span class="icon fa-3x fas fa-chart-bar cr3"></span>
+                <span class="text">Bar Chart</span>
+            </button>
+        </div>
+        <div class="report-item">
+            <button>
+                <span class="icon fa-3x fas fa-chalkboard-teacher cr6"></span>
+                <span class="text">Staff Compare</span>
+            </button>
+        </div>
+        <div class="report-item">
+            <button>
+                <span class="icon fa-3x fas fa-table cr4"></span>
+                <span class="text">Raw Vote</span>
+            </button>
+        </div>
+        <div class="report-item">
+            <button>
+                <span class="icon fa-3x far fa-id-card cr5"></span>
+                <span class="text">Staff Performance</span>
+            </button>
+        </div>
+    </div>
     <style>
         :scope {
-            margin: 0;
+            margin: 0 auto;
             padding: 0;
+            padding-top: 20px;
+            padding-bottom: 20px;
             width: 100%;
             height: 100%;
-            /* overflow: hidden; */
+            display: block;
+            overflow: auto;
         }
+        @media (min-width: 620px) {
+            :scope .report-home-main {
+                column-count: 2;
+                column-gap: 20px;
+            }
+        }
+        @media (min-width: 960px) {
+            :scope .report-home-main {
+                column-count: 3;
+                column-gap: 20px;
+            }
+        }
+        :scope .report-home-main {
+            margin: 0 auto;
+            padding: 20px;
+            /* max-width: 1200px; */
+            max-width: 1000px;
+            /* background-color: aliceblue; */
+        }
+        :scope .report-home-main {
+            display: block;
+            margin: 0 auto;
+            padding: 10px;
+        }
+        :scope .report-home-main .report-item {
+            margin: 2px auto;
+            padding: 0;
+            margin-bottom: 20px;
+            height: 100px;
+            /* background-color: aquamarine; */
+            break-inside: avoid;
+        }
+        :scope .report-home-main .report-item button {
+            margin: 0 auto;
+            padding: 0;
+            display: grid;
+            width: 100%;
+            height: 100%;
+        }
+        :scope .report-home-main .report-item button .icon {
+            justify-self: center;
+            align-self: center;
+        }
+        :scope .report-home-main .report-item button .text {
+            justify-self: center;
+            align-self: center;
+            font-size: 1rem;
+            font-weight: bold;
+        }
+        :scope .report-home-main .report-item button .icon.cr1 { color: chocolate; }
+        :scope .report-home-main .report-item button .icon.cr2 { color: cornflowerblue; }
+        :scope .report-home-main .report-item button .icon.cr3 { color: olivedrab; }
+        :scope .report-home-main .report-item button .icon.cr4 { color: darkorchid; }
+        :scope .report-home-main .report-item button .icon.cr5 { color: sandybrown; }
+        :scope .report-home-main .report-item button .icon.cr6 { color: navy; }
     </style>
     <script>
         //#region Internal Variables
