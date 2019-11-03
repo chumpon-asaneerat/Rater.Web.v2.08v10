@@ -1,13 +1,39 @@
 <votesummary-result>
     <h3>Vote Summary Search Result.</h3>
-    <button onclick="{ goback }">Close</button>
+    <div class="input-block center">
+        <button onclick="{ goback }">Close</button>
+    </div>
+    <br>
     <style>
         :scope {
-            margin: 0;
+            display: block;
+            margin: 0 auto;
             padding: 0;
             width: 100%;
             height: 100%;
             /* overflow: hidden; */
+            background-color: whitesmoke;
+        }
+        :scope .input-block {
+            display: block;
+            margin: 0;
+            margin-top: 10px;
+            padding: 0;
+            width: 100%;
+            max-width: 800px;
+            text-align: center;
+        }
+        :scope .input-block.center {
+            margin: auto;
+            margin-top: 10px;
+        }
+        :scope .input-block button {
+            display: inline-block;
+            margin: 0 auto;
+            padding: 0;
+            width: 50%;
+            font-size: 1rem;
+            font-size: bold;
         }
     </style>
     <script>

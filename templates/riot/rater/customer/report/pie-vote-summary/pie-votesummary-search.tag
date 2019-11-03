@@ -1,6 +1,6 @@
 <pie-votesummary-search>
     <div class="input-block center">
-        <span>Bar Search Criteria.</span>
+        <span>Vote Summary Pie Chart.</span>
     </div>
     <div class="input-block center">
         <nselect ref="ctrlQSets" title="Question set"></nselect>
@@ -18,6 +18,7 @@
     <div class="input-block center">
         <button onclick="{ onseach }">Search</button>
     </div>
+    <br>
     <style>
         :scope {
             display: block;
@@ -318,7 +319,7 @@
                 orgs: orgs
             }
             //console.log(criteria)
-            
+
             events.raise(events.name.PieSummaryResult, criteria)
         }
     </script>
