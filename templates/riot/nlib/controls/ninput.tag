@@ -150,7 +150,11 @@
         let checkOnFocus = () => {
             if (input) {
                 //console.log(input.type, ':', input.value)
-                if (!oType) oType = input.type;
+                if (!oType) {
+                    oType = input.type;
+                    // set today.
+                    input.value = moment().format('YYYY-MM-DD');
+                }
                 if (oType === 'date') {
                     if (input.value === '') {
                         input.type = 'date'
@@ -161,7 +165,11 @@
         let checkOnBlur = () => {
             if (input) {
                 //console.log(input.type, ':', input.value)
-                if (!oType) oType = input.type;
+                if (!oType) {
+                    oType = input.type;
+                    // set today.
+                    input.value = moment().format('YYYY-MM-DD');
+                }
                 if (oType === 'date') {
                     if (input.value === '') {
                         input.type = 'text'

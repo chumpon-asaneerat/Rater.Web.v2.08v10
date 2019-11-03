@@ -141,7 +141,11 @@ riot.tag2('ninput', '<input ref="input" type="{opts.type}" name="{opts.name}" ri
         let checkOnFocus = () => {
             if (input) {
 
-                if (!oType) oType = input.type;
+                if (!oType) {
+                    oType = input.type;
+
+                    input.value = moment().format('YYYY-MM-DD');
+                }
                 if (oType === 'date') {
                     if (input.value === '') {
                         input.type = 'date'
@@ -152,7 +156,11 @@ riot.tag2('ninput', '<input ref="input" type="{opts.type}" name="{opts.name}" ri
         let checkOnBlur = () => {
             if (input) {
 
-                if (!oType) oType = input.type;
+                if (!oType) {
+                    oType = input.type;
+
+                    input.value = moment().format('YYYY-MM-DD');
+                }
                 if (oType === 'date') {
                     if (input.value === '') {
                         input.type = 'text'
@@ -3452,6 +3460,7 @@ riot.tag2('bar-votesummary-search', '<div class="input-block center"> <span>Vote
             ctrlEnd = self.refs['ctrlEnd']
             ctrlQuesTree = self.refs['ctrlQuesTree']
             ctrlOrgTree = self.refs['ctrlOrgTree']
+
             loadQSets();
 
             loadOrgs();
