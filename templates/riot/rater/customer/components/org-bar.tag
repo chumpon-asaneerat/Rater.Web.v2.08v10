@@ -3,6 +3,7 @@
     <style>
         :scope {
             display: block;
+            position: relative;
             margin: 0 auto;
             padding: 3px;
             border: 1px solid silver;
@@ -10,12 +11,15 @@
         }
         :scope .chart-box {
             display: block;
+            position: absolute;
             margin: 0 auto;
             padding: 0;
             /*
             width: 100%;
             */
+            width: 100%;
             height: 100%;
+            overflow: auto;
         }
     </style>
     <script>

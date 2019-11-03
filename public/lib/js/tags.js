@@ -735,7 +735,7 @@ riot.tag2('date-result', '<div class="date-range"> <span class="label"> {(opts.c
         let updatecontent = () => {}
         this.setup = () => {}
 });
-riot.tag2('org-bar', '<div ref="chart" class="chart-box"></div>', 'org-bar,[data-is="org-bar"]{ display: block; margin: 0 auto; padding: 3px; border: 1px solid silver; border-radius: 3px; } org-bar .chart-box,[data-is="org-bar"] .chart-box{ display: block; margin: 0 auto; padding: 0; height: 100%; }', '', function(opts) {
+riot.tag2('org-bar', '<div ref="chart" class="chart-box"></div>', 'org-bar,[data-is="org-bar"]{ display: block; position: relative; margin: 0 auto; padding: 3px; border: 1px solid silver; border-radius: 3px; } org-bar .chart-box,[data-is="org-bar"] .chart-box{ display: block; position: absolute; margin: 0 auto; padding: 0; width: 100%; height: 100%; overflow: auto; }', '', function(opts) {
         let self = this;
 
         let updatecontent = () => {
