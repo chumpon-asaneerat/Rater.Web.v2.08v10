@@ -856,7 +856,7 @@ riot.tag2('org-pie', '<div ref="chart" class="chart-box"></div>', 'org-pie,[data
                     text: self.opts.org.OrgName
                 },
                 tooltip: {
-                    pointFormat: '{series.name}: <b>{point.percentage:.2f}%</b>'
+                    pointFormat: '<b>{point.percentage:.2f}%</b>'
                 },
                 plotOptions: {
                     pie: {

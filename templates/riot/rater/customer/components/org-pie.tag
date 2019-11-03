@@ -38,7 +38,7 @@
                     text: self.opts.org.OrgName
                 },
                 tooltip: {
-                    pointFormat: '{series.name}: <b>{point.percentage:.2f}%</b>'
+                    pointFormat: '<b>{point.percentage:.2f}%</b>'
                 },
                 plotOptions: {
                     pie: {
