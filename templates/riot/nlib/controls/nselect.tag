@@ -172,6 +172,7 @@
 
         //#region dom event handlers
 
+        let onChangeCallback;
         let onClear = () => {
             clearInputs();
         }
@@ -179,7 +180,8 @@
             if (input) {
                 let idx = input.selectedIndex
                 let val = input.options[input.selectedIndex].value;
-                console.log('selected value:', val)
+                //console.log('selected value:', val)
+                if (onChangeCallback) onChangeCallback();
             }
         }
 
@@ -223,8 +225,9 @@
             }
             return ret;
         }
-        this.setup = (values, fldMap) => {
+        this.setup = (values, fldMap, callback) => {
             fldmap = fldMap;
+            onChangeCallback = callback;
             self.items = [];
             self.items.push(defaultItem);
             values.forEach(val => {

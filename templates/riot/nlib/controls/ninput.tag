@@ -104,6 +104,7 @@
         let initCtrls = () => {
             input = self.refs['input'];
             clear = self.refs['clear'];
+            checkOnBlur();
         }
         let freeCtrls = () => {
             flipper = null;
@@ -118,10 +119,14 @@
         //#region events bind/unbind
 
         let bindEvents = () => {
+            input.addEventListener('focus', checkOnFocus);
+            input.addEventListener('blur', checkOnBlur);
             clear.addEventListener('click', onClear);
         }
         let unbindEvents = () => {
             clear.removeEventListener('click', onClear);
+            input.removeEventListener('blur', checkOnBlur);
+            input.removeEventListener('focus', checkOnFocus);
         }
 
         //#endregion
@@ -141,8 +146,32 @@
 
         //#region dom event handlers
 
+        let oType;
+        let checkOnFocus = () => {
+            if (input) {
+                //console.log(input.type, ':', input.value)
+                if (!oType) oType = input.type;
+                if (oType === 'date') {
+                    if (input.value === '') {
+                        input.type = 'date'
+                    }
+                }
+            }
+        }
+        let checkOnBlur = () => {
+            if (input) {
+                //console.log(input.type, ':', input.value)
+                if (!oType) oType = input.type;
+                if (oType === 'date') {
+                    if (input.value === '') {
+                        input.type = 'text'
+                    }
+                }
+            }
+        }
         let onClear = () => {
             if (input) input.value = '';
+            checkOnBlur();
         }
 
         //#endregion
@@ -156,6 +185,7 @@
             if (input) {
                 if (text !== undefined && text !== null) {
                     input.value = text;
+                    checkOnBlur();
                 }
                 else {
                     ret = input.value;

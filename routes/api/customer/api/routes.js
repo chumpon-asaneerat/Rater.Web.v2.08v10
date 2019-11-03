@@ -847,7 +847,125 @@ const routes = class {
             WebServer.sendJson(req, res, result);
         })
     }
+    static GetQSets(req, res) {
+        let db = new sqldb();
+        let params = WebServer.parseReq(req).data;
+        // force langId to null;
+        params.langId = null;
+        let customerId = secure.getCustomerId(req, res);
+        if (customerId) params.customerId = customerId;
+        params.qsetId = null;
+        params.enabled = true;
 
+        let fn = async () => {
+            return db.GetQSets(params);
+        }
+        exec(db, fn).then(data => {
+            let dbResult = validate(db, data);
+
+            let result = {
+                data : null,
+                //src: dbResult.data,
+                errors: dbResult.errors,
+                //multiple: dbResult.multiple,
+                //datasets: dbResult.datasets,
+                out: dbResult.out
+            }
+            let records = dbResult.data;
+            let ret = {};
+
+            records.forEach(rec => {
+                if (!ret[rec.langId]) {
+                    ret[rec.langId] = []
+                }
+                let map = ret[rec.langId].map(c => c.qSetId);
+                let idx = map.indexOf(rec.qSetId);
+                let nobj;
+                if (idx === -1) {
+                    // set id
+                    nobj = { qSetId: rec.qSetId }
+                    // init lang properties list.
+                    ret[rec.langId].push(nobj)
+                }
+                else {
+                    nobj = ret[rec.langId][idx];
+                }
+                nobj.BeginDate = rec.BeginDate;
+                nobj.EndDate = rec.EndDate;
+                nobj.desc = rec.QSetDescription;
+            })
+            // set to result.
+            result.data = ret;
+
+            WebServer.sendJson(req, res, result);
+        })
+    }
+    static GetQSlides(req, res) {
+        let db = new sqldb();
+        let params = WebServer.parseReq(req).data;
+        // force langId to null;
+        params.langId = null;
+        let customerId = secure.getCustomerId(req, res);
+        if (customerId) params.customerId = customerId;
+        params.qSeq = null;
+        params.enabled = true;
+
+        let fn = async () => {
+            return db.GetQSlides(params);
+        }
+        exec(db, fn).then(data => {
+            let dbResult = validate(db, data);
+
+            let result = {
+                data : null,
+                //src: dbResult.data,
+                errors: dbResult.errors,
+                //multiple: dbResult.multiple,
+                //datasets: dbResult.datasets,
+                out: dbResult.out
+            }
+            let records = dbResult.data;
+            let ret = {};
+
+            records.forEach(rec => {
+                if (!ret[rec.langId]) {
+                    ret[rec.langId] = []
+                }
+                let map = ret[rec.langId].map(c => c.qSetId);
+                let idx = map.indexOf(rec.qSetId);
+                let nobj;
+                if (idx === -1) {
+                    // set id
+                    nobj = { 
+                        qSetId: rec.qSetId,
+                        slides: []
+                    }
+                    // init lang properties list.
+                    ret[rec.langId].push(nobj)
+                }
+                else {
+                    nobj = ret[rec.langId][idx];
+                }
+                let map2 = nobj.slides.map(c => c.qSeq);
+                let idx2 = map2.indexOf(rec.qSeq);
+                let nobj2;
+                if (idx2 === -1) {
+                    nobj2 = {
+                        qSeq: rec.qSeq
+                    }
+                    nobj.slides.push(nobj2)
+                }
+                else {
+                    nobj2 = nobj.slides[idx2]
+                }
+                nobj2.text = rec.QSlideText
+            })
+            // set to result.
+            result.data = ret;
+
+            WebServer.sendJson(req, res, result);
+        })
+    }
     static SaveJsonQuestion(req, res) {
         let params = WebServer.parseReq(req).data;
         let customerId = secure.getCustomerId(req, res);
@@ -901,6 +1019,9 @@ router.post('/question/upload/', routes.UploadQuestionJson);
 
 router.all('/report/rawvotes/search', routes.GetRawVotes);
 router.all('/report/votesummaries/search', routes.GetVoteSummaries);
+
+router.post('/question/set/search', routes.GetQSets);
+router.post('/question/slide/search', routes.GetQSlides);
 
 router.post('/question/save', routes.SaveJsonQuestion);
 router.post('/question/load', routes.LoadJsonQuestion);
