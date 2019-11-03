@@ -3110,7 +3110,7 @@ riot.tag2('bar-votesummary-result', '<date-result caption="Date" begin="{current
                 self.current = result[lang.langId]
                 self.current.begin = search.beginDate;
                 self.current.end = search.endDate;
-                console.log(self.current)
+
                 self.update();
             }
         }
@@ -3305,7 +3305,7 @@ riot.tag2('pie-votesummary-result', '<date-result caption="Date" begin="{current
                 self.current = result[lang.langId]
                 self.current.begin = search.beginDate;
                 self.current.end = search.endDate;
-                console.log(self.current)
+
                 self.update();
             }
         }

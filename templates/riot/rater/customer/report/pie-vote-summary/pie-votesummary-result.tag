@@ -39,7 +39,7 @@
                 self.current = result[lang.langId]
                 self.current.begin = search.beginDate;
                 self.current.end = search.endDate;
-                console.log(self.current)
+                //console.log(self.current)
                 self.update();
             }
         }
