@@ -21,10 +21,6 @@
             height: 100%;
             /* max-width: 100%; */
             /* max-height: calc(100vh - 62px); */
-            overflow: hidden;
-            /* overflow: auto; */
-        }
-        .entry {
             overflow: auto;
         }
     </style>

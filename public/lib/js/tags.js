@@ -743,7 +743,7 @@ riot.tag2('date-result', '<div class="date-range"> <span class="label"> {(opts.c
         let updatecontent = () => {}
         this.setup = () => {}
 });
-riot.tag2('org-bar', '<div ref="chart" class="chart-box"></div>', 'org-bar,[data-is="org-bar"]{ display: block; position: relative; margin: 0 auto; padding: 3px; border: 1px solid silver; border-radius: 3px; } org-bar .chart-box,[data-is="org-bar"] .chart-box{ display: block; position: absolute; margin: 0 auto; padding: 0; width: 100%; height: 100%; overflow: auto; }', '', function(opts) {
+riot.tag2('org-bar', '<div ref="chart" class="chart-box"></div>', 'org-bar,[data-is="org-bar"]{ display: block; position: relative; margin: 0 auto; padding: 3px; border: 1px solid silver; border-radius: 3px; overflow: auto; } org-bar .chart-box,[data-is="org-bar"] .chart-box{ display: block; position: absolute; margin: 0 auto; padding: 0; width: 100%; height: 100%; min-width: 600px; }', '', function(opts) {
         let self = this;
 
         let updatecontent = () => {
@@ -3156,7 +3156,7 @@ riot.tag2('question-manage', '', 'question-manage,[data-is="question-manage"]{ m
         });
 
 });
-riot.tag2('bar-votesummary-manage', '<flip-screen ref="flipper"> <yield to="viewer"> <bar-votesummary-search ref="viewer" class="view"></bar-votesummary-search> </yield> <yield to="entry"> <bar-votesummary-result ref="entry" class="entry"></bar-votesummary-result> </yield> </flip-screen>', 'bar-votesummary-manage,[data-is="bar-votesummary-manage"]{ margin: 0 auto; padding: 0; width: 100%; height: 100%; } bar-votesummary-manage .view,[data-is="bar-votesummary-manage"] .view,bar-votesummary-manage .entry,[data-is="bar-votesummary-manage"] .entry{ margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; } bar-votesummary-manage .entry,[data-is="bar-votesummary-manage"] .entry{ overflow: auto; }', '', function(opts) {
+riot.tag2('bar-votesummary-manage', '<flip-screen ref="flipper"> <yield to="viewer"> <bar-votesummary-search ref="viewer" class="view"></bar-votesummary-search> </yield> <yield to="entry"> <bar-votesummary-result ref="entry" class="entry"></bar-votesummary-result> </yield> </flip-screen>', 'bar-votesummary-manage,[data-is="bar-votesummary-manage"]{ margin: 0 auto; padding: 0; width: 100%; height: 100%; } bar-votesummary-manage .view,[data-is="bar-votesummary-manage"] .view,bar-votesummary-manage .entry,[data-is="bar-votesummary-manage"] .entry{ margin: 0; padding: 0; width: 100%; height: 100%; overflow: auto; }', '', function(opts) {
 
 
         let self = this;
@@ -3309,7 +3309,7 @@ riot.tag2('bar-votesummary-result', '<date-result caption="Date" begin="{current
             })
         }
 });
-riot.tag2('bar-votesummary-search', '<div class="input-block center"> <span>Vote Summary Bar Graph.</span> </div> <div class="input-block center"> <nselect ref="ctrlQSets" title="Question set"></nselect> </div> <div class="input-block center"> <ninput ref="ctrlBegin" title="Begin Date" type="date"></ninput> <ninput ref="ctrlEnd" title="End Date" type="date"></ninput> </div> <div class="input-block center"> <ncheckedtree ref="ctrlQuesTree" title="Question" class="tree"></ncheckedtree> </div> <div class="input-block center"> <ncheckedtree ref="ctrlOrgTree" title="Organization" class="tree"></ncheckedtree> </div> <div class="input-block center"> <button onclick="{onseach}">Search</button> </div> <br>', 'bar-votesummary-search,[data-is="bar-votesummary-search"]{ display: block; margin: 0; padding: 5px; width: 100%; height: 100%; } bar-votesummary-search .input-block,[data-is="bar-votesummary-search"] .input-block{ display: block; margin: 0; margin-top: 10px; padding: 0; width: 100%; max-width: 800px; text-align: center; } bar-votesummary-search .input-block.center,[data-is="bar-votesummary-search"] .input-block.center{ margin: auto; margin-top: 10px; } bar-votesummary-search .input-block span,[data-is="bar-votesummary-search"] .input-block span,bar-votesummary-search .input-block button,[data-is="bar-votesummary-search"] .input-block button{ display: inline-block; margin: 0 auto; padding: 0; width: 50%; font-size: 1rem; font-size: bold; } bar-votesummary-search .input-block span.label,[data-is="bar-votesummary-search"] .input-block span.label{ margin: 1px; padding: 2px; text-align: left; color: cornflowerblue; width: 100%; } bar-votesummary-search .input-block span input,[data-is="bar-votesummary-search"] .input-block span input{ margin: 1px; padding: 2px; text-align: left; color: cornflowerblue; width: 100%; } bar-votesummary-search .input-block .tree,[data-is="bar-votesummary-search"] .input-block .tree{ text-align: left; }', '', function(opts) {
+riot.tag2('bar-votesummary-search', '<div class="input-block center"> <span>Vote Summary Bar Graph.</span> </div> <div class="input-block center"> <nselect ref="ctrlQSets" title="Question set"></nselect> </div> <div class="input-block center"> <ninput ref="ctrlBegin" title="Begin Date" type="date"></ninput> <ninput ref="ctrlEnd" title="End Date" type="date"></ninput> </div> <div class="input-block center"> <ncheckedtree ref="ctrlQuesTree" title="Question" class="tree"></ncheckedtree> </div> <div class="input-block center"> <ncheckedtree ref="ctrlOrgTree" title="Organization" class="tree"></ncheckedtree> </div> <div class="input-block center"> <button onclick="{onseach}">Search</button> </div> <br>', 'bar-votesummary-search,[data-is="bar-votesummary-search"]{ display: block; margin: 0; padding: 5px; width: 100%; height: 100%; overflow: auto; } bar-votesummary-search .input-block,[data-is="bar-votesummary-search"] .input-block{ display: block; margin: 0; margin-top: 10px; padding: 0; width: 100%; max-width: 800px; text-align: center; } bar-votesummary-search .input-block.center,[data-is="bar-votesummary-search"] .input-block.center{ margin: auto; margin-top: 10px; } bar-votesummary-search .input-block span,[data-is="bar-votesummary-search"] .input-block span,bar-votesummary-search .input-block button,[data-is="bar-votesummary-search"] .input-block button{ display: inline-block; margin: 0 auto; padding: 0; width: 50%; font-size: 1rem; font-size: bold; } bar-votesummary-search .input-block span.label,[data-is="bar-votesummary-search"] .input-block span.label{ margin: 1px; padding: 2px; text-align: left; color: cornflowerblue; width: 100%; } bar-votesummary-search .input-block span input,[data-is="bar-votesummary-search"] .input-block span input{ margin: 1px; padding: 2px; text-align: left; color: cornflowerblue; width: 100%; } bar-votesummary-search .input-block .tree,[data-is="bar-votesummary-search"] .input-block .tree{ text-align: left; }', '', function(opts) {
 
 
         let self = this;
@@ -3527,7 +3527,7 @@ riot.tag2('bar-votesummary-search', '<div class="input-block center"> <span>Vote
             events.raise(events.name.BarSummaryResult, criteria)
         }
 });
-riot.tag2('pie-votesummary-manage', '<flip-screen ref="flipper"> <yield to="viewer"> <pie-votesummary-search ref="viewer" class="view"></pie-votesummary-search> </yield> <yield to="entry"> <pie-votesummary-result ref="entry" class="entry"></pie-votesummary-result> </yield> </flip-screen>', 'pie-votesummary-manage,[data-is="pie-votesummary-manage"]{ margin: 0 auto; padding: 0; width: 100%; height: 100%; } pie-votesummary-manage .view,[data-is="pie-votesummary-manage"] .view,pie-votesummary-manage .entry,[data-is="pie-votesummary-manage"] .entry{ margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; } pie-votesummary-manage .entry,[data-is="pie-votesummary-manage"] .entry{ overflow: auto; }', '', function(opts) {
+riot.tag2('pie-votesummary-manage', '<flip-screen ref="flipper"> <yield to="viewer"> <pie-votesummary-search ref="viewer" class="view"></pie-votesummary-search> </yield> <yield to="entry"> <pie-votesummary-result ref="entry" class="entry"></pie-votesummary-result> </yield> </flip-screen>', 'pie-votesummary-manage,[data-is="pie-votesummary-manage"]{ margin: 0 auto; padding: 0; width: 100%; height: 100%; } pie-votesummary-manage .view,[data-is="pie-votesummary-manage"] .view,pie-votesummary-manage .entry,[data-is="pie-votesummary-manage"] .entry{ margin: 0; padding: 0; width: 100%; height: 100%; overflow: auto; }', '', function(opts) {
 
 
         let self = this;
@@ -3897,7 +3897,7 @@ riot.tag2('pie-votesummary-search', '<div class="input-block center"> <span>Vote
             events.raise(events.name.PieSummaryResult, criteria)
         }
 });
-riot.tag2('rawvote-manage', '<flip-screen ref="flipper"> <yield to="viewer"> <rawvote-search ref="viewer" class="view"></rawvote-search> </yield> <yield to="entry"> <rawvote-result ref="entry" class="entry"></rawvote-result> </yield> </flip-screen>', 'rawvote-manage,[data-is="rawvote-manage"]{ margin: 0 auto; padding: 0; width: 100%; height: 100%; } rawvote-manage .view,[data-is="rawvote-manage"] .view,rawvote-manage .entry,[data-is="rawvote-manage"] .entry{ margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; } rawvote-manage .entry,[data-is="rawvote-manage"] .entry{ overflow: auto; }', '', function(opts) {
+riot.tag2('rawvote-manage', '<flip-screen ref="flipper"> <yield to="viewer"> <rawvote-search ref="viewer" class="view"></rawvote-search> </yield> <yield to="entry"> <rawvote-result ref="entry" class="entry"></rawvote-result> </yield> </flip-screen>', 'rawvote-manage,[data-is="rawvote-manage"]{ margin: 0 auto; padding: 0; width: 100%; height: 100%; } rawvote-manage .view,[data-is="rawvote-manage"] .view,rawvote-manage .entry,[data-is="rawvote-manage"] .entry{ margin: 0; padding: 0; width: 100%; height: 100%; overflow: auto; }', '', function(opts) {
 
 
         let self = this;
@@ -4219,7 +4219,7 @@ riot.tag2('report-home', '<div class="report-home-main"> <div class="report-item
         this.showstaffcompare = () => { screens.show('staff-compare-manage') }
         this.showstaffperf = () => { screens.show('staff-perf-manage') }
 });
-riot.tag2('staff-compare-manage', '<flip-screen ref="flipper"> <yield to="viewer"> <staff-compare-search ref="viewer" class="view"></staff-compare-search> </yield> <yield to="entry"> <staff-compare-result ref="entry" class="entry"></staff-compare-result> </yield> </flip-screen>', 'staff-compare-manage,[data-is="staff-compare-manage"]{ margin: 0 auto; padding: 0; width: 100%; height: 100%; } staff-compare-manage .view,[data-is="staff-compare-manage"] .view,staff-compare-manage .entry,[data-is="staff-compare-manage"] .entry{ margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; } staff-compare-manage .entry,[data-is="staff-compare-manage"] .entry{ overflow: auto; }', '', function(opts) {
+riot.tag2('staff-compare-manage', '<flip-screen ref="flipper"> <yield to="viewer"> <staff-compare-search ref="viewer" class="view"></staff-compare-search> </yield> <yield to="entry"> <staff-compare-result ref="entry" class="entry"></staff-compare-result> </yield> </flip-screen>', 'staff-compare-manage,[data-is="staff-compare-manage"]{ margin: 0 auto; padding: 0; width: 100%; height: 100%; } staff-compare-manage .view,[data-is="staff-compare-manage"] .view,staff-compare-manage .entry,[data-is="staff-compare-manage"] .entry{ margin: 0; padding: 0; width: 100%; height: 100%; overflow: auto; }', '', function(opts) {
 
 
         let self = this;
@@ -4511,7 +4511,7 @@ riot.tag2('staff-compare-search', '<div class="input-block center"> <span>Staff 
             events.raise(events.name.StaffCompareResult)
         }
 });
-riot.tag2('staff-perf-manage', '<flip-screen ref="flipper"> <yield to="viewer"> <staff-perf-search ref="viewer" class="view"></staff-perf-search> </yield> <yield to="entry"> <staff-perf-result ref="entry" class="entry"></staff-perf-result> </yield> </flip-screen>', 'staff-perf-manage,[data-is="staff-perf-manage"]{ margin: 0 auto; padding: 0; width: 100%; height: 100%; } staff-perf-manage .view,[data-is="staff-perf-manage"] .view,staff-perf-manage .entry,[data-is="staff-perf-manage"] .entry{ margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; } staff-perf-manage .entry,[data-is="staff-perf-manage"] .entry{ overflow: auto; }', '', function(opts) {
+riot.tag2('staff-perf-manage', '<flip-screen ref="flipper"> <yield to="viewer"> <staff-perf-search ref="viewer" class="view"></staff-perf-search> </yield> <yield to="entry"> <staff-perf-result ref="entry" class="entry"></staff-perf-result> </yield> </flip-screen>', 'staff-perf-manage,[data-is="staff-perf-manage"]{ margin: 0 auto; padding: 0; width: 100%; height: 100%; } staff-perf-manage .view,[data-is="staff-perf-manage"] .view,staff-perf-manage .entry,[data-is="staff-perf-manage"] .entry{ margin: 0; padding: 0; width: 100%; height: 100%; overflow: auto; }', '', function(opts) {
 
 
         let self = this;
@@ -4803,7 +4803,7 @@ riot.tag2('staff-perf-search', '<div class="input-block center"> <span>Staff Per
             events.raise(events.name.StaffPerfResult)
         }
 });
-riot.tag2('votesummary-manage', '<flip-screen ref="flipper"> <yield to="viewer"> <votesummary-search ref="viewer" class="view"></votesummary-search> </yield> <yield to="entry"> <votesummary-result ref="entry" class="entry"></votesummary-result> </yield> </flip-screen>', 'votesummary-manage,[data-is="votesummary-manage"]{ margin: 0 auto; padding: 0; width: 100%; height: 100%; } votesummary-manage .view,[data-is="votesummary-manage"] .view,votesummary-manage .entry,[data-is="votesummary-manage"] .entry{ margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; } votesummary-manage .entry,[data-is="votesummary-manage"] .entry{ overflow: auto; }', '', function(opts) {
+riot.tag2('votesummary-manage', '<flip-screen ref="flipper"> <yield to="viewer"> <votesummary-search ref="viewer" class="view"></votesummary-search> </yield> <yield to="entry"> <votesummary-result ref="entry" class="entry"></votesummary-result> </yield> </flip-screen>', 'votesummary-manage,[data-is="votesummary-manage"]{ margin: 0 auto; padding: 0; width: 100%; height: 100%; } votesummary-manage .view,[data-is="votesummary-manage"] .view,votesummary-manage .entry,[data-is="votesummary-manage"] .entry{ margin: 0; padding: 0; width: 100%; height: 100%; overflow: auto; }', '', function(opts) {
 
 
         let self = this;

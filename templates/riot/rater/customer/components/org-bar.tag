@@ -8,6 +8,7 @@
             padding: 3px;
             border: 1px solid silver;
             border-radius: 3px;
+            overflow: auto;
         }
         :scope .chart-box {
             display: block;
@@ -16,7 +17,7 @@
             padding: 0;
             width: 100%;
             height: 100%;
-            overflow: auto;
+            min-width: 600px;
         }
     </style>
     <script>
