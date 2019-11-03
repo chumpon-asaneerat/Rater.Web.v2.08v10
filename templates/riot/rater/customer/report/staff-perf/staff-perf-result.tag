@@ -1,5 +1,5 @@
 <staff-perf-result>
-    <h3>Staff Performance Search Result.</h3>
+    <date-result caption="Date" begin="{ current.begin }" end="{ current.end }"></date-result>
     <div class="input-block center">
         <button onclick="{ goback }">Close</button>
     </div>
@@ -40,8 +40,28 @@
         //#region Internal Variables
 
         let self = this;
+        let result = null;
+        let search = {
+            begin: '',
+            end: ''
+        }
+        this.current = {
+            begin: '',
+            end: '',
+            slides: []
+        };
 
         //#endregion
+
+        let updatecontent = () => {
+            if (result) {
+                self.current = result[lang.langId]
+                self.current.begin = search.beginDate;
+                self.current.end = search.endDate;
+                //console.log(self.current)
+                self.update();
+            }
+        }
 
         //#region controls variables and methods
 
@@ -59,8 +79,16 @@
 
         //#region events bind/unbind
 
-        let bindEvents = () => {}
-        let unbindEvents = () => {}
+        let bindEvents = () => {
+            addEvt(events.name.LanguageChanged, onLanguageChanged)
+            addEvt(events.name.ContentChanged, onContentChanged)
+            addEvt(events.name.ScreenChanged, onScreenChanged)
+        }
+        let unbindEvents = () => {
+            delEvt(events.name.ScreenChanged, onScreenChanged)
+            delEvt(events.name.ContentChanged, onContentChanged)
+            delEvt(events.name.LanguageChanged, onLanguageChanged)
+        }
 
         //#endregion
 
@@ -77,12 +105,38 @@
 
         //#endregion
 
+        //#region dom event handlers
+
+        let onContentChanged = (e) => { updatecontent(); }
+        let onLanguageChanged = (e) => { updatecontent(); }
+        let onScreenChanged = (e) => { updatecontent(); }
+
+        //#endregion
+
         this.goback = () => {
             events.raise(events.name.StaffPerfSearch)
         }
 
         this.setup = (criteria) => {
-            console.log('criteria:', criteria)
+            //console.log('criteria:', criteria)
+            /*
+            search = criteria;
+            $.ajax({
+                type: "POST",
+                url: "/customer/api/report/votesummaries/search",
+                data: JSON.stringify(criteria),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: (ret) => {
+                    //console.log(ret);
+                    result = ret.data;
+                    updatecontent();
+                },
+                failure: (errMsg) => {
+                    console.log(errMsg);
+                }
+            })
+            */
         }
     </script>
 </staff-perf-result>

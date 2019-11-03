@@ -3964,10 +3964,30 @@ riot.tag2('rawvote-manage', '<flip-screen ref="flipper"> <yield to="viewer"> <ra
 
 });
 
-riot.tag2('rawvote-result', '<h3>Raw Vote Search Result.</h3> <div class="input-block center"> <button onclick="{goback}">Close</button> </div> <br>', 'rawvote-result,[data-is="rawvote-result"]{ display: block; margin: 0 auto; padding: 0; width: 100%; height: 100%; background-color: whitesmoke; } rawvote-result .input-block,[data-is="rawvote-result"] .input-block{ display: block; margin: 0; margin-top: 10px; padding: 0; width: 100%; max-width: 800px; text-align: center; } rawvote-result .input-block.center,[data-is="rawvote-result"] .input-block.center{ margin: auto; margin-top: 10px; } rawvote-result .input-block button,[data-is="rawvote-result"] .input-block button{ display: inline-block; margin: 0 auto; padding: 0; width: 50%; font-size: 1rem; font-size: bold; }', '', function(opts) {
+riot.tag2('rawvote-result', '<date-result caption="Date" begin="{current.begin}" end="{current.end}"></date-result> <div class="input-block center"> <button onclick="{goback}">Close</button> </div> <br>', 'rawvote-result,[data-is="rawvote-result"]{ display: block; margin: 0 auto; padding: 0; width: 100%; height: 100%; background-color: whitesmoke; } rawvote-result .input-block,[data-is="rawvote-result"] .input-block{ display: block; margin: 0; margin-top: 10px; padding: 0; width: 100%; max-width: 800px; text-align: center; } rawvote-result .input-block.center,[data-is="rawvote-result"] .input-block.center{ margin: auto; margin-top: 10px; } rawvote-result .input-block button,[data-is="rawvote-result"] .input-block button{ display: inline-block; margin: 0 auto; padding: 0; width: 50%; font-size: 1rem; font-size: bold; }', '', function(opts) {
 
 
         let self = this;
+        let result = null;
+        let search = {
+            begin: '',
+            end: ''
+        }
+        this.current = {
+            begin: '',
+            end: '',
+            slides: []
+        };
+
+        let updatecontent = () => {
+            if (result) {
+                self.current = result[lang.langId]
+                self.current.begin = search.beginDate;
+                self.current.end = search.endDate;
+
+                self.update();
+            }
+        }
 
         let initCtrls = () => {}
         let freeCtrls = () => {}
@@ -3975,8 +3995,16 @@ riot.tag2('rawvote-result', '<h3>Raw Vote Search Result.</h3> <div class="input-
         let addEvt = (evtName, handle) => { document.addEventListener(evtName, handle) }
         let delEvt = (evtName, handle) => { document.removeEventListener(evtName, handle) }
 
-        let bindEvents = () => {}
-        let unbindEvents = () => {}
+        let bindEvents = () => {
+            addEvt(events.name.LanguageChanged, onLanguageChanged)
+            addEvt(events.name.ContentChanged, onContentChanged)
+            addEvt(events.name.ScreenChanged, onScreenChanged)
+        }
+        let unbindEvents = () => {
+            delEvt(events.name.ScreenChanged, onScreenChanged)
+            delEvt(events.name.ContentChanged, onContentChanged)
+            delEvt(events.name.LanguageChanged, onLanguageChanged)
+        }
 
         this.on('mount', () => {
             initCtrls();
@@ -3987,12 +4015,16 @@ riot.tag2('rawvote-result', '<h3>Raw Vote Search Result.</h3> <div class="input-
             freeCtrls();
         });
 
+        let onContentChanged = (e) => { updatecontent(); }
+        let onLanguageChanged = (e) => { updatecontent(); }
+        let onScreenChanged = (e) => { updatecontent(); }
+
         this.goback = () => {
             events.raise(events.name.RawVoteSearch)
         }
 
         this.setup = (criteria) => {
-            console.log('criteria:', criteria)
+
         }
 });
 riot.tag2('rawvote-search', '<div class="input-block center"> <span>Raw Vote.</span> </div> <div class="input-block center"> <nselect ref="ctrlQSets" title="Question set"></nselect> </div> <div class="input-block center"> <ninput ref="ctrlBegin" title="Begin Date" type="date"></ninput> <ninput ref="ctrlEnd" title="End Date" type="date"></ninput> </div> <div class="input-block center"> <ncheckedtree ref="ctrlQuesTree" title="Question" class="tree"></ncheckedtree> </div> <div class="input-block center"> <button onclick="{onseach}">Search</button> </div> <br>', 'rawvote-search,[data-is="rawvote-search"]{ display: block; margin: 0; padding: 5px; width: 100%; height: 100%; } rawvote-search .input-block,[data-is="rawvote-search"] .input-block{ display: block; margin: 0; margin-top: 10px; padding: 0; width: 100%; max-width: 800px; text-align: center; } rawvote-search .input-block.center,[data-is="rawvote-search"] .input-block.center{ margin: auto; margin-top: 10px; } rawvote-search .input-block span,[data-is="rawvote-search"] .input-block span,rawvote-search .input-block button,[data-is="rawvote-search"] .input-block button{ display: inline-block; margin: 0 auto; padding: 0; width: 50%; font-size: 1rem; font-size: bold; } rawvote-search .input-block span.label,[data-is="rawvote-search"] .input-block span.label{ margin: 1px; padding: 2px; text-align: left; color: cornflowerblue; width: 100%; } rawvote-search .input-block span input,[data-is="rawvote-search"] .input-block span input{ margin: 1px; padding: 2px; text-align: left; color: cornflowerblue; width: 100%; } rawvote-search .input-block .tree,[data-is="rawvote-search"] .input-block .tree{ text-align: left; }', '', function(opts) {
@@ -4254,10 +4286,30 @@ riot.tag2('staff-compare-manage', '<flip-screen ref="flipper"> <yield to="viewer
 
 });
 
-riot.tag2('staff-compare-result', '<h3>Staff Compare Search Result.</h3> <div class="input-block center"> <button onclick="{goback}">Close</button> </div> <br>', 'staff-compare-result,[data-is="staff-compare-result"]{ display: block; margin: 0 auto; padding: 0; width: 100%; height: 100%; background-color: whitesmoke; } staff-compare-result .input-block,[data-is="staff-compare-result"] .input-block{ display: block; margin: 0; margin-top: 10px; padding: 0; width: 100%; max-width: 800px; text-align: center; } staff-compare-result .input-block.center,[data-is="staff-compare-result"] .input-block.center{ margin: auto; margin-top: 10px; } staff-compare-result .input-block button,[data-is="staff-compare-result"] .input-block button{ display: inline-block; margin: 0 auto; padding: 0; width: 50%; font-size: 1rem; font-size: bold; }', '', function(opts) {
+riot.tag2('staff-compare-result', '<date-result caption="Date" begin="{current.begin}" end="{current.end}"></date-result> <div class="input-block center"> <button onclick="{goback}">Close</button> </div> <br>', 'staff-compare-result,[data-is="staff-compare-result"]{ display: block; margin: 0 auto; padding: 0; width: 100%; height: 100%; background-color: whitesmoke; } staff-compare-result .input-block,[data-is="staff-compare-result"] .input-block{ display: block; margin: 0; margin-top: 10px; padding: 0; width: 100%; max-width: 800px; text-align: center; } staff-compare-result .input-block.center,[data-is="staff-compare-result"] .input-block.center{ margin: auto; margin-top: 10px; } staff-compare-result .input-block button,[data-is="staff-compare-result"] .input-block button{ display: inline-block; margin: 0 auto; padding: 0; width: 50%; font-size: 1rem; font-size: bold; }', '', function(opts) {
 
 
         let self = this;
+        let result = null;
+        let search = {
+            begin: '',
+            end: ''
+        }
+        this.current = {
+            begin: '',
+            end: '',
+            slides: []
+        };
+
+        let updatecontent = () => {
+            if (result) {
+                self.current = result[lang.langId]
+                self.current.begin = search.beginDate;
+                self.current.end = search.endDate;
+
+                self.update();
+            }
+        }
 
         let initCtrls = () => {}
         let freeCtrls = () => {}
@@ -4265,8 +4317,16 @@ riot.tag2('staff-compare-result', '<h3>Staff Compare Search Result.</h3> <div cl
         let addEvt = (evtName, handle) => { document.addEventListener(evtName, handle) }
         let delEvt = (evtName, handle) => { document.removeEventListener(evtName, handle) }
 
-        let bindEvents = () => {}
-        let unbindEvents = () => {}
+        let bindEvents = () => {
+            addEvt(events.name.LanguageChanged, onLanguageChanged)
+            addEvt(events.name.ContentChanged, onContentChanged)
+            addEvt(events.name.ScreenChanged, onScreenChanged)
+        }
+        let unbindEvents = () => {
+            delEvt(events.name.ScreenChanged, onScreenChanged)
+            delEvt(events.name.ContentChanged, onContentChanged)
+            delEvt(events.name.LanguageChanged, onLanguageChanged)
+        }
 
         this.on('mount', () => {
             initCtrls();
@@ -4277,12 +4337,16 @@ riot.tag2('staff-compare-result', '<h3>Staff Compare Search Result.</h3> <div cl
             freeCtrls();
         });
 
+        let onContentChanged = (e) => { updatecontent(); }
+        let onLanguageChanged = (e) => { updatecontent(); }
+        let onScreenChanged = (e) => { updatecontent(); }
+
         this.goback = () => {
             events.raise(events.name.StaffCompareSearch)
         }
 
         this.setup = (criteria) => {
-            console.log('criteria:', criteria)
+
         }
 });
 riot.tag2('staff-compare-search', '<div class="input-block center"> <span>Staff Compare.</span> </div> <div class="input-block center"> <nselect ref="ctrlQSets" title="Question set"></nselect> </div> <div class="input-block center"> <ninput ref="ctrlBegin" title="Begin Date" type="date"></ninput> <ninput ref="ctrlEnd" title="End Date" type="date"></ninput> </div> <div class="input-block center"> <ncheckedtree ref="ctrlQuesTree" title="Question" class="tree"></ncheckedtree> </div> <div class="input-block center"> <button onclick="{onseach}">Search</button> </div> <br>', 'staff-compare-search,[data-is="staff-compare-search"]{ display: block; margin: 0; padding: 5px; width: 100%; height: 100%; } staff-compare-search .input-block,[data-is="staff-compare-search"] .input-block{ display: block; margin: 0; margin-top: 10px; padding: 0; width: 100%; max-width: 800px; text-align: center; } staff-compare-search .input-block.center,[data-is="staff-compare-search"] .input-block.center{ margin: auto; margin-top: 10px; } staff-compare-search .input-block span,[data-is="staff-compare-search"] .input-block span,staff-compare-search .input-block button,[data-is="staff-compare-search"] .input-block button{ display: inline-block; margin: 0 auto; padding: 0; width: 50%; font-size: 1rem; font-size: bold; } staff-compare-search .input-block span.label,[data-is="staff-compare-search"] .input-block span.label{ margin: 1px; padding: 2px; text-align: left; color: cornflowerblue; width: 100%; } staff-compare-search .input-block span input,[data-is="staff-compare-search"] .input-block span input{ margin: 1px; padding: 2px; text-align: left; color: cornflowerblue; width: 100%; } staff-compare-search .input-block .tree,[data-is="staff-compare-search"] .input-block .tree{ text-align: left; }', '', function(opts) {
@@ -4514,10 +4578,30 @@ riot.tag2('staff-perf-manage', '<flip-screen ref="flipper"> <yield to="viewer"> 
 
 });
 
-riot.tag2('staff-perf-result', '<h3>Staff Performance Search Result.</h3> <div class="input-block center"> <button onclick="{goback}">Close</button> </div> <br>', 'staff-perf-result,[data-is="staff-perf-result"]{ display: block; margin: 0 auto; padding: 0; width: 100%; height: 100%; background-color: whitesmoke; } staff-perf-result .input-block,[data-is="staff-perf-result"] .input-block{ display: block; margin: 0; margin-top: 10px; padding: 0; width: 100%; max-width: 800px; text-align: center; } staff-perf-result .input-block.center,[data-is="staff-perf-result"] .input-block.center{ margin: auto; margin-top: 10px; } staff-perf-result .input-block button,[data-is="staff-perf-result"] .input-block button{ display: inline-block; margin: 0 auto; padding: 0; width: 50%; font-size: 1rem; font-size: bold; }', '', function(opts) {
+riot.tag2('staff-perf-result', '<date-result caption="Date" begin="{current.begin}" end="{current.end}"></date-result> <div class="input-block center"> <button onclick="{goback}">Close</button> </div> <br>', 'staff-perf-result,[data-is="staff-perf-result"]{ display: block; margin: 0 auto; padding: 0; width: 100%; height: 100%; background-color: whitesmoke; } staff-perf-result .input-block,[data-is="staff-perf-result"] .input-block{ display: block; margin: 0; margin-top: 10px; padding: 0; width: 100%; max-width: 800px; text-align: center; } staff-perf-result .input-block.center,[data-is="staff-perf-result"] .input-block.center{ margin: auto; margin-top: 10px; } staff-perf-result .input-block button,[data-is="staff-perf-result"] .input-block button{ display: inline-block; margin: 0 auto; padding: 0; width: 50%; font-size: 1rem; font-size: bold; }', '', function(opts) {
 
 
         let self = this;
+        let result = null;
+        let search = {
+            begin: '',
+            end: ''
+        }
+        this.current = {
+            begin: '',
+            end: '',
+            slides: []
+        };
+
+        let updatecontent = () => {
+            if (result) {
+                self.current = result[lang.langId]
+                self.current.begin = search.beginDate;
+                self.current.end = search.endDate;
+
+                self.update();
+            }
+        }
 
         let initCtrls = () => {}
         let freeCtrls = () => {}
@@ -4525,8 +4609,16 @@ riot.tag2('staff-perf-result', '<h3>Staff Performance Search Result.</h3> <div c
         let addEvt = (evtName, handle) => { document.addEventListener(evtName, handle) }
         let delEvt = (evtName, handle) => { document.removeEventListener(evtName, handle) }
 
-        let bindEvents = () => {}
-        let unbindEvents = () => {}
+        let bindEvents = () => {
+            addEvt(events.name.LanguageChanged, onLanguageChanged)
+            addEvt(events.name.ContentChanged, onContentChanged)
+            addEvt(events.name.ScreenChanged, onScreenChanged)
+        }
+        let unbindEvents = () => {
+            delEvt(events.name.ScreenChanged, onScreenChanged)
+            delEvt(events.name.ContentChanged, onContentChanged)
+            delEvt(events.name.LanguageChanged, onLanguageChanged)
+        }
 
         this.on('mount', () => {
             initCtrls();
@@ -4537,12 +4629,16 @@ riot.tag2('staff-perf-result', '<h3>Staff Performance Search Result.</h3> <div c
             freeCtrls();
         });
 
+        let onContentChanged = (e) => { updatecontent(); }
+        let onLanguageChanged = (e) => { updatecontent(); }
+        let onScreenChanged = (e) => { updatecontent(); }
+
         this.goback = () => {
             events.raise(events.name.StaffPerfSearch)
         }
 
         this.setup = (criteria) => {
-            console.log('criteria:', criteria)
+
         }
 });
 riot.tag2('staff-perf-search', '<div class="input-block center"> <span>Staff Performance.</span> </div> <div class="input-block center"> <nselect ref="ctrlQSets" title="Question set"></nselect> </div> <div class="input-block center"> <ninput ref="ctrlBegin" title="Begin Date" type="date"></ninput> <ninput ref="ctrlEnd" title="End Date" type="date"></ninput> </div> <div class="input-block center"> <ncheckedtree ref="ctrlQuesTree" title="Question" class="tree"></ncheckedtree> </div> <div class="input-block center"> <button onclick="{onseach}">Search</button> </div> <br>', 'staff-perf-search,[data-is="staff-perf-search"]{ display: block; margin: 0; padding: 5px; width: 100%; height: 100%; } staff-perf-search .input-block,[data-is="staff-perf-search"] .input-block{ display: block; margin: 0; margin-top: 10px; padding: 0; width: 100%; max-width: 800px; text-align: center; } staff-perf-search .input-block.center,[data-is="staff-perf-search"] .input-block.center{ margin: auto; margin-top: 10px; } staff-perf-search .input-block span,[data-is="staff-perf-search"] .input-block span,staff-perf-search .input-block button,[data-is="staff-perf-search"] .input-block button{ display: inline-block; margin: 0 auto; padding: 0; width: 50%; font-size: 1rem; font-size: bold; } staff-perf-search .input-block span.label,[data-is="staff-perf-search"] .input-block span.label{ margin: 1px; padding: 2px; text-align: left; color: cornflowerblue; width: 100%; } staff-perf-search .input-block span input,[data-is="staff-perf-search"] .input-block span input{ margin: 1px; padding: 2px; text-align: left; color: cornflowerblue; width: 100%; } staff-perf-search .input-block .tree,[data-is="staff-perf-search"] .input-block .tree{ text-align: left; }', '', function(opts) {
@@ -4774,10 +4870,30 @@ riot.tag2('votesummary-manage', '<flip-screen ref="flipper"> <yield to="viewer">
 
 });
 
-riot.tag2('votesummary-result', '<h3>Vote Summary Search Result.</h3> <div class="input-block center"> <button onclick="{goback}">Close</button> </div> <br>', 'votesummary-result,[data-is="votesummary-result"]{ display: block; margin: 0 auto; padding: 0; width: 100%; height: 100%; background-color: whitesmoke; } votesummary-result .input-block,[data-is="votesummary-result"] .input-block{ display: block; margin: 0; margin-top: 10px; padding: 0; width: 100%; max-width: 800px; text-align: center; } votesummary-result .input-block.center,[data-is="votesummary-result"] .input-block.center{ margin: auto; margin-top: 10px; } votesummary-result .input-block button,[data-is="votesummary-result"] .input-block button{ display: inline-block; margin: 0 auto; padding: 0; width: 50%; font-size: 1rem; font-size: bold; }', '', function(opts) {
+riot.tag2('votesummary-result', '<date-result caption="Date" begin="{current.begin}" end="{current.end}"></date-result> <div class="input-block center"> <button onclick="{goback}">Close</button> </div> <br>', 'votesummary-result,[data-is="votesummary-result"]{ display: block; margin: 0 auto; padding: 0; width: 100%; height: 100%; background-color: whitesmoke; } votesummary-result .input-block,[data-is="votesummary-result"] .input-block{ display: block; margin: 0; margin-top: 10px; padding: 0; width: 100%; max-width: 800px; text-align: center; } votesummary-result .input-block.center,[data-is="votesummary-result"] .input-block.center{ margin: auto; margin-top: 10px; } votesummary-result .input-block button,[data-is="votesummary-result"] .input-block button{ display: inline-block; margin: 0 auto; padding: 0; width: 50%; font-size: 1rem; font-size: bold; }', '', function(opts) {
 
 
         let self = this;
+        let result = null;
+        let search = {
+            begin: '',
+            end: ''
+        }
+        this.current = {
+            begin: '',
+            end: '',
+            slides: []
+        };
+
+        let updatecontent = () => {
+            if (result) {
+                self.current = result[lang.langId]
+                self.current.begin = search.beginDate;
+                self.current.end = search.endDate;
+
+                self.update();
+            }
+        }
 
         let initCtrls = () => {}
         let freeCtrls = () => {}
@@ -4785,8 +4901,16 @@ riot.tag2('votesummary-result', '<h3>Vote Summary Search Result.</h3> <div class
         let addEvt = (evtName, handle) => { document.addEventListener(evtName, handle) }
         let delEvt = (evtName, handle) => { document.removeEventListener(evtName, handle) }
 
-        let bindEvents = () => {}
-        let unbindEvents = () => {}
+        let bindEvents = () => {
+            addEvt(events.name.LanguageChanged, onLanguageChanged)
+            addEvt(events.name.ContentChanged, onContentChanged)
+            addEvt(events.name.ScreenChanged, onScreenChanged)
+        }
+        let unbindEvents = () => {
+            delEvt(events.name.ScreenChanged, onScreenChanged)
+            delEvt(events.name.ContentChanged, onContentChanged)
+            delEvt(events.name.LanguageChanged, onLanguageChanged)
+        }
 
         this.on('mount', () => {
             initCtrls();
@@ -4797,12 +4921,16 @@ riot.tag2('votesummary-result', '<h3>Vote Summary Search Result.</h3> <div class
             freeCtrls();
         });
 
+        let onContentChanged = (e) => { updatecontent(); }
+        let onLanguageChanged = (e) => { updatecontent(); }
+        let onScreenChanged = (e) => { updatecontent(); }
+
         this.goback = () => {
             events.raise(events.name.VoteSummarySearch)
         }
 
         this.setup = (criteria) => {
-            console.log('criteria:', criteria)
+
         }
 });
 riot.tag2('votesummary-search', '<div class="input-block center"> <span>Vote Summary.</span> </div> <div class="input-block center"> <nselect ref="ctrlQSets" title="Question set"></nselect> </div> <div class="input-block center"> <ninput ref="ctrlBegin" title="Begin Date" type="date"></ninput> <ninput ref="ctrlEnd" title="End Date" type="date"></ninput> </div> <div class="input-block center"> <ncheckedtree ref="ctrlQuesTree" title="Question" class="tree"></ncheckedtree> </div> <div class="input-block center"> <button onclick="{onseach}">Search</button> </div> <br>', 'votesummary-search,[data-is="votesummary-search"]{ display: block; margin: 0; padding: 5px; width: 100%; height: 100%; } votesummary-search .input-block,[data-is="votesummary-search"] .input-block{ display: block; margin: 0; margin-top: 10px; padding: 0; width: 100%; max-width: 800px; text-align: center; } votesummary-search .input-block.center,[data-is="votesummary-search"] .input-block.center{ margin: auto; margin-top: 10px; } votesummary-search .input-block span,[data-is="votesummary-search"] .input-block span,votesummary-search .input-block button,[data-is="votesummary-search"] .input-block button{ display: inline-block; margin: 0 auto; padding: 0; width: 50%; font-size: 1rem; font-size: bold; } votesummary-search .input-block span.label,[data-is="votesummary-search"] .input-block span.label{ margin: 1px; padding: 2px; text-align: left; color: cornflowerblue; width: 100%; } votesummary-search .input-block span input,[data-is="votesummary-search"] .input-block span input{ margin: 1px; padding: 2px; text-align: left; color: cornflowerblue; width: 100%; } votesummary-search .input-block .tree,[data-is="votesummary-search"] .input-block .tree{ text-align: left; }', '', function(opts) {
