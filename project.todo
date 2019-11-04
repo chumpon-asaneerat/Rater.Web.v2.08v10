@@ -99,9 +99,8 @@ My Choice Rater Web v2.0.8x10:
         ☐ Supports loading component.
         ☐ Supports NText component.
         ✔ Supports NSelect component. @done(19-10-24 20:40)
-        ☐ Supports NSelectMultiple component (used span + tagbox and custom drop down).
-        ☐ Supports NSelectTree component (used span + tagbox and custom drop down).
-        ☐ Supports NTree component (jstree).
+        ✔ Supports NCheckedTree component. @done(19-11-05 02:41)
+        ✔ Supports NTree component. @done(19-11-05 02:41)
         ☐ Supports NImage component.
         Supports limit width (max) when used with TV screen:
             ☐ Scrollbar should be shown in container div so the content should apply limit.
@@ -150,7 +149,7 @@ My Choice Rater Web v2.0.8x10:
             ✔ Fixed Tabulator resize problem. @done(19-10-07 01:35)
             ✔ Check Tabulator row selection. @done(19-10-07 01:35)
             ✔ Check Tabulator freeze column. @done(19-10-07 01:35)
-            ☐ Check Tabulator row custom layout.
+            ✘ Check Tabulator row custom layout. @cancelled(19-11-05 02:42)
         Canvas:
             ✔ Check used mutiple canvas on one body. @done(19-10-07 06:44)
             ✔ Check used mutiple canvas in reveal.js. @done(19-10-07 06:44)
@@ -167,6 +166,8 @@ My Choice Rater Web v2.0.8x10:
         Screen Size:
             ☐ Test Code for test screen resolution (media queries).
     Rater Screens:
+        Issue:
+            ☐ Required to add all routes for all screen to prevent screen slow when used long time.
         Dev:
             ☐ Home.
             ✔ Tabulator test tag. @done(19-10-07 03:52)
