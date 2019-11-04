@@ -13,6 +13,9 @@
         <ncheckedtree ref="ctrlQuesTree" title="Question" class="tree"></ncheckedtree>
     </div>
     <div class="input-block center">
+        <ncheckedtree ref="ctrlOrgTree" title="Organization" class="tree"></ncheckedtree>
+    </div>
+    <div class="input-block center">
         <button onclick="{ onseach }">Search</button>
     </div>
     <br>
@@ -69,16 +72,28 @@
         //#region Internal Variables
 
         let self = this;
+        let screenId = 'votesummary-manage';
         let qsetModel;
         let quesModel;
+        let orgModel;
+
+        let defaultContent = {
+            title: ''
+        }
+        this.content = this.defaultContent;
 
         //#endregion
 
         let updatecontent = () => {
-            updateQSets();
-            updateQuestions();
-
-            self.update();
+            let scrId = screens.current.screenId;
+            if (screenId === scrId) {
+                let scrContent = (contents.current && contents.current.screens) ? contents.current.screens[scrId] : null;
+                self.content = scrContent ? scrContent : defaultContent;
+                updateQSets();
+                updateQuestions();
+                updateOrgs();
+                self.update();
+            }
         }
 
         //#region QSet Methods
@@ -179,21 +194,66 @@
 
         //#endregion
 
+        //#region Org Methods
+
+        let clearOrgs = () => {
+            if (ctrlOrgTree) {
+                ctrlOrgTree.clear();
+            }
+        }
+
+        let updateOrgs = () => {
+            if (ctrlOrgTree && orgModel) {
+                let lastValues = ctrlOrgTree.selectedItems(); // remember
+                //console.log('last selected values:', lastValues)
+
+                let values = orgModel[lang.langId];
+
+                let fldmap = { valueField: 'orgId', textField: 'OrgName', parentField: 'parentId' }
+                ctrlOrgTree.setup(values, fldmap);
+                
+                ctrlOrgTree.selectedItems(lastValues); // restore
+            }
+        }
+
+        let loadOrgs = (qsetid) => {
+            let criteria = { }
+            if (ctrlOrgTree) {
+                $.ajax({
+                    type: "POST",
+                    url: "/customer/api/org/search",
+                    data: JSON.stringify(criteria),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: (ret) => {
+                        //console.log('Load Orgs:', ret);
+                        orgModel = ret.data;
+                        updateOrgs();
+                    },
+                    failure: (errMsg) => {
+                        console.log(errMsg);
+                    }
+                })
+            }
+        }
+
+        //#endregion
+
         //#region controls variables and methods
 
-        let ctrlQSets, ctrlBegin, ctrlEnd, ctrlQuesTree;
+        let ctrlQSets, ctrlBegin, ctrlEnd, ctrlQuesTree, ctrlOrgTree;
         let initCtrls = () => {
             ctrlQSets = self.refs['ctrlQSets']
             ctrlBegin = self.refs['ctrlBegin']
             ctrlEnd = self.refs['ctrlEnd']
             ctrlQuesTree = self.refs['ctrlQuesTree']
-            
+            ctrlOrgTree = self.refs['ctrlOrgTree']            
             loadQSets();
             //loadQuestions();
-            //loadOrgs();
+            loadOrgs();
         }
         let freeCtrls = () => {
-            
+            ctrlOrgTree = null;
             ctrlQuesTree = null;
             ctrlEnd = null;
             ctrlBegin = null;
@@ -246,7 +306,6 @@
         //#endregion
 
         this.onseach = () => {
-            /*
             let qsetid = ctrlQSets.value();
             let beginDT = String(ctrlBegin.value());
             let endDT = String(ctrlEnd.value());
@@ -271,9 +330,8 @@
                 orgs: orgs
             }
             //console.log(criteria)
-            */
 
-            events.raise(events.name.VoteSummaryResult)
+            events.raise(events.name.VoteSummaryResult, criteria)
         }
     </script>
 </votesummary-search>

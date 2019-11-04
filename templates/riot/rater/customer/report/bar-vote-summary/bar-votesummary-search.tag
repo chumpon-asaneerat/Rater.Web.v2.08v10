@@ -72,17 +72,28 @@
         //#region Internal Variables
 
         let self = this;
+        let screenId = 'bar-votesummary-manage';
         let qsetModel;
         let quesModel;
         let orgModel;
 
+        let defaultContent = {
+            title: ''
+        }
+        this.content = this.defaultContent;
+
         //#endregion
 
         let updatecontent = () => {
-            updateQSets();
-            updateQuestions();
-            updateOrgs();
-            self.update();
+            let scrId = screens.current.screenId;
+            if (screenId === scrId) {
+                let scrContent = (contents.current && contents.current.screens) ? contents.current.screens[scrId] : null;
+                self.content = scrContent ? scrContent : defaultContent;
+                updateQSets();
+                updateQuestions();
+                updateOrgs();
+                self.update();
+            }
         }
 
         //#region QSet Methods

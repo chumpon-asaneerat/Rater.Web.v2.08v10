@@ -89,7 +89,9 @@ riot.tag2('ncheckedtree', '<div class="ntree-container"> <div ref="tree" class="
                         "multiple" : true
                     },
                     "checkbox" : { "keep_selected_style" : false, two_state: true },
-                    "plugins" : [ "wholerow", "checkbox" ]
+                    "plugins" : [ "wholerow", "checkbox", "json_data" ]
+                }).on('ready.jstree', () => {
+                    $(tree).jstree("open_all");
                 });
             }
             self.update();
@@ -309,6 +311,111 @@ riot.tag2('nselect', '<select ref="input"> <option each="{item in items}" riot-v
                 self.items.push(item);
             })
             disableFirstOption();
+            self.update();
+        }
+
+});
+
+riot.tag2('ntree', '<div class="ntree-container"> <div ref="tree" class="tree"></div> </div> <label>{opts.title}</label>', 'ntree,[data-is="ntree"]{ margin: 0; margin-top: 5px; padding: 10px; font-size: 14px; display: inline-block; position: relative; height: auto; width: 100%; background: transparent; box-shadow: 0 5px 10px solid rgba(0, 0, 0, .2); } ntree .ntree-container,[data-is="ntree"] .ntree-container{ display: block; padding: 20px 0 10px 0; margin-bottom: 0px; width: calc(100% - 25px); background-color: whitesmoke; box-sizing: border-box; box-shadow: none; outline: none; border: none; font-size: 14px; box-shadow: 0 0 0px 1000px white inset; border-radius: 2px; border-bottom: 2px solid cornflowerblue; overflow: hidden; } ntree .ntree-container .tree,[data-is="ntree"] .ntree-container .tree{ width: 100%; border: 1px solid silver; border-radius: 2px; height: 100px; min-height: 100px; max-height: 100px; overflow: auto; } ntree label,[data-is="ntree"] label{ position: absolute; top: 5px; left: 10px; transition: .2s; pointer-events: none; color: cornflowerblue; font-weight: bold; }', '', function(opts) {
+
+
+        let self = this;
+        let fldmap = { valueField:'id', textField:'text', parentField: '#' }
+
+        let tree, clear;
+
+        let initCtrls = () => {
+            tree = self.refs['tree'];
+            self.setup();
+        }
+        let freeCtrls = () => {
+            tree = null;
+        }
+        let clearInputs = () => {
+            if (tree) {
+                $(tree).jstree().deselect_node(this);
+            }
+        }
+
+        let bindEvents = () => {}
+        let unbindEvents = () => {}
+
+        this.on('mount', () => {
+            initCtrls();
+            bindEvents();
+        });
+        this.on('unmount', () => {
+            unbindEvents();
+            clearInputs();
+        });
+
+        this.clear = () => { clearInputs(); }
+        this.focus = () => { if (tree) tree.focus(); }
+
+        let hasValue = (val) => {
+            return (val !== undefined && val !== null);
+        }
+        let setSelectedItem = (item) => {
+            console.log('set selected item.')
+            if (tree && item) {
+                console.log('item to select:', item)
+                console.log('get item:', $(tree).jstree(true).get_node(item))
+                $(tree).jstree(true).select_node(item);
+                console.log('select item:', getSelectedItem())
+            }
+        }
+        let getSelectedItem = () => {
+            let ret = null;
+            if (tree) {
+                let selectitems = $(tree).jstree(true).get_selected();
+                ret = (selectitems && selectitems.length > 0) ? selectitems[0] : null;
+            }
+            return ret;
+        }
+        this.selectedItem = (item) => {
+            let ret;
+            if (tree) {
+                if (hasValue(item)) {
+                    setSelectedItem(item);
+                }
+                else {
+                    ret = getSelectedItem();
+                }
+            }
+            return ret;
+        }
+        this.setup = (values, fldMap) => {
+            if (tree) {
+                fldmap = fldMap;
+                let data = [];
+                if (values) {
+                    values.forEach(val => {
+                        let item = {
+                            id: String(val[fldmap.valueField]),
+                            text: val[fldmap.textField],
+                            parent: '#'
+                        }
+                        if (fldmap.parentField && val[fldmap.parentField]) {
+
+                            item.parent = val[fldmap.parentField];
+                        }
+                        item.data = val;
+                        data.push(item);
+                    });
+                }
+
+                $(tree).jstree("destroy");
+                $(tree).jstree({
+                    'core': {
+                        data: data,
+                        "multiple" : false
+                    },
+
+                    "plugins" : [ "wholerow", "json_data" ]
+                }).on('ready.jstree', () => {
+                    $(tree).jstree("open_all");
+                });
+            }
             self.update();
         }
 
@@ -916,6 +1023,96 @@ riot.tag2('org-pie', '<div ref="chart" class="chart-box"></div>', 'org-pie,[data
 
 });
 riot.tag2('pie-question-slide', '<div class="question-box"> <span class="caption">{(opts.slide) ? opts.slide.text : \'\'}</span> <div class="content-box"> <virtual each="{org in opts.slide.orgs}"> <org-pie class="item" org="{org}"></org-pie> </virtual> </div> </div>', '@media (min-width: 620px) { pie-question-slide,[data-is="pie-question-slide"]{ max-width: 550px; } pie-question-slide .question-box .content-box,[data-is="pie-question-slide"] .question-box .content-box{ display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); grid-gap: 5px; grid-auto-rows: 100px; } } @media (min-width: 960px) { pie-question-slide,[data-is="pie-question-slide"]{ max-width: 850px; } pie-question-slide .question-box .content-box,[data-is="pie-question-slide"] .question-box .content-box{ display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); grid-gap: 5px; grid-auto-rows: 150px; } } pie-question-slide,[data-is="pie-question-slide"]{ display: block; margin: 0 auto; margin-bottom: 3px; padding: 5px; max-width: 1000px; white-space: nowrap; } pie-question-slide .question-box,[data-is="pie-question-slide"] .question-box{ margin: 0 auto; display: block; color: white; border: 1px solid cornflowerblue; border-radius: 3px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; } pie-question-slide .question-box .caption,[data-is="pie-question-slide"] .question-box .caption{ display: block; margin: 0 auto; padding: 5px; background-color: cornflowerblue; } pie-question-slide .question-box .content-box,[data-is="pie-question-slide"] .question-box .content-box{ display: grid; margin: 0 auto; margin-bottom: 5px; padding: 5px; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); grid-gap: 5px; grid-auto-rows: 200px; } pie-question-slide .question-box .content-box .item,[data-is="pie-question-slide"] .question-box .content-box .item{ display: inline-block; margin: 3px auto; padding: 0; color: black; width: 100%; height: 100%; }', '', function(opts) {
+});
+riot.tag2('votesummary-question-slide', '<div class="question-box"> <span class="caption">{(opts.slide) ? opts.slide.text : \'\'}</span> <div class="content-box"> <votesummary-table class="item" choices="{opts.slide.choices}" orgs="{opts.slide.orgs}"></votesummary-table> </div> </div>', '@media (min-width: 620px) { votesummary-question-slide,[data-is="votesummary-question-slide"]{ max-width: 550px; } votesummary-question-slide .question-box .content-box,[data-is="votesummary-question-slide"] .question-box .content-box{ display: grid; grid-template-columns: 1fr; grid-gap: 5px; grid-auto-rows: 200px; } } @media (min-width: 960px) { votesummary-question-slide,[data-is="votesummary-question-slide"]{ max-width: 850px; } votesummary-question-slide .question-box .content-box,[data-is="votesummary-question-slide"] .question-box .content-box{ display: grid; grid-template-columns: 1fr; grid-gap: 5px; grid-auto-rows: 250px; } } votesummary-question-slide,[data-is="votesummary-question-slide"]{ display: block; margin: 0 auto; margin-bottom: 3px; padding: 5px; max-width: 1000px; white-space: nowrap; } votesummary-question-slide .question-box,[data-is="votesummary-question-slide"] .question-box{ margin: 0 auto; display: block; color: white; border: 1px solid cornflowerblue; border-radius: 3px; width: 100%; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; } votesummary-question-slide .question-box .caption,[data-is="votesummary-question-slide"] .question-box .caption{ display: block; margin: 0 auto; padding: 5px; background-color: cornflowerblue; } votesummary-question-slide .question-box .content-box,[data-is="votesummary-question-slide"] .question-box .content-box{ display: grid; margin: 0 auto; margin-bottom: 5px; padding: 5px; grid-template-columns: 1fr; grid-gap: 5px; grid-auto-rows: 300px; } votesummary-question-slide .question-box .content-box .item,[data-is="votesummary-question-slide"] .question-box .content-box .item{ display: block; margin: 3px auto; padding: 0; color: black; width: 100%; max-width: 100%; height: 100%; overflow: hidden; }', '', function(opts) {
+});
+riot.tag2('votesummary-table', '<div ref="grid" class="grid-box"></div>', 'votesummary-table,[data-is="votesummary-table"]{ display: block; position: relative; margin: 0 auto; padding: 3px; border: 1px solid silver; border-radius: 3px; overflow: auto; } votesummary-table .grid-box,[data-is="votesummary-table"] .grid-box{ display: block; position: absolute; margin: 0 auto; padding: 0; width: 100%; height: 100%; } votesummary-table .grid-box .tabulator-col-title,[data-is="votesummary-table"] .grid-box .tabulator-col-title{ text-align: center; }', '', function(opts) {
+        let self = this;
+
+        let updatecontent = () => {
+            let data = [];
+            let columns = [
+                { title: 'Org', field: 'OrgName', headerSort:false },
+                { title: 'Branch', field: 'BranchName', headerSort:false },
+                { title: 'Count<br>(Total)', field: 'TotCnt', align: 'center', headerSort:false },
+                { title: 'Avg<br>(Total)', field: 'AvgTot', align: 'center', headerSort:false },
+                { title: 'Percent<br>(Total)', field: 'AvgPct', align: 'center', headerSort:false }
+            ]
+
+            self.opts.choices.forEach(choice => {
+                let group = {
+                    title: choice.text + ' (' + choice.choice + ')',
+                    columns: [
+                        { title: 'Count', field: 'Cnt-' + String(choice.choice), align: 'center', headerSort:false },
+                        { title: 'Percent', field: 'Pct-' + String(choice.choice), align: 'center', headerSort:false }
+                    ]
+                }
+                columns.push(group)
+            })
+            self.opts.orgs.forEach(item => {
+                let obj = {
+                    OrgName: item.OrgName,
+                    BranchName: item.BranchName,
+                    TotCnt: item.TotCnt,
+                    AvgPct: item.AvgPct,
+                    AvgTot: item.AvgTot,
+                }
+                item.choices.forEach(choice => {
+
+                    obj['Cnt-' + String(choice.choice)] = choice.Cnt,
+                    obj['Pct-' + String(choice.choice)] = choice.Pct
+                })
+                data.push(obj)
+            });
+
+            if (grid) {
+                let table = new Tabulator(grid, {
+                    layout: 'fitDataFill',
+                    columnVertAlign: 'middle',
+                    data: data,
+                    columns: columns
+                });
+            }
+
+            self.update();
+        }
+
+        let chart;
+        let initCtrls = () => {
+            grid = self.refs['grid']
+            updatecontent();
+        }
+        let freeCtrls = () => {
+            grid = null;
+        }
+
+        let addEvt = (evtName, handle) => { document.addEventListener(evtName, handle) }
+        let delEvt = (evtName, handle) => { document.removeEventListener(evtName, handle) }
+
+        let bindEvents = () => {
+            addEvt(events.name.LanguageChanged, onLanguageChanged)
+            addEvt(events.name.ContentChanged, onContentChanged)
+            addEvt(events.name.ScreenChanged, onScreenChanged)
+        }
+        let unbindEvents = () => {
+            delEvt(events.name.ScreenChanged, onScreenChanged)
+            delEvt(events.name.ContentChanged, onContentChanged)
+            delEvt(events.name.LanguageChanged, onLanguageChanged)
+        }
+
+        this.on('mount', () => {
+            initCtrls();
+            bindEvents();
+        });
+        this.on('unmount', () => {
+            unbindEvents();
+            freeCtrls();
+        });
+
+        let onContentChanged = (e) => { updatecontent(); }
+        let onLanguageChanged = (e) => { updatecontent(); }
+        let onScreenChanged = (e) => { updatecontent(); }
+
 });
 riot.tag2('device-editor', '<div class="entry"> <div class="tab"> <button ref="tabheader" class="tablinks active" name="default" onclick="{showContent}"> <span class="fas fa-cog"></span>&nbsp;{content.entry.tabDefault}&nbsp; </button> <button ref="tabheader" class="tablinks" name="miltilang" onclick="{showContent}"> <span class="fas fa-globe-americas"></span>&nbsp;{content.entry.tabMultiLang}&nbsp; </button> </div> <div ref="tabcontent" name="default" class="tabcontent" style="display: block;"> <device-entry ref="EN" langid=""></device-entry> </div> <div ref="tabcontent" name="miltilang" class="tabcontent"> <virtual if="{lang.languages}"> <virtual each="{item in lang.languages}"> <virtual if="{item.langId !== \'EN\'}"> <div class="panel-header" langid="{item.langId}"> &nbsp;&nbsp; <span class="flag-css flag-icon flag-icon-{item.flagId.toLowerCase()}"></span> &nbsp;{item.Description}&nbsp; </div> <div class="panel-body" langid="{item.langId}"> <device-entry ref="{item.langId}" langid="{item.langId}"></device-entry> </div> </virtual> </virtual> </virtual> </div> </div> <div class="tool"> <button onclick="{save}"><span class="fas fa-save"></span></button> <button onclick="{cancel}"><span class="fas fa-times"></span></button> </div>', 'device-editor,[data-is="device-editor"]{ margin: 0 auto; padding: 0; width: 100%; height: 100%; display: grid; grid-template-columns: 1fr; grid-template-rows: 1fr 30px; grid-template-areas: \'entry\' \'tool\'; overflow: hidden; background-color: white; } device-editor .entry,[data-is="device-editor"] .entry{ grid-area: entry; margin: 0 auto; padding: 0; width: 100%; height: 100%; overflow: auto; } device-editor .entry .tab,[data-is="device-editor"] .entry .tab{ overflow: hidden; border: 1px solid #ccc; } device-editor .entry .tab button,[data-is="device-editor"] .entry .tab button{ background-color: inherit; float: left; border: none; outline: none; cursor: pointer; padding: 14px 16px; transition: 0.3s; } device-editor .entry .tab button:hover,[data-is="device-editor"] .entry .tab button:hover{ background-color: #ddd; } device-editor .entry .tab button.active,[data-is="device-editor"] .entry .tab button.active{ background-color: #ccc; } device-editor .entry .tabcontent,[data-is="device-editor"] .entry .tabcontent{ display: none; padding: 3px; width: 100%; max-width: 100%; overflow: auto; } device-editor .entry .tabcontent .panel-header,[data-is="device-editor"] .entry .tabcontent .panel-header{ margin: 0 auto; padding: 0; padding-top: 3px; width: 100%; height: 30px; color: white; background: cornflowerblue; border-radius: 5px 5px 0 0; } device-editor .entry .tabcontent .panel-body,[data-is="device-editor"] .entry .tabcontent .panel-body{ margin: 0 auto; margin-bottom: 5px; padding: 0; width: 100%; border: 1px solid cornflowerblue; } device-editor .tool,[data-is="device-editor"] .tool{ grid-area: tool; margin: 0 auto; padding: 0; padding-left: 3px; padding-top: 3px; width: 100%; height: 30px; overflow: hidden; }', '', function(opts) {
 
@@ -3234,10 +3431,13 @@ riot.tag2('bar-votesummary-result', '<date-result caption="Date" begin="{current
 
 
         let self = this;
+        let screenId = 'bar-votesummary-manage';
+        let shown = false;
         let result = null;
-        let search = {
-            begin: '',
-            end: ''
+        let search_opts = {
+            langId: 'EN',
+            beginDate: '',
+            endDate: ''
         }
         this.current = {
             begin: '',
@@ -3245,14 +3445,45 @@ riot.tag2('bar-votesummary-result', '<date-result caption="Date" begin="{current
             slides: []
         };
 
-        let updatecontent = () => {
-            if (result) {
-                self.current = result[lang.langId]
-                self.current.begin = search.beginDate;
-                self.current.end = search.endDate;
+        let defaultContent = {
+            title: ''
+        }
+        this.content = this.defaultContent;
 
+        let updatecontent = () => {
+            let scrId = screens.current.screenId;
+            if (shown && screenId === scrId) {
+                let scrContent = (contents.current && contents.current.screens) ? contents.current.screens[scrId] : null;
+                self.content = scrContent ? scrContent : defaultContent;
+                console.log(result)
+                if (result && result[lang.langId]) {
+                    self.current = result[lang.langId]
+                    self.current.begin = search_opts.beginDate;
+                    self.current.end = search_opts.endDate;
+
+                }
                 self.update();
             }
+        }
+        let refresh = () => {
+            let scrId = screens.current.screenId;
+
+            search_opts.langId = lang.langId;
+            $.ajax({
+                type: "POST",
+                url: "/customer/api/report/votesummaries/search",
+                data: JSON.stringify(search_opts),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: (ret) => {
+
+                    result = ret.data;
+                    updatecontent();
+                },
+                failure: (errMsg) => {
+                    console.log(errMsg);
+                }
+            })
         }
 
         let initCtrls = () => {}
@@ -3286,42 +3517,41 @@ riot.tag2('bar-votesummary-result', '<date-result caption="Date" begin="{current
         let onScreenChanged = (e) => { updatecontent(); }
 
         this.goback = () => {
+            shown = false;
             events.raise(events.name.BarSummarySearch)
         }
 
         this.setup = (criteria) => {
 
-            search = criteria;
-            $.ajax({
-                type: "POST",
-                url: "/customer/api/report/votesummaries/search",
-                data: JSON.stringify(criteria),
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: (ret) => {
-
-                    result = ret.data;
-                    updatecontent();
-                },
-                failure: (errMsg) => {
-                    console.log(errMsg);
-                }
-            })
+            search_opts = criteria;
+            shown = true;
+            refresh();
         }
 });
 riot.tag2('bar-votesummary-search', '<div class="input-block center"> <span>Vote Summary Bar Graph.</span> </div> <div class="input-block center"> <nselect ref="ctrlQSets" title="Question set"></nselect> </div> <div class="input-block center"> <ninput ref="ctrlBegin" title="Begin Date" type="date"></ninput> <ninput ref="ctrlEnd" title="End Date" type="date"></ninput> </div> <div class="input-block center"> <ncheckedtree ref="ctrlQuesTree" title="Question" class="tree"></ncheckedtree> </div> <div class="input-block center"> <ncheckedtree ref="ctrlOrgTree" title="Organization" class="tree"></ncheckedtree> </div> <div class="input-block center"> <button onclick="{onseach}">Search</button> </div> <br>', 'bar-votesummary-search,[data-is="bar-votesummary-search"]{ display: block; margin: 0; padding: 5px; width: 100%; height: 100%; overflow: auto; } bar-votesummary-search .input-block,[data-is="bar-votesummary-search"] .input-block{ display: block; margin: 0; margin-top: 10px; padding: 0; width: 100%; max-width: 800px; text-align: center; } bar-votesummary-search .input-block.center,[data-is="bar-votesummary-search"] .input-block.center{ margin: auto; margin-top: 10px; } bar-votesummary-search .input-block span,[data-is="bar-votesummary-search"] .input-block span,bar-votesummary-search .input-block button,[data-is="bar-votesummary-search"] .input-block button{ display: inline-block; margin: 0 auto; padding: 0; width: 50%; font-size: 1rem; font-size: bold; } bar-votesummary-search .input-block span.label,[data-is="bar-votesummary-search"] .input-block span.label{ margin: 1px; padding: 2px; text-align: left; color: cornflowerblue; width: 100%; } bar-votesummary-search .input-block span input,[data-is="bar-votesummary-search"] .input-block span input{ margin: 1px; padding: 2px; text-align: left; color: cornflowerblue; width: 100%; } bar-votesummary-search .input-block .tree,[data-is="bar-votesummary-search"] .input-block .tree{ text-align: left; }', '', function(opts) {
 
 
         let self = this;
+        let screenId = 'bar-votesummary-manage';
         let qsetModel;
         let quesModel;
         let orgModel;
 
+        let defaultContent = {
+            title: ''
+        }
+        this.content = this.defaultContent;
+
         let updatecontent = () => {
-            updateQSets();
-            updateQuestions();
-            updateOrgs();
-            self.update();
+            let scrId = screens.current.screenId;
+            if (screenId === scrId) {
+                let scrContent = (contents.current && contents.current.screens) ? contents.current.screens[scrId] : null;
+                self.content = scrContent ? scrContent : defaultContent;
+                updateQSets();
+                updateQuestions();
+                updateOrgs();
+                self.update();
+            }
         }
 
         let onQSetSelectd = () => {
@@ -3605,10 +3835,13 @@ riot.tag2('pie-votesummary-result', '<date-result caption="Date" begin="{current
 
 
         let self = this;
+        let screenId = 'pie-votesummary-manage';
+        let shown = false;
         let result = null;
-        let search = {
-            begin: '',
-            end: ''
+        let search_opts = {
+            langId: 'EN',
+            beginDate: '',
+            endDate: ''
         }
         this.current = {
             begin: '',
@@ -3616,14 +3849,45 @@ riot.tag2('pie-votesummary-result', '<date-result caption="Date" begin="{current
             slides: []
         };
 
-        let updatecontent = () => {
-            if (result) {
-                self.current = result[lang.langId]
-                self.current.begin = search.beginDate;
-                self.current.end = search.endDate;
+        let defaultContent = {
+            title: ''
+        }
+        this.content = this.defaultContent;
 
+        let updatecontent = () => {
+            let scrId = screens.current.screenId;
+            if (shown && screenId === scrId) {
+                let scrContent = (contents.current && contents.current.screens) ? contents.current.screens[scrId] : null;
+                self.content = scrContent ? scrContent : defaultContent;
+                console.log(result)
+                if (result && result[lang.langId]) {
+                    self.current = result[lang.langId]
+                    self.current.begin = search_opts.beginDate;
+                    self.current.end = search_opts.endDate;
+
+                }
                 self.update();
             }
+        }
+        let refresh = () => {
+            let scrId = screens.current.screenId;
+            if (!shown || screenId !== scrId) return;
+
+            $.ajax({
+                type: "POST",
+                url: "/customer/api/report/votesummaries/search",
+                data: JSON.stringify(search_opts),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: (ret) => {
+
+                    result = ret.data;
+                    updatecontent();
+                },
+                failure: (errMsg) => {
+                    console.log(errMsg);
+                }
+            })
         }
 
         let initCtrls = () => {}
@@ -3657,42 +3921,41 @@ riot.tag2('pie-votesummary-result', '<date-result caption="Date" begin="{current
         let onScreenChanged = (e) => { updatecontent(); }
 
         this.goback = () => {
+            shown = false;
             events.raise(events.name.PieSummarySearch)
         }
 
         this.setup = (criteria) => {
 
-            search = criteria;
-            $.ajax({
-                type: "POST",
-                url: "/customer/api/report/votesummaries/search",
-                data: JSON.stringify(criteria),
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: (ret) => {
-
-                    result = ret.data;
-                    updatecontent();
-                },
-                failure: (errMsg) => {
-                    console.log(errMsg);
-                }
-            })
+            search_opts = criteria;
+            shown = true;
+            refresh();
         }
 });
 riot.tag2('pie-votesummary-search', '<div class="input-block center"> <span>Vote Summary Pie Chart.</span> </div> <div class="input-block center"> <nselect ref="ctrlQSets" title="Question set"></nselect> </div> <div class="input-block center"> <ninput ref="ctrlBegin" title="Begin Date" type="date"></ninput> <ninput ref="ctrlEnd" title="End Date" type="date"></ninput> </div> <div class="input-block center"> <ncheckedtree ref="ctrlQuesTree" title="Question" class="tree"></ncheckedtree> </div> <div class="input-block center"> <ncheckedtree ref="ctrlOrgTree" title="Organization" class="tree"></ncheckedtree> </div> <div class="input-block center"> <button onclick="{onseach}">Search</button> </div> <br>', 'pie-votesummary-search,[data-is="pie-votesummary-search"]{ display: block; margin: 0; padding: 5px; width: 100%; height: 100%; } pie-votesummary-search .input-block,[data-is="pie-votesummary-search"] .input-block{ display: block; margin: 0; margin-top: 10px; padding: 0; width: 100%; max-width: 800px; text-align: center; } pie-votesummary-search .input-block.center,[data-is="pie-votesummary-search"] .input-block.center{ margin: auto; margin-top: 10px; } pie-votesummary-search .input-block span,[data-is="pie-votesummary-search"] .input-block span,pie-votesummary-search .input-block button,[data-is="pie-votesummary-search"] .input-block button{ display: inline-block; margin: 0 auto; padding: 0; width: 50%; font-size: 1rem; font-size: bold; } pie-votesummary-search .input-block span.label,[data-is="pie-votesummary-search"] .input-block span.label{ margin: 1px; padding: 2px; text-align: left; color: cornflowerblue; width: 100%; } pie-votesummary-search .input-block span input,[data-is="pie-votesummary-search"] .input-block span input{ margin: 1px; padding: 2px; text-align: left; color: cornflowerblue; width: 100%; } pie-votesummary-search .input-block .tree,[data-is="pie-votesummary-search"] .input-block .tree{ text-align: left; }', '', function(opts) {
 
 
         let self = this;
+        let screenId = 'pie-votesummary-manage';
         let qsetModel;
         let quesModel;
         let orgModel;
 
+        let defaultContent = {
+            title: ''
+        }
+        this.content = this.defaultContent;
+
         let updatecontent = () => {
-            updateQSets();
-            updateQuestions();
-            updateOrgs();
-            self.update();
+            let scrId = screens.current.screenId;
+            if (screenId === scrId) {
+                let scrContent = (contents.current && contents.current.screens) ? contents.current.screens[scrId] : null;
+                self.content = scrContent ? scrContent : defaultContent;
+                updateQSets();
+                updateQuestions();
+                updateOrgs();
+                self.update();
+            }
         }
 
         let onQSetSelectd = () => {
@@ -3958,9 +4221,7 @@ riot.tag2('rawvote-manage', '<flip-screen ref="flipper"> <yield to="viewer"> <ra
         let onShowResult = (e) => {
             if (flipper) {
                 flipper.toggle();
-                let criteria = {
-
-                }
+                let criteria = e.detail.data;
                 if (entry) entry.setup(criteria);
             }
 
@@ -3977,10 +4238,13 @@ riot.tag2('rawvote-result', '<date-result caption="Date" begin="{current.begin}"
 
 
         let self = this;
+        let screenId = 'rawvote-manage';
+        let shown = false;
         let result = null;
-        let search = {
-            begin: '',
-            end: ''
+        let search_opts = {
+            langId: 'EN',
+            beginDate: '',
+            endDate: ''
         }
         this.current = {
             begin: '',
@@ -3988,14 +4252,45 @@ riot.tag2('rawvote-result', '<date-result caption="Date" begin="{current.begin}"
             slides: []
         };
 
-        let updatecontent = () => {
-            if (result) {
-                self.current = result[lang.langId]
-                self.current.begin = search.beginDate;
-                self.current.end = search.endDate;
+        let defaultContent = {
+            title: ''
+        }
+        this.content = this.defaultContent;
 
+        let updatecontent = () => {
+            let scrId = screens.current.screenId;
+            if (shown && screenId === scrId) {
+                let scrContent = (contents.current && contents.current.screens) ? contents.current.screens[scrId] : null;
+                self.content = scrContent ? scrContent : defaultContent;
+                console.log(result)
+                if (result && result[lang.langId]) {
+                    self.current = result[lang.langId]
+                    self.current.begin = search_opts.beginDate;
+                    self.current.end = search_opts.endDate;
+
+                }
                 self.update();
             }
+        }
+        let refresh = () => {
+            let scrId = screens.current.screenId;
+            if (!shown || screenId !== scrId) return;
+
+            $.ajax({
+                type: "POST",
+                url: "/customer/api/report/rawvote/search",
+                data: JSON.stringify(search_opts),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: (ret) => {
+
+                    result = ret.data;
+                    updatecontent();
+                },
+                failure: (errMsg) => {
+                    console.log(errMsg);
+                }
+            })
         }
 
         let initCtrls = () => {}
@@ -4029,25 +4324,41 @@ riot.tag2('rawvote-result', '<date-result caption="Date" begin="{current.begin}"
         let onScreenChanged = (e) => { updatecontent(); }
 
         this.goback = () => {
+            shown = false;
             events.raise(events.name.RawVoteSearch)
         }
 
         this.setup = (criteria) => {
 
+            search_opts = criteria;
+            shown = true;
+            refresh();
         }
 });
-riot.tag2('rawvote-search', '<div class="input-block center"> <span>Raw Vote.</span> </div> <div class="input-block center"> <nselect ref="ctrlQSets" title="Question set"></nselect> </div> <div class="input-block center"> <ninput ref="ctrlBegin" title="Begin Date" type="date"></ninput> <ninput ref="ctrlEnd" title="End Date" type="date"></ninput> </div> <div class="input-block center"> <ncheckedtree ref="ctrlQuesTree" title="Question" class="tree"></ncheckedtree> </div> <div class="input-block center"> <button onclick="{onseach}">Search</button> </div> <br>', 'rawvote-search,[data-is="rawvote-search"]{ display: block; margin: 0; padding: 5px; width: 100%; height: 100%; } rawvote-search .input-block,[data-is="rawvote-search"] .input-block{ display: block; margin: 0; margin-top: 10px; padding: 0; width: 100%; max-width: 800px; text-align: center; } rawvote-search .input-block.center,[data-is="rawvote-search"] .input-block.center{ margin: auto; margin-top: 10px; } rawvote-search .input-block span,[data-is="rawvote-search"] .input-block span,rawvote-search .input-block button,[data-is="rawvote-search"] .input-block button{ display: inline-block; margin: 0 auto; padding: 0; width: 50%; font-size: 1rem; font-size: bold; } rawvote-search .input-block span.label,[data-is="rawvote-search"] .input-block span.label{ margin: 1px; padding: 2px; text-align: left; color: cornflowerblue; width: 100%; } rawvote-search .input-block span input,[data-is="rawvote-search"] .input-block span input{ margin: 1px; padding: 2px; text-align: left; color: cornflowerblue; width: 100%; } rawvote-search .input-block .tree,[data-is="rawvote-search"] .input-block .tree{ text-align: left; }', '', function(opts) {
+riot.tag2('rawvote-search', '<div class="input-block center"> <span>Raw Vote.</span> </div> <div class="input-block center"> <nselect ref="ctrlQSets" title="Question set"></nselect> </div> <div class="input-block center"> <ninput ref="ctrlBegin" title="Begin Date" type="date"></ninput> <ninput ref="ctrlEnd" title="End Date" type="date"></ninput> </div> <div class="input-block center"> <ncheckedtree ref="ctrlQuesTree" title="Question" class="tree"></ncheckedtree> </div> <div class="input-block center"> <ntree ref="ctrlOrgTree" title="Organization" class="tree"></ntree> </div> <div class="input-block center"> <button onclick="{onseach}">Search</button> </div> <br>', 'rawvote-search,[data-is="rawvote-search"]{ display: block; margin: 0; padding: 5px; width: 100%; height: 100%; } rawvote-search .input-block,[data-is="rawvote-search"] .input-block{ display: block; margin: 0; margin-top: 10px; padding: 0; width: 100%; max-width: 800px; text-align: center; } rawvote-search .input-block.center,[data-is="rawvote-search"] .input-block.center{ margin: auto; margin-top: 10px; } rawvote-search .input-block span,[data-is="rawvote-search"] .input-block span,rawvote-search .input-block button,[data-is="rawvote-search"] .input-block button{ display: inline-block; margin: 0 auto; padding: 0; width: 50%; font-size: 1rem; font-size: bold; } rawvote-search .input-block span.label,[data-is="rawvote-search"] .input-block span.label{ margin: 1px; padding: 2px; text-align: left; color: cornflowerblue; width: 100%; } rawvote-search .input-block span input,[data-is="rawvote-search"] .input-block span input{ margin: 1px; padding: 2px; text-align: left; color: cornflowerblue; width: 100%; } rawvote-search .input-block .tree,[data-is="rawvote-search"] .input-block .tree{ text-align: left; }', '', function(opts) {
 
 
         let self = this;
+        let screenId = 'rawvote-manage';
         let qsetModel;
         let quesModel;
+        let orgModel;
+
+        let defaultContent = {
+            title: ''
+        }
+        this.content = this.defaultContent;
 
         let updatecontent = () => {
-            updateQSets();
-            updateQuestions();
-
-            self.update();
+            let scrId = screens.current.screenId;
+            if (screenId === scrId) {
+                let scrContent = (contents.current && contents.current.screens) ? contents.current.screens[scrId] : null;
+                self.content = scrContent ? scrContent : defaultContent;
+                updateQSets();
+                updateQuestions();
+                updateOrgs();
+                self.update();
+            }
         }
 
         let onQSetSelectd = () => {
@@ -4139,18 +4450,58 @@ riot.tag2('rawvote-search', '<div class="input-block center"> <span>Raw Vote.</s
             }
         }
 
-        let ctrlQSets, ctrlBegin, ctrlEnd, ctrlQuesTree;
+        let clearOrgs = () => {
+            if (ctrlOrgTree) {
+                ctrlOrgTree.clear();
+            }
+        }
+
+        let updateOrgs = () => {
+            if (ctrlOrgTree && orgModel) {
+                let lastValue = ctrlOrgTree.selectedItem();
+
+                let values = orgModel[lang.langId];
+
+                let fldmap = { valueField: 'orgId', textField: 'OrgName', parentField: 'parentId' }
+                ctrlOrgTree.setup(values, fldmap);
+
+            }
+        }
+
+        let loadOrgs = (qsetid) => {
+            let criteria = { }
+            if (ctrlOrgTree) {
+                $.ajax({
+                    type: "POST",
+                    url: "/customer/api/org/search",
+                    data: JSON.stringify(criteria),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: (ret) => {
+
+                        orgModel = ret.data;
+                        updateOrgs();
+                    },
+                    failure: (errMsg) => {
+                        console.log(errMsg);
+                    }
+                })
+            }
+        }
+
+        let ctrlQSets, ctrlBegin, ctrlEnd, ctrlQuesTree, ctrlOrgTree;
         let initCtrls = () => {
             ctrlQSets = self.refs['ctrlQSets']
             ctrlBegin = self.refs['ctrlBegin']
             ctrlEnd = self.refs['ctrlEnd']
             ctrlQuesTree = self.refs['ctrlQuesTree']
-
+            ctrlOrgTree = self.refs['ctrlOrgTree']
             loadQSets();
 
+            loadOrgs();
         }
         let freeCtrls = () => {
-
+            ctrlOrgTree = null;
             ctrlQuesTree = null;
             ctrlEnd = null;
             ctrlBegin = null;
@@ -4185,8 +4536,28 @@ riot.tag2('rawvote-search', '<div class="input-block center"> <span>Raw Vote.</s
         let onScreenChanged = (e) => { updatecontent(); }
 
         this.onseach = () => {
+            let qsetid = ctrlQSets.value();
+            let beginDT = String(ctrlBegin.value());
+            let endDT = String(ctrlEnd.value());
 
-            events.raise(events.name.RawVoteResult)
+            let slides = [];
+            let quesmap = ctrlQuesTree.selectedItems().map(item => item.id );
+            quesmap.forEach(quesId => {
+                slides.push({ qSeq: quesId })
+            });
+            let orgid = ctrlOrgTree.selectedItem();
+
+            let criteria = {
+                langId: lang.langId,
+                qsetId: qsetid,
+                beginDate: beginDT,
+                endDate: endDT,
+
+                qseq: 1,
+                orgs: orgid
+            }
+
+            events.raise(events.name.RawVoteResult, criteria)
         }
 });
 riot.tag2('report-home', '<div class="report-home-main"> <div class="report-item"> <button onclick="{showvotesummary}"> <span class="icon fa-3x fas fa-table cr1"></span> <span class="text">Vote Summary</span> </button> </div> <div class="report-item"> <button onclick="{showpiesummary}"> <span class="icon fa-3x fas fa-chart-pie cr2"></span> <span class="text">Pie Chart</span> </button> </div> <div class="report-item"> <button onclick="{showbarsummary}"> <span class="icon fa-3x fas fa-chart-bar cr3"></span> <span class="text">Bar Chart</span> </button> </div> <div class="report-item"> <button onclick="{showstaffcompare}"> <span class="icon fa-3x fas fa-chalkboard-teacher cr6"></span> <span class="text">Staff Compare</span> </button> </div> <div class="report-item"> <button onclick="{showrawvote}"> <span class="icon fa-3x fas fa-table cr4"></span> <span class="text">Raw Vote</span> </button> </div> <div class="report-item"> <button onclick="{showstaffperf}"> <span class="icon fa-3x far fa-id-card cr5"></span> <span class="text">Staff Performance</span> </button> </div> </div>', 'report-home,[data-is="report-home"]{ margin: 0 auto; padding: 0; padding-top: 20px; padding-bottom: 20px; width: 100%; height: 100%; display: block; overflow: auto; } @media (min-width: 620px) { report-home .report-home-main,[data-is="report-home"] .report-home-main{ column-count: 2; column-gap: 20px; } } @media (min-width: 960px) { report-home .report-home-main,[data-is="report-home"] .report-home-main{ column-count: 3; column-gap: 20px; } } report-home .report-home-main,[data-is="report-home"] .report-home-main{ margin: 0 auto; padding: 20px; max-width: 1000px; } report-home .report-home-main,[data-is="report-home"] .report-home-main{ display: block; margin: 0 auto; padding: 10px; } report-home .report-home-main .report-item,[data-is="report-home"] .report-home-main .report-item{ margin: 2px auto; padding: 0; margin-bottom: 20px; height: 100px; break-inside: avoid; } report-home .report-home-main .report-item button,[data-is="report-home"] .report-home-main .report-item button{ margin: 0 auto; padding: 0; display: grid; width: 100%; height: 100%; } report-home .report-home-main .report-item button .icon,[data-is="report-home"] .report-home-main .report-item button .icon{ justify-self: center; align-self: center; } report-home .report-home-main .report-item button .text,[data-is="report-home"] .report-home-main .report-item button .text{ justify-self: center; align-self: center; font-size: 1rem; font-weight: bold; } report-home .report-home-main .report-item button .icon.cr1,[data-is="report-home"] .report-home-main .report-item button .icon.cr1{ color: chocolate; } report-home .report-home-main .report-item button .icon.cr2,[data-is="report-home"] .report-home-main .report-item button .icon.cr2{ color: cornflowerblue; } report-home .report-home-main .report-item button .icon.cr3,[data-is="report-home"] .report-home-main .report-item button .icon.cr3{ color: olivedrab; } report-home .report-home-main .report-item button .icon.cr4,[data-is="report-home"] .report-home-main .report-item button .icon.cr4{ color: darkorchid; } report-home .report-home-main .report-item button .icon.cr5,[data-is="report-home"] .report-home-main .report-item button .icon.cr5{ color: sandybrown; } report-home .report-home-main .report-item button .icon.cr6,[data-is="report-home"] .report-home-main .report-item button .icon.cr6{ color: navy; }', '', function(opts) {
@@ -4280,9 +4651,7 @@ riot.tag2('staff-compare-manage', '<flip-screen ref="flipper"> <yield to="viewer
         let onShowResult = (e) => {
             if (flipper) {
                 flipper.toggle();
-                let criteria = {
-
-                }
+                let criteria = e.detail.data;
                 if (entry) entry.setup(criteria);
             }
 
@@ -4299,10 +4668,13 @@ riot.tag2('staff-compare-result', '<date-result caption="Date" begin="{current.b
 
 
         let self = this;
+        let screenId = 'staff-compare-manage';
+        let shown = false;
         let result = null;
-        let search = {
-            begin: '',
-            end: ''
+        let search_opts = {
+            langId: 'EN',
+            beginDate: '',
+            endDate: ''
         }
         this.current = {
             begin: '',
@@ -4310,14 +4682,30 @@ riot.tag2('staff-compare-result', '<date-result caption="Date" begin="{current.b
             slides: []
         };
 
-        let updatecontent = () => {
-            if (result) {
-                self.current = result[lang.langId]
-                self.current.begin = search.beginDate;
-                self.current.end = search.endDate;
+        let defaultContent = {
+            title: ''
+        }
+        this.content = this.defaultContent;
 
+        let updatecontent = () => {
+            let scrId = screens.current.screenId;
+            if (shown && screenId === scrId) {
+                let scrContent = (contents.current && contents.current.screens) ? contents.current.screens[scrId] : null;
+                self.content = scrContent ? scrContent : defaultContent;
+                console.log(result)
+                if (result && result[lang.langId]) {
+                    self.current = result[lang.langId]
+                    self.current.begin = search_opts.beginDate;
+                    self.current.end = search_opts.endDate;
+
+                }
                 self.update();
             }
+        }
+        let refresh = () => {
+            let scrId = screens.current.screenId;
+            if (!shown || screenId !== scrId) return;
+
         }
 
         let initCtrls = () => {}
@@ -4351,25 +4739,40 @@ riot.tag2('staff-compare-result', '<date-result caption="Date" begin="{current.b
         let onScreenChanged = (e) => { updatecontent(); }
 
         this.goback = () => {
+            shown = false;
             events.raise(events.name.StaffCompareSearch)
         }
 
         this.setup = (criteria) => {
 
+            search_opts = criteria;
+            shown = true;
+            refresh();
         }
 });
 riot.tag2('staff-compare-search', '<div class="input-block center"> <span>Staff Compare.</span> </div> <div class="input-block center"> <nselect ref="ctrlQSets" title="Question set"></nselect> </div> <div class="input-block center"> <ninput ref="ctrlBegin" title="Begin Date" type="date"></ninput> <ninput ref="ctrlEnd" title="End Date" type="date"></ninput> </div> <div class="input-block center"> <ncheckedtree ref="ctrlQuesTree" title="Question" class="tree"></ncheckedtree> </div> <div class="input-block center"> <button onclick="{onseach}">Search</button> </div> <br>', 'staff-compare-search,[data-is="staff-compare-search"]{ display: block; margin: 0; padding: 5px; width: 100%; height: 100%; } staff-compare-search .input-block,[data-is="staff-compare-search"] .input-block{ display: block; margin: 0; margin-top: 10px; padding: 0; width: 100%; max-width: 800px; text-align: center; } staff-compare-search .input-block.center,[data-is="staff-compare-search"] .input-block.center{ margin: auto; margin-top: 10px; } staff-compare-search .input-block span,[data-is="staff-compare-search"] .input-block span,staff-compare-search .input-block button,[data-is="staff-compare-search"] .input-block button{ display: inline-block; margin: 0 auto; padding: 0; width: 50%; font-size: 1rem; font-size: bold; } staff-compare-search .input-block span.label,[data-is="staff-compare-search"] .input-block span.label{ margin: 1px; padding: 2px; text-align: left; color: cornflowerblue; width: 100%; } staff-compare-search .input-block span input,[data-is="staff-compare-search"] .input-block span input{ margin: 1px; padding: 2px; text-align: left; color: cornflowerblue; width: 100%; } staff-compare-search .input-block .tree,[data-is="staff-compare-search"] .input-block .tree{ text-align: left; }', '', function(opts) {
 
 
         let self = this;
+        let screenId = 'staff-compare-manage';
         let qsetModel;
         let quesModel;
 
-        let updatecontent = () => {
-            updateQSets();
-            updateQuestions();
+        let defaultContent = {
+            title: ''
+        }
+        this.content = this.defaultContent;
 
-            self.update();
+        let updatecontent = () => {
+            let scrId = screens.current.screenId;
+            if (screenId === scrId) {
+                let scrContent = (contents.current && contents.current.screens) ? contents.current.screens[scrId] : null;
+                self.content = scrContent ? scrContent : defaultContent;
+                updateQSets();
+                updateQuestions();
+
+                self.update();
+            }
         }
 
         let onQSetSelectd = () => {
@@ -4508,7 +4911,9 @@ riot.tag2('staff-compare-search', '<div class="input-block center"> <span>Staff 
 
         this.onseach = () => {
 
-            events.raise(events.name.StaffCompareResult)
+            let criteria = { }
+
+            events.raise(events.name.StaffCompareResult, criteria)
         }
 });
 riot.tag2('staff-perf-manage', '<flip-screen ref="flipper"> <yield to="viewer"> <staff-perf-search ref="viewer" class="view"></staff-perf-search> </yield> <yield to="entry"> <staff-perf-result ref="entry" class="entry"></staff-perf-result> </yield> </flip-screen>', 'staff-perf-manage,[data-is="staff-perf-manage"]{ margin: 0 auto; padding: 0; width: 100%; height: 100%; } staff-perf-manage .view,[data-is="staff-perf-manage"] .view,staff-perf-manage .entry,[data-is="staff-perf-manage"] .entry{ margin: 0; padding: 0; width: 100%; height: 100%; overflow: auto; }', '', function(opts) {
@@ -4572,9 +4977,7 @@ riot.tag2('staff-perf-manage', '<flip-screen ref="flipper"> <yield to="viewer"> 
         let onShowResult = (e) => {
             if (flipper) {
                 flipper.toggle();
-                let criteria = {
-
-                }
+                let criteria = e.detail.data;
                 if (entry) entry.setup(criteria);
             }
 
@@ -4591,10 +4994,13 @@ riot.tag2('staff-perf-result', '<date-result caption="Date" begin="{current.begi
 
 
         let self = this;
+        let screenId = 'staff-perf-manage';
+        let shown = false;
         let result = null;
-        let search = {
-            begin: '',
-            end: ''
+        let search_opts = {
+            langId: 'EN',
+            beginDate: '',
+            endDate: ''
         }
         this.current = {
             begin: '',
@@ -4602,14 +5008,30 @@ riot.tag2('staff-perf-result', '<date-result caption="Date" begin="{current.begi
             slides: []
         };
 
-        let updatecontent = () => {
-            if (result) {
-                self.current = result[lang.langId]
-                self.current.begin = search.beginDate;
-                self.current.end = search.endDate;
+        let defaultContent = {
+            title: ''
+        }
+        this.content = this.defaultContent;
 
+        let updatecontent = () => {
+            let scrId = screens.current.screenId;
+            if (shown && screenId === scrId) {
+                let scrContent = (contents.current && contents.current.screens) ? contents.current.screens[scrId] : null;
+                self.content = scrContent ? scrContent : defaultContent;
+                console.log(result)
+                if (result && result[lang.langId]) {
+                    self.current = result[lang.langId]
+                    self.current.begin = search_opts.beginDate;
+                    self.current.end = search_opts.endDate;
+
+                }
                 self.update();
             }
+        }
+        let refresh = () => {
+            let scrId = screens.current.screenId;
+            if (!shown || screenId !== scrId) return;
+
         }
 
         let initCtrls = () => {}
@@ -4643,25 +5065,40 @@ riot.tag2('staff-perf-result', '<date-result caption="Date" begin="{current.begi
         let onScreenChanged = (e) => { updatecontent(); }
 
         this.goback = () => {
+            shown = false;
             events.raise(events.name.StaffPerfSearch)
         }
 
         this.setup = (criteria) => {
 
+            search_opts = criteria;
+            shown = true;
+            refresh();
         }
 });
 riot.tag2('staff-perf-search', '<div class="input-block center"> <span>Staff Performance.</span> </div> <div class="input-block center"> <nselect ref="ctrlQSets" title="Question set"></nselect> </div> <div class="input-block center"> <ninput ref="ctrlBegin" title="Begin Date" type="date"></ninput> <ninput ref="ctrlEnd" title="End Date" type="date"></ninput> </div> <div class="input-block center"> <ncheckedtree ref="ctrlQuesTree" title="Question" class="tree"></ncheckedtree> </div> <div class="input-block center"> <button onclick="{onseach}">Search</button> </div> <br>', 'staff-perf-search,[data-is="staff-perf-search"]{ display: block; margin: 0; padding: 5px; width: 100%; height: 100%; } staff-perf-search .input-block,[data-is="staff-perf-search"] .input-block{ display: block; margin: 0; margin-top: 10px; padding: 0; width: 100%; max-width: 800px; text-align: center; } staff-perf-search .input-block.center,[data-is="staff-perf-search"] .input-block.center{ margin: auto; margin-top: 10px; } staff-perf-search .input-block span,[data-is="staff-perf-search"] .input-block span,staff-perf-search .input-block button,[data-is="staff-perf-search"] .input-block button{ display: inline-block; margin: 0 auto; padding: 0; width: 50%; font-size: 1rem; font-size: bold; } staff-perf-search .input-block span.label,[data-is="staff-perf-search"] .input-block span.label{ margin: 1px; padding: 2px; text-align: left; color: cornflowerblue; width: 100%; } staff-perf-search .input-block span input,[data-is="staff-perf-search"] .input-block span input{ margin: 1px; padding: 2px; text-align: left; color: cornflowerblue; width: 100%; } staff-perf-search .input-block .tree,[data-is="staff-perf-search"] .input-block .tree{ text-align: left; }', '', function(opts) {
 
 
         let self = this;
+        let screenId = 'staff-perf-manage';
         let qsetModel;
         let quesModel;
 
-        let updatecontent = () => {
-            updateQSets();
-            updateQuestions();
+        let defaultContent = {
+            title: ''
+        }
+        this.content = this.defaultContent;
 
-            self.update();
+        let updatecontent = () => {
+            let scrId = screens.current.screenId;
+            if (screenId === scrId) {
+                let scrContent = (contents.current && contents.current.screens) ? contents.current.screens[scrId] : null;
+                self.content = scrContent ? scrContent : defaultContent;
+                updateQSets();
+                updateQuestions();
+
+                self.update();
+            }
         }
 
         let onQSetSelectd = () => {
@@ -4800,7 +5237,9 @@ riot.tag2('staff-perf-search', '<div class="input-block center"> <span>Staff Per
 
         this.onseach = () => {
 
-            events.raise(events.name.StaffPerfResult)
+            let criteria = { }
+
+            events.raise(events.name.StaffPerfResult, criteria)
         }
 });
 riot.tag2('votesummary-manage', '<flip-screen ref="flipper"> <yield to="viewer"> <votesummary-search ref="viewer" class="view"></votesummary-search> </yield> <yield to="entry"> <votesummary-result ref="entry" class="entry"></votesummary-result> </yield> </flip-screen>', 'votesummary-manage,[data-is="votesummary-manage"]{ margin: 0 auto; padding: 0; width: 100%; height: 100%; } votesummary-manage .view,[data-is="votesummary-manage"] .view,votesummary-manage .entry,[data-is="votesummary-manage"] .entry{ margin: 0; padding: 0; width: 100%; height: 100%; overflow: auto; }', '', function(opts) {
@@ -4864,9 +5303,7 @@ riot.tag2('votesummary-manage', '<flip-screen ref="flipper"> <yield to="viewer">
         let onShowResult = (e) => {
             if (flipper) {
                 flipper.toggle();
-                let criteria = {
-
-                }
+                let criteria = e.detail.data;
                 if (entry) entry.setup(criteria);
             }
 
@@ -4879,29 +5316,64 @@ riot.tag2('votesummary-manage', '<flip-screen ref="flipper"> <yield to="viewer">
 
 });
 
-riot.tag2('votesummary-result', '<date-result caption="Date" begin="{current.begin}" end="{current.end}"></date-result> <div class="input-block center"> <button onclick="{goback}">Close</button> </div> <br>', 'votesummary-result,[data-is="votesummary-result"]{ display: block; margin: 0 auto; padding: 0; width: 100%; height: 100%; background-color: whitesmoke; } votesummary-result .input-block,[data-is="votesummary-result"] .input-block{ display: block; margin: 0; margin-top: 10px; padding: 0; width: 100%; max-width: 800px; text-align: center; } votesummary-result .input-block.center,[data-is="votesummary-result"] .input-block.center{ margin: auto; margin-top: 10px; } votesummary-result .input-block button,[data-is="votesummary-result"] .input-block button{ display: inline-block; margin: 0 auto; padding: 0; width: 50%; font-size: 1rem; font-size: bold; }', '', function(opts) {
+riot.tag2('votesummary-result', '<date-result caption="Date" begin="{current.begin}" end="{current.end}"></date-result> <virtial if="{current.slides && current.slides.length > 0}"> <virtial each="{slide in current.slides}"> <votesummary-question-slide slide="{slide}"></votesummary-question-slide> </virtial> </virtial> <div class="input-block center"> <button onclick="{goback}">Close</button> </div> <br>', 'votesummary-result,[data-is="votesummary-result"]{ display: block; margin: 0 auto; padding: 0; width: 100%; height: 100%; background-color: whitesmoke; } votesummary-result .input-block,[data-is="votesummary-result"] .input-block{ display: block; margin: 0; margin-top: 10px; padding: 0; width: 100%; max-width: 800px; text-align: center; } votesummary-result .input-block.center,[data-is="votesummary-result"] .input-block.center{ margin: auto; margin-top: 10px; } votesummary-result .input-block button,[data-is="votesummary-result"] .input-block button{ display: inline-block; margin: 0 auto; padding: 0; width: 50%; font-size: 1rem; font-size: bold; }', '', function(opts) {
 
 
         let self = this;
-        let result = null;
-        let search = {
-            begin: '',
-            end: ''
+        let screenId = 'votesummary-manage';
+        let shown = false;
+        let search_opts = {
+            langId: 'EN',
+            beginDate: '',
+            endDate: ''
         }
+        let result = null;
         this.current = {
             begin: '',
             end: '',
             slides: []
         };
 
-        let updatecontent = () => {
-            if (result) {
-                self.current = result[lang.langId]
-                self.current.begin = search.beginDate;
-                self.current.end = search.endDate;
+        let defaultContent = {
+            title: ''
+        }
+        this.content = this.defaultContent;
 
+        let updatecontent = () => {
+            let scrId = screens.current.screenId;
+            if (shown && screenId === scrId) {
+                let scrContent = (contents.current && contents.current.screens) ? contents.current.screens[scrId] : null;
+                self.content = scrContent ? scrContent : defaultContent;
+                console.log(result)
+                if (result && result[lang.langId]) {
+                    self.current = result[lang.langId]
+                    self.current.begin = search_opts.beginDate;
+                    self.current.end = search_opts.endDate;
+
+                }
                 self.update();
             }
+        }
+        let refresh = () => {
+            let scrId = screens.current.screenId;
+            if (!shown || screenId !== scrId) return;
+
+            $.ajax({
+                type: "POST",
+                url: "/customer/api/report/votesummaries/search",
+                data: JSON.stringify(search_opts),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: (ret) => {
+
+                    result = ret.data;
+
+                    updatecontent();
+                },
+                failure: (errMsg) => {
+                    console.log(errMsg);
+                }
+            })
         }
 
         let initCtrls = () => {}
@@ -4935,25 +5407,41 @@ riot.tag2('votesummary-result', '<date-result caption="Date" begin="{current.beg
         let onScreenChanged = (e) => { updatecontent(); }
 
         this.goback = () => {
+            shown = false;
             events.raise(events.name.VoteSummarySearch)
         }
 
         this.setup = (criteria) => {
 
+            search_opts = criteria;
+            shown = true;
+            refresh();
         }
 });
-riot.tag2('votesummary-search', '<div class="input-block center"> <span>Vote Summary.</span> </div> <div class="input-block center"> <nselect ref="ctrlQSets" title="Question set"></nselect> </div> <div class="input-block center"> <ninput ref="ctrlBegin" title="Begin Date" type="date"></ninput> <ninput ref="ctrlEnd" title="End Date" type="date"></ninput> </div> <div class="input-block center"> <ncheckedtree ref="ctrlQuesTree" title="Question" class="tree"></ncheckedtree> </div> <div class="input-block center"> <button onclick="{onseach}">Search</button> </div> <br>', 'votesummary-search,[data-is="votesummary-search"]{ display: block; margin: 0; padding: 5px; width: 100%; height: 100%; } votesummary-search .input-block,[data-is="votesummary-search"] .input-block{ display: block; margin: 0; margin-top: 10px; padding: 0; width: 100%; max-width: 800px; text-align: center; } votesummary-search .input-block.center,[data-is="votesummary-search"] .input-block.center{ margin: auto; margin-top: 10px; } votesummary-search .input-block span,[data-is="votesummary-search"] .input-block span,votesummary-search .input-block button,[data-is="votesummary-search"] .input-block button{ display: inline-block; margin: 0 auto; padding: 0; width: 50%; font-size: 1rem; font-size: bold; } votesummary-search .input-block span.label,[data-is="votesummary-search"] .input-block span.label{ margin: 1px; padding: 2px; text-align: left; color: cornflowerblue; width: 100%; } votesummary-search .input-block span input,[data-is="votesummary-search"] .input-block span input{ margin: 1px; padding: 2px; text-align: left; color: cornflowerblue; width: 100%; } votesummary-search .input-block .tree,[data-is="votesummary-search"] .input-block .tree{ text-align: left; }', '', function(opts) {
+riot.tag2('votesummary-search', '<div class="input-block center"> <span>Vote Summary.</span> </div> <div class="input-block center"> <nselect ref="ctrlQSets" title="Question set"></nselect> </div> <div class="input-block center"> <ninput ref="ctrlBegin" title="Begin Date" type="date"></ninput> <ninput ref="ctrlEnd" title="End Date" type="date"></ninput> </div> <div class="input-block center"> <ncheckedtree ref="ctrlQuesTree" title="Question" class="tree"></ncheckedtree> </div> <div class="input-block center"> <ncheckedtree ref="ctrlOrgTree" title="Organization" class="tree"></ncheckedtree> </div> <div class="input-block center"> <button onclick="{onseach}">Search</button> </div> <br>', 'votesummary-search,[data-is="votesummary-search"]{ display: block; margin: 0; padding: 5px; width: 100%; height: 100%; } votesummary-search .input-block,[data-is="votesummary-search"] .input-block{ display: block; margin: 0; margin-top: 10px; padding: 0; width: 100%; max-width: 800px; text-align: center; } votesummary-search .input-block.center,[data-is="votesummary-search"] .input-block.center{ margin: auto; margin-top: 10px; } votesummary-search .input-block span,[data-is="votesummary-search"] .input-block span,votesummary-search .input-block button,[data-is="votesummary-search"] .input-block button{ display: inline-block; margin: 0 auto; padding: 0; width: 50%; font-size: 1rem; font-size: bold; } votesummary-search .input-block span.label,[data-is="votesummary-search"] .input-block span.label{ margin: 1px; padding: 2px; text-align: left; color: cornflowerblue; width: 100%; } votesummary-search .input-block span input,[data-is="votesummary-search"] .input-block span input{ margin: 1px; padding: 2px; text-align: left; color: cornflowerblue; width: 100%; } votesummary-search .input-block .tree,[data-is="votesummary-search"] .input-block .tree{ text-align: left; }', '', function(opts) {
 
 
         let self = this;
+        let screenId = 'votesummary-manage';
         let qsetModel;
         let quesModel;
+        let orgModel;
+
+        let defaultContent = {
+            title: ''
+        }
+        this.content = this.defaultContent;
 
         let updatecontent = () => {
-            updateQSets();
-            updateQuestions();
-
-            self.update();
+            let scrId = screens.current.screenId;
+            if (screenId === scrId) {
+                let scrContent = (contents.current && contents.current.screens) ? contents.current.screens[scrId] : null;
+                self.content = scrContent ? scrContent : defaultContent;
+                updateQSets();
+                updateQuestions();
+                updateOrgs();
+                self.update();
+            }
         }
 
         let onQSetSelectd = () => {
@@ -5045,18 +5533,59 @@ riot.tag2('votesummary-search', '<div class="input-block center"> <span>Vote Sum
             }
         }
 
-        let ctrlQSets, ctrlBegin, ctrlEnd, ctrlQuesTree;
+        let clearOrgs = () => {
+            if (ctrlOrgTree) {
+                ctrlOrgTree.clear();
+            }
+        }
+
+        let updateOrgs = () => {
+            if (ctrlOrgTree && orgModel) {
+                let lastValues = ctrlOrgTree.selectedItems();
+
+                let values = orgModel[lang.langId];
+
+                let fldmap = { valueField: 'orgId', textField: 'OrgName', parentField: 'parentId' }
+                ctrlOrgTree.setup(values, fldmap);
+
+                ctrlOrgTree.selectedItems(lastValues);
+            }
+        }
+
+        let loadOrgs = (qsetid) => {
+            let criteria = { }
+            if (ctrlOrgTree) {
+                $.ajax({
+                    type: "POST",
+                    url: "/customer/api/org/search",
+                    data: JSON.stringify(criteria),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: (ret) => {
+
+                        orgModel = ret.data;
+                        updateOrgs();
+                    },
+                    failure: (errMsg) => {
+                        console.log(errMsg);
+                    }
+                })
+            }
+        }
+
+        let ctrlQSets, ctrlBegin, ctrlEnd, ctrlQuesTree, ctrlOrgTree;
         let initCtrls = () => {
             ctrlQSets = self.refs['ctrlQSets']
             ctrlBegin = self.refs['ctrlBegin']
             ctrlEnd = self.refs['ctrlEnd']
             ctrlQuesTree = self.refs['ctrlQuesTree']
-
+            ctrlOrgTree = self.refs['ctrlOrgTree']
             loadQSets();
 
+            loadOrgs();
         }
         let freeCtrls = () => {
-
+            ctrlOrgTree = null;
             ctrlQuesTree = null;
             ctrlEnd = null;
             ctrlBegin = null;
@@ -5091,8 +5620,30 @@ riot.tag2('votesummary-search', '<div class="input-block center"> <span>Vote Sum
         let onScreenChanged = (e) => { updatecontent(); }
 
         this.onseach = () => {
+            let qsetid = ctrlQSets.value();
+            let beginDT = String(ctrlBegin.value());
+            let endDT = String(ctrlEnd.value());
 
-            events.raise(events.name.VoteSummaryResult)
+            let slides = [];
+            let quesmap = ctrlQuesTree.selectedItems().map(item => item.id );
+            quesmap.forEach(quesId => {
+                slides.push({ qSeq: quesId })
+            });
+            let orgs = []
+            let orgmap = ctrlOrgTree.selectedItems().map(item => item.id );
+            orgmap.forEach(orgId => {
+                orgs.push({ orgId: orgId })
+            });
+
+            let criteria = {
+                qsetId: qsetid,
+                beginDate: beginDT,
+                endDate: endDT,
+                slides: slides,
+                orgs: orgs
+            }
+
+            events.raise(events.name.VoteSummaryResult, criteria)
         }
 });
 riot.tag2('edl-customer-editor', '', 'edl-customer-editor,[data-is="edl-customer-editor"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {

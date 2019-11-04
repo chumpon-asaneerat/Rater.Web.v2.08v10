@@ -69,16 +69,27 @@
         //#region Internal Variables
 
         let self = this;
+        let screenId = 'staff-perf-manage';
         let qsetModel;
         let quesModel;
+
+        let defaultContent = {
+            title: ''
+        }
+        this.content = this.defaultContent;
 
         //#endregion
 
         let updatecontent = () => {
-            updateQSets();
-            updateQuestions();
-
-            self.update();
+            let scrId = screens.current.screenId;
+            if (screenId === scrId) {
+                let scrContent = (contents.current && contents.current.screens) ? contents.current.screens[scrId] : null;
+                self.content = scrContent ? scrContent : defaultContent;
+                updateQSets();
+                updateQuestions();
+                
+                self.update();
+            }
         }
 
         //#region QSet Methods
@@ -270,10 +281,11 @@
                 slides: slides,
                 orgs: orgs
             }
-            //console.log(criteria)
             */
+            let criteria = { }
+            //console.log(criteria)
            
-            events.raise(events.name.StaffPerfResult)
+            events.raise(events.name.StaffPerfResult, criteria)
         }
     </script>
 </staff-perf-search>

@@ -45,10 +45,13 @@
         //#region Internal Variables
 
         let self = this;
+        let screenId = 'bar-votesummary-manage';
+        let shown = false;
         let result = null;
-        let search = {
-            begin: '',
-            end: ''
+        let search_opts = {
+            langId: 'EN',
+            beginDate: '',
+            endDate: ''
         }
         this.current = {
             begin: '',
@@ -56,16 +59,47 @@
             slides: []
         };
 
+        let defaultContent = {
+            title: ''
+        }
+        this.content = this.defaultContent;
+
         //#endregion
 
         let updatecontent = () => {
-            if (result) {
-                self.current = result[lang.langId]
-                self.current.begin = search.beginDate;
-                self.current.end = search.endDate;
-                //console.log(self.current)
+            let scrId = screens.current.screenId;
+            if (shown && screenId === scrId) {
+                let scrContent = (contents.current && contents.current.screens) ? contents.current.screens[scrId] : null;
+                self.content = scrContent ? scrContent : defaultContent;
+                console.log(result)
+                if (result && result[lang.langId]) {
+                    self.current = result[lang.langId]
+                    self.current.begin = search_opts.beginDate;
+                    self.current.end = search_opts.endDate;
+                    //console.log(self.current)
+                }
                 self.update();
             }
+        }
+        let refresh = () => {
+            let scrId = screens.current.screenId;
+            //if (!shown || screenId !== scrId) return;
+            search_opts.langId = lang.langId; // set langId
+            $.ajax({
+                type: "POST",
+                url: "/customer/api/report/votesummaries/search",
+                data: JSON.stringify(search_opts),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: (ret) => {
+                    //console.log(ret);
+                    result = ret.data;
+                    updatecontent();
+                },
+                failure: (errMsg) => {
+                    console.log(errMsg);
+                }
+            })
         }
 
         //#region controls variables and methods
@@ -112,6 +146,11 @@
 
         //#region dom event handlers
 
+        /*
+        let onContentChanged = (e) => { refresh(); }
+        let onLanguageChanged = (e) => { }
+        let onScreenChanged = (e) => { }
+        */
         let onContentChanged = (e) => { updatecontent(); }
         let onLanguageChanged = (e) => { updatecontent(); }
         let onScreenChanged = (e) => { updatecontent(); }
@@ -119,27 +158,15 @@
         //#endregion
 
         this.goback = () => {
+            shown = false;
             events.raise(events.name.BarSummarySearch)
         }
 
         this.setup = (criteria) => {
             //console.log('criteria:', criteria)
-            search = criteria;
-            $.ajax({
-                type: "POST",
-                url: "/customer/api/report/votesummaries/search",
-                data: JSON.stringify(criteria),
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: (ret) => {
-                    //console.log(ret);
-                    result = ret.data;
-                    updatecontent();
-                },
-                failure: (errMsg) => {
-                    console.log(errMsg);
-                }
-            })
+            search_opts = criteria;
+            shown = true;
+            refresh();
         }
     </script>
 </bar-votesummary-result>

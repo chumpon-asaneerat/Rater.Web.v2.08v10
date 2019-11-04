@@ -1,4 +1,4 @@
-<ncheckedtree>
+<ntree>
     <div class="ntree-container">
         <div ref="tree" class="tree"></div>
     </div>
@@ -115,34 +115,38 @@
         let hasValue = (val) => {
             return (val !== undefined && val !== null);
         }
-        let setSelectedItems = (items) => {
-            if (tree && items && items.length > 0) {
-                let map = items.map(item => { return item.id })
-                $(tree).jstree(true).check_node(map)
+        let setSelectedItem = (item) => {
+            console.log('set selected item.')
+            if (tree && item) {
+                console.log('item to select:', item)
+                console.log('get item:', $(tree).jstree(true).get_node(item))
+                $(tree).jstree(true).select_node(item);                
+                console.log('select item:', getSelectedItem())
             }
         }        
-        let getSelectedItems = () => {
-            let ret = [];
+        let getSelectedItem = () => {
+            let ret = null;
             if (tree) {
-                ret = $(tree).jstree(true).get_checked(true);
+                let selectitems = $(tree).jstree(true).get_selected();
+                ret = (selectitems && selectitems.length > 0) ? selectitems[0] : null;
             }
             return ret;
         }        
-        this.selectedItems = (items) => {
+        this.selectedItem = (item) => {
             let ret;
             if (tree) {
-                if (hasValue(items)) {
-                    setSelectedItems(items);
+                if (hasValue(item)) {
+                    setSelectedItem(item);
                 }
                 else {
-                    ret = getSelectedItems();
+                    ret = getSelectedItem();
                 }
             }
             return ret;
         }
         this.setup = (values, fldMap) => {
             if (tree) {
-                fldmap = fldMap;
+                fldmap = fldMap;                
                 let data = [];
                 if (values) {
                     values.forEach(val => {
@@ -173,10 +177,11 @@
                 $(tree).jstree({
                     'core': { 
                         data: data,
-                        "multiple" : true
+                        "multiple" : false
                     },
-                    "checkbox" : { "keep_selected_style" : false, two_state: true },
-                    "plugins" : [ "wholerow", "checkbox", "json_data" ]           
+                    //"checkbox" : { "keep_selected_style" : false, two_state: true },
+                    //"plugins" : [ "wholerow", "checkbox", "json_data" ]           
+                    "plugins" : [ "wholerow", "json_data" ]
                 }).on('ready.jstree', () => {
                     $(tree).jstree("open_all");
                 });
@@ -186,4 +191,4 @@
 
         //#endregion
     </script>
-</ncheckedtree>
+</ntree>

@@ -31,8 +31,8 @@ content-type: application/json
 {
     "langId": null,
     "customerId": "EDL-C2019100003",
-    "beginDate": "2019-10-10",
-    "endDate": "2019-10-11",
+    "beginDate": "2019-10-01",
+    "endDate": "2019-11-10",
     "qsetId": "QS00001",
     "qSeq": 1
 }
@@ -43,7 +43,7 @@ POST http://localhost:3000/customer/api/report/votesummaries/search
 content-type: application/json
 
 {
-    "langId": null,
+    "langId": "EN",
     "customerId": "EDL-C2019100003",
     "beginDate": "2019-10-10",
     "endDate": "2019-10-11",
