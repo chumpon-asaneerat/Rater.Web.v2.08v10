@@ -147,7 +147,7 @@ DECLARE @iOrgCnt int = 0;
 		SELECT @iOrgCnt = COUNT(*)
 		  FROM Org
   		 WHERE LOWER(CustomerID) = LOWER(RTRIM(LTRIM(@customerId)))
-		   AND ParentId IS NULL;
+		   AND (ParentId IS NULL OR LOWER(RTRIM(LTRIM(ParentId))) = N'');
 
 		IF @iOrgCnt = 0
 		BEGIN

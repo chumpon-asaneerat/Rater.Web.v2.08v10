@@ -99,7 +99,7 @@ DECLARE @branchId nvarchar(30);
 				 , @branchId = BranchId
 			  FROM Org
 			 WHERE LOWER(LTRIM(RTRIM(CustomerId))) = LOWER(LTRIM(RTRIM(@customerId)))
-			   AND ParentId IS NULL
+			   AND (ParentId IS NULL OR LOWER(RTRIM(LTRIM(ParentId))) = N'');
 		END
 		ELSE
 		BEGIN
@@ -141,14 +141,14 @@ DECLARE @branchId nvarchar(30);
 		DECLARE @totalCount int;
 		DECLARE @totalXCount int;
 
-		--SELECT @maxChoice = COUNT(*)
-		--  FROM QSlideItem
-		-- WHERE QSetId = @qSetId
-		--   AND QSeq = @qSeq
-		--   AND CustomerId = @customerId
-		--   AND ObjectStatus = 1
+		SELECT @maxChoice = COUNT(*)
+		  FROM QSlideItem
+		 WHERE QSetId = @qSetId
+		   AND QSeq = @qSeq
+		   AND CustomerId = @customerId
+		   AND ObjectStatus = 1
 		
-		SET @maxChoice = 4; -- Fake max choice.
+		--SET @maxChoice = 4; -- Fake max choice.
 
 		SET @iChoice = 1;
 		WHILE (@iChoice <= @maxChoice)
@@ -169,7 +169,6 @@ DECLARE @branchId nvarchar(30);
 			END
 			SET @iChoice = @iChoice + 1; -- increase.
 		END
-
 
 		SELECT @totalCount = SUM(TotalVote)
 		     , @totalXCount = SUM(TotalXCount)
@@ -216,12 +215,24 @@ DECLARE @branchId nvarchar(30);
 			SELECT t1.Choice
 			     , t2.Pct
 				 , t2.AvgTot
-				 , ROUND((100 / Convert(decimal(18,2), MaxChoice)) * t2.AvgTot, @decimalPlaces) AS AvgPct
+				 , CASE WHEN MaxChoice = 0 THEN
+					ROUND(0, @decimalPlaces)
+				   ELSE
+					ROUND((100 / Convert(decimal(18,2), MaxChoice)) * t2.AvgTot, @decimalPlaces)
+				   END AS AvgPct
 				FROM #VOTESUM t1 INNER JOIN 
 				(
-					SELECT Choice
-						 , ROUND(Convert(decimal(18,2), (Cnt * 100)) / Convert(decimal(18,2), TotCnt), @decimalPlaces) AS Pct
-						 , ROUND(Convert(decimal(18,2), TotCntXChoice) / Convert(decimal(18,2), TotCnt), @decimalPlaces) AS AvgTot
+					SELECT Choice,
+						   CASE WHEN TotCnt = 0 THEN
+							 ROUND(0, @decimalPlaces)
+						   ELSE
+							 ROUND(Convert(decimal(18,2), (Cnt * 100)) / Convert(decimal(18,2), TotCnt), @decimalPlaces)
+						   END AS Pct,
+						   CASE WHEN TotCnt = 0 THEN
+							 ROUND(0, @decimalPlaces)
+						   ELSE
+							 ROUND(Convert(decimal(18,2), TotCntXChoice) / Convert(decimal(18,2), TotCnt), @decimalPlaces)
+						   END AS AvgTot
 					  FROM #VOTESUM
 				) AS t2 ON t2.Choice = t1.Choice
 		  ) AS vd

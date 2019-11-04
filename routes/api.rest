@@ -77,7 +77,7 @@ content-type: application/json
     "orgs": [
         { "orgId": "O0001" }
     ],
-    "userId": ""
+    "userId": null
 }
 
 #### GetStaffSummaries
@@ -88,16 +88,15 @@ content-type: application/json
 {
     "langId": null,
     "customerId": "EDL-C2019100003",
-    "beginDate": "2019-10-10",
-    "endDate": "2019-10-11",
+    "beginDate": "2019-10-01",
+    "endDate": "2019-11-01",
     "qsetId": "QS00001",
     "slides": [
-        { "qSeq": 1 },
-        { "qSeq": 2 },
         { "qSeq": 3 }
     ],
     "orgs": null,
-    "members": [
-        { "memberId": "M0001" }
+    "users": [
+        { "userId": "M00001" },
+        { "userId": "M00008" }
     ]
 }
