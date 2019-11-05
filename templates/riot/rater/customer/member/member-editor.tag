@@ -37,6 +37,7 @@
             margin: 0 auto;
             padding: 0;
             width: 100%;
+            max-width: 800px;
             height: 100%;
             display: grid;
             grid-template-columns: 1fr;

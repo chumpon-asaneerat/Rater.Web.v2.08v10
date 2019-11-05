@@ -29,14 +29,9 @@
 </head>
 <body>
     <app id="app" navibar footer>
-        <screen screenId='admin-home'>
-            <admin-home></admin-home>
-        </screen>
-        <!--
         <screen screenId='question-manage'>
             <h2>Question Manage</h2>
         </screen>
-        -->
     </app>
     <!-- JQuery -->
     <script src="/dist/js/jquery.min.js"></script>
@@ -72,13 +67,7 @@
         let app;
         (() => {
             let tags = riot.mount('app')
-            let screenId = 'admin-home'
-            //let screenId = 'pie-votesummary-manage'
-            //let screenId = 'bar-votesummary-manage'
-            //let screenId = 'votesummary-manage'
-            //let screenId = 'rawvote-manage'
-            //let screenId = 'staff-compare-manage'
-            //let screenId = 'staff-perf-manage'
+            let screenId = 'question-manage'
             screens.show(screenId)
         })();
     </script>

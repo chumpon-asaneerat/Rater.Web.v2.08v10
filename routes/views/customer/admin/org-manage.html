@@ -22,21 +22,14 @@
     <link href="/dist/css/jquery.orgchart.min.css" rel="stylesheet" type="text/css" />
     <!-- JS Tree -->
     <link href="/dist/css/themes/default/style.min.css" rel="stylesheet" type="text/css" />
-    <!-- highcharts css -->
-    <link href="/dist/css/highcharts.css" rel="stylesheet" type="text/css" />
     <!-- nlib css -->
     <link href="/dist/css/nlib.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
     <app id="app" navibar footer>
-        <screen screenId='admin-home'>
-            <admin-home></admin-home>
+        <screen screenId='org-manage'>
+            <org-manage></org-manage>
         </screen>
-        <!--
-        <screen screenId='question-manage'>
-            <h2>Question Manage</h2>
-        </screen>
-        -->
     </app>
     <!-- JQuery -->
     <script src="/dist/js/jquery.min.js"></script>
@@ -54,8 +47,6 @@
     <script src="/dist/js/jquery.orgchart.min.js"></script>
     <!-- JS Tree -->
     <script src="/dist/js/jstree.min.js"></script>
-    <!-- highcharts -->
-    <script src="/dist/js/highcharts.js"></script>
     <!-- Riot.js -->
     <script src="/dist/js/riot.min.js"></script>
     <!-- custom components -->
@@ -64,6 +55,8 @@
     <script src="/dist/js/nlib.js"></script>
     <!-- services -->
     <script src="/dist/js/services.js"></script>
+    <!-- api(s) -->
+    <script src="/dist/js/org-api.js"></script>
     <!-- local scripts -->
     <!--
     <script src="admin/js/app.js"></script>
@@ -72,13 +65,7 @@
         let app;
         (() => {
             let tags = riot.mount('app')
-            let screenId = 'admin-home'
-            //let screenId = 'pie-votesummary-manage'
-            //let screenId = 'bar-votesummary-manage'
-            //let screenId = 'votesummary-manage'
-            //let screenId = 'rawvote-manage'
-            //let screenId = 'staff-compare-manage'
-            //let screenId = 'staff-perf-manage'
+            let screenId = 'org-manage'
             screens.show(screenId)
         })();
     </script>

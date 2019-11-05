@@ -31,6 +31,7 @@
             margin: 0 auto;
             padding: 0;
             width: 100%;
+            max-width: 800px;
             height: 100%;
             overflow: hidden;
             border-radius: 3px;
@@ -57,6 +58,7 @@
             padding: 0;
             margin-top: 3px;
             width: 100%;
+            max-width: 800px;
             /* height: calc(100% - 50px); */
             height: 100%;
         }

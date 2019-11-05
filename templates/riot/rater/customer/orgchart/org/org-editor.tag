@@ -37,6 +37,7 @@
             margin: 0 auto;
             padding: 0;
             width: 100%;
+            max-width: 800px;
             height: 100%;
             display: grid;
             grid-template-columns: 1fr;
@@ -48,10 +49,11 @@
             background-color: white;
         }
         :scope .entry {
+            display: block;
             grid-area: entry;
             margin: 0 auto;
             padding: 0;
-            width: 100%;
+            width: 100%;            
             height: 100%;
             /* background-color: antiquewhite; */
             overflow: auto;

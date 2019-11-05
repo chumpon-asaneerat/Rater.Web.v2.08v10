@@ -17,6 +17,8 @@
         .view, .entry {
             margin: 0;
             padding: 0;
+            padding-top: 20px;
+            padding-bottom: 20px;
             width: 100%;
             height: 100%;
             /* max-width: 100%; */
@@ -25,6 +27,7 @@
             /* overflow: auto; */
         }
         .entry {
+            margin: 0 auto;
             overflow: auto;
         }
     </style>
