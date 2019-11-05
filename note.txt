@@ -1,0 +1,4 @@
+- แก้ GetRawVote รองรับ OrgID
+- เพิ่ม Filter SPs
+  - รับ Parameter QSetID, QSeq, BeginDate/EndDate -> Filter หา OrgId List
+  - รับ Parameter QSetID, QSeq, BeginDate/EndDate, OrgID -> Filter หา MemberId List
