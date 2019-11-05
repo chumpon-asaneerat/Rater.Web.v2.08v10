@@ -1,5 +1,10 @@
 <rawvote-result>
     <date-result caption="Date" begin="{ current.begin }" end="{ current.end }"></date-result>
+    <virtial if={ current.slides && current.slides.length > 0 }>
+        <virtial each={ slide in current.slides }>
+            <rawvote-question-slide slide="{ slide }"></rawvote-question-slide>
+        </virtial>
+    </virtial>
     <div class="input-block center">
         <button onclick="{ goback }">Close</button>
     </div>
@@ -82,7 +87,7 @@
             //search_opts.langId = lang.langId; // set langId
             $.ajax({
                 type: "POST",
-                url: "/customer/api/report/rawvote/search",
+                url: "/customer/api/report/rawvotes/search",
                 data: JSON.stringify(search_opts),
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
@@ -147,7 +152,7 @@
         let onScreenChanged = (e) => { }
         */
         let onContentChanged = (e) => { updatecontent(); }
-        let onLanguageChanged = (e) => { updatecontent(); }
+        let onLanguageChanged = (e) => { refresh(); }
         let onScreenChanged = (e) => { updatecontent(); }
 
         //#endregion
