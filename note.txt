@@ -7,4 +7,7 @@
 - AVG/CNT For Home (Today)
 - Barchart For Home (Last 7 days) -> Orgs (Top Level Org)
 - รายงานเพิ่มการแสดงตัวเลือกของแต่ละคำถาม
-
+- เพิ่มรายงาน Staff Raw Vote
+- Staff Compare -> ของเดิม Staff Rating Charts -> ใช้ GetStaffSummaries
+- Staff Perf -> ของเดิม Staff Rating Summary -> ใช้ GetStaffSummaries
+- BeginDate/EndDate ของแต่ละรายงาน ให้ใช้ QSet Begin/End Date เป็น Min/Max Limit
