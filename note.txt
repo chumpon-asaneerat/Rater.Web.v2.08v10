@@ -6,4 +6,5 @@
 - เพิ่ม SP สำหรับ GetTopLevelOrgs (รองจาก Root)
 - AVG/CNT For Home (Today)
 - Barchart For Home (Last 7 days) -> Orgs (Top Level Org)
+- รายงานเพิ่มการแสดงตัวเลือกของแต่ละคำถาม
 
