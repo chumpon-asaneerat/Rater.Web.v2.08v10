@@ -71,7 +71,7 @@
             if (shown && screenId === scrId) {
                 let scrContent = (contents.current && contents.current.screens) ? contents.current.screens[scrId] : null;
                 self.content = scrContent ? scrContent : defaultContent;
-                console.log(result)
+                //console.log(result)
                 if (result && result[lang.langId]) {
                     self.current = result[lang.langId]
                     self.current.begin = search_opts.beginDate;

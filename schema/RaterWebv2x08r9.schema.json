@@ -1816,60 +1816,6 @@
             ]
         }
     },
-    "GetVoteSummaries": {
-        "type": "PROCEDURE",
-        "updated": "2019-10-10T16:23:28.000Z",
-        "parameter": {
-            "inputs": [
-                {
-                    "name": "langId",
-                    "type": "nvarchar(3)"
-                },
-                {
-                    "name": "customerId",
-                    "type": "nvarchar(30)"
-                },
-                {
-                    "name": "qSetId",
-                    "type": "nvarchar(30)"
-                },
-                {
-                    "name": "qSeq",
-                    "type": "int"
-                },
-                {
-                    "name": "BeginDate",
-                    "type": "datetime"
-                },
-                {
-                    "name": "EndDate",
-                    "type": "datetime"
-                },
-                {
-                    "name": "orgId",
-                    "type": "nvarchar(30)"
-                },
-                {
-                    "name": "deviceId",
-                    "type": "nvarchar(50)"
-                },
-                {
-                    "name": "userId",
-                    "type": "nvarchar(30)"
-                }
-            ],
-            "outputs": [
-                {
-                    "name": "errNum",
-                    "type": "int"
-                },
-                {
-                    "name": "errMsg",
-                    "type": "nvarchar(100)"
-                }
-            ]
-        }
-    },
     "GetRawVotes": {
         "type": "PROCEDURE",
         "updated": "2019-10-10T16:23:28.007Z",
@@ -1916,56 +1862,6 @@
                 {
                     "name": "maxPage",
                     "type": "int"
-                },
-                {
-                    "name": "errNum",
-                    "type": "int"
-                },
-                {
-                    "name": "errMsg",
-                    "type": "nvarchar(100)"
-                }
-            ]
-        }
-    },
-    "Register": {
-        "type": "PROCEDURE",
-        "updated": "2019-10-10T16:23:28.013Z",
-        "parameter": {
-            "inputs": [
-                {
-                    "name": "customerName",
-                    "type": "nvarchar(50)"
-                },
-                {
-                    "name": "userName",
-                    "type": "nvarchar(50)"
-                },
-                {
-                    "name": "passWord",
-                    "type": "nvarchar(20)"
-                },
-                {
-                    "name": "licenseTypeId",
-                    "type": "int"
-                }
-            ],
-            "outputs": [
-                {
-                    "name": "customerId",
-                    "type": "nvarchar(30)"
-                },
-                {
-                    "name": "memberId",
-                    "type": "nvarchar(30)"
-                },
-                {
-                    "name": "branchId",
-                    "type": "nvarchar(30)"
-                },
-                {
-                    "name": "orgId",
-                    "type": "nvarchar(30)"
                 },
                 {
                     "name": "errNum",
@@ -2100,6 +1996,170 @@
             "inputs": [
                 {
                     "name": "accessId",
+                    "type": "nvarchar(30)"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "errNum",
+                    "type": "int"
+                },
+                {
+                    "name": "errMsg",
+                    "type": "nvarchar(max)"
+                }
+            ]
+        }
+    },
+    "Register": {
+        "type": "PROCEDURE",
+        "updated": "2019-11-04T19:33:50.967Z",
+        "parameter": {
+            "inputs": [
+                {
+                    "name": "customerName",
+                    "type": "nvarchar(50)"
+                },
+                {
+                    "name": "userName",
+                    "type": "nvarchar(50)"
+                },
+                {
+                    "name": "passWord",
+                    "type": "nvarchar(20)"
+                },
+                {
+                    "name": "licenseTypeId",
+                    "type": "int"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "customerId",
+                    "type": "nvarchar(30)"
+                },
+                {
+                    "name": "memberId",
+                    "type": "nvarchar(30)"
+                },
+                {
+                    "name": "branchId",
+                    "type": "nvarchar(30)"
+                },
+                {
+                    "name": "orgId",
+                    "type": "nvarchar(30)"
+                },
+                {
+                    "name": "errNum",
+                    "type": "int"
+                },
+                {
+                    "name": "errMsg",
+                    "type": "nvarchar(100)"
+                }
+            ]
+        }
+    },
+    "GetVoteSummaries": {
+        "type": "PROCEDURE",
+        "updated": "2019-11-04T20:29:31.100Z",
+        "parameter": {
+            "inputs": [
+                {
+                    "name": "langId",
+                    "type": "nvarchar(3)"
+                },
+                {
+                    "name": "customerId",
+                    "type": "nvarchar(30)"
+                },
+                {
+                    "name": "qSetId",
+                    "type": "nvarchar(30)"
+                },
+                {
+                    "name": "qSeq",
+                    "type": "int"
+                },
+                {
+                    "name": "BeginDate",
+                    "type": "datetime"
+                },
+                {
+                    "name": "EndDate",
+                    "type": "datetime"
+                },
+                {
+                    "name": "orgId",
+                    "type": "nvarchar(30)"
+                },
+                {
+                    "name": "deviceId",
+                    "type": "nvarchar(50)"
+                },
+                {
+                    "name": "userId",
+                    "type": "nvarchar(30)"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "errNum",
+                    "type": "int"
+                },
+                {
+                    "name": "errMsg",
+                    "type": "nvarchar(100)"
+                }
+            ]
+        }
+    },
+    "SetDeviceOrg": {
+        "type": "PROCEDURE",
+        "updated": "2019-11-05T18:17:07.540Z",
+        "parameter": {
+            "inputs": [
+                {
+                    "name": "customerId",
+                    "type": "nvarchar(30)"
+                },
+                {
+                    "name": "deviceId",
+                    "type": "nvarchar(30)"
+                },
+                {
+                    "name": "orgId",
+                    "type": "nvarchar(30)"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "errNum",
+                    "type": "int"
+                },
+                {
+                    "name": "errMsg",
+                    "type": "nvarchar(max)"
+                }
+            ]
+        }
+    },
+    "SetDeviceUser": {
+        "type": "PROCEDURE",
+        "updated": "2019-11-05T18:23:39.833Z",
+        "parameter": {
+            "inputs": [
+                {
+                    "name": "customerId",
+                    "type": "nvarchar(30)"
+                },
+                {
+                    "name": "deviceId",
+                    "type": "nvarchar(30)"
+                },
+                {
+                    "name": "memberId",
                     "type": "nvarchar(30)"
                 }
             ],

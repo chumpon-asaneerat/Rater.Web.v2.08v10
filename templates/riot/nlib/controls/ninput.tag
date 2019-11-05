@@ -152,10 +152,12 @@
                 //console.log(input.type, ':', input.value)
                 if (!oType) {
                     oType = input.type;
-                    // set today.
-                    input.value = moment().format('YYYY-MM-DD');
+                    if (self.opts.type === 'date') {
+                        // set today.
+                        input.value = moment().format('YYYY-MM-DD');
+                    }
                 }
-                if (oType === 'date') {
+                if (oType === 'date' && self.opts.type === 'date') {
                     if (input.value === '') {
                         input.type = 'date'
                     }
@@ -167,10 +169,12 @@
                 //console.log(input.type, ':', input.value)
                 if (!oType) {
                     oType = input.type;
-                    // set today.
-                    input.value = moment().format('YYYY-MM-DD');
+                    if (self.opts.type === 'date') {
+                        // set today.
+                        input.value = moment().format('YYYY-MM-DD');
+                    }
                 }
-                if (oType === 'date') {
+                if (oType === 'date' && self.opts.type === 'date') {
                     if (input.value === '') {
                         input.type = 'text'
                     }

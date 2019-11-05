@@ -98,5 +98,7 @@
     "SaveLicenseHistory": true,
     "GetCustomerHistories": true,
     "RevokeLicense": true,
-    "ExtendLicense": true
+    "ExtendLicense": true,
+    "SetDeviceOrg": true,
+    "SetDeviceUser": true
 }

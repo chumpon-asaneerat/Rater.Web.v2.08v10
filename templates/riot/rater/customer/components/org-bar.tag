@@ -55,7 +55,7 @@
                         borderWidth: 0,
                         dataLabels: {
                             enabled: true,
-                            format: '{point.y:.2f} %'
+                            format: '{point.y:.2f}'
                         }
                     }
                 },
@@ -63,7 +63,7 @@
                     //headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
                     headerFormat: '',
                     //pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b><br/>'
-                    pointFormat: '<span>{point.name}</span>: <b>{point.y:.2f}%</b><br/>'
+                    pointFormat: '<span>{point.name}</span>: <b>{point.y:.2f}</b><br/>'
                 },
                 series: [{
                     name: "Organization",

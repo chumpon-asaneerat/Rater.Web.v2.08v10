@@ -145,10 +145,12 @@ riot.tag2('ninput', '<input ref="input" type="{opts.type}" name="{opts.name}" ri
 
                 if (!oType) {
                     oType = input.type;
+                    if (self.opts.type === 'date') {
 
-                    input.value = moment().format('YYYY-MM-DD');
+                        input.value = moment().format('YYYY-MM-DD');
+                    }
                 }
-                if (oType === 'date') {
+                if (oType === 'date' && self.opts.type === 'date') {
                     if (input.value === '') {
                         input.type = 'date'
                     }
@@ -160,10 +162,12 @@ riot.tag2('ninput', '<input ref="input" type="{opts.type}" name="{opts.name}" ri
 
                 if (!oType) {
                     oType = input.type;
+                    if (self.opts.type === 'date') {
 
-                    input.value = moment().format('YYYY-MM-DD');
+                        input.value = moment().format('YYYY-MM-DD');
+                    }
                 }
-                if (oType === 'date') {
+                if (oType === 'date' && self.opts.type === 'date') {
                     if (input.value === '') {
                         input.type = 'text'
                     }
@@ -384,7 +388,7 @@ riot.tag2('ntree', '<div class="ntree-container"> <div ref="tree" class="tree"><
             }
             return ret;
         }
-        this.setup = (values, fldMap) => {
+        this.setup = (values, fldMap, lastValue) => {
             if (tree) {
                 fldmap = fldMap;
                 let data = [];
@@ -394,6 +398,9 @@ riot.tag2('ntree', '<div class="ntree-container"> <div ref="tree" class="tree"><
                             id: String(val[fldmap.valueField]),
                             text: val[fldmap.textField],
                             parent: '#'
+                        }
+                        if (lastValue) {
+                            item.state = { selected: true }
                         }
                         if (fldmap.parentField && val[fldmap.parentField]) {
 
@@ -643,8 +650,9 @@ riot.tag2('links-menu', '<div class="menu"> <a ref="links" class="link-combo" hr
         this.isShown = (item) => {
             let ret = true;
             let linkType = (item.type) ? item.type.toLowerCase() : '';
-            if (linkType === 'screen') {
-                ret = item.ref !== screens.current.screenId;
+            if (linkType === 'screen' || linkType === 'url') {
+
+                ret = item.id !== screens.current.screenId;
             }
             return ret;
         }
@@ -697,10 +705,11 @@ riot.tag2('links-menu', '<div class="menu"> <a ref="links" class="link-combo" hr
             let selLink = e.item.item;
             let linkType = (selLink.type) ? selLink.type.toLowerCase() : '';
             if (linkType  === 'screen') {
-                screens.show(selLink.ref);
+                screens.show(selLink.id);
             }
             else if (linkType === 'url') {
-                secure.postUrl(selLink.ref);
+
+                secure.nav(selLink.ref)
             }
             else if (linkType === 'cmd') {
                 if (selLink.ref.toLowerCase() === 'signout')
@@ -885,7 +894,7 @@ riot.tag2('org-bar', '<div ref="chart" class="chart-box"></div>', 'org-bar,[data
                         borderWidth: 0,
                         dataLabels: {
                             enabled: true,
-                            format: '{point.y:.2f} %'
+                            format: '{point.y:.2f}'
                         }
                     }
                 },
@@ -893,7 +902,7 @@ riot.tag2('org-bar', '<div ref="chart" class="chart-box"></div>', 'org-bar,[data
 
                     headerFormat: '',
 
-                    pointFormat: '<span>{point.name}</span>: <b>{point.y:.2f}%</b><br/>'
+                    pointFormat: '<span>{point.name}</span>: <b>{point.y:.2f}</b><br/>'
                 },
                 series: [{
                     name: "Organization",
@@ -1296,7 +1305,7 @@ riot.tag2('device-editor', '<div class="entry"> <div class="tab"> <button ref="t
         }
 
 });
-riot.tag2('device-entry', '<div class="padtop"></div> <div class="padtop"></div> <ninput ref="deviceName" title="{content.entry.deviceName}" type="text" name="deviceName"></ninput> <ninput ref="location" title="{content.entry.location}" type="text" name="location"></ninput> <virtual if="{isDefault()}"> <nselect ref="deviceTypes" title="{content.entry.deviceTypeId}"></nselect> <ninput ref="orgId" title="{content.entry.orgId}" type="text" name="orgId"></ninput> <ninput ref="memberId" title="{content.entry.memberId}" type="text" name="memberId"></ninput> </virtual>', 'device-entry,[data-is="device-entry"]{ margin: 0; padding: 0; width: 100%; height: 100%; } device-entry .padtop,[data-is="device-entry"] .padtop{ display: block; margin: 0 auto; width: 100%; min-height: 10px; }', '', function(opts) {
+riot.tag2('device-entry', '<div class="padtop"></div> <div class="padtop"></div> <ninput ref="deviceName" title="{content.entry.deviceName}" type="text" name="deviceName"></ninput> <ninput ref="location" title="{content.entry.location}" type="text" name="location"></ninput> <virtual if="{isDefault()}"> <nselect ref="deviceTypes" title="{content.entry.deviceTypeId}"></nselect> </virtual>', 'device-entry,[data-is="device-entry"]{ margin: 0; padding: 0; width: 100%; height: 100%; } device-entry .padtop,[data-is="device-entry"] .padtop{ display: block; margin: 0 auto; width: 100%; min-height: 10px; }', '', function(opts) {
         let self = this;
         let screenId = 'device-manage';
         this.isDefault = () => { return (opts.langid === '' || opts.langid === 'EN') }
@@ -1305,9 +1314,7 @@ riot.tag2('device-entry', '<div class="padtop"></div> <div class="padtop"></div>
             entry: {
                 deviceName: 'Device Name',
                 deviceTypeId: 'Device Type',
-                location: 'Location',
-                orgId: 'Organization',
-                memberId: 'User'
+                location: 'Location'
             }
         }
         this.content = defaultContent;
@@ -1321,7 +1328,7 @@ riot.tag2('device-entry', '<div class="padtop"></div> <div class="padtop"></div>
             }
         }
 
-        let deviceName, location, orgId, memberId;
+        let deviceName, location;
 
         let deviceTypes;
 
@@ -1330,20 +1337,14 @@ riot.tag2('device-entry', '<div class="padtop"></div> <div class="padtop"></div>
 
             deviceTypes = self.refs['deviceTypes'];
             location = self.refs['location'];
-            orgId = self.refs['orgId'];
-            memberId = self.refs['memberId'];
         }
         let freeCtrls = () => {
-            memberId = null;
-            orgId = null;
             location = null;
             deviceTypes = null;
 
             deviceName = null;
         }
         let clearInputs = () => {
-            memberId.clear();
-            orgId.clear();
             location.clear();
             deviceTypes.clear();
             deviceTypeId.clear();
@@ -1402,8 +1403,6 @@ riot.tag2('device-entry', '<div class="padtop"></div> <div class="padtop"></div>
                 if (location) editObj.Location = location.value();
 
                 if (deviceTypes) editObj.deviceTypeId = deviceTypes.value();
-                if (orgId) editObj.orgId = orgId.value();
-                if (memberId) editObj.memberId = memberId.value();
             }
         }
         let objToCtrl = () => {
@@ -1413,8 +1412,6 @@ riot.tag2('device-entry', '<div class="padtop"></div> <div class="padtop"></div>
                 if (location) location.value(editObj.Location);
                 if (deviceTypes) deviceTypes.value(editObj.deviceTypeId.toString());
 
-                if (orgId) orgId.value(editObj.orgId);
-                if (memberId) memberId.value(editObj.memberId);
             }
         }
 
@@ -3455,7 +3452,7 @@ riot.tag2('bar-votesummary-result', '<date-result caption="Date" begin="{current
             if (shown && screenId === scrId) {
                 let scrContent = (contents.current && contents.current.screens) ? contents.current.screens[scrId] : null;
                 self.content = scrContent ? scrContent : defaultContent;
-                console.log(result)
+
                 if (result && result[lang.langId]) {
                     self.current = result[lang.langId]
                     self.current.begin = search_opts.beginDate;
@@ -3859,7 +3856,7 @@ riot.tag2('pie-votesummary-result', '<date-result caption="Date" begin="{current
             if (shown && screenId === scrId) {
                 let scrContent = (contents.current && contents.current.screens) ? contents.current.screens[scrId] : null;
                 self.content = scrContent ? scrContent : defaultContent;
-                console.log(result)
+
                 if (result && result[lang.langId]) {
                     self.current = result[lang.langId]
                     self.current.begin = search_opts.beginDate;
@@ -4583,12 +4580,36 @@ riot.tag2('report-home', '<div class="report-home-main"> <div class="report-item
             freeCtrls();
         });
 
-        this.showpiesummary = () => { screens.show('pie-votesummary-manage') }
-        this.showbarsummary = () => { screens.show('bar-votesummary-manage') }
-        this.showvotesummary = () => { screens.show('votesummary-manage') }
-        this.showrawvote = () => { screens.show('rawvote-manage') }
-        this.showstaffcompare = () => { screens.show('staff-compare-manage') }
-        this.showstaffperf = () => { screens.show('staff-perf-manage') }
+        this.showpiesummary = () => {
+            let url = 'http://localhost:3000/customer/admin/report/pie-votesummary';
+            secure.nav(url)
+
+        }
+        this.showbarsummary = () => {
+            let url = 'http://localhost:3000/customer/admin/report/bar-votesummary';
+            secure.nav(url)
+
+        }
+        this.showvotesummary = () => {
+            let url = 'http://localhost:3000/customer/admin/report/votesummary';
+            secure.nav(url)
+
+        }
+        this.showrawvote = () => {
+            let url = 'http://localhost:3000/customer/admin/report/raw-vote';
+            secure.nav(url)
+
+        }
+        this.showstaffcompare = () => {
+            let url = 'http://localhost:3000/customer/admin/report/staff-compare';
+            secure.nav(url)
+
+        }
+        this.showstaffperf = () => {
+            let url = 'http://localhost:3000/customer/admin/report/staff-perf';
+            secure.nav(url)
+
+        }
 });
 riot.tag2('staff-compare-manage', '<flip-screen ref="flipper"> <yield to="viewer"> <staff-compare-search ref="viewer" class="view"></staff-compare-search> </yield> <yield to="entry"> <staff-compare-result ref="entry" class="entry"></staff-compare-result> </yield> </flip-screen>', 'staff-compare-manage,[data-is="staff-compare-manage"]{ margin: 0 auto; padding: 0; width: 100%; height: 100%; } staff-compare-manage .view,[data-is="staff-compare-manage"] .view,staff-compare-manage .entry,[data-is="staff-compare-manage"] .entry{ margin: 0; padding: 0; width: 100%; height: 100%; overflow: auto; }', '', function(opts) {
 
@@ -5344,7 +5365,7 @@ riot.tag2('votesummary-result', '<date-result caption="Date" begin="{current.beg
             if (shown && screenId === scrId) {
                 let scrContent = (contents.current && contents.current.screens) ? contents.current.screens[scrId] : null;
                 self.content = scrContent ? scrContent : defaultContent;
-                console.log(result)
+
                 if (result && result[lang.langId]) {
                     self.current = result[lang.langId]
                     self.current.begin = search_opts.beginDate;

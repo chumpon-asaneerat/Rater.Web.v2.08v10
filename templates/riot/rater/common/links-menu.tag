@@ -108,8 +108,9 @@
         this.isShown = (item) => {
             let ret = true;
             let linkType = (item.type) ? item.type.toLowerCase() : '';
-            if (linkType === 'screen') {
-                ret = item.ref !== screens.current.screenId;
+            if (linkType === 'screen' || linkType === 'url') {
+                //ret = item.ref !== screens.current.screenId;
+                ret = item.id !== screens.current.screenId;
             }
             return ret;
         }
@@ -186,10 +187,11 @@
             let selLink = e.item.item;
             let linkType = (selLink.type) ? selLink.type.toLowerCase() : '';
             if (linkType  === 'screen') {
-                screens.show(selLink.ref);
+                screens.show(selLink.id);
             }
             else if (linkType === 'url') {
-                secure.postUrl(selLink.ref);
+                //secure.postUrl(selLink.ref);
+                secure.nav(selLink.ref)
             }
             else if (linkType === 'cmd') {
                 if (selLink.ref.toLowerCase() === 'signout')

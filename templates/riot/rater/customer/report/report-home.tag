@@ -145,11 +145,35 @@
 
         //#endregion
 
-        this.showpiesummary = () => { screens.show('pie-votesummary-manage') }
-        this.showbarsummary = () => { screens.show('bar-votesummary-manage') }
-        this.showvotesummary = () => { screens.show('votesummary-manage') }
-        this.showrawvote = () => { screens.show('rawvote-manage') }
-        this.showstaffcompare = () => { screens.show('staff-compare-manage') }
-        this.showstaffperf = () => { screens.show('staff-perf-manage') }
+        this.showpiesummary = () => { 
+            let url = 'http://localhost:3000/customer/admin/report/pie-votesummary';
+            secure.nav(url)
+            //screens.show('pie-votesummary-manage') 
+        }
+        this.showbarsummary = () => { 
+            let url = 'http://localhost:3000/customer/admin/report/bar-votesummary';
+            secure.nav(url)
+            //screens.show('bar-votesummary-manage') 
+        }
+        this.showvotesummary = () => { 
+            let url = 'http://localhost:3000/customer/admin/report/votesummary';
+            secure.nav(url)
+            //screens.show('votesummary-manage') 
+        }
+        this.showrawvote = () => { 
+            let url = 'http://localhost:3000/customer/admin/report/raw-vote';
+            secure.nav(url)
+            //screens.show('rawvote-manage') 
+        }
+        this.showstaffcompare = () => { 
+            let url = 'http://localhost:3000/customer/admin/report/staff-compare';
+            secure.nav(url)
+            //screens.show('staff-compare-manage') 
+        }
+        this.showstaffperf = () => {             
+            let url = 'http://localhost:3000/customer/admin/report/staff-perf';
+            secure.nav(url)
+            //screens.show('staff-perf-manage') 
+        }
     </script>
 </report-home>

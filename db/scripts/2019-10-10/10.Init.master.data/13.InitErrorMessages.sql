@@ -288,6 +288,18 @@ BEGIN
 	EXEC SaveErrorMsg 2801, N'History Id cannot be null or empty string.'
 	EXEC SaveErrorMsg 2802, N'History Id not exists.'
     EXEC SaveErrorMsg 2803, N'License Still in active state.'
+	-- SETUP DEVICE ORG
+	EXEC SaveErrorMsg 2901, N'Customer Id cannot be null or empty string.'
+	EXEC SaveErrorMsg 2902, N'Device Id cannot be null or empty string.'
+    EXEC SaveErrorMsg 2903, N'Customer Id is not found.'
+	EXEC SaveErrorMsg 2904, N'Device Id Not Found.'
+    EXEC SaveErrorMsg 2905, N'Org Id is not found.'
+	-- SETUP DEVICE USER
+	EXEC SaveErrorMsg 3001, N'Customer Id cannot be null or empty string.'
+	EXEC SaveErrorMsg 3002, N'Device Id cannot be null or empty string.'
+    EXEC SaveErrorMsg 3003, N'Customer Id is not found.'
+	EXEC SaveErrorMsg 3004, N'Device Id Not Found.'
+    EXEC SaveErrorMsg 3005, N'Member Id is not found.'
 END
 
 GO

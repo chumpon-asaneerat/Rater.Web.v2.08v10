@@ -357,20 +357,8 @@ const RaterWebv2x08r9 = class extends SqlServer {
         return await this.execute(name, pObj, proc.parameter.inputs, proc.parameter.outputs);
     }
 
-    async GetVoteSummaries(pObj) {
-        let name = 'GetVoteSummaries';
-        let proc = schema[name];
-        return await this.execute(name, pObj, proc.parameter.inputs, proc.parameter.outputs);
-    }
-
     async GetRawVotes(pObj) {
         let name = 'GetRawVotes';
-        let proc = schema[name];
-        return await this.execute(name, pObj, proc.parameter.inputs, proc.parameter.outputs);
-    }
-
-    async Register(pObj) {
-        let name = 'Register';
         let proc = schema[name];
         return await this.execute(name, pObj, proc.parameter.inputs, proc.parameter.outputs);
     }
@@ -401,6 +389,30 @@ const RaterWebv2x08r9 = class extends SqlServer {
 
     async SignOut(pObj) {
         let name = 'SignOut';
+        let proc = schema[name];
+        return await this.execute(name, pObj, proc.parameter.inputs, proc.parameter.outputs);
+    }
+
+    async Register(pObj) {
+        let name = 'Register';
+        let proc = schema[name];
+        return await this.execute(name, pObj, proc.parameter.inputs, proc.parameter.outputs);
+    }
+
+    async GetVoteSummaries(pObj) {
+        let name = 'GetVoteSummaries';
+        let proc = schema[name];
+        return await this.execute(name, pObj, proc.parameter.inputs, proc.parameter.outputs);
+    }
+
+    async SetDeviceOrg(pObj) {
+        let name = 'SetDeviceOrg';
+        let proc = schema[name];
+        return await this.execute(name, pObj, proc.parameter.inputs, proc.parameter.outputs);
+    }
+
+    async SetDeviceUser(pObj) {
+        let name = 'SetDeviceUser';
         let proc = schema[name];
         return await this.execute(name, pObj, proc.parameter.inputs, proc.parameter.outputs);
     }

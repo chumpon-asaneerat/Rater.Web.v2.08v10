@@ -144,7 +144,7 @@
             }
             return ret;
         }
-        this.setup = (values, fldMap) => {
+        this.setup = (values, fldMap, lastValue) => {
             if (tree) {
                 fldmap = fldMap;                
                 let data = [];
@@ -154,6 +154,9 @@
                             id: String(val[fldmap.valueField]),
                             text: val[fldmap.textField],
                             parent: '#'                          
+                        }
+                        if (lastValue) {
+                            item.state = { selected: true }
                         }
                         if (fldmap.parentField && val[fldmap.parentField]) {
                             // set parent id.

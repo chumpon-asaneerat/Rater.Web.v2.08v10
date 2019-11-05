@@ -8,8 +8,6 @@
         <ninput ref="deviceTypeId" title="{ content.entry.deviceTypeId }" type="text" name="deciveTypeId"></ninput>
         -->
         <nselect ref="deviceTypes" title="{ content.entry.deviceTypeId }"></nselect>
-        <ninput ref="orgId" title="{ content.entry.orgId }" type="text" name="orgId"></ninput>
-        <ninput ref="memberId" title="{ content.entry.memberId }" type="text" name="memberId"></ninput>
     </virtual>
     <style>
         :scope {
@@ -36,9 +34,7 @@
             entry: { 
                 deviceName: 'Device Name',
                 deviceTypeId: 'Device Type',
-                location: 'Location',
-                orgId: 'Organization',
-                memberId: 'User'
+                location: 'Location'
             }
         }
         this.content = defaultContent;
@@ -56,7 +52,7 @@
 
         //#region controls variables and methods
 
-        let deviceName, location, orgId, memberId;
+        let deviceName, location;
         //let deviceTypeId;
         let deviceTypes;
 
@@ -65,20 +61,14 @@
             //deviceTypeId = self.refs['deviceTypeId'];
             deviceTypes = self.refs['deviceTypes'];
             location = self.refs['location'];
-            orgId = self.refs['orgId'];
-            memberId = self.refs['memberId'];
         }
         let freeCtrls = () => {
-            memberId = null;
-            orgId = null;
             location = null;
             deviceTypes = null;
             //deviceTypeId = null;
             deviceName = null;
         }
         let clearInputs = () => {
-            memberId.clear();
-            orgId.clear();
             location.clear();
             deviceTypes.clear();
             deviceTypeId.clear();
@@ -157,8 +147,6 @@
                 if (location) editObj.Location = location.value();
                 //if (deviceTypeId) editObj.deviceTypeId = deviceTypeId.value();
                 if (deviceTypes) editObj.deviceTypeId = deviceTypes.value();
-                if (orgId) editObj.orgId = orgId.value();
-                if (memberId) editObj.memberId = memberId.value();
             }
         }
         let objToCtrl = () => {
@@ -168,8 +156,6 @@
                 if (location) location.value(editObj.Location);
                 if (deviceTypes) deviceTypes.value(editObj.deviceTypeId.toString());
                 //if (deviceTypeId) deviceTypeId.value(editObj.deviceTypeId);
-                if (orgId) orgId.value(editObj.orgId);
-                if (memberId) memberId.value(editObj.memberId);
             }
         }
 
