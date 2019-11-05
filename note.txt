@@ -4,6 +4,8 @@
   - รับ Parameter QSetID, QSeq, BeginDate/EndDate, OrgID -> Filter หา MemberId List
 - เพิ่ม SP เพื่อตรวจสอบ QSet ประจำวัน
 - เพิ่ม SP สำหรับ GetTopLevelOrgs (รองจาก Root)
+- EDL Secure ?
+  - CustomerId store (cookie may need for used with exist routes)
 - AVG/CNT For Home (Today)
 - Barchart For Home (Last 7 days) -> Orgs (Top Level Org)
 - รายงานเพิ่มการแสดงตัวเลือกของแต่ละคำถาม
