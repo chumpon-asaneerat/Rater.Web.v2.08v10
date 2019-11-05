@@ -32,4 +32,8 @@
     |  B  |  |  1  |  |  2  |  |  3  |  |  E  |
     +-----+  +-----+  +-----+  +-----+  +-----+ 
 
-   Today QSet (Day ??)
+  - Today QSet (Day ??)
+  - QSlide Type
+    1. Home Slide (supports play video if idle recheck to refresh new QSet for today).
+    2. End Slide. (auto goto home slide when timeout - supports play sound)
+    3. Question Slide (when select choice goto next page and if timeout goto home)
