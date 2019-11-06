@@ -5,7 +5,8 @@
 - เพิ่ม SP เพื่อตรวจสอบ QSet ประจำวัน
 - เพิ่ม SP สำหรับ GetTopLevelOrgs (รองจาก Root)
 - EDL Secure ?
-  - CustomerId store (cookie may need for used with exist routes)
+  - Use route like localhost:\\edl\admin\customer\:customerId.
+  - When id read keep used customerId as params.customerId or set to secure object.
 - AVG/CNT For Home (Today)
 - Barchart For Home (Last 7 days) -> Orgs (Top Level Org)
 - รายงานเพิ่มการแสดงตัวเลือกของแต่ละคำถาม
