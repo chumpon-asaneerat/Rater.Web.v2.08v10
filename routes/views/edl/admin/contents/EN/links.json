@@ -1,0 +1,5 @@
+[
+    { "type": "url", "id":"home", "ref": "/edl/admin", "text":"Home", "icon": "fas fa-home", "icontype": "fontcss" },
+    { "type": "url", "id":"customer-manage", "ref": "/edl/admin/customers", "text":"Customer Account", "icon": "fas fa-user-friends", "icontype": "fontcss" },
+    { "type": "cmd", "id":"signout", "ref": "signout", "text":"Sign Out", "icon": "fas fa-user-times", "icontype": "fontcss" }
+]

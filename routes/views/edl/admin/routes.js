@@ -3,7 +3,6 @@
 const path = require('path');
 const rootPath = process.env['ROOT_PATHS'];
 const nlib = require(path.join(rootPath, 'nlib', 'nlib'));
-
 const sfs = require(path.join(rootPath, 'edl', 'server-fs'));
 const secure = require(path.join(rootPath, 'edl', 'rater-secure')).RaterSecure;
 
@@ -37,13 +36,12 @@ const routes = class {
 
 //#endregion
 
-//router.get('/', routes.home)
 router.get('/', secure.checkAccess, secure.checkRedirect, routes.home)
 router.get('/contents', routes.getContents)
 router.get('/js/:file', routes.getjsfile)
 
 const init_routes = (svr) => {
-    svr.route('/', router);
+    svr.route('/edl/admin', router);
 };
 
 module.exports.init_routes = exports.init_routes = init_routes;

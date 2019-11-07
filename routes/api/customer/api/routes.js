@@ -664,7 +664,6 @@ const routes = class {
             WebServer.sendJson(req, res, result);
         })
     }
-
     static CreateStaffSummaries(obj, qset, results) {
         if (results && results.length > 0) {
             for (let i = 0; i < results.length; i++) {

@@ -17,26 +17,29 @@
     <link href="/dist/css/flag-icon.min.css" rel="stylesheet" type="text/css" />
     <link href="/dist/css/emojisymbol.min.css" rel="stylesheet" type="text/css" />
     <!-- tabulator css -->
+    <!--
     <link href="/dist/css/tabulator.min.css" rel="stylesheet" type="text/css" />
+    -->
     <!-- jQuery Org Chart css -->
+    <!--
     <link href="/dist/css/jquery.orgchart.min.css" rel="stylesheet" type="text/css" />
+    -->
     <!-- JS Tree -->
+    <!--
     <link href="/dist/css/themes/default/style.min.css" rel="stylesheet" type="text/css" />
+    -->
     <!-- highcharts css -->
+    <!--
     <link href="/dist/css/highcharts.css" rel="stylesheet" type="text/css" />
+    -->
     <!-- nlib css -->
     <link href="/dist/css/nlib.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
     <app id="app" navibar footer>
-        <screen screenId='admin-home'>
-            <admin-home></admin-home>
+        <screen screenId='edl-admin-home'>
+            <edl-admin-home></edl-admin-home>
         </screen>
-        <!--
-        <screen screenId='question-manage'>
-            <h2>Question Manage</h2>
-        </screen>
-        -->
     </app>
     <!-- JQuery -->
     <script src="/dist/js/jquery.min.js"></script>
@@ -48,14 +51,22 @@
     <script src="/dist/js/bootstrap.min.js">/* bootstrap required jQuery and popperjs. */</script>
     <!-- Moment.js -->
     <script src="/dist/js/moment.min.js"></script>
+
     <!-- Tabulator -->
+    <!-- 
     <script src="/dist/js/tabulator.min.js"></script>
     <!-- jQuery Org Chart -->
+    <!-- 
     <script src="/dist/js/jquery.orgchart.min.js"></script>
+    -->
     <!-- JS Tree -->
+    <!-- 
     <script src="/dist/js/jstree.min.js"></script>
+    -->
     <!-- highcharts -->
+    <!-- 
     <script src="/dist/js/highcharts.js"></script>
+    -->
     <!-- Riot.js -->
     <script src="/dist/js/riot.min.js"></script>
     <!-- custom components -->
@@ -72,13 +83,7 @@
         let app;
         (() => {
             let tags = riot.mount('app')
-            let screenId = 'admin-home'
-            //let screenId = 'pie-votesummary-manage'
-            //let screenId = 'bar-votesummary-manage'
-            //let screenId = 'votesummary-manage'
-            //let screenId = 'rawvote-manage'
-            //let screenId = 'staff-compare-manage'
-            //let screenId = 'staff-perf-manage'
+            let screenId = 'edl-admin-home'
             screens.show(screenId)
         })();
     </script>

@@ -16,43 +16,43 @@ const router = new WebRouter();
 
 const routes = class {
     static home(req, res) {
-        WebServer.sendFile(req, res, __dirname, 'index.html');
+        WebServer.sendFile(req, res, __dirname, 'html', 'index.html');
     }
     static memberManage(req, res) {
-        WebServer.sendFile(req, res, __dirname, 'member-manage.html');
+        WebServer.sendFile(req, res, __dirname, 'html', 'member-manage.html');
     }
     static branchManage(req, res) {
-        WebServer.sendFile(req, res, __dirname, 'branch-manage.html');
+        WebServer.sendFile(req, res, __dirname, 'html', 'branch-manage.html');
     }
     static orgManage(req, res) {
-        WebServer.sendFile(req, res, __dirname, 'org-manage.html');
+        WebServer.sendFile(req, res, __dirname, 'html', 'org-manage.html');
     }
     static deviceManage(req, res) {
-        WebServer.sendFile(req, res, __dirname, 'device-manage.html');
+        WebServer.sendFile(req, res, __dirname, 'html', 'device-manage.html');
     }
     static questionManage(req, res) {
-        WebServer.sendFile(req, res, __dirname, 'question-manage.html');
+        WebServer.sendFile(req, res, __dirname, 'html', 'question-manage.html');
     }
     static reportHome(req, res) {
-        WebServer.sendFile(req, res, __dirname, 'report-home.html');
+        WebServer.sendFile(req, res, __dirname, 'html', 'report-home.html');
     }
     static reportVoteSummary(req, res) {
-        WebServer.sendFile(req, res, __dirname, 'report-votesummary.html');
+        WebServer.sendFile(req, res, __dirname, 'html', 'report-votesummary.html');
     }
     static reportBarVoteSummary(req, res) {
-        WebServer.sendFile(req, res, __dirname, 'report-bar-votesummary.html');
+        WebServer.sendFile(req, res, __dirname, 'html', 'report-bar-votesummary.html');
     }
     static reportPieVoteSummary(req, res) {
-        WebServer.sendFile(req, res, __dirname, 'report-pie-votesummary.html');
+        WebServer.sendFile(req, res, __dirname, 'html', 'report-pie-votesummary.html');
     }
     static reportRawVote(req, res) {
-        WebServer.sendFile(req, res, __dirname, 'report-raw-vote.html');
+        WebServer.sendFile(req, res, __dirname, 'html', 'report-raw-vote.html');
     }
     static reportStaffCompare(req, res) {
-        WebServer.sendFile(req, res, __dirname, 'report-staff-compare.html');
+        WebServer.sendFile(req, res, __dirname, 'html', 'report-staff-compare.html');
     }
     static reportStaffPerf(req, res) {
-        WebServer.sendFile(req, res, __dirname, 'report-staff-perf.html');
+        WebServer.sendFile(req, res, __dirname, 'html', 'report-staff-perf.html');
     }    
     static getjsfile(req, res) {
         let file = req.params.file.toLowerCase();

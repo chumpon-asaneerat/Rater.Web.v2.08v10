@@ -90,17 +90,17 @@ const isHome = (url) => {
 const isAdmin = (url) => { return isStartsWith(url, 'customer/admin'); }
 const isExcuisive = (url) => { return isStartsWith(url, 'customer/exclusive'); }
 const isStaff = (url) => { return isStartsWith(url, 'customer/staff'); }
-const isEDLAdmin = (url) => { return isStartWith(url, 'edl/admin'); }
+const isEDLAdmin = (url) => { return isStartsWith(url, 'edl/admin'); }
 const isEDLSupervisor = (url) => { return isStartsWith(url, 'edl/supervisor'); }
-const isEDLStaff = (url) => { return isStartWith(url, 'edl/staff'); }
-
+const isEDLStaff = (url) => { return isStartsWith(url, 'edl/staff'); }
+/*
 const isAdminAPI = (url) => { return isStartsWith(url, 'customer/api/admin'); }
 const isExclusiveAPI = (url) => { return isStartsWith(url, 'customer/api/exclusive'); }
 const isStaffAPI = (url) => { return isStartsWith(url, 'customer/api/staff'); }
-const isEDLAdminAPI = (url) => { return isStartWith(url, 'edl/api/admin'); }
+const isEDLAdminAPI = (url) => { return isStartsWith(url, 'edl/api/admin'); }
 const isEDLSupervisorAPI = (url) => { return isStartsWith(url, 'edl/api/supervisor'); }
-const isEDLStaffAPI = (url) => { return isStartWith(url, 'edl/api/staff'); }
-
+const isEDLStaffAPI = (url) => { return isStartsWith(url, 'edl/api/staff'); }
+*/
 const gotoHome = (req, res, next, url) => {
     if (!isHome(url)) res.redirect('/')
     else {

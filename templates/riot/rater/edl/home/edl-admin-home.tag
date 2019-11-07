@@ -1,4 +1,5 @@
 <edl-admin-home>
+    <h3>EDL Admin Home Page.</h3>
     <style>
         :scope {
             margin: 0;

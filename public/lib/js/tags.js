@@ -5743,7 +5743,7 @@ riot.tag2('edl-customer-view', '', 'edl-customer-view,[data-is="edl-customer-vie
         });
 
 });
-riot.tag2('edl-admin-home', '', 'edl-admin-home,[data-is="edl-admin-home"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
+riot.tag2('edl-admin-home', '<h3>EDL Admin Home Page.</h3>', 'edl-admin-home,[data-is="edl-admin-home"]{ margin: 0; padding: 0; width: 100%; height: 100%; }', '', function(opts) {
 
 
         let self = this;
