@@ -13,15 +13,19 @@ GO
 --	- Add supports pagination.
 -- <2018-05-14> :
 --	- Add lang Id.
+-- <2019-11-07> :
+--	- Add Org Id and Member Id.
 --
 -- [== Example ==]
 --
 --EXEC GetRawVotes N'TH'
 --				 , N'EDL-C2018040002'
 --				 , N'QS2018040001', 1
+--				 , NULL -- OrgId
+--				 , NULL -- UserId (MemberId)
 --				 , N'2018-05-09 00:00:00', N'2018-05-11 23:59:59';
 -- =============================================
-CREATE PROCEDURE [dbo].[GetRawVotes] 
+ALTER PROCEDURE [dbo].[GetRawVotes] 
 (
   @langId as nvarchar(3)
 , @customerId as nvarchar(30)
@@ -29,6 +33,8 @@ CREATE PROCEDURE [dbo].[GetRawVotes]
 , @qseq as int
 , @beginDate As DateTime = null
 , @endDate As DateTime = null
+, @orgId as nvarchar(30) = null
+, @memberId as nvarchar(30) = null
 , @pageNum as int = 1 out
 , @rowsPerPage as int = 10 out
 , @totalRecords as int = 0 out
@@ -98,6 +104,8 @@ BEGIN
 		   AND QSeq = @qseq
 		   AND VoteDate >= @beginDate
 		   AND VoteDate <= @endDate
+		   AND UPPER(LTRIM(RTRIM(OrgId))) = UPPER(LTRIM(RTRIM(COALESCE(@orgId, OrgId))))
+		   AND UPPER(LTRIM(RTRIM(UserId))) = UPPER(LTRIM(RTRIM(COALESCE(@memberId, UserId))))
 		   AND ObjectStatus = 1;
 
 		SELECT @maxPage = 
@@ -156,6 +164,8 @@ BEGIN
 				AND A.ObjectStatus = 1
 				AND A.VoteDate >= @beginDate
 				AND A.VoteDate <= @endDate
+			    AND UPPER(LTRIM(RTRIM(A.OrgId))) = UPPER(LTRIM(RTRIM(COALESCE(@orgId, A.OrgId))))
+			    AND UPPER(LTRIM(RTRIM(A.UserId))) = UPPER(LTRIM(RTRIM(COALESCE(@memberId, A.UserId))))
 			ORDER BY A.VoteDate, A.VoteSeq
 		)
 		SELECT * FROM SQLPaging WITH (NOLOCK) 

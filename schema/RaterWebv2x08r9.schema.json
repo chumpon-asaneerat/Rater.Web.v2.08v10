@@ -1816,64 +1816,6 @@
             ]
         }
     },
-    "GetRawVotes": {
-        "type": "PROCEDURE",
-        "updated": "2019-10-10T16:23:28.007Z",
-        "parameter": {
-            "inputs": [
-                {
-                    "name": "langId",
-                    "type": "nvarchar(3)"
-                },
-                {
-                    "name": "customerId",
-                    "type": "nvarchar(30)"
-                },
-                {
-                    "name": "qsetId",
-                    "type": "nvarchar(30)"
-                },
-                {
-                    "name": "qseq",
-                    "type": "int"
-                },
-                {
-                    "name": "beginDate",
-                    "type": "datetime"
-                },
-                {
-                    "name": "endDate",
-                    "type": "datetime"
-                }
-            ],
-            "outputs": [
-                {
-                    "name": "pageNum",
-                    "type": "int"
-                },
-                {
-                    "name": "rowsPerPage",
-                    "type": "int"
-                },
-                {
-                    "name": "totalRecords",
-                    "type": "int"
-                },
-                {
-                    "name": "maxPage",
-                    "type": "int"
-                },
-                {
-                    "name": "errNum",
-                    "type": "int"
-                },
-                {
-                    "name": "errMsg",
-                    "type": "nvarchar(100)"
-                }
-            ]
-        }
-    },
     "CheckUsers": {
         "type": "PROCEDURE",
         "updated": "2019-10-10T16:23:28.017Z",
@@ -2171,6 +2113,72 @@
                 {
                     "name": "errMsg",
                     "type": "nvarchar(max)"
+                }
+            ]
+        }
+    },
+    "GetRawVotes": {
+        "type": "PROCEDURE",
+        "updated": "2019-11-07T12:50:02.957Z",
+        "parameter": {
+            "inputs": [
+                {
+                    "name": "langId",
+                    "type": "nvarchar(3)"
+                },
+                {
+                    "name": "customerId",
+                    "type": "nvarchar(30)"
+                },
+                {
+                    "name": "qsetId",
+                    "type": "nvarchar(30)"
+                },
+                {
+                    "name": "qseq",
+                    "type": "int"
+                },
+                {
+                    "name": "beginDate",
+                    "type": "datetime"
+                },
+                {
+                    "name": "endDate",
+                    "type": "datetime"
+                },
+                {
+                    "name": "orgId",
+                    "type": "nvarchar(30)"
+                },
+                {
+                    "name": "memberId",
+                    "type": "nvarchar(30)"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "pageNum",
+                    "type": "int"
+                },
+                {
+                    "name": "rowsPerPage",
+                    "type": "int"
+                },
+                {
+                    "name": "totalRecords",
+                    "type": "int"
+                },
+                {
+                    "name": "maxPage",
+                    "type": "int"
+                },
+                {
+                    "name": "errNum",
+                    "type": "int"
+                },
+                {
+                    "name": "errMsg",
+                    "type": "nvarchar(100)"
                 }
             ]
         }
