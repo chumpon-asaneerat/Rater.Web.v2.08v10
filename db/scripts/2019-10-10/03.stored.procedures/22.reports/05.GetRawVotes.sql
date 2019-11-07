@@ -25,7 +25,7 @@ GO
 --				 , NULL -- UserId (MemberId)
 --				 , N'2018-05-09 00:00:00', N'2018-05-11 23:59:59';
 -- =============================================
-ALTER PROCEDURE [dbo].[GetRawVotes] 
+CREATE PROCEDURE [dbo].[GetRawVotes] 
 (
   @langId as nvarchar(3)
 , @customerId as nvarchar(30)
@@ -45,7 +45,7 @@ ALTER PROCEDURE [dbo].[GetRawVotes]
 AS
 BEGIN
 	-- Error Code:
-	--   0 : Success
+	--    0 : Success
 	-- 2101 : CustomerId cannot be null or empty string.
 	-- 2102 : QSetId cannot be null or empty string.
 	-- 2103 : QSeq cannot be null or less than 1.

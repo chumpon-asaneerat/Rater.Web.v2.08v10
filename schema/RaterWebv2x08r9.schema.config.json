@@ -100,5 +100,7 @@
     "RevokeLicense": true,
     "ExtendLicense": true,
     "SetDeviceOrg": true,
-    "SetDeviceUser": true
+    "SetDeviceUser": true,
+    "FilterOrgs": true,
+    "FilterMembers": true
 }
