@@ -273,6 +273,66 @@ const api = class {
 }
 
 const routes = class {
+    static GetCustomers(req, res) {
+        let db = new sqldb();
+        let params = WebServer.parseReq(req).data;
+        // force langId to null;
+        params.langId = null;
+        params.customerId = null;
+        params.enabled = true;
+
+        let fn = async () => {
+            return db.GetCustomers(params);
+        }
+        exec(db, fn).then(data => {
+            let dbResult = validate(db, data);
+
+            let result = {
+                data : null,
+                //src: dbResult.data,
+                errors: dbResult.errors,
+                //multiple: dbResult.multiple,
+                //datasets: dbResult.datasets,
+                out: dbResult.out
+            }
+            let records = dbResult.data;
+            let ret = {};
+
+            records.forEach(rec => {
+                if (!ret[rec.langId]) {
+                    ret[rec.langId] = []
+                }
+                let map = ret[rec.langId].map(c => c.customerId);
+                let idx = map.indexOf(rec.customerId);
+                let nobj;
+                if (idx === -1) {
+                    // set id
+                    nobj = { customerId: rec.customerId }
+                    // init lang properties list.
+                    ret[rec.langId].push(nobj)
+                }
+                else {
+                    nobj = ret[rec.langId][idx];
+                }
+                nobj.CustomerName = rec.CustomerName;
+                nobj.TaxCode = rec.TaxCode;
+                nobj.CustomerName = rec.CustomerName;
+                nobj.Address1 = rec.Address1;
+                nobj.Address2 = rec.Address2;
+                nobj.City = rec.City;
+                nobj.Province = rec.Province;
+                nobj.PostalCode = rec.PostalCode;
+                nobj.Phone = rec.Phone;
+                nobj.Mobile = rec.Mobile;
+                nobj.Fax = rec.Fax;
+                nobj.Email = rec.Email;
+            })
+            // set to result.
+            result.data = ret;
+
+            WebServer.sendJson(req, res, result);
+        })
+    }
     static GetBranchs(req, res) {
         let db = new sqldb();
         let params = WebServer.parseReq(req).data;
@@ -1262,6 +1322,10 @@ const routes = class {
 }
 
 router.use(secure.checkAccess);
+
+// branch
+router.all('/customer/search', routes.GetCustomers);
+
 // branch
 router.all('/branch/search', routes.GetBranchs);
 router.post('/branch/save', routes.SaveBranchs);

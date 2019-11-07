@@ -56,6 +56,12 @@ window.events.name.LicenseTypeListChanged = 'app:master:licensetype:list:changed
 /** Master: License Feature List Changed. */
 window.events.name.LicenseFeatureListChanged = 'app:master:licensefeature:list:changed';
 
+/** Datasource: Customer. */
+window.events.name.CustomerListChanged = 'app:datasource:customer:list:changed';
+window.events.name.BeginEditCustomer = 'app:datasource:customer:begin:edit';
+window.events.name.DeleteCustomer = 'app:datasource:customer:delete';
+window.events.name.EndEditCustomer = 'app:datasource:customer:end:edit';
+
 /** Datasource: Device. */
 window.events.name.DeviceListChanged = 'app:datasource:device:list:changed';
 window.events.name.BeginEditDevice = 'app:datasource:device:begin:edit';

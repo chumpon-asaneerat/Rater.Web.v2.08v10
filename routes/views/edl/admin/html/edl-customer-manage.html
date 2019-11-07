@@ -17,28 +17,14 @@
     <link href="/dist/css/flag-icon.min.css" rel="stylesheet" type="text/css" />
     <link href="/dist/css/emojisymbol.min.css" rel="stylesheet" type="text/css" />
     <!-- tabulator css -->
-    <!--
     <link href="/dist/css/tabulator.min.css" rel="stylesheet" type="text/css" />
-    -->
-    <!-- jQuery Org Chart css -->
-    <!--
-    <link href="/dist/css/jquery.orgchart.min.css" rel="stylesheet" type="text/css" />
-    -->
-    <!-- JS Tree -->
-    <!--
-    <link href="/dist/css/themes/default/style.min.css" rel="stylesheet" type="text/css" />
-    -->
-    <!-- highcharts css -->
-    <!--
-    <link href="/dist/css/highcharts.css" rel="stylesheet" type="text/css" />
-    -->
     <!-- nlib css -->
     <link href="/dist/css/nlib.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
     <app id="app" navibar footer>
-        <screen screenId='edl-admin-home'>
-            <edl-admin-home></edl-admin-home>
+        <screen screenId='edl-customer-manage'>
+            <edl-customer-manage></edl-customer-manage>
         </screen>
     </app>
     <!-- JQuery -->
@@ -53,21 +39,8 @@
     <script src="/dist/js/moment.min.js"></script>
 
     <!-- Tabulator -->
-    <!-- 
     <script src="/dist/js/tabulator.min.js"></script>
-    -->
-    <!-- jQuery Org Chart -->
-    <!-- 
-    <script src="/dist/js/jquery.orgchart.min.js"></script>
-    -->
-    <!-- JS Tree -->
-    <!-- 
-    <script src="/dist/js/jstree.min.js"></script>
-    -->
-    <!-- highcharts -->
-    <!-- 
-    <script src="/dist/js/highcharts.js"></script>
-    -->
+    
     <!-- Riot.js -->
     <script src="/dist/js/riot.min.js"></script>
     <!-- custom components -->
@@ -77,7 +50,7 @@
     <!-- services -->
     <script src="/dist/js/services.js"></script>
     <!-- api(s) -->
-
+    <script src="/dist/js/customer-api.js"></script>
     <!-- local scripts -->
     <!--
     <script src="admin/js/app.js"></script>
@@ -86,7 +59,7 @@
         let app;
         (() => {
             let tags = riot.mount('app')
-            let screenId = 'edl-admin-home'
+            let screenId = 'edl-customer-manage'
             screens.show(screenId)
         })();
     </script>

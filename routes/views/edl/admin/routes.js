@@ -18,6 +18,9 @@ const routes = class {
     static home(req, res) {
         WebServer.sendFile(req, res, __dirname, 'html', 'index.html');
     }
+    static customerManage(req, res) {
+        WebServer.sendFile(req, res, __dirname, 'html', 'edl-customer-manage.html');
+    }
     static getjsfile(req, res) {
         let file = req.params.file.toLowerCase();
         let files = ['app.js']
@@ -39,6 +42,10 @@ const routes = class {
 router.get('/', secure.checkAccess, secure.checkRedirect, routes.home)
 router.get('/contents', routes.getContents)
 router.get('/js/:file', routes.getjsfile)
+
+router.get('/customers', secure.checkAccess, secure.checkRedirect, routes.customerManage)
+router.get('/customers/contents', routes.getContents)
+router.get('/customers/js/:file', routes.getjsfile)
 
 const init_routes = (svr) => {
     svr.route('/edl/admin', router);

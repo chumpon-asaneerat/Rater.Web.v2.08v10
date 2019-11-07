@@ -99,7 +99,7 @@
 
         let updatecontent = () => {
             if (secure) {
-                console.log(secure)
+                //console.log(secure)
                 self.users = (secure.content) ? secure.users : [];
                 self.update();
             }

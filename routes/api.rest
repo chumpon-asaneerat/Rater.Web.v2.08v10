@@ -100,3 +100,13 @@ content-type: application/json
         { "userId": "M00008" }
     ]
 }
+
+#### GetCustomers
+
+POST http://localhost:3000/customer/api/customer/search
+content-type: application/json
+
+{
+    "langId": null,
+    "customerId": null
+}
