@@ -1,3 +1,11 @@
+- Restructure JSON for api
+    - GetRawVotes (update).
+    - GetStaffRawVotes (new).
+
+- แก้ route ให้เป็นแบบ localhost/langid/customerid/qsetid
+- เอาเรื่อง flipper ออก
+- combine riot tag ให้ใช้ร่วมกันได้
+
 - เพิ่ม SP เพื่อตรวจสอบ QSet ประจำวัน
 - เพิ่ม SP สำหรับ GetTopLevelOrgs (รองจาก Root)
 - เพิ่ม SP สำหรับ delete permanent
@@ -8,10 +16,6 @@
     5. qslide -> qslide, qslideitem, vote
     6. qslideitem -> qslideitem, vote
     7. vote -> vote
-
-- Restructure JSON for api
-    - GetRawVotes (update).
-    - GetStaffRawVotes (new).
 
 - EDL Secure ?
   - Use route like localhost:\\edl\admin\customer\:customerId.
