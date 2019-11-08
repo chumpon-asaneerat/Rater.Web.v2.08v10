@@ -7,6 +7,7 @@
     4. qset -> qset, qslide, qslideitem, vote
     5. qslide -> qslide, qslideitem, vote
     6. qslideitem -> qslideitem, vote
+    7. vote -> vote
 
 - Restructure JSON for api
     - GetRawVotes (update).
