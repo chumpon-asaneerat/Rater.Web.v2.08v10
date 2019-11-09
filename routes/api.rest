@@ -34,7 +34,9 @@ content-type: application/json
     "beginDate": "2019-10-01",
     "endDate": "2019-11-10",
     "qsetId": "QS00001",
-    "qSeq": 1
+    "qSeq": 1,
+    "orgId": "O0008",
+    "memberId": null
 }
 
 #### GetVoteSummaries

@@ -700,14 +700,15 @@ const routes = class {
         }
         let customerId = secure.getCustomerId(req, res);
         if (customerId) params.customerId = customerId;
-        params.deviceId = null;
+        //params.orgid = null;
+        //params.memberId = null;
 
         let fn = async () => {
             return db.GetRawVotes(params);
         }
         exec(db, fn).then(data => {
-            let dbResult = validate(db, data);
-
+            let db = new sqldb();
+    
             let result = {
                 data : null,
                 //src: dbResult.data,
