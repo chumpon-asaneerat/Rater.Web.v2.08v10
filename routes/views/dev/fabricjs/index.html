@@ -215,24 +215,31 @@
             originX: 'center',
             originY: 'center',
             initialize: function(src, options) {
-                options || (options = { });
+                options || (options = {});
                 this.callSuper('initialize', options);
                 this.set('left', options.left || 10);
                 this.set('top', options.top || 10);
                 this.set('width', options.width || 75);
                 this.set('height', options.height || 75);
+                this.set('scaleX', options.scaleX || 1);
+                this.set('scaleY', options.scaleY || 1);
                 this.setCoords();
                 this.setSrc(src)
             },
             toObject: function() {
-                let ret = fabric.util.object.extend(this.callSuper('toObject'), {
+                console.log('toObject:')
+                console.log('width:', this.get('width'), 'height:', this.get('height'))
+                let ret = fabric.util.object.extend(this.callSuper('toObject'),
+                {
                     src: this.get('src'),
                     left: this.get('left'),
                     top: this.get('top'),
                     width: this.get('width'),
-                    height: this.get('height')
+                    height: this.get('height'),
+                    scaleX: this.get('scaleX'),
+                    scaleX: this.get('scaleY')
                 });
-                //console.log('toObject:', ret)
+                console.log('toObject:', ret)
                 return ret;
             },
             toSVG: function() {
@@ -287,13 +294,16 @@
             }
         });
         fabric.GIF.fromObject = function (object, callback, forceAsync) {
-            //console.log('create GIF:', object)
+            console.log('fromObject:', object)
+            let obj = new fabric.GIF(object.src, object);
+            /*
             let obj = new fabric.GIF(object.src, {
-                left: object.left,
-                top: object.top,
-                width: object.width,
-                height: object.height
+                //left: object.left,
+                //top: object.top,
+                //width: object.width,
+                //height: object.height
             });
+            */
             obj.setCoords();
             //obj.on('image:loaded', canvas.renderAll.bind(canvas))
             callback(obj)
@@ -370,6 +380,7 @@
         }
         saveJson = () => {
             let json = canvas.toJSON() //JSON.stringify(canvas);
+            console.log('saveJson:', json)
             //console.log(json)
             $.ajax({
                 type: "POST",
