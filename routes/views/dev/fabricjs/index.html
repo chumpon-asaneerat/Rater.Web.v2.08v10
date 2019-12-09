@@ -68,8 +68,12 @@
         }
         .designer {
             grid-area: designer;
-            margin: 10px;
-            padding: 10px;
+            position: relative;
+            display: block;
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
             border: 1px solid silver;
             border-radius: 2px;
             overflow: auto;
@@ -84,6 +88,9 @@
             border-radius: 2px;
             overflow: hidden;
             overflow-y: auto;
+        }
+        .designer canvas {
+            border: 1px solid cornflowerblue;
         }
     </style>
 </head>
@@ -227,8 +234,6 @@
                 this.setSrc(src)
             },
             toObject: function() {
-                console.log('toObject:')
-                console.log('width:', this.get('width'), 'height:', this.get('height'))
                 let ret = fabric.util.object.extend(this.callSuper('toObject'),
                 {
                     src: this.get('src'),
@@ -239,7 +244,6 @@
                     scaleX: this.get('scaleX'),
                     scaleX: this.get('scaleY')
                 });
-                console.log('toObject:', ret)
                 return ret;
             },
             toSVG: function() {
@@ -294,16 +298,8 @@
             }
         });
         fabric.GIF.fromObject = function (object, callback, forceAsync) {
-            console.log('fromObject:', object)
+            //console.log('fromObject:', object)
             let obj = new fabric.GIF(object.src, object);
-            /*
-            let obj = new fabric.GIF(object.src, {
-                //left: object.left,
-                //top: object.top,
-                //width: object.width,
-                //height: object.height
-            });
-            */
             obj.setCoords();
             //obj.on('image:loaded', canvas.renderAll.bind(canvas))
             callback(obj)
@@ -313,9 +309,12 @@
 
         /* design code */
         let canvas = new fabric.Canvas('c');
+        setZoom(1280, 720)
+        /*
         canvas.setWidth(1280)
         canvas.setHeight(720)
-        canvas.setDimensions({ width: '1280px', height: '720px' }, { cssOnly: true });        
+        canvas.setDimensions({ width: '1280px', height: '720px' }, { cssOnly: true });    
+        */    
 
         addRect = () => {
             //console.log('add rect')
@@ -437,24 +436,45 @@
             let zoomOld = canvas.getZoom();
             let wd = canvas.getWidth();
             let ht = canvas.getHeight();
-            canvas.setZoom(.14);
-            canvas.setWidth(wd * canvas.getZoom());
-            canvas.setHeight(ht * canvas.getZoom());
+            setZoom(190 - 20, 100 - 20) // set new some magic number is need for urgent fixed.
+            //canvas.setZoom(.14);
+            //canvas.setWidth(wd * canvas.getZoom());
+            //canvas.setHeight(ht * canvas.getZoom());
 
             let svg = canvas.toSVG();
-            canvas.setZoom(zoomOld);
-            canvas.setWidth(wd * canvas.getZoom());
-            canvas.setHeight(ht * canvas.getZoom());
+            setZoom(1280, 720); // restore
+            //canvas.setZoom(zoomOld);
+            //canvas.setWidth(wd * canvas.getZoom());
+            //canvas.setHeight(ht * canvas.getZoom());
 
             let el = document.getElementById('svg1');
             //console.log(svg)
             el.innerHTML = svg;
         }
+
         render()
         function render() {
             if (canvas && !onload) { canvas.renderAll(); }
             fabric.util.requestAnimFrame(render);
-        }        
+        }
+
+        function setZoom(newWidth, newHeight) {
+            let dsgnWd = 1280;
+            let dsgnHt = 720;
+            //let scaleRatio = Math.min(newWidth/dsgnWd, newHeight/dsgnHt);
+            let scaleRatio = Math.max(newWidth/dsgnWd, newHeight/dsgnHt);
+
+            canvas.setZoom(scaleRatio);
+            canvas.setWidth(dsgnWd * canvas.getZoom());
+            canvas.setHeight(dsgnHt * canvas.getZoom());
+            /*
+            canvas.setDimensions({ 
+                width: newWidth, 
+                height: newHeight
+            });
+            canvas.setZoom(scaleRatio);
+            */
+        }
     </script>
 </body>
 </html>
