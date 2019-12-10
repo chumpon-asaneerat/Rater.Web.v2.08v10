@@ -436,7 +436,8 @@
             let zoomOld = canvas.getZoom();
             let wd = canvas.getWidth();
             let ht = canvas.getHeight();
-            setZoom(190 - 20, 100 - 20) // set new some magic number is need for urgent fixed.
+            let offset = 20; // set new some magic number is need for urgent fixed.
+            setZoom(190 - offset, 100 - offset)
             //canvas.setZoom(.14);
             //canvas.setWidth(wd * canvas.getZoom());
             //canvas.setHeight(ht * canvas.getZoom());
