@@ -433,21 +433,14 @@
         }
 
         updateSVG = () => {
+            fabric.Object.NUM_FRACTION_DIGITS = 80;
             let zoomOld = canvas.getZoom();
-            let wd = canvas.getWidth();
-            let ht = canvas.getHeight();
-            let offset = 20; // set new some magic number is need for urgent fixed.
-            setZoom(190 - offset, 100 - offset)
-            //canvas.setZoom(.14);
-            //canvas.setWidth(wd * canvas.getZoom());
-            //canvas.setHeight(ht * canvas.getZoom());
+            //let wd = canvas.getWidth();
+            //let ht = canvas.getHeight();
+            setZoom(1280 * .12, 720 * .12)
 
             let svg = canvas.toSVG();
             setZoom(1280, 720); // restore
-            //canvas.setZoom(zoomOld);
-            //canvas.setWidth(wd * canvas.getZoom());
-            //canvas.setHeight(ht * canvas.getZoom());
-
             let el = document.getElementById('svg1');
             //console.log(svg)
             el.innerHTML = svg;
