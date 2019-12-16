@@ -7,15 +7,6 @@
 - combine riot tag ให้ใช้ร่วมกันได้
 
 - เพิ่ม SP เพื่อตรวจสอบ QSet ประจำวัน
-- เพิ่ม SP สำหรับ GetTopLevelOrgs (รองจาก Root)
-- เพิ่ม SP สำหรับ delete permanent
-    1. customer -> customer, branch, org, qset, qslide, qslideitem, vote
-    2. branch -> branch, org, vote
-    3. org -> org, vote
-    4. qset -> qset, qslide, qslideitem, vote
-    5. qslide -> qslide, qslideitem, vote
-    6. qslideitem -> qslideitem, vote
-    7. vote -> vote
 
 - EDL Secure ?
   - Use route like localhost:\\edl\admin\customer\:customerId.
