@@ -1,8 +1,8 @@
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 EXEC DROPALL;
 DROP PROCEDURE DROPALL;
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -179,7 +179,7 @@ AS
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -218,7 +218,7 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'The log messag
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -290,7 +290,7 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'The Unique ind
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -324,7 +324,7 @@ AS
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -361,7 +361,7 @@ GO
 
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -391,7 +391,7 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'The Error Mess
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -412,7 +412,7 @@ AS
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -451,7 +451,7 @@ AS
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -521,7 +521,7 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Checks seed re
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -554,7 +554,7 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'The Default De
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -590,7 +590,7 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'The Descriptio
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -626,7 +626,7 @@ AS
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -665,7 +665,7 @@ AS
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -705,7 +705,7 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'The English li
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -751,7 +751,7 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'The limit unit
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -790,7 +790,7 @@ AS
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -838,7 +838,7 @@ AS
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -868,7 +868,7 @@ CREATE TABLE [dbo].[MemberType](
 
 GO
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -900,7 +900,7 @@ CREATE TABLE [dbo].[MemberTypeML](
 
 GO
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -921,7 +921,7 @@ AS
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -946,7 +946,7 @@ AS
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -1004,7 +1004,7 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'The Default Cu
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -1044,7 +1044,7 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'The Currency U
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -1071,7 +1071,7 @@ AS
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -1128,7 +1128,7 @@ AS
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -1165,7 +1165,7 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Number of Limi
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -1198,7 +1198,7 @@ AS
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -1235,7 +1235,7 @@ AS
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -1288,7 +1288,7 @@ GO
 
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -1327,7 +1327,7 @@ GO
 
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -1354,7 +1354,7 @@ AS
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -1405,7 +1405,7 @@ AS
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -1448,7 +1448,7 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Number of digi
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -1531,7 +1531,7 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'The Customer N
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -1585,7 +1585,7 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'The PostalCode
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -1617,7 +1617,7 @@ AS
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -1683,7 +1683,116 @@ AS
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[LicenseHistory](
+	[HistoryId] [int] NOT NULL,
+	[CustomerId] [nvarchar](30) NOT NULL,
+	[LicenseTypeId] [int] NOT NULL,
+	[MaxDevice] [int] NOT NULL,
+	[MaxAccount] [int] NOT NULL,
+	[MaxClient] [int] NOT NULL,
+	[RequestDate] [datetime] NOT NULL,
+	[BeginDate] [datetime] NULL,
+	[EndDate] [datetime] NULL,
+ CONSTRAINT [PK_LicenseHistory_1] PRIMARY KEY CLUSTERED 
+(
+	[HistoryId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+ALTER TABLE [dbo].[LicenseHistory] ADD  CONSTRAINT [DF_LicenseHistory_MaxDevice]  DEFAULT ((0)) FOR [MaxDevice]
+GO
+
+ALTER TABLE [dbo].[LicenseHistory] ADD  CONSTRAINT [DF_LicenseHistory_MaxAccount]  DEFAULT ((0)) FOR [MaxAccount]
+GO
+
+ALTER TABLE [dbo].[LicenseHistory] ADD  CONSTRAINT [DF_LicenseHistory_MaxClient]  DEFAULT ((0)) FOR [MaxClient]
+GO
+
+ALTER TABLE [dbo].[LicenseHistory] ADD  CONSTRAINT [DF_LicenseHistory_RequestDate]  DEFAULT (getdate()) FOR [RequestDate]
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'The History Id (primary key)' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'LicenseHistory', @level2type=N'COLUMN',@level2name=N'HistoryId'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'The Customer Id.' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'LicenseHistory', @level2type=N'COLUMN',@level2name=N'CustomerId'
+GO
+
+
+/*********** Script Update Date: 2019-12-16  ***********/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE VIEW [dbo].[LicenseHistoryMLView]
+AS
+	SELECT lhis.historyId
+         , cmlv.langId
+		 , lhis.customerId
+		 , lhis.maxDevice
+		 , lhis.maxAccount
+		 , lhis.maxClient
+		 , lhis.RequestDate
+		 , lhis.BeginDate
+		 , lhis.EndDate
+		 , CASE
+		    WHEN CAST(lhis.EndDate AS DATE) = CAST(lhis.BeginDate AS DATE) THEN CAST(1 AS bit)
+			ELSE CAST(0 AS bit)
+		   END AS Revoked
+		 , CASE 
+		    WHEN CAST(lhis.EndDate AS DATE) < CAST(GETDATE() AS DATE) THEN CAST(1 AS bit)
+		    ELSE CAST(0 AS bit)
+		   END AS Expired
+		 , CASE
+		    WHEN (CAST(lhis.EndDate AS DATE) = CAST(lhis.BeginDate AS DATE)) THEN 0
+			ELSE DATEDIFF(day, CAST(GETDATE() AS DATE), CAST(lhis.EndDate AS DATE))
+		   END AS RemainDays
+		 , cmlv.CustomerName
+		 , cmlv.TaxCode
+		 , cmlv.Address1
+		 , cmlv.Address2
+		 , cmlv.City
+		 , cmlv.Province
+		 , cmlv.PostalCode
+		 , cmlv.Phone
+		 , cmlv.Mobile
+		 , cmlv.Fax
+		 , cmlv.Email
+		 , ltmlv.LicenseTypeDescription as Description
+		 , ltmlv.AdText
+		 , ltmlv.NumberOfUnit
+		 , pmlv.PeriodUnitDescription as PeriodUnit
+		 , ltmlv.PeriodUnitId
+		 , ltmlv.Price
+		 , ltmlv.UseDefaultPrice
+		 , ltmlv.CurrencySymbol
+		 , ltmlv.CurrencyText
+		 , ltmlv.LicenseTypeId
+	  FROM LicenseHistory lhis 
+	 RIGHT OUTER JOIN CustomerMLView AS cmlv
+        ON (cmlv.CustomerId = lhis.CustomerId)
+	 RIGHT OUTER JOIN LicenseTypeMLView AS ltmlv
+        ON (ltmlv.LangId = cmlv.LangId AND ltmlv.LicenseTypeId = lhis.LicenseTypeId)
+	 RIGHT OUTER JOIN PeriodUnitMLView AS pmlv
+        ON (pmlv.LangId = ltmlv.LangId AND pmlv.PeriodUnitId = ltmlv.PeriodUnitId)
+	 WHERE cmlv.Enabled = 1
+	   AND ltmlv.Enabled = 1
+	   AND pmlv.Enabled = 1
+
+GO
+
+
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -1764,7 +1873,7 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Prevent Enter 
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -1807,7 +1916,7 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'The Native Las
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -1838,7 +1947,7 @@ AS
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -1896,7 +2005,7 @@ AS
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -1936,7 +2045,7 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'The Branch Pri
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -1971,7 +2080,7 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'The Native Bra
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -1994,7 +2103,7 @@ AS
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -2024,7 +2133,7 @@ AS
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -2069,7 +2178,7 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'0 - Inactive, 
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -2104,7 +2213,7 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'The Native Org
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -2129,7 +2238,7 @@ AS
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -2177,7 +2286,7 @@ AS
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -2243,7 +2352,7 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'0 - Inactive, 
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -2275,7 +2384,7 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'The Question S
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -2318,7 +2427,7 @@ AS
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -2367,7 +2476,7 @@ AS
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -2423,7 +2532,7 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'0 - Inactive, 
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -2463,7 +2572,7 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'The Question T
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -2504,7 +2613,7 @@ AS
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -2552,7 +2661,7 @@ AS
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -2613,7 +2722,7 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'0 - Inactive, 
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -2658,7 +2767,7 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'The Question I
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -2700,7 +2809,7 @@ AS
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -2750,7 +2859,7 @@ AS
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -2775,7 +2884,7 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'The device des
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -2805,7 +2914,7 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'The device des
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -2825,7 +2934,7 @@ AS
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -2850,7 +2959,7 @@ AS
 			 )
 GO
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -2891,7 +3000,7 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'0 - Inactive, 
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -2923,7 +3032,7 @@ GO
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'The Location (ML)' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'DeviceML', @level2type=N'COLUMN',@level2name=N'Location'
 GO
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -2949,7 +3058,7 @@ AS
 
 GO
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -2986,7 +3095,7 @@ AS
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -3049,7 +3158,7 @@ ALTER TABLE [dbo].[Vote] ADD  CONSTRAINT [DF_Vote_ObjectStatus]  DEFAULT ((1)) F
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -3077,7 +3186,7 @@ SELECT MV.LangId
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -3113,7 +3222,7 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'The Created Da
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -3148,7 +3257,7 @@ END
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -3184,7 +3293,7 @@ END
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -3220,7 +3329,7 @@ END
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -3256,7 +3365,7 @@ END
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -3291,7 +3400,7 @@ END
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3330,7 +3439,7 @@ END
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3371,7 +3480,7 @@ END
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3413,7 +3522,7 @@ END
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3457,7 +3566,7 @@ END
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -3513,7 +3622,7 @@ END
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3671,7 +3780,7 @@ END
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -3749,7 +3858,7 @@ END
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -3822,7 +3931,7 @@ END
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -3907,7 +4016,7 @@ END
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -3958,7 +4067,7 @@ END
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -4038,7 +4147,7 @@ END
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -4088,7 +4197,7 @@ END
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4145,7 +4254,7 @@ END
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4256,7 +4365,7 @@ END
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4298,7 +4407,7 @@ END
 
 GO
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -4327,7 +4436,6 @@ BEGIN
     -- LANGUAGES.
     EXEC SaveErrorMsg 0101, N'Language Id cannot be null or empty string.'
     EXEC SaveErrorMsg 0102, N'Description cannot be null or empty string.'
-    EXEC SaveErrorMsg 0103, N'Language Description is duplicated.'
     -- MASTER PK.
     EXEC SaveErrorMsg 0201, N'Table Name is null or empty string.'
     EXEC SaveErrorMsg 0202, N'Seed Reset Mode should be number 1-3.'
@@ -4566,8 +4674,7 @@ EXEC InitErrorMessages;
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
-/****** Object:  StoredProcedure [dbo].[SaveLanguage]    Script Date: 6/12/2017 9:21:06 AM ******/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4595,6 +4702,9 @@ GO
 --	- Stored Procedure Changes.
 --    - Remove @descriptionNative parameter.
 --    - Rename @descriptionEN parameter to @description.
+-- <2019-10-10> :
+--	- Stored Procedure Changes.
+--    - Remove Remove check descrption duplicate.
 --
 -- [== Example ==]
 --
@@ -4621,7 +4731,6 @@ DECLARE @bEnabled bit = 0;
 	--   0 : Success
 	-- 101 : Language Id cannot be null or empty string.
 	-- 102 : Description cannot be null or empty string.
-	-- 103 : Language Description is duplicated.
 	-- OTHER : SQL Error Number & Error Message.
 	BEGIN TRY
 		IF (dbo.IsNullOrEmpty(@langId) = 1)
@@ -4640,21 +4749,6 @@ DECLARE @bEnabled bit = 0;
 		SELECT @iLangCnt = COUNT(*)
 		  FROM [dbo].[Language]
 		 WHERE LOWER(RTRIM(LTRIM([LangId]))) = LOWER(RTRIM(LTRIM(@langId)))
-
-		IF (@iLangCnt = 0)
-		BEGIN
-			-- Detected language not exists so need to check duplicate description.
-			-- Check is description is duplicated?.
-			SELECT @iDescCnt = COUNT(*)
-				FROM [dbo].[Language]
-				WHERE UPPER(RTRIM(LTRIM([Description]))) = UPPER(RTRIM(LTRIM(@description))) COLLATE SQL_Latin1_General_CP1_CS_AS
-
-			IF (@iDescCnt <> 0)
-			BEGIN
-				EXEC GetErrorMsg 103, @errNum out, @errMsg out
-				RETURN
-			END
-		END
 
 		IF @iLangCnt = 0
 		BEGIN
@@ -4725,7 +4819,7 @@ END
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -4760,7 +4854,7 @@ END
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -4795,7 +4889,7 @@ END
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4841,7 +4935,7 @@ END
 
 GO
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4944,7 +5038,7 @@ END
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5108,7 +5202,7 @@ END
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5150,7 +5244,7 @@ END
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5253,7 +5347,7 @@ END
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5403,7 +5497,7 @@ END
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5452,7 +5546,7 @@ END
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -5568,7 +5662,7 @@ END
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -5723,7 +5817,7 @@ END
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5774,7 +5868,7 @@ END
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5823,7 +5917,7 @@ END
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -6035,7 +6129,7 @@ END
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -6194,7 +6288,7 @@ END
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -6250,7 +6344,7 @@ END
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -6439,7 +6533,7 @@ END
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -6497,7 +6591,7 @@ END
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -6563,7 +6657,7 @@ END
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -6751,7 +6845,7 @@ END
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -6904,7 +6998,7 @@ END
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -6970,7 +7064,7 @@ END
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -7088,7 +7182,7 @@ END
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -7273,7 +7367,7 @@ END
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -7320,7 +7414,521 @@ END
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author: Chumpon Asaneerat
+-- Name: SaveLicenseHistory.
+-- Description:	Begin Log.
+-- [== History ==]
+-- <2019-10-01> :
+--	- Stored Procedure Created.
+--
+-- [== Example ==]
+--
+--exec SaveLicenseHistory N'EDL-C2019080001', 0
+-- =============================================
+CREATE PROCEDURE [dbo].[SaveLicenseHistory]
+(
+  @customerId as nvarchar(30)
+, @licenseTypeId int
+, @historyId int = null out
+, @errNum as int = 0 out
+, @errMsg as nvarchar(MAX) = N'' out)
+AS
+BEGIN
+DECLARE @iCnt int;
+
+DECLARE @priodId int;
+DECLARE @priodTimes int;
+
+DECLARE @beginDate datetime;
+DECLARE @endDate datetime;
+DECLARE @maxDevice int;
+DECLARE @maxAccount int;
+DECLARE @maxClient int;
+    -- Error Code:
+    --    0 : Success
+	-- 2601 : Customer Id cannot be null or empty string.
+	-- 2602 : Customer Id not exist.
+	-- 2603 : LicenseTypeId cannot be null.
+	-- 2604 : LicenseTypeId not exits.
+	-- 2605 : Request is on processing.
+	-- 2606 : Your Free License is already used.
+    -- OTHER : SQL Error Number & Error Message.
+    BEGIN TRY
+		IF (dbo.IsNullOrEmpty(@customerId) = 1)
+		BEGIN
+			EXEC GetErrorMsg 2601, @errNum out, @errMsg out
+			RETURN
+		END
+		SELECT @iCnt = COUNT(CustomerId) 
+		  FROM Customer 
+		 WHERE LOWER(RTRIM(LTRIM(CustomerId))) = LOWER(RTRIM(LTRIM(@customerId)))
+		IF (@iCnt = 0)
+		BEGIN
+            -- Cannot found Customer Id.
+            EXEC GetErrorMsg 2602, @errNum out, @errMsg out
+			RETURN
+		END
+		IF (dbo.IsNullOrEmpty(@licenseTypeId) = 1)
+		BEGIN
+			EXEC GetErrorMsg 2603, @errNum out, @errMsg out
+			RETURN
+		END
+		SELECT @iCnt = COUNT(LicenseTypeId) 
+		  FROM LicenseType 
+		 WHERE LicenseTypeId = @licenseTypeId
+		IF (@iCnt = 0)
+		BEGIN
+            -- Cannot found License Type Id.
+            EXEC GetErrorMsg 2604, @errNum out, @errMsg out
+			RETURN
+		END
+
+		-- Check is already requests to renew license.
+		SELECT @iCnt = COUNT(*) 
+		  FROM LicenseHistory
+		 WHERE LOWER(RTRIM(LTRIM(CustomerId))) = LOWER(RTRIM(LTRIM(@customerId)))
+		   AND (BeginDate IS NULL OR EndDate IS NULL)
+
+		IF (@iCnt <> 0)
+		BEGIN
+			EXEC GetErrorMsg 2605, @errNum out, @errMsg out
+			RETURN
+		END
+
+		-- Check is license type 0 (free) is already apply.
+		SELECT @iCnt = COUNT(*) 
+		  FROM LicenseHistory
+		 WHERE LOWER(RTRIM(LTRIM(CustomerId))) = LOWER(RTRIM(LTRIM(@customerId)))
+		   AND LicenseTypeId = 0
+
+		IF (@iCnt <> 0)
+		BEGIN
+			EXEC GetErrorMsg 2606, @errNum out, @errMsg out
+			RETURN
+		END
+
+		IF (@iCnt = 0)
+		BEGIN
+			SELECT @historyId = MAX(HistoryId) FROM LicenseHistory;
+			IF (@historyId IS NULL) 
+			BEGIN
+				SET @historyId = 0;
+			END
+			SET @historyId = @historyId + 1;
+
+			-- MAX DEVICE (MIN = 1)
+			SELECT @maxDevice = NoOfLimit
+			  FROM LicenseFeature
+			 WHERE LimitUnitId = 1
+			   AND LicenseTypeId = @licenseTypeId
+			IF (@maxDevice IS NULL OR @maxDevice < 1) SET @maxDevice = 1;
+			-- MAX ACCOUNT (MIN = 1)
+			SELECT @maxAccount = NoOfLimit
+			  FROM LicenseFeature
+			 WHERE LimitUnitId = 1
+			   AND LicenseTypeId = @licenseTypeId
+			IF (@maxAccount IS NULL OR @maxAccount < 1) SET @maxAccount = 1;
+			-- MAX CLIENT (MIN = 1)
+			SELECT @maxClient = NoOfLimit
+			  FROM LicenseFeature
+			 WHERE LimitUnitId = 1
+			   AND LicenseTypeId = @licenseTypeId
+			IF (@maxClient IS NULL OR @maxClient < 1) SET @maxClient = 1;
+
+			-- CALC PERIOD
+			SELECT @priodId = PeriodUnitId, @priodTimes = NumberOfUnit
+				FROM LicenseType
+				WHERE LicenseTypeId = @licenseTypeId;
+				
+			SET @beginDate = GETDATE();
+			IF (@priodId = 1) SELECT @endDate = DATEADD(day, @priodTimes, GETDATE());
+			ELSE 
+			BEGIN 
+				IF (@priodId = 2) SELECT @endDate = DATEADD(month, @priodTimes, GETDATE());
+				ELSE SELECT @endDate = DATEADD(year, @priodTimes, GETDATE());
+			END
+
+			INSERT INTO LicenseHistory
+			(
+				HistoryId
+			  , CustomerId
+			  , LicenseTypeId
+			  , MaxDevice
+			  , MaxAccount
+			  , MaxClient
+			  , BeginDate
+			  , EndDate
+			) 
+			VALUES
+			(
+				@historyId
+			  , @customerId
+			  , @licenseTypeId
+			  , @maxDevice
+			  , @maxAccount
+			  , @maxClient
+			  , @beginDate
+			  , @endDate
+			)
+		END
+
+		-- SUCCESS
+		EXEC GetErrorMsg 0, @errNum out, @errMsg out
+	END TRY
+	BEGIN CATCH
+		SET @errNum = ERROR_NUMBER();
+		SET @errMsg = ERROR_MESSAGE();
+	END CATCH
+END
+
+GO
+
+
+/*********** Script Update Date: 2019-12-16  ***********/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author: Chumpon Asaneerat
+-- Description:	GetCustomerHistories
+-- [== History ==]
+-- <2019-10-01> :
+--	- Stored Procedure Created.
+--
+-- [== Example ==]
+--
+--exec GetCustomerHistories NULL, NULL;                -- for get all.
+--exec GetCustomerHistories;                           -- for get all.
+--exec GetCustomerHistories N'EN';                     -- for get customer histories for EN language.
+--exec GetCustomerHistories N'TH';                     -- for get customer histories for TH language.
+--exec GetCustomerHistories N'TH', N'EDL-C2017060011'; -- for get customer histories for TH language by Customer Id.
+-- =============================================
+CREATE PROCEDURE [dbo].[GetCustomerHistories] 
+(
+  @langId nvarchar(3) = NULL
+, @customerId nvarchar(30) = NULL
+)
+AS
+BEGIN
+	SELECT hisv.historyId
+         , hisv.langId
+		 , hisv.customerId
+		 , hisv.CustomerName
+		 , hisv.RequestDate
+		 , hisv.BeginDate
+		 , hisv.EndDate
+         , hisv.Revoked
+		 , hisv.Expired
+		 , hisv.RemainDays
+		 , hisv.maxDevice
+		 , hisv.maxAccount
+		 , hisv.maxClient
+		 /*
+		 , hisv.TaxCode
+		 , hisv.Address1
+		 , hisv.Address2
+		 , hisv.City
+		 , hisv.Province
+		 , hisv.PostalCode
+		 , hisv.Phone
+		 , hisv.Mobile
+		 , hisv.Fax
+		 , hisv.Email
+		 */
+		 , hisv.Description
+		 , hisv.AdText
+		 , hisv.NumberOfUnit
+		 , hisv.PeriodUnit
+		 , hisv.PeriodUnitId
+		 , hisv.Price
+		 , hisv.UseDefaultPrice
+		 , hisv.CurrencySymbol
+		 , hisv.CurrencyText
+		 , hisv.LicenseTypeId
+	  FROM LicenseHistoryMLView hisv
+	 WHERE UPPER(LTRIM(RTRIM(hisv.LangId))) = UPPER(LTRIM(RTRIM(COALESCE(@langId, hisv.LangId))))
+	   AND UPPER(LTRIM(RTRIM(hisv.CustomerId))) = UPPER(LTRIM(RTRIM(COALESCE(@customerId, hisv.CustomerId))))
+	 ORDER BY hisv.CustomerId, hisv.RequestDate
+END
+
+GO
+
+
+/*********** Script Update Date: 2019-12-16  ***********/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author: Chumpon Asaneerat
+-- Name: Revoke License.
+-- Description:	Revoke License.
+-- [== History ==]
+-- <2019-10-01> :
+--	- Stored Procedure Created.
+--
+-- [== Example ==]
+--
+/*
+EXEC RevokeLicense 1, @errNum out, @errMsg out 
+*/
+-- =============================================
+CREATE PROCEDURE [dbo].[RevokeLicense] (
+  @historyId as int
+, @errNum as int = 0 out
+, @errMsg as nvarchar(MAX) = N'' out)
+AS
+BEGIN
+DECLARE @iCnt int = 0;
+	-- Error Code:
+	--    0 : Success
+	-- 2701 : History Id cannot be null or empty string.
+	-- 2702 : History Id not found.
+	-- OTHER : SQL Error Number & Error Message.
+	BEGIN TRY
+		IF (dbo.IsNullOrEmpty(@historyId) = 1)
+		BEGIN
+			-- History Id cannot be null.
+            EXEC GetErrorMsg 2701, @errNum out, @errMsg out
+			RETURN
+		END
+
+		SELECT @iCnt = COUNT(HistoryId)
+		  FROM LicenseHistory
+		 WHERE HistoryID = @historyId
+		IF (@iCnt = 0)
+		BEGIN
+			-- History Id not found.
+            EXEC GetErrorMsg 2702, @errNum out, @errMsg out
+			RETURN
+		END
+
+		UPDATE LicenseHistory
+		   SET BeginDate = GETDATE()
+		     , EndDate = GETDATE()
+		 WHERE HistoryID = @historyId
+		
+        EXEC GetErrorMsg 0, @errNum out, @errMsg out
+	END TRY
+	BEGIN CATCH
+		SET @errNum = ERROR_NUMBER();
+		SET @errMsg = ERROR_MESSAGE();
+	END CATCH
+END
+
+GO
+
+
+/*********** Script Update Date: 2019-12-16  ***********/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author: Chumpon Asaneerat
+-- Name: Extend License.
+-- Description:	Extend License.
+-- [== History ==]
+-- <2019-10-01> :
+--	- Stored Procedure Created.
+--
+-- [== Example ==]
+--
+/*
+EXEC ExtendLicense 2, '2019-10-30', NULL, NULL, NULL, @errNum out, @errMsg out 
+*/
+-- =============================================
+CREATE PROCEDURE [dbo].[ExtendLicense] (
+  @historyId as int
+, @endDate as datetime = null
+, @maxDevice as int = null
+, @maxAccount as int = null
+, @maxClient as int = null
+, @errNum as int = 0 out
+, @errMsg as nvarchar(MAX) = N'' out)
+AS
+BEGIN
+DECLARE @iCnt int = 0;
+	-- Error Code:
+	--    0 : Success
+	-- 2801 : History Id cannot be null or empty string.
+	-- 2802 : History Id not found.
+	-- 2803 : License Still in active state.
+	-- 2804 : 
+	-- OTHER : SQL Error Number & Error Message.
+	BEGIN TRY
+		IF (dbo.IsNullOrEmpty(@historyId) = 1)
+		BEGIN
+			-- History Id cannot be null.
+            EXEC GetErrorMsg 2801, @errNum out, @errMsg out
+			RETURN
+		END
+
+		SELECT @iCnt = COUNT(HistoryId)
+		  FROM LicenseHistory
+		 WHERE HistoryId = @historyId
+		IF (@iCnt = 0)
+		BEGIN
+			-- History Id not found.
+            EXEC GetErrorMsg 2802, @errNum out, @errMsg out
+			RETURN
+		END
+        /*
+		SELECT @iCnt = COUNT(*)
+		  FROM LicenseHistoryMLView 
+		 WHERE HistoryId = @historyId
+		   AND RemainDays > 0
+		   AND langId = 'EN'
+		IF (@iCnt > 0)
+		BEGIN
+			-- License Still in active state.
+            EXEC GetErrorMsg 2803, @errNum out, @errMsg out
+			RETURN
+		END
+        */
+
+		UPDATE LicenseHistory
+		   SET EndDate = COALESCE(@endDate, EndDate)
+		     , MaxDevice = COALESCE(@maxDevice, MaxDevice)
+			 , MaxAccount = COALESCE(@maxAccount, MaxAccount)
+			 , MaxClient = COALESCE(@maxClient, MaxClient)
+		 WHERE HistoryId = @historyId;
+
+        EXEC GetErrorMsg 0, @errNum out, @errMsg out
+	END TRY
+	BEGIN CATCH
+		SET @errNum = ERROR_NUMBER();
+		SET @errMsg = ERROR_MESSAGE();
+	END CATCH
+END
+
+GO
+
+
+/*********** Script Update Date: 2019-12-16  ***********/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author: Chumpon Asaneerat
+-- Description:	CheckLicense
+-- [== History ==]
+-- <2019-10-01> :
+--	- Stored Procedure Created.
+--
+-- [== Example ==]
+--
+--EXEC CheckLicense N'EDL-C2017010002', 0;
+-- =============================================
+CREATE PROCEDURE [dbo].[CheckLicense] (
+  @customerId nvarchar(30) = null
+, @licenseTypeId int = null
+, @errNum as int = 0 out
+, @errMsg as nvarchar(MAX) = N'' out)
+AS
+BEGIN
+DECLARE @iCnt int = 0;
+DECLARE @memberId nvarchar(30);
+    -- Error Code:
+    --    0 : Success
+	-- 2501 : Customer Id cannot be null or empty string.
+	-- 2502 : Customer Id not exist.
+	-- 2503 : LicenseTypeId cannot be null.
+	-- 2504 : LicenseTypeId not exits.
+	-- 2505 : 
+	-- 2506 : 
+    -- OTHER : SQL Error Number & Error Message.
+    BEGIN TRY
+		IF (dbo.IsNullOrEmpty(@customerId) = 1)
+		BEGIN
+			EXEC GetErrorMsg 2501, @errNum out, @errMsg out
+			RETURN
+		END
+		SELECT @iCnt = COUNT(CustomerId) 
+		  FROM Customer 
+		 WHERE LOWER(RTRIM(LTRIM(CustomerId))) = LOWER(RTRIM(LTRIM(@customerId)))
+		IF (@iCnt = 0)
+		BEGIN
+            -- Cannot found Customer Id.
+            EXEC GetErrorMsg 2502, @errNum out, @errMsg out
+			RETURN
+		END
+		IF (dbo.IsNullOrEmpty(@licenseTypeId) = 1)
+		BEGIN
+			EXEC GetErrorMsg 2503, @errNum out, @errMsg out
+			RETURN
+		END
+		SELECT @iCnt = COUNT(LicenseTypeId) 
+		  FROM LicenseType 
+		 WHERE LicenseTypeId = @licenseTypeId
+		IF (@iCnt = 0)
+		BEGIN
+            -- Cannot found License Type Id.
+            EXEC GetErrorMsg 2504, @errNum out, @errMsg out
+			RETURN
+		END
+
+		-- 
+		/*
+		SELECT @accessId = AccessId, @iCnt = COUNT(*)
+		  FROM ClientAccess
+		 WHERE UPPER(LTRIM(RTRIM(CustomerId))) = UPPER(LTRIM(RTRIM(@customerId)))
+		   AND UPPER(LTRIM(RTRIM(MemberId))) = UPPER(LTRIM(RTRIM(@memberId)))
+		 GROUP BY AccessId
+
+		-- Keep data into session.
+		IF (@iCnt = 0)
+		BEGIN
+			-- NOT EXIST.
+			EXEC GetRandomCode 10, @accessId out; -- Generate 10 Chars Unique Id.
+			INSERT INTO ClientAccess
+			(
+				  AccessId
+				, CustomerId
+				, MemberId 
+			)
+			VALUES
+			(
+				  UPPER(LTRIM(RTRIM(@accessId)))
+				, UPPER(LTRIM(RTRIM(@customerId)))
+				, UPPER(LTRIM(RTRIM(@memberId))) 
+			);
+		END
+		ELSE
+		BEGIN
+			-- ALREADY EXIST.
+			UPDATE ClientAccess
+			   SET CustomerId = UPPER(LTRIM(RTRIM(@customerId)))
+			     , MemberId = UPPER(LTRIM(RTRIM(@memberId)))
+			 WHERE UPPER(LTRIM(RTRIM(AccessId))) = UPPER(LTRIM(RTRIM(@accessId)))
+		END
+		*/
+
+		-- SUCCESS
+		EXEC GetErrorMsg 0, @errNum out, @errMsg out
+	END TRY
+	BEGIN CATCH
+		SET @errNum = ERROR_NUMBER();
+		SET @errMsg = ERROR_MESSAGE();
+	END CATCH
+END
+
+GO
+
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -7566,7 +8174,7 @@ END
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -7755,7 +8363,7 @@ END
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -7814,7 +8422,7 @@ END
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -7865,7 +8473,7 @@ END
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -7921,7 +8529,7 @@ END
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -8277,7 +8885,7 @@ END
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -8453,7 +9061,7 @@ END
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -8517,7 +9125,88 @@ END
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author: Chumpon Asaneerat
+-- Description:	Delete MemberInfo
+-- [== History ==]
+-- <2019-12-16> :
+--	- Stored Procedure Created.
+--
+-- [== Example ==]
+--
+--EXEC DeleteMemberInfo N'EDL-C2019100001', N'M00001'
+-- =============================================
+CREATE PROCEDURE [dbo].[DeleteMemberInfo]
+(
+  @customerId nvarchar(30)
+, @memberId nvarchar(30)
+, @errNum as int = 0 out
+, @errMsg as nvarchar(MAX) = N'' out
+)
+AS
+BEGIN
+    -- Error Code:
+    --   0 : Success
+	-- 4001: Customer Id cannot be null or empty string.
+	-- 4002: Member Id cannot be null or empty string.
+	-- 4003: Cannot be remove default admin.
+    -- OTHER : SQL Error Number & Error Message.
+	BEGIN TRY
+		IF (dbo.IsNullOrEmpty(@customerId) = 1)
+		BEGIN
+			-- Customer Id cannot be null or empty string.
+            EXEC GetErrorMsg 4001, @errNum out, @errMsg out
+			RETURN
+		END
+
+		IF (dbo.IsNullOrEmpty(@memberId) = 1)
+		BEGIN
+			-- Member Id cannot be null or empty string.
+            EXEC GetErrorMsg 4002, @errNum out, @errMsg out
+			RETURN
+		END
+
+		IF (LTRIM(RTRIM(LOWER(@memberId))) = LOWER(N'M00001'))
+		BEGIN
+			-- Cannot be remove default admin member.
+            EXEC GetErrorMsg 4003, @errNum out, @errMsg out
+			RETURN
+		END
+
+		DELETE FROM ClientAccess 
+		 WHERE LTRIM(RTRIM(LOWER(CustomerId))) = LTRIM(RTRIM(LOWER(@customerId))) 
+		   AND LTRIM(RTRIM(LOWER(MemberId))) = LTRIM(RTRIM(LOWER(@memberId)));
+
+		DELETE FROM Vote 
+		 WHERE LTRIM(RTRIM(LOWER(CustomerId))) = LTRIM(RTRIM(LOWER(@customerId))) 
+		   AND LTRIM(RTRIM(LOWER(UserId))) = LTRIM(RTRIM(LOWER(@memberId)));
+
+		DELETE FROM MemberInfoML 
+		 WHERE LTRIM(RTRIM(LOWER(CustomerId))) = LTRIM(RTRIM(LOWER(@customerId)))
+		   AND LTRIM(RTRIM(LOWER(MemberId))) = LTRIM(RTRIM(LOWER(@memberId)));
+
+		DELETE FROM MemberInfo 
+		 WHERE LTRIM(RTRIM(LOWER(CustomerId))) = LTRIM(RTRIM(LOWER(@customerId))) 
+		   AND LTRIM(RTRIM(LOWER(MemberId))) = LTRIM(RTRIM(LOWER(@memberId)));
+
+		EXEC GetErrorMsg 0, @errNum out, @errMsg out
+	END TRY
+	BEGIN CATCH
+		SET @errNum = ERROR_NUMBER();
+		SET @errMsg = ERROR_MESSAGE();
+	END CATCH
+END
+
+GO
+
+
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -8565,7 +9254,7 @@ DECLARE @iBranchCnt int = 0;
 		IF (dbo.IsNullOrEmpty(@customerId) = 1)
 		BEGIN
 			-- Customer Id cannot be null or empty string.
-            EXEC GetErrorMsg 1002, @errNum out, @errMsg out
+            EXEC GetErrorMsg 1001, @errNum out, @errMsg out
 			RETURN
 		END
 
@@ -8679,7 +9368,7 @@ END
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -8830,7 +9519,7 @@ END
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -8886,7 +9575,106 @@ END
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author: Chumpon Asaneerat
+-- Description:	Delete Branch
+-- [== History ==]
+-- <2019-12-16> :
+--	- Stored Procedure Created.
+--
+-- [== Example ==]
+--
+--EXEC DeleteBranch N'EDL-C2019100001', N'B0002'
+-- =============================================
+CREATE PROCEDURE [dbo].[DeleteBranch]
+(
+  @customerId nvarchar(30)
+, @branchId nvarchar(30)
+, @errNum as int = 0 out
+, @errMsg as nvarchar(MAX) = N'' out
+)
+AS
+BEGIN
+    -- Error Code:
+    --   0 : Success
+	-- 4051: Customer Id cannot be null or empty string.
+	-- 4052: Branch Id cannot be null or empty string.
+	-- 4053: Cannot be remove default branch.
+    -- OTHER : SQL Error Number & Error Message.
+	BEGIN TRY
+		IF (dbo.IsNullOrEmpty(@customerId) = 1)
+		BEGIN
+			-- Customer Id cannot be null or empty string.
+            EXEC GetErrorMsg 4051, @errNum out, @errMsg out
+			RETURN
+		END
+
+		IF (dbo.IsNullOrEmpty(@branchId) = 1)
+		BEGIN
+			-- Branch Id cannot be null or empty string.
+            EXEC GetErrorMsg 4052, @errNum out, @errMsg out
+			RETURN
+		END
+
+		IF (LTRIM(RTRIM(LOWER(@branchId))) = LOWER(N'B0001'))
+		BEGIN
+			-- Cannot be remove default branch.
+            EXEC GetErrorMsg 4053, @errNum out, @errMsg out
+			RETURN
+		END
+
+		DELETE FROM Vote 
+		 WHERE LTRIM(RTRIM(LOWER(CustomerId))) = LTRIM(RTRIM(LOWER(@customerId))) 
+		   AND LTRIM(RTRIM(LOWER(BranchId))) = LTRIM(RTRIM(LOWER(@branchId)))
+
+		DELETE FROM OrgML 
+		 WHERE LTRIM(RTRIM(LOWER(CustomerId))) = LTRIM(RTRIM(LOWER(@customerId)))
+		   AND LTRIM(RTRIM(LOWER(OrgId))) 
+		    IN (
+				 SELECT BranchId 
+				   FROM Org 
+				  WHERE LTRIM(RTRIM(LOWER(CustomerId))) = LTRIM(RTRIM(LOWER(@customerId)))
+				    AND LTRIM(RTRIM(LOWER(BranchId))) = LTRIM(RTRIM(LOWER(@branchId)))
+					AND LTRIM(RTRIM(LOWER(OrgId))) <> LTRIM(RTRIM(LOWER('O0001')))
+		       )
+
+		DELETE FROM Org 
+		 WHERE LTRIM(RTRIM(LOWER(CustomerId))) = LTRIM(RTRIM(LOWER(@customerId))) 
+		   AND LTRIM(RTRIM(LOWER(BranchId))) = LTRIM(RTRIM(LOWER(@branchId)))
+		   AND LTRIM(RTRIM(LOWER(OrgId))) <> LTRIM(RTRIM(LOWER('O0001')))
+
+		DELETE FROM BranchML 
+		 WHERE LTRIM(RTRIM(LOWER(CustomerId))) = LTRIM(RTRIM(LOWER(@customerId)))
+		   AND LTRIM(RTRIM(LOWER(BranchId))) 
+		    IN (
+				 SELECT BranchId 
+				   FROM Branch 
+				  WHERE LTRIM(RTRIM(LOWER(CustomerId))) = LTRIM(RTRIM(LOWER(@customerId)))
+				    AND LTRIM(RTRIM(LOWER(BranchId))) = LTRIM(RTRIM(LOWER(@branchId)))
+		       )
+
+		DELETE FROM Branch 
+		 WHERE LTRIM(RTRIM(LOWER(CustomerId))) = LTRIM(RTRIM(LOWER(@customerId))) 
+		   AND LTRIM(RTRIM(LOWER(BranchId))) = LTRIM(RTRIM(LOWER(@branchId)))
+
+		EXEC GetErrorMsg 0, @errNum out, @errMsg out
+	END TRY
+	BEGIN CATCH
+		SET @errNum = ERROR_NUMBER();
+		SET @errMsg = ERROR_MESSAGE();
+	END CATCH
+END
+
+GO
+
+
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -9113,7 +9901,7 @@ END
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -9276,7 +10064,7 @@ END
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -9343,7 +10131,139 @@ END
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author: Chumpon Asaneerat
+-- Description:	Delete Org
+-- [== History ==]
+-- <2019-12-16> :
+--	- Stored Procedure Created.
+--
+-- [== Example ==]
+--
+--EXEC DeleteOrg N'EDL-C2019100001', N'B0002'
+-- =============================================
+CREATE PROCEDURE [dbo].[DeleteOrg]
+(
+  @customerId nvarchar(30)
+, @orgId nvarchar(30)
+, @errNum as int = 0 out
+, @errMsg as nvarchar(MAX) = N'' out
+)
+AS
+BEGIN
+    -- Error Code:
+    --   0 : Success
+	-- 4101: Customer Id cannot be null or empty string.
+	-- 4102: Org Id cannot be null or empty string.
+	-- 4103: Cannot be remove default org.
+    -- OTHER : SQL Error Number & Error Message.
+	BEGIN TRY
+		IF (dbo.IsNullOrEmpty(@customerId) = 1)
+		BEGIN
+			-- Customer Id cannot be null or empty string.
+            EXEC GetErrorMsg 4101, @errNum out, @errMsg out
+			RETURN
+		END
+
+		IF (dbo.IsNullOrEmpty(@orgId) = 1)
+		BEGIN
+			-- Org Id cannot be null or empty string.
+            EXEC GetErrorMsg 4102, @errNum out, @errMsg out
+			RETURN
+		END
+
+		IF (LTRIM(RTRIM(LOWER(@orgId))) = LOWER(N'O0001'))
+		BEGIN
+			-- Cannot be remove default org.
+            EXEC GetErrorMsg 4103, @errNum out, @errMsg out
+			RETURN
+		END
+
+		DELETE FROM Vote 
+		 WHERE LTRIM(RTRIM(LOWER(CustomerId))) = LTRIM(RTRIM(LOWER(@customerId))) 
+		   AND LTRIM(RTRIM(LOWER(OrgId))) = LTRIM(RTRIM(LOWER(@orgId)))
+
+		DELETE FROM OrgML 
+		 WHERE LTRIM(RTRIM(LOWER(CustomerId))) = LTRIM(RTRIM(LOWER(@customerId)))
+		   AND LTRIM(RTRIM(LOWER(OrgId))) = LTRIM(RTRIM(LOWER(@orgId))) 
+
+		DELETE FROM Org 
+		 WHERE LTRIM(RTRIM(LOWER(CustomerId))) = LTRIM(RTRIM(LOWER(@customerId))) 
+		   AND LTRIM(RTRIM(LOWER(OrgId))) = LTRIM(RTRIM(LOWER(@orgId))) 
+		   AND LTRIM(RTRIM(LOWER(OrgId))) <> LTRIM(RTRIM(LOWER('O0001')))
+
+		EXEC GetErrorMsg 0, @errNum out, @errMsg out
+	END TRY
+	BEGIN CATCH
+		SET @errNum = ERROR_NUMBER();
+		SET @errMsg = ERROR_MESSAGE();
+	END CATCH
+END
+
+GO
+
+
+/*********** Script Update Date: 2019-12-16  ***********/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author: Chumpon Asaneerat
+-- Name: GetTopLevelOrgs.
+-- Description:	Get Top Level Orgs.
+-- [== History ==]
+-- <2019-12-16> :
+--	- Stored Procedure Created.
+--
+-- [== Example ==]
+--
+--exec GetTopLevelOrgs N'EN';
+--exec GetTopLevelOrgs N'EN', N'EDL-C2019100001';
+-- =============================================
+CREATE PROCEDURE [dbo].[GetTopLevelOrgs] 
+(
+  @langId nvarchar(3) = NULL
+, @customerId nvarchar(30) = NULL
+, @enabled bit = NULL
+)
+AS
+BEGIN
+	SELECT langId
+		 , customerId
+		 , orgId
+		 , parentId
+		 , branchId
+		 , OrgName
+		 , BranchName
+		 , OrgStatus
+		 , BranchStatus
+		 , SortOrder
+		 , Enabled 
+	  FROM OrgMLView
+	 WHERE [ENABLED] = COALESCE(@enabled, [ENABLED])
+	   AND UPPER(LTRIM(RTRIM(LangId))) = UPPER(LTRIM(RTRIM(COALESCE(@langId, LangId))))
+	   AND UPPER(LTRIM(RTRIM(CustomerId))) = UPPER(LTRIM(RTRIM(COALESCE(@customerId, CustomerId))))
+	   AND UPPER(LTRIM(RTRIM(ParentId))) 
+	   IN  (
+			 SELECT DISTINCT OrgId 
+			   FROM Org 
+			  WHERE ParentId IS NULL
+	       )	     
+	 ORDER BY SortOrder, LangId, CustomerId, BranchId, OrgId
+END
+
+GO
+
+
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -9490,6 +10410,28 @@ DECLARE @vEndDateStr nvarchar(40);
 				UPDATE QSet
 				   SET IsDefault = 1
 				 WHERE LOWER(CustomerId) = LOWER(RTRIM(LTRIM(@customerId)));
+			END
+
+			-- CONVERT DATE
+			SET @vBeginDateStr = (CONVERT(nvarchar(4), DatePart(yyyy, @beginDate)) + '-' +
+								  CONVERT(nvarchar(2), DatePart(mm, @beginDate)) + '-' +
+								  CONVERT(nvarchar(2), DatePart(dd, @beginDate)) + ' ' +
+								  N'00:00:00');
+			--SET @vBeginDate = CONVERT(datetime, @vBeginDateStr, 121);
+			SET @vBeginDate = CAST(@vBeginDateStr AS datetime)
+
+			SET @vEndDateStr = (CONVERT(nvarchar(4), DatePart(yyyy, @endDate)) + '-' +
+								CONVERT(nvarchar(2), DatePart(mm, @endDate)) + '-' +
+								CONVERT(nvarchar(2), DatePart(dd, @endDate)) + ' ' +
+								N'23:59:59');
+			--SET @vEndDate = CONVERT(datetime, @vEndDateStr, 121);
+			SET @vEndDate = CAST(@vEndDateStr AS datetime)
+
+			IF (@vBeginDate > @vEndDate)
+			BEGIN
+				-- Begin Date should less than End Date.
+				EXEC GetErrorMsg 1407, @errNum out, @errMsg out
+				RETURN
 			END
 		END
 		ELSE
@@ -9680,7 +10622,7 @@ END
 
 GO
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -9846,7 +10788,7 @@ END
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -9906,7 +10848,103 @@ END
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author: Chumpon Asaneerat
+-- Description:	Delete QSet
+-- [== History ==]
+-- <2019-12-16> :
+--	- Stored Procedure Created.
+--
+-- [== Example ==]
+--
+--EXEC DeleteQSet N'EDL-C2019100003', N'QS00001'
+-- =============================================
+CREATE PROCEDURE [dbo].[DeleteQSet]
+(
+  @customerId nvarchar(30)
+, @qSetId nvarchar(30)
+, @errNum as int = 0 out
+, @errMsg as nvarchar(MAX) = N'' out
+)
+AS
+BEGIN
+DECLARE @iCnt int;
+    -- Error Code:
+    --   0 : Success
+	-- 4151: Customer Id cannot be null or empty string.
+	-- 4152: Qset Id cannot be null or empty string.
+	-- 4153: Cannot be remove qslide that already in used.
+    -- OTHER : SQL Error Number & Error Message.
+	BEGIN TRY
+		IF (dbo.IsNullOrEmpty(@customerId) = 1)
+		BEGIN
+			-- Customer Id cannot be null or empty string.
+            EXEC GetErrorMsg 4151, @errNum out, @errMsg out
+			RETURN
+		END
+
+		IF (dbo.IsNullOrEmpty(@qSetId) = 1)
+		BEGIN
+			-- Qset Id cannot be null or empty string.
+            EXEC GetErrorMsg 4152, @errNum out, @errMsg out
+			RETURN
+		END
+
+		SET @iCnt = 0;
+		SELECT @iCnt = COUNT(*) 
+		  FROM Vote
+		 WHERE LTRIM(RTRIM(LOWER(CustomerId))) = LTRIM(RTRIM(LOWER(@customerId)))
+		   AND LTRIM(RTRIM(LOWER(QSetId))) = LTRIM(RTRIM(LOWER(@qSetId))) 
+
+		IF (@iCnt > 0)
+		BEGIN
+			-- Cannot be remove qset that already in used.
+			EXEC GetErrorMsg 4153, @errNum out, @errMsg out
+			RETURN
+		END
+
+		DELETE FROM QSlideItemML
+		 WHERE LTRIM(RTRIM(LOWER(CustomerId))) = LTRIM(RTRIM(LOWER(@customerId))) 
+		   AND LTRIM(RTRIM(LOWER(QSetId))) = LTRIM(RTRIM(LOWER(@qSetId))) 
+
+		DELETE FROM QSlideItem
+		 WHERE LTRIM(RTRIM(LOWER(CustomerId))) = LTRIM(RTRIM(LOWER(@customerId))) 
+		   AND LTRIM(RTRIM(LOWER(QSetId))) = LTRIM(RTRIM(LOWER(@qSetId))) 
+
+		DELETE FROM QSlideML
+		 WHERE LTRIM(RTRIM(LOWER(CustomerId))) = LTRIM(RTRIM(LOWER(@customerId))) 
+		   AND LTRIM(RTRIM(LOWER(QSetId))) = LTRIM(RTRIM(LOWER(@qSetId))) 
+
+		DELETE FROM QSlide 
+		 WHERE LTRIM(RTRIM(LOWER(CustomerId))) = LTRIM(RTRIM(LOWER(@customerId))) 
+		   AND LTRIM(RTRIM(LOWER(QSetId))) = LTRIM(RTRIM(LOWER(@qSetId))) 
+
+		DELETE FROM QSetML
+		 WHERE LTRIM(RTRIM(LOWER(CustomerId))) = LTRIM(RTRIM(LOWER(@customerId))) 
+		   AND LTRIM(RTRIM(LOWER(QSetId))) = LTRIM(RTRIM(LOWER(@qSetId))) 
+
+		DELETE FROM QSet
+		 WHERE LTRIM(RTRIM(LOWER(CustomerId))) = LTRIM(RTRIM(LOWER(@customerId))) 
+		   AND LTRIM(RTRIM(LOWER(QSetId))) = LTRIM(RTRIM(LOWER(@qSetId))) 
+
+		EXEC GetErrorMsg 0, @errNum out, @errMsg out
+	END TRY
+	BEGIN CATCH
+		SET @errNum = ERROR_NUMBER();
+		SET @errMsg = ERROR_MESSAGE();
+	END CATCH
+END
+
+GO
+
+
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -10089,7 +11127,7 @@ END
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -10285,7 +11323,7 @@ END
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -10344,7 +11382,109 @@ END
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author: Chumpon Asaneerat
+-- Description:	Delete QSlide
+-- [== History ==]
+-- <2019-12-16> :
+--	- Stored Procedure Created.
+--
+-- [== Example ==]
+--
+--EXEC DeleteQSlide N'EDL-C2019100003', N'QS00001', 2
+-- =============================================
+CREATE PROCEDURE [dbo].[DeleteQSlide]
+(
+  @customerId nvarchar(30)
+, @qSetId nvarchar(30)
+, @qSeq int
+, @errNum as int = 0 out
+, @errMsg as nvarchar(MAX) = N'' out
+)
+AS
+BEGIN
+DECLARE @iCnt int;
+    -- Error Code:
+    --   0 : Success
+	-- 4201: Customer Id cannot be null or empty string.
+	-- 4202: Qset Id cannot be null or empty string.
+	-- 4203: QSeq cannot be null.
+	-- 4204: Cannot be remove qslide that already in used.
+    -- OTHER : SQL Error Number & Error Message.
+	BEGIN TRY
+		IF (dbo.IsNullOrEmpty(@customerId) = 1)
+		BEGIN
+			-- Customer Id cannot be null or empty string.
+            EXEC GetErrorMsg 4201, @errNum out, @errMsg out
+			RETURN
+		END
+
+		IF (dbo.IsNullOrEmpty(@qSetId) = 1)
+		BEGIN
+			-- Qset Id cannot be null or empty string.
+            EXEC GetErrorMsg 4202, @errNum out, @errMsg out
+			RETURN
+		END
+		
+		IF (@qSeq IS NULL)
+		BEGIN
+			-- QSeq cannot be null.
+            EXEC GetErrorMsg 4203, @errNum out, @errMsg out
+			RETURN
+		END
+
+		SET @iCnt = 0;
+		SELECT @iCnt = COUNT(*) 
+		  FROM Vote
+		 WHERE LTRIM(RTRIM(LOWER(CustomerId))) = LTRIM(RTRIM(LOWER(@customerId)))
+		   AND LTRIM(RTRIM(LOWER(QSetId))) = LTRIM(RTRIM(LOWER(@qSetId))) 
+		   AND QSeq = @qSeq
+
+		IF (@iCnt > 0)
+		BEGIN
+			-- Cannot be remove qslideitem that already in used.
+			EXEC GetErrorMsg 4254, @errNum out, @errMsg out
+			RETURN
+		END
+
+		DELETE FROM QSlideItemML
+		 WHERE LTRIM(RTRIM(LOWER(CustomerId))) = LTRIM(RTRIM(LOWER(@customerId))) 
+		   AND LTRIM(RTRIM(LOWER(QSetId))) = LTRIM(RTRIM(LOWER(@qSetId))) 
+		   AND LTRIM(RTRIM(LOWER(QSeq))) = LTRIM(RTRIM(LOWER(@qSeq))) 
+
+		DELETE FROM QSlideItem
+		 WHERE LTRIM(RTRIM(LOWER(CustomerId))) = LTRIM(RTRIM(LOWER(@customerId))) 
+		   AND LTRIM(RTRIM(LOWER(QSetId))) = LTRIM(RTRIM(LOWER(@qSetId))) 
+		   AND LTRIM(RTRIM(LOWER(QSeq))) = LTRIM(RTRIM(LOWER(@qSeq))) 
+
+		DELETE FROM QSlideML
+		 WHERE LTRIM(RTRIM(LOWER(CustomerId))) = LTRIM(RTRIM(LOWER(@customerId))) 
+		   AND LTRIM(RTRIM(LOWER(QSetId))) = LTRIM(RTRIM(LOWER(@qSetId))) 
+		   AND LTRIM(RTRIM(LOWER(QSeq))) = LTRIM(RTRIM(LOWER(@qSeq))) 
+
+		DELETE FROM QSlide 
+		 WHERE LTRIM(RTRIM(LOWER(CustomerId))) = LTRIM(RTRIM(LOWER(@customerId))) 
+		   AND LTRIM(RTRIM(LOWER(QSetId))) = LTRIM(RTRIM(LOWER(@qSetId))) 
+		   AND LTRIM(RTRIM(LOWER(QSeq))) = LTRIM(RTRIM(LOWER(@qSeq))) 
+
+		EXEC GetErrorMsg 0, @errNum out, @errMsg out
+	END TRY
+	BEGIN CATCH
+		SET @errNum = ERROR_NUMBER();
+		SET @errMsg = ERROR_MESSAGE();
+	END CATCH
+END
+
+GO
+
+
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -10605,7 +11745,7 @@ END
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -10855,7 +11995,7 @@ END
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -10917,7 +12057,111 @@ END
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author: Chumpon Asaneerat
+-- Description:	Delete QSlide Item
+-- [== History ==]
+-- <2019-12-16> :
+--	- Stored Procedure Created.
+--
+-- [== Example ==]
+--
+--EXEC DeleteQSlideItem N'EDL-C2019100003', N'QS00001', 2, 1
+-- =============================================
+CREATE PROCEDURE [dbo].[DeleteQSlideItem]
+(
+  @customerId nvarchar(30)
+, @qSetId nvarchar(30)
+, @qSeq int
+, @qSSeq int
+, @errNum as int = 0 out
+, @errMsg as nvarchar(MAX) = N'' out
+)
+AS
+BEGIN
+DECLARE @iCnt int;
+    -- Error Code:
+    --   0 : Success
+	-- 4251: Customer Id cannot be null or empty string.
+	-- 4252: Qset Id cannot be null or empty string.
+	-- 4253: QSeq cannot be null.
+	-- 4254: QSSeq cannot be null.
+	-- 4255: Cannot be remove qslideitem that already in used.
+    -- OTHER : SQL Error Number & Error Message.
+	BEGIN TRY
+		IF (dbo.IsNullOrEmpty(@customerId) = 1)
+		BEGIN
+			-- Customer Id cannot be null or empty string.
+            EXEC GetErrorMsg 4251, @errNum out, @errMsg out
+			RETURN
+		END
+
+		IF (dbo.IsNullOrEmpty(@qSetId) = 1)
+		BEGIN
+			-- Qset Id cannot be null or empty string.
+            EXEC GetErrorMsg 4252, @errNum out, @errMsg out
+			RETURN
+		END
+		
+		IF (@qSeq IS NULL)
+		BEGIN
+			-- QSeq cannot be null.
+            EXEC GetErrorMsg 4253, @errNum out, @errMsg out
+			RETURN
+		END
+		
+		IF (@qSSeq IS NULL)
+		BEGIN
+			-- QSSeq cannot be null.
+            EXEC GetErrorMsg 4254, @errNum out, @errMsg out
+			RETURN
+		END
+
+		SET @iCnt = 0;
+		SELECT @iCnt = COUNT(*) 
+		  FROM Vote
+		 WHERE LTRIM(RTRIM(LOWER(CustomerId))) = LTRIM(RTRIM(LOWER(@customerId)))
+		   AND LTRIM(RTRIM(LOWER(QSetId))) = LTRIM(RTRIM(LOWER(@qSetId))) 
+		   AND QSeq = @qSeq
+		   AND VoteValue = @qSSeq
+
+		IF (@iCnt > 0)
+		BEGIN
+			-- Cannot be remove qslideitem that already in used.
+			EXEC GetErrorMsg 4255, @errNum out, @errMsg out
+			RETURN
+		END
+
+		DELETE FROM QSlideItemML
+		 WHERE LTRIM(RTRIM(LOWER(CustomerId))) = LTRIM(RTRIM(LOWER(@customerId))) 
+		   AND LTRIM(RTRIM(LOWER(QSetId))) = LTRIM(RTRIM(LOWER(@qSetId))) 
+		   AND LTRIM(RTRIM(LOWER(QSeq))) = LTRIM(RTRIM(LOWER(@qSeq))) 
+		   AND LTRIM(RTRIM(LOWER(QSSeq))) = LTRIM(RTRIM(LOWER(@qSSeq))) 
+
+		DELETE FROM QSlideItem 
+		 WHERE LTRIM(RTRIM(LOWER(CustomerId))) = LTRIM(RTRIM(LOWER(@customerId))) 
+		   AND LTRIM(RTRIM(LOWER(QSetId))) = LTRIM(RTRIM(LOWER(@qSetId))) 
+		   AND LTRIM(RTRIM(LOWER(QSeq))) = LTRIM(RTRIM(LOWER(@qSeq))) 
+		   AND LTRIM(RTRIM(LOWER(QSSeq))) = LTRIM(RTRIM(LOWER(@qSSeq))) 
+
+		EXEC GetErrorMsg 0, @errNum out, @errMsg out
+	END TRY
+	BEGIN CATCH
+		SET @errNum = ERROR_NUMBER();
+		SET @errMsg = ERROR_MESSAGE();
+	END CATCH
+END
+
+GO
+
+
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -11096,7 +12340,7 @@ END
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -11245,7 +12489,7 @@ END
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -11287,25 +12531,104 @@ BEGIN
 		 , DMLV.SortOrder
 		 , DMLV.Enabled 
 	  FROM DeviceMLView DMLV
-	     , DeviceTypeMLV DTMV
-		 , OrgMLView OMLV
-		 , MemberInfoMLView MIMLV
+	     , DeviceTypeMLView DTMV
+		 --, OrgMLView OMLV
+		 --, MemberInfoMLView MIMLV
 	 WHERE DMLV.[ENABLED] = COALESCE(@enabled, DMLV.[ENABLED])
 	   AND UPPER(LTRIM(RTRIM(DMLV.LangId))) = UPPER(LTRIM(RTRIM(COALESCE(@langId, DMLV.LangId))))
+       AND UPPER(LTRIM(RTRIM(DTMV.LangId))) = UPPER(LTRIM(RTRIM(DMLV.LangId)))
 	   AND UPPER(LTRIM(RTRIM(DMLV.CustomerId))) = UPPER(LTRIM(RTRIM(COALESCE(@customerId, DMLV.CustomerId))))
 	   AND UPPER(LTRIM(RTRIM(DMLV.DeviceId))) = UPPER(LTRIM(RTRIM(COALESCE(@deviceId, DMLV.DeviceId))))
 	   AND DMLV.DeviceTypeId = DTMV.DeviceTypeId
-	   AND OMLV.CustomerId = DMLV.CustomerId
-	   AND OMLV.OrgID = DMLV.OrgId
-	   AND MIMLV.CustomerId = DMLV.CustomerId
-	   AND MIMLV.MemberID = DMLV.MemberID
+	   --AND OMLV.CustomerId = DMLV.CustomerId
+	   --AND OMLV.OrgID = DMLV.OrgId
+	   --AND MIMLV.CustomerId = DMLV.CustomerId
+	   --AND MIMLV.MemberID = DMLV.MemberID
 	 ORDER BY DMLV.SortOrder, DMLV.LangId, DMLV.CustomerId, DMLV.DeviceId;
 END
 
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author: Chumpon Asaneerat
+-- Description:	Delete Device
+-- [== History ==]
+-- <2019-12-16> :
+--	- Stored Procedure Created.
+--
+-- [== Example ==]
+--
+--EXEC DeleteDevice N'EDL-C2019100003', N'D0002'
+-- =============================================
+CREATE PROCEDURE [dbo].[DeleteDevice]
+(
+  @customerId nvarchar(30)
+, @deviceId nvarchar(30)
+, @errNum as int = 0 out
+, @errMsg as nvarchar(MAX) = N'' out
+)
+AS
+BEGIN
+    -- Error Code:
+    --   0 : Success
+	-- 4301: Customer Id cannot be null or empty string.
+	-- 4302: Device Id cannot be null or empty string.
+	-- 4303: Cannot be remove default device.
+    -- OTHER : SQL Error Number & Error Message.
+	BEGIN TRY
+		IF (dbo.IsNullOrEmpty(@customerId) = 1)
+		BEGIN
+			-- Customer Id cannot be null or empty string.
+            EXEC GetErrorMsg 4301, @errNum out, @errMsg out
+			RETURN
+		END
+
+		IF (dbo.IsNullOrEmpty(@deviceId) = 1)
+		BEGIN
+			-- Device Id cannot be null or empty string.
+            EXEC GetErrorMsg 4302, @errNum out, @errMsg out
+			RETURN
+		END
+		/*
+		IF (LTRIM(RTRIM(LOWER(@orgId))) = LOWER(N'D0001'))
+		BEGIN
+			-- Cannot be remove default device.
+            EXEC GetErrorMsg 4303, @errNum out, @errMsg out
+			RETURN
+		END
+		*/
+
+		DELETE FROM Vote 
+		 WHERE LTRIM(RTRIM(LOWER(CustomerId))) = LTRIM(RTRIM(LOWER(@customerId))) 
+		   AND LTRIM(RTRIM(LOWER(DeviceId))) = LTRIM(RTRIM(LOWER(@deviceId)))
+
+		DELETE FROM DeviceML 
+		 WHERE LTRIM(RTRIM(LOWER(CustomerId))) = LTRIM(RTRIM(LOWER(@customerId)))
+		   AND LTRIM(RTRIM(LOWER(DeviceId))) = LTRIM(RTRIM(LOWER(@deviceId))) 
+
+		DELETE FROM Device 
+		 WHERE LTRIM(RTRIM(LOWER(CustomerId))) = LTRIM(RTRIM(LOWER(@customerId))) 
+		   AND LTRIM(RTRIM(LOWER(DeviceId))) = LTRIM(RTRIM(LOWER(@deviceId))) 
+
+		EXEC GetErrorMsg 0, @errNum out, @errMsg out
+	END TRY
+	BEGIN CATCH
+		SET @errNum = ERROR_NUMBER();
+		SET @errMsg = ERROR_MESSAGE();
+	END CATCH
+END
+
+GO
+
+
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -11347,7 +12670,7 @@ END
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -11598,7 +12921,108 @@ END
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author: Chumpon Asaneerat
+-- Description:	Delete Vote
+-- [== History ==]
+-- <2019-12-16> :
+--	- Stored Procedure Created.
+--
+-- [== Example ==]
+--
+--EXEC DeleteVote N'EDL-C2019100003', N'O0008', N'QS00001', 2, 1, N'2019-10-10 16:58:13.650'
+-- =============================================
+CREATE PROCEDURE [dbo].[DeleteVote]
+(
+  @customerId nvarchar(30)
+, @orgId nvarchar(30)
+, @qSetId nvarchar(30)
+, @qSeq int
+, @voteSeq int
+, @voteDate datetime
+, @errNum as int = 0 out
+, @errMsg as nvarchar(MAX) = N'' out
+)
+AS
+BEGIN
+    -- Error Code:
+    --   0 : Success
+	-- 4351: Customer Id cannot be null or empty string.
+	-- 4352: Org Id cannot be null or empty string.
+	-- 4353: QSet Id cannot be null or empty string.
+	-- 4354: QSeq cannot be null.
+	-- 4355: VoteSeq cannot be null.
+	-- 4356: Vote Date cannot be null.
+    -- OTHER : SQL Error Number & Error Message.
+	BEGIN TRY
+		IF (dbo.IsNullOrEmpty(@customerId) = 1)
+		BEGIN
+			-- Customer Id cannot be null or empty string.
+            EXEC GetErrorMsg 4351, @errNum out, @errMsg out
+			RETURN
+		END
+
+		IF (dbo.IsNullOrEmpty(@orgId) = 1)
+		BEGIN
+			-- Org Id cannot be null or empty string.
+            EXEC GetErrorMsg 4352, @errNum out, @errMsg out
+			RETURN
+		END
+
+		IF (dbo.IsNullOrEmpty(@qSetId) = 1)
+		BEGIN
+			-- QSet Id cannot be null or empty string.
+            EXEC GetErrorMsg 4353, @errNum out, @errMsg out
+			RETURN
+		END
+
+		IF (@qSeq IS NULL)
+		BEGIN
+			-- QSeq cannot be null.
+            EXEC GetErrorMsg 4354, @errNum out, @errMsg out
+			RETURN
+		END
+
+		IF (@voteSeq IS NULL)
+		BEGIN
+			-- Vote Seq cannot be null.
+            EXEC GetErrorMsg 4355, @errNum out, @errMsg out
+			RETURN
+		END
+
+		IF (@voteDate IS NULL)
+		BEGIN
+			-- Vote Date cannot be null.
+            EXEC GetErrorMsg 4356, @errNum out, @errMsg out
+			RETURN
+		END
+
+		DELETE FROM Vote 
+		 WHERE LTRIM(RTRIM(LOWER(CustomerId))) = LTRIM(RTRIM(LOWER(@customerId))) 
+		 AND LTRIM(RTRIM(LOWER(OrgId))) = LTRIM(RTRIM(LOWER(@orgId)))
+		   AND LTRIM(RTRIM(LOWER(QSetId))) = LTRIM(RTRIM(LOWER(@qSetId)))
+		   AND QSeq = @qSeq
+		   AND VoteSeq = @voteSeq
+		   AND VoteDate = @voteDate
+
+		EXEC GetErrorMsg 0, @errNum out, @errMsg out
+	END TRY
+	BEGIN CATCH
+		SET @errNum = ERROR_NUMBER();
+		SET @errMsg = ERROR_MESSAGE();
+	END CATCH
+END
+
+GO
+
+
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -11690,7 +13114,7 @@ GO
 
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -11747,7 +13171,7 @@ END
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -11844,7 +13268,7 @@ END
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -11946,7 +13370,7 @@ DECLARE @branchId nvarchar(30);
 				 , @branchId = BranchId
 			  FROM Org
 			 WHERE LOWER(LTRIM(RTRIM(CustomerId))) = LOWER(LTRIM(RTRIM(@customerId)))
-			   AND ParentId IS NULL
+			   AND (ParentId IS NULL OR LOWER(RTRIM(LTRIM(ParentId))) = N'');
 		END
 		ELSE
 		BEGIN
@@ -11988,14 +13412,14 @@ DECLARE @branchId nvarchar(30);
 		DECLARE @totalCount int;
 		DECLARE @totalXCount int;
 
-		--SELECT @maxChoice = COUNT(*)
-		--  FROM QSlideItem
-		-- WHERE QSetId = @qSetId
-		--   AND QSeq = @qSeq
-		--   AND CustomerId = @customerId
-		--   AND ObjectStatus = 1
+		SELECT @maxChoice = COUNT(*)
+		  FROM QSlideItem
+		 WHERE QSetId = @qSetId
+		   AND QSeq = @qSeq
+		   AND CustomerId = @customerId
+		   AND ObjectStatus = 1
 		
-		SET @maxChoice = 4; -- Fake max choice.
+		--SET @maxChoice = 4; -- Fake max choice.
 
 		SET @iChoice = 1;
 		WHILE (@iChoice <= @maxChoice)
@@ -12016,7 +13440,6 @@ DECLARE @branchId nvarchar(30);
 			END
 			SET @iChoice = @iChoice + 1; -- increase.
 		END
-
 
 		SELECT @totalCount = SUM(TotalVote)
 		     , @totalXCount = SUM(TotalXCount)
@@ -12063,12 +13486,24 @@ DECLARE @branchId nvarchar(30);
 			SELECT t1.Choice
 			     , t2.Pct
 				 , t2.AvgTot
-				 , ROUND((100 / Convert(decimal(18,2), MaxChoice)) * t2.AvgTot, @decimalPlaces) AS AvgPct
+				 , CASE WHEN MaxChoice = 0 THEN
+					ROUND(0, @decimalPlaces)
+				   ELSE
+					ROUND((100 / Convert(decimal(18,2), MaxChoice)) * t2.AvgTot, @decimalPlaces)
+				   END AS AvgPct
 				FROM #VOTESUM t1 INNER JOIN 
 				(
-					SELECT Choice
-						 , ROUND(Convert(decimal(18,2), (Cnt * 100)) / Convert(decimal(18,2), TotCnt), @decimalPlaces) AS Pct
-						 , ROUND(Convert(decimal(18,2), TotCntXChoice) / Convert(decimal(18,2), TotCnt), @decimalPlaces) AS AvgTot
+					SELECT Choice,
+						   CASE WHEN TotCnt = 0 THEN
+							 ROUND(0, @decimalPlaces)
+						   ELSE
+							 ROUND(Convert(decimal(18,2), (Cnt * 100)) / Convert(decimal(18,2), TotCnt), @decimalPlaces)
+						   END AS Pct,
+						   CASE WHEN TotCnt = 0 THEN
+							 ROUND(0, @decimalPlaces)
+						   ELSE
+							 ROUND(Convert(decimal(18,2), TotCntXChoice) / Convert(decimal(18,2), TotCnt), @decimalPlaces)
+						   END AS AvgTot
 					  FROM #VOTESUM
 				) AS t2 ON t2.Choice = t1.Choice
 		  ) AS vd
@@ -12170,7 +13605,7 @@ END
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -12186,12 +13621,16 @@ GO
 --	- Add supports pagination.
 -- <2018-05-14> :
 --	- Add lang Id.
+-- <2019-11-07> :
+--	- Add Org Id and Member Id.
 --
 -- [== Example ==]
 --
 --EXEC GetRawVotes N'TH'
 --				 , N'EDL-C2018040002'
 --				 , N'QS2018040001', 1
+--				 , NULL -- OrgId
+--				 , NULL -- UserId (MemberId)
 --				 , N'2018-05-09 00:00:00', N'2018-05-11 23:59:59';
 -- =============================================
 CREATE PROCEDURE [dbo].[GetRawVotes] 
@@ -12202,6 +13641,8 @@ CREATE PROCEDURE [dbo].[GetRawVotes]
 , @qseq as int
 , @beginDate As DateTime = null
 , @endDate As DateTime = null
+, @orgId as nvarchar(30) = null
+, @memberId as nvarchar(30) = null
 , @pageNum as int = 1 out
 , @rowsPerPage as int = 10 out
 , @totalRecords as int = 0 out
@@ -12212,7 +13653,7 @@ CREATE PROCEDURE [dbo].[GetRawVotes]
 AS
 BEGIN
 	-- Error Code:
-	--   0 : Success
+	--    0 : Success
 	-- 2101 : CustomerId cannot be null or empty string.
 	-- 2102 : QSetId cannot be null or empty string.
 	-- 2103 : QSeq cannot be null or less than 1.
@@ -12271,6 +13712,8 @@ BEGIN
 		   AND QSeq = @qseq
 		   AND VoteDate >= @beginDate
 		   AND VoteDate <= @endDate
+		   AND UPPER(LTRIM(RTRIM(OrgId))) = UPPER(LTRIM(RTRIM(COALESCE(@orgId, OrgId))))
+		   AND UPPER(LTRIM(RTRIM(UserId))) = UPPER(LTRIM(RTRIM(COALESCE(@memberId, UserId))))
 		   AND ObjectStatus = 1;
 
 		SELECT @maxPage = 
@@ -12329,6 +13772,8 @@ BEGIN
 				AND A.ObjectStatus = 1
 				AND A.VoteDate >= @beginDate
 				AND A.VoteDate <= @endDate
+			    AND UPPER(LTRIM(RTRIM(A.OrgId))) = UPPER(LTRIM(RTRIM(COALESCE(@orgId, A.OrgId))))
+			    AND UPPER(LTRIM(RTRIM(A.UserId))) = UPPER(LTRIM(RTRIM(COALESCE(@memberId, A.UserId))))
 			ORDER BY A.VoteDate, A.VoteSeq
 		)
 		SELECT * FROM SQLPaging WITH (NOLOCK) 
@@ -12346,7 +13791,160 @@ END
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author: Chumpon Asaneerat
+-- Name: FilterOrgs.
+-- Description:	Filter Orgs from vote table that match date range.
+-- [== History ==]
+-- <2011-11-07> :
+--	- Stored Procedure Created.
+--
+-- [== Example ==]
+--
+--exec FilterOrgs N'TH', N'EDL-C2019100003', N'QS00001', 1, N'2019-10-01', N'2019-11-01'
+--exec FilterOrgs N'EN', N'EDL-C2019100003', N'QS00001', 1, N'2019-10-01', N'2019-11-01'
+-- =============================================
+CREATE PROCEDURE [dbo].[FilterOrgs] 
+(
+  @langId as nvarchar(3)
+, @customerId as nvarchar(30)
+, @qsetId as nvarchar(30)
+, @qseq as int
+, @beginDate As DateTime = null
+, @endDate As DateTime = null
+, @errNum as int = 0 out
+, @errMsg as nvarchar(100) = N'' out
+)
+AS
+BEGIN
+	BEGIN TRY
+		SELECT DISTINCT L.LangId
+		              , A.customerId
+					  , A.orgId
+					  , O.OrgName
+					  , A.BranchId
+					  , B.BranchName
+		  FROM VOTE A
+			   INNER JOIN LanguageView L ON (
+						  L.LangId = @langId
+			   )
+			   INNER JOIN OrgMLView O ON (
+						  O.OrgId = A.OrgId 
+					  AND O.CustomerId = A.CustomerId
+					  AND O.LangId = L.LangId
+			   )
+			   INNER JOIN BranchMLView B ON (
+						  B.BranchId = A.BranchId 
+				      AND B.CustomerId = A.CustomerId
+					  AND B.LangId = L.LangId
+			   )
+		 WHERE A.ObjectStatus = 1
+		   AND LOWER(A.CustomerId) = LOWER(RTRIM(LTRIM(@customerId)))
+		   AND LOWER(A.QSetId) = LOWER(RTRIM(LTRIM(@qsetId)))
+		   AND A.QSeq = @qseq
+		   AND A.VoteDate >= @beginDate
+		   AND A.VoteDate <= @endDate
+
+		-- success
+		EXEC GetErrorMsg 0, @errNum out, @errMsg out
+	END TRY
+	BEGIN CATCH
+		SET @errNum = ERROR_NUMBER();
+		SET @errMsg = ERROR_MESSAGE();
+	END CATCH
+END
+
+GO
+
+
+/*********** Script Update Date: 2019-12-16  ***********/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author: Chumpon Asaneerat
+-- Name: FilterMembers.
+-- Description:	Filter Members from vote table that match date range.
+-- [== History ==]
+-- <2011-11-07> :
+--	- Stored Procedure Created.
+--
+-- [== Example ==]
+--
+--exec FilterMembers N'TH', N'EDL-C2019100003', N'QS00001', 1, N'2019-10-01', N'2019-11-01'
+--exec FilterMembers N'TH', N'EDL-C2019100003', N'QS00001', 1, N'2019-10-01', N'2019-11-01', N'O0001'
+-- =============================================
+CREATE PROCEDURE [dbo].[FilterMembers] 
+(
+  @langId as nvarchar(3)
+, @customerId as nvarchar(30)
+, @qsetId as nvarchar(30)
+, @qseq as int
+, @beginDate As DateTime = null
+, @endDate As DateTime = null
+, @orgId as nvarchar(30) = null
+, @errNum as int = 0 out
+, @errMsg as nvarchar(100) = N'' out
+)
+AS
+BEGIN
+	BEGIN TRY
+		SELECT DISTINCT L.LangId
+		              , A.customerId
+					  , A.orgId
+					  , O.OrgName
+					  , A.BranchId
+					  , B.BranchName
+					  , A.UserId
+					  , M.FullName
+		  FROM VOTE A
+			   INNER JOIN LanguageView L ON (
+						  L.LangId = @langId
+			   )
+			   INNER JOIN OrgMLView O ON (
+						  O.OrgId = A.OrgId 
+					  AND O.CustomerId = A.CustomerId
+					  AND O.LangId = L.LangId
+			   )
+			   INNER JOIN BranchMLView B ON (
+						  B.BranchId = A.BranchId 
+				      AND B.CustomerId = A.CustomerId
+					  AND B.LangId = L.LangId
+			   )
+			   LEFT OUTER JOIN MemberInfoMLView M ON (
+						  M.MemberId = A.UserId 
+					  AND M.CustomerId = A.CustomerId
+					  AND M.LangId = L.LangId
+			   )
+		 WHERE A.ObjectStatus = 1
+		   AND LOWER(A.CustomerId) = LOWER(RTRIM(LTRIM(@customerId)))
+		   AND LOWER(A.QSetId) = LOWER(RTRIM(LTRIM(@qsetId)))
+		   AND A.QSeq = @qseq
+		   AND UPPER(LTRIM(RTRIM(A.OrgId))) = UPPER(LTRIM(RTRIM(COALESCE(@orgId, A.OrgId))))
+		   AND A.VoteDate >= @beginDate
+		   AND A.VoteDate <= @endDate
+
+		-- success
+		EXEC GetErrorMsg 0, @errNum out, @errMsg out
+	END TRY
+	BEGIN CATCH
+		SET @errNum = ERROR_NUMBER();
+		SET @errMsg = ERROR_MESSAGE();
+	END CATCH
+END
+
+GO
+
+
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -12359,15 +13957,18 @@ GO
 -- [== History ==]
 -- <2016-11-02> :
 --	- Stored Procedure Created.
+-- <2019-10-01> :
+--	- auto add license history.
 --
 -- [== Example ==]
 --
---exec Register N'Softbase Co., Ltd.', N'admin@softbase.co.th', N'1234'
+--EXEC Register N'Softbase Co., Ltd.', N'admin@softbase.co.th', N'1234', 0
 -- =============================================
 CREATE PROCEDURE [dbo].[Register] (
   @customerName as nvarchar(50)
 , @userName as nvarchar(50)
 , @passWord as nvarchar(20)
+, @licenseTypeId int = null
 , @customerId as nvarchar(30) = null out
 , @memberId as nvarchar(30) = null out
 , @branchId as nvarchar(30) = null out
@@ -12376,6 +13977,7 @@ CREATE PROCEDURE [dbo].[Register] (
 , @errMsg as nvarchar(100) = N'' out)
 AS
 BEGIN
+DECLARE @iCnt int = 0;
 DECLARE @iAdminCnt int = 0;
 DECLARE @iBranchCnt int = 0;
 DECLARE @iOrgCnt int = 0;
@@ -12383,6 +13985,9 @@ DECLARE @iOrgCnt int = 0;
 	--    0 : Success
 	-- 1801 : CustomerName cannot be null or empty string.
 	-- 1802 : UserName and Password cannot be null or empty string.
+	-- 1803 : LicenseTypeId cannot be null.
+	-- 1804 : LicenseTypeId not exits.
+	-- 1805 : 
 	-- OTHER : SQL Error Number & Error Message.
 	BEGIN TRY
 		IF (dbo.IsNullOrEmpty(@customerName) = 1)
@@ -12394,6 +13999,21 @@ DECLARE @iOrgCnt int = 0;
 		IF (dbo.IsNullOrEmpty(@customerName) = 1)
 		BEGIN
 			EXEC GetErrorMsg 1802, @errNum out, @errMsg out
+			RETURN
+		END
+
+		IF (dbo.IsNullOrEmpty(@licenseTypeId) = 1)
+		BEGIN
+			EXEC GetErrorMsg 1803, @errNum out, @errMsg out
+			RETURN
+		END
+		SELECT @iCnt = COUNT(LicenseTypeId) 
+		  FROM LicenseType 
+		 WHERE LicenseTypeId = @licenseTypeId
+		IF (@iCnt = 0)
+		BEGIN
+            -- Cannot found License Type Id.
+            EXEC GetErrorMsg 1804, @errNum out, @errMsg out
 			RETURN
 		END
 
@@ -12417,6 +14037,9 @@ DECLARE @iOrgCnt int = 0;
 		BEGIN
 			RETURN;
 		END
+
+		-- Auto add license history.
+		EXEC SaveLicenseHistory @customerId, @licenseTypeId;
 
 		/* MEMBER INFO */
 		SELECT @iAdminCnt = COUNT(*)
@@ -12471,7 +14094,7 @@ DECLARE @iOrgCnt int = 0;
 		SELECT @iOrgCnt = COUNT(*)
 		  FROM Org
   		 WHERE LOWER(CustomerID) = LOWER(RTRIM(LTRIM(@customerId)))
-		   AND ParentId IS NULL;
+		   AND (ParentId IS NULL OR LOWER(RTRIM(LTRIM(ParentId))) = N'');
 
 		IF @iOrgCnt = 0
 		BEGIN
@@ -12501,7 +14124,7 @@ END
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -12588,7 +14211,7 @@ END
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -12723,7 +14346,7 @@ END
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -12816,7 +14439,7 @@ END
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -12946,7 +14569,7 @@ END
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -13012,7 +14635,231 @@ END
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author: Chumpon Asaneerat
+-- Name: SetDeviceOrg.
+-- Description:	Set Device Org.
+-- [== History ==]
+-- <2019-11-05> :
+--	- Stored Procedure Created.
+--
+-- [== Example ==]
+--
+--EXEC SetDeviceOrg N'EDL-C2019100003', N'D0001', N'O0003'
+-- =============================================
+CREATE PROCEDURE [dbo].[SetDeviceOrg] (
+  @customerId as nvarchar(30)
+, @deviceId as nvarchar(30)
+, @orgId as nvarchar(30)
+, @errNum as int = 0 out
+, @errMsg as nvarchar(MAX) = N'' out)
+AS
+BEGIN
+DECLARE @iCustCnt int = 0;
+DECLARE @iDevCnt int = 0;
+DECLARE @iOrgCnt int = 0;
+	-- Error Code:
+	--    0 : Success
+	-- 2901 : Customer Id cannot be null or empty string.
+	-- 2902 : Device Id cannot be null or empty string.
+	-- 2903 : Customer Id is not found.
+	-- 2904 : Device Id Not Found.
+	-- 2905 : Org Id is not found.
+	-- OTHER : SQL Error Number & Error Message.
+	BEGIN TRY
+		IF (dbo.IsNullOrEmpty(@customerId) = 1)
+		BEGIN
+			-- Customer Id cannot be null or empty string.
+            EXEC GetErrorMsg 2901, @errNum out, @errMsg out
+			RETURN
+		END
+
+		IF (dbo.IsNullOrEmpty(@deviceId) = 1)
+		BEGIN
+			-- Device Id cannot be null or empty string.
+            EXEC GetErrorMsg 2902, @errNum out, @errMsg out
+			RETURN
+		END
+
+		SELECT @iCustCnt = COUNT(*)
+		  FROM Customer
+		 WHERE RTRIM(LTRIM(CustomerId)) = RTRIM(LTRIM(@customerId));
+		IF (@iCustCnt = 0)
+		BEGIN
+			-- Customer Id is not found.
+            EXEC GetErrorMsg 2903, @errNum out, @errMsg out
+			RETURN
+		END
+
+		SELECT @iDevCnt = COUNT(*)
+		  FROM Device
+		 WHERE LOWER(CustomerId) = LOWER(RTRIM(LTRIM(@customerId)))
+		   AND LOWER(DeviceId) <> LOWER(RTRIM(LTRIM(@deviceId)));
+
+		IF @iDevCnt = 0
+		BEGIN
+			-- Device Id Not Found
+            EXEC GetErrorMsg 2904, @errNum out, @errMsg out
+			RETURN;
+		END
+
+		IF (@orgId IS NULL OR RTRIM(LTRIM(@orgId)) = '')
+		BEGIN
+			UPDATE Device
+				SET OrgId = NULL
+			  WHERE LOWER(CustomerId) = LOWER(RTRIM(LTRIM(@customerId)))
+				AND LOWER(DeviceId) = LOWER(RTRIM(LTRIM(@deviceId)))
+		END
+		ELSE
+		BEGIN
+			SELECT @iOrgCnt = COUNT(*)
+			  FROM Org
+			 WHERE LOWER(CustomerId) = LOWER(RTRIM(LTRIM(@customerId)))
+			   AND LOWER(OrgId) <> LOWER(RTRIM(LTRIM(@orgId)));
+
+			IF (@iOrgCnt = 0)
+			BEGIN
+				-- Org Id Not Found
+				EXEC GetErrorMsg 2905, @errNum out, @errMsg out
+				RETURN;
+			END
+
+			UPDATE Device
+				SET OrgId = UPPER(RTRIM(LTRIM(@orgId)))
+			  WHERE LOWER(CustomerId) = LOWER(RTRIM(LTRIM(@customerId)))
+				AND LOWER(DeviceId) = LOWER(RTRIM(LTRIM(@deviceId)))
+		END
+		
+        EXEC GetErrorMsg 0, @errNum out, @errMsg out
+	END TRY
+	BEGIN CATCH
+		SET @errNum = ERROR_NUMBER();
+		SET @errMsg = ERROR_MESSAGE();
+	END CATCH
+END
+
+GO
+
+
+/*********** Script Update Date: 2019-12-16  ***********/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author: Chumpon Asaneerat
+-- Name: SetDeviceUser.
+-- Description:	Set Device User.
+-- [== History ==]
+-- <2019-11-05> :
+--	- Stored Procedure Created.
+--
+-- [== Example ==]
+--
+--EXEC SetDeviceUser N'EDL-C2019100003', N'D0001', N'M00003'
+-- =============================================
+CREATE PROCEDURE [dbo].[SetDeviceUser] (
+  @customerId as nvarchar(30)
+, @deviceId as nvarchar(30)
+, @memberId as nvarchar(30)
+, @errNum as int = 0 out
+, @errMsg as nvarchar(MAX) = N'' out)
+AS
+BEGIN
+DECLARE @iCustCnt int = 0;
+DECLARE @iDevCnt int = 0;
+DECLARE @iMemCnt int = 0;
+	-- Error Code:
+	--    0 : Success
+	-- 3001 : Customer Id cannot be null or empty string.
+	-- 3002 : Device Id cannot be null or empty string.
+	-- 3003 : Customer Id is not found.
+	-- 3004 : Device Id Not Found.
+	-- 3005 : Member Id is not found.
+	-- OTHER : SQL Error Number & Error Message.
+	BEGIN TRY
+		IF (dbo.IsNullOrEmpty(@customerId) = 1)
+		BEGIN
+			-- Customer Id cannot be null or empty string.
+            EXEC GetErrorMsg 3001, @errNum out, @errMsg out
+			RETURN
+		END
+
+		IF (dbo.IsNullOrEmpty(@deviceId) = 1)
+		BEGIN
+			-- Device Id cannot be null or empty string.
+            EXEC GetErrorMsg 3002, @errNum out, @errMsg out
+			RETURN
+		END
+
+		SELECT @iCustCnt = COUNT(*)
+		  FROM Customer
+		 WHERE RTRIM(LTRIM(CustomerId)) = RTRIM(LTRIM(@customerId));
+		IF (@iCustCnt = 0)
+		BEGIN
+			-- Customer Id is not found.
+            EXEC GetErrorMsg 3003, @errNum out, @errMsg out
+			RETURN
+		END
+
+		SELECT @iDevCnt = COUNT(*)
+		  FROM Device
+		 WHERE LOWER(CustomerId) = LOWER(RTRIM(LTRIM(@customerId)))
+		   AND LOWER(DeviceId) <> LOWER(RTRIM(LTRIM(@deviceId)));
+
+		IF @iDevCnt = 0
+		BEGIN
+			-- Device Id Not Found
+            EXEC GetErrorMsg 3004, @errNum out, @errMsg out
+			RETURN;
+		END
+
+		IF (@memberId IS NULL OR RTRIM(LTRIM(@memberId)) = '')
+		BEGIN
+			UPDATE Device
+				SET MemberId = NULL
+			  WHERE LOWER(CustomerId) = LOWER(RTRIM(LTRIM(@customerId)))
+				AND LOWER(DeviceId) = LOWER(RTRIM(LTRIM(@deviceId)))
+		END
+		ELSE
+		BEGIN
+			SELECT @iMemCnt = COUNT(*)
+			  FROM MemberInfo
+			 WHERE LOWER(CustomerId) = LOWER(RTRIM(LTRIM(@customerId)))
+			   AND LOWER(MemberId) <> LOWER(RTRIM(LTRIM(@memberId)));
+
+			IF (@iMemCnt = 0)
+			BEGIN
+				-- Member Id Not Found
+				EXEC GetErrorMsg 3005, @errNum out, @errMsg out
+				RETURN;
+			END
+
+			UPDATE Device
+				SET MemberId = UPPER(RTRIM(LTRIM(@memberId)))
+			  WHERE LOWER(CustomerId) = LOWER(RTRIM(LTRIM(@customerId)))
+				AND LOWER(DeviceId) = LOWER(RTRIM(LTRIM(@deviceId)))
+		END
+		
+        EXEC GetErrorMsg 0, @errNum out, @errMsg out
+	END TRY
+	BEGIN CATCH
+		SET @errNum = ERROR_NUMBER();
+		SET @errMsg = ERROR_MESSAGE();
+	END CATCH
+END
+
+GO
+
+
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -13054,7 +14901,7 @@ EXEC InitLanguages;
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -13159,7 +15006,7 @@ EXEC InitMemberTypes;
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -13222,7 +15069,7 @@ EXEC InitPeriodUnits;
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -13271,7 +15118,7 @@ EXEC InitLimitUnits;
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -13358,7 +15205,7 @@ EXEC InitLicenseTypes;
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -13422,7 +15269,7 @@ EXEC InitLicenseFeatures;
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -13473,7 +15320,7 @@ EXEC InitMasterPKs;
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -13557,7 +15404,7 @@ EXEC InitDeviceTypes;
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -13595,7 +15442,7 @@ EXEC InitDefaultUser;
 GO
 
 
-/*********** Script Update Date: 2019-08-20  ***********/
+/*********** Script Update Date: 2019-12-16  ***********/
 SET ANSI_NULLS ON
 GO
 
@@ -13611,6 +15458,8 @@ GO
 --	- Stored Procedure Created.
 -- <2018-05-10> :
 --	- Update new error messages.
+-- <2019-10-01> :
+--	- Update new error messages.
 --
 -- [== Example ==]
 --
@@ -13624,7 +15473,6 @@ BEGIN
     -- LANGUAGES.
     EXEC SaveErrorMsg 0101, N'Language Id cannot be null or empty string.'
     EXEC SaveErrorMsg 0102, N'Description cannot be null or empty string.'
-    EXEC SaveErrorMsg 0103, N'Language Description is duplicated.'
     -- MASTER PK.
     EXEC SaveErrorMsg 0201, N'Table Name is null or empty string.'
     EXEC SaveErrorMsg 0202, N'Seed Reset Mode should be number 1-3.'
@@ -13820,6 +15668,8 @@ BEGIN
     -- REGISTER CUSTOMER.
     EXEC SaveErrorMsg 1801, N'CustomerName cannot be null or empty string.'
     EXEC SaveErrorMsg 1802, N'UserName and Password cannot be null or empty string.'
+	EXEC SaveErrorMsg 1803, N'LicenseTypeId cannot be null.'
+	EXEC SaveErrorMsg 1804, N'LicenseTypeId not exists.'
     -- SIGNIN.
     EXEC SaveErrorMsg 1901, N'User Name cannot be null or empty string.'
     EXEC SaveErrorMsg 1902, N'Password cannot be null or empty string.'
@@ -13864,6 +15714,75 @@ BEGIN
     EXEC SaveErrorMsg 2410, N'Device Id cannot be null or empty string.'
     EXEC SaveErrorMsg 2411, N'Device Id is not found.'
     EXEC SaveErrorMsg 2412, N'Device Name (ML) is already exists.'
+	-- CHECK LICENSE
+	EXEC SaveErrorMsg 2501, N'Customer Id cannot be null or empty string.'
+	EXEC SaveErrorMsg 2502, N'Customer Id not exists.'
+	EXEC SaveErrorMsg 2503, N'LicenseTypeId cannot be null.'
+	EXEC SaveErrorMsg 2504, N'LicenseTypeId not exists.'
+	-- SAVE LICENSE HISTORY
+	EXEC SaveErrorMsg 2601, N'Customer Id cannot be null or empty string.'
+	EXEC SaveErrorMsg 2602, N'Customer Id not exists.'
+	EXEC SaveErrorMsg 2603, N'LicenseTypeId cannot be null.'
+	EXEC SaveErrorMsg 2604, N'LicenseTypeId not exists.'
+	EXEC SaveErrorMsg 2605, N'Request is on processing.'
+	EXEC SaveErrorMsg 2606, N'Your Free License is already used.'
+	-- REVOKE LICENSE HISTORY
+	EXEC SaveErrorMsg 2701, N'History Id cannot be null or empty string.'
+	EXEC SaveErrorMsg 2702, N'History Id not exists.'	
+	-- EXTEND LICENSE HISTORY
+	EXEC SaveErrorMsg 2801, N'History Id cannot be null or empty string.'
+	EXEC SaveErrorMsg 2802, N'History Id not exists.'
+    EXEC SaveErrorMsg 2803, N'License Still in active state.'
+	-- SETUP DEVICE ORG
+	EXEC SaveErrorMsg 2901, N'Customer Id cannot be null or empty string.'
+	EXEC SaveErrorMsg 2902, N'Device Id cannot be null or empty string.'
+    EXEC SaveErrorMsg 2903, N'Customer Id is not found.'
+	EXEC SaveErrorMsg 2904, N'Device Id Not Found.'
+    EXEC SaveErrorMsg 2905, N'Org Id is not found.'
+	-- SETUP DEVICE USER
+	EXEC SaveErrorMsg 3001, N'Customer Id cannot be null or empty string.'
+	EXEC SaveErrorMsg 3002, N'Device Id cannot be null or empty string.'
+    EXEC SaveErrorMsg 3003, N'Customer Id is not found.'
+	EXEC SaveErrorMsg 3004, N'Device Id Not Found.'
+    EXEC SaveErrorMsg 3005, N'Member Id is not found.'
+    -- DELETE MEMBER INFO
+    EXEC SaveErrorMsg 4001, N'Customer Id cannot be null or empty string.'
+    EXEC SaveErrorMsg 4002, N'Member Id cannot be null or empty string.'
+    EXEC SaveErrorMsg 4003, N'Cannot be remove default admin.'
+    -- DELETE BRANCH
+    EXEC SaveErrorMsg 4051, N'Customer Id cannot be null or empty string.'
+    EXEC SaveErrorMsg 4052, N'Branch Id cannot be null or empty string.'
+    EXEC SaveErrorMsg 4103, N'Cannot be remove default branch.'
+    -- DELETE ORG
+    EXEC SaveErrorMsg 4101, N'Customer Id cannot be null or empty string.'
+    EXEC SaveErrorMsg 4102, N'Org Id cannot be null or empty string.'
+    EXEC SaveErrorMsg 4103, N'Cannot be remove default org.'
+    -- DELETE QSET
+    EXEC SaveErrorMsg 4151, N'Customer Id cannot be null or empty string.'
+    EXEC SaveErrorMsg 4152, N'Qset Id cannot be null or empty string.'
+    EXEC SaveErrorMsg 4153, N'Cannot be remove qset that already in used.'
+    -- DELETE QSLIDE
+    EXEC SaveErrorMsg 4201, N'Customer Id cannot be null or empty string.'
+    EXEC SaveErrorMsg 4202, N'Qset Id cannot be null or empty string.'
+    EXEC SaveErrorMsg 4203, N'QSeq cannot be null.'
+    EXEC SaveErrorMsg 4204, N'Cannot be remove qslide that already in used.'
+    -- DELETE QSLIDEITEM
+    EXEC SaveErrorMsg 4251, N'Customer Id cannot be null or empty string.'
+    EXEC SaveErrorMsg 4252, N'Qset Id cannot be null or empty string.'
+    EXEC SaveErrorMsg 4253, N'QSeq cannot be null.'
+    EXEC SaveErrorMsg 4254, N'QSSeq cannot be null.'
+    EXEC SaveErrorMsg 4255, N'Cannot be remove qslideitem that already in used.'
+    -- DELETE DEVICE
+    EXEC SaveErrorMsg 4301, N'Customer Id cannot be null or empty string.'
+    EXEC SaveErrorMsg 4302, N'Device Id cannot be null or empty string.'
+    EXEC SaveErrorMsg 4303, N'Cannot be remove default device.'
+    -- DELETE VOTE
+    EXEC SaveErrorMsg 4351, N'Customer Id cannot be null or empty string.'
+    EXEC SaveErrorMsg 4352, N'Org Id cannot be null or empty string.'
+    EXEC SaveErrorMsg 4353, N'QSet Id cannot be null or empty string.'
+    EXEC SaveErrorMsg 4354, N'QSeq cannot be null.'
+    EXEC SaveErrorMsg 4355, N'VoteSeq cannot be null.'
+    EXEC SaveErrorMsg 4356, N'VoteDate cannot be null.'
 END
 
 GO
